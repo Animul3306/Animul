@@ -1,0 +1,28 @@
+.slideshow-container {
+    max-width: 1920px;
+    position: relative;
+    margin: 20px 0px;
+}
+
+.mySlides {
+    display: none;
+}
+
+.prev, .next {
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -22px;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.prev {
+    left: 0;
+}
+
+.next {
+    right: 0;
+}
