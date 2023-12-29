@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="receipt">
+	<insert id="insert" parameterType="receiptVO">
+		insert into animul.receipt values (
+			#{receipt_id},
+			#{receipt_myid},
+			#{receipt_hospitalname},
+			#{receipt_address},
+			#{receipt_date},
+			#{receipt_price}
+		)
+	</insert>
+	
+	<insert id="review" parameterType="receiptVO">
+		insert into animul.receipt values (
+			#{receipt_review},
+			#{receipt_reviewrating}
+		)
+	</insert>
+	
+	<select id="one" parameterType="receiptVO" resultType="receiptVO">
+		select * from animul.receipt where receipt_id = #{receipt_id}
+	</select>
+	
+	<select id="list" resultType="receiptVO">
+		select * from animul.receipt order by id desc
+	</select>
+</mapper>
