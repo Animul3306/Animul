@@ -29,7 +29,7 @@
         }
 	</style>
 
-<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/slider.css"/>">
+	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/slider.css"/>">
 </head>
 <body>
     <c:set var="imageList" value="/resources/img/ad_banner01.png,/resources/img/ad_banner02.png,/resources/img/ad_banner03.jpg" />
