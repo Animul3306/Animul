@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="ask_reply">
+	<insert id="insert" parameterType="ask_replyVO">	
+	insert into animul.ask_reply values (
+	#{ask_reply_id},
+	#{member_id},
+	#{ask_reply_title},
+	#{ask_reply_content},
+	#{ask_reply_date},
+	#{ask_id}
+	)
+  </insert>
+</mapper>
