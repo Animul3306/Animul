@@ -79,7 +79,7 @@
             
             <div id="logo">
                 <!-- 로고 이미지를 넣어주세요. -->
-                <img src="./resources/img/logo_transparent_resized.png" alt="Logo">
+                <img src="${pageContext.request.contextPath}/resources/img/logo_transparent_resized.png" alt="Logo">
             </div>
 
             <nav id="nav_right">

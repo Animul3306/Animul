@@ -4,16 +4,21 @@
   
 <mapper namespace="diagnosis">
 	<insert id="insert" parameterType="diagnosisVO">
-		insert into animul.receipt values (
+		insert into animul.diagnosis values (
 			#{diagnosis_name},
 			#{diagnosis_category}
 		)
 	</insert>
 	
-	<select id="one" parameterType="diagnosisVO" resultType="diagnosisVO">
-		select * from animul.receipt_item where diagnosis_name = #{diagnosis_name}
+	<select id="find" parameterType="diagnosisVO" resultType="diagnosisVO">
+		select * from animul.diagnosis where diagnosis_name like CONCAT('%',#{diagnosis_name},'%')
 	</select>
+	
+	<select id="one" parameterType="diagnosisVO" resultType="diagnosisVO">
+		select * from animul.diagnosis where diagnosis_name = #{diagnosis_name}
+	</select>
+	
 	<select id="list" resultType="diagnosisVO">
-		select * from animul.receipt_item order by diagnosis_name desc
+		select * from animul.diagnosis order by diagnosis_name desc
 	</select>
 </mapper>

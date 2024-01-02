@@ -10,7 +10,7 @@ public class RetrieveController {
 	RetrieveDAO dao;
 	
 	@RequestMapping("retrieveInsert")
-	public void insert(retrieveVO vo) {
+	public void insert(RetrieveVO vo) {
 		// TODO Auto-generated method stub
 
 	}

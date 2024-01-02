@@ -22,4 +22,8 @@ public class DiagnosisService {
 	public List<DiagnosisVO> list() {
 		return diagnosisDAO.list();
 	}
+	
+	public List<DiagnosisVO> find(DiagnosisVO diagnosisVO) {
+		return diagnosisDAO.find(diagnosisVO);
+	}
 }
