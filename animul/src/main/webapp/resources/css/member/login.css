@@ -1,0 +1,123 @@
+@font-face {
+	font-family: 'NotoSans_Bold';
+	src: url('./NotoSansKR-Bold') format('truetype')
+}
+
+body {
+    display: flex;
+    align-item: center;
+    flex-direction: column;
+    margin_left: auto;
+    margin_right: auto;
+}
+
+#login {
+    width: 100%;
+    height: 720px;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#login span {
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+
+    font-family: 'NotoSans_Bold';
+}
+
+#underbar {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 5px;
+}
+
+#underbar span {
+    font-size: 13px;
+    font-weight: normal;
+    color: gray;
+
+    font-family: 'NotoSans_Bold';
+}
+
+#underbar a {
+	width: 175px;
+    font-size: 13px;
+    font-weight: normal;
+    color: gray;
+
+    font-family: 'NotoSans_Bold';
+    display: inline-block;
+    text-decoration: none;
+}
+
+#login_box {
+    display: flex;
+    align-item: center;
+    flex-direction: column;
+}
+
+#login_box input {
+    height: 45px;
+    width: 350px;
+    margin: 5px;
+    color: #333;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    text-indent: 10px;
+}
+
+#login_box #save_id {
+    height: 15px;
+    width: 15px;
+}
+
+#login_box label {
+    text-align: left;
+}
+
+#login_button {
+    display: flex;
+    flex-direction: column;
+    align-item: center;
+}
+
+#login_button button {
+    height: 45px;
+    width: 350px;
+    margin: 3px 0px;
+}
+
+#normal_button {
+    background-color: #0dbcaf; 
+    color: black; 
+    border: 0px; 
+    font-family: 'NotoSans_Bold';
+}
+
+#naver_button {
+    Background-Color: #1ec800; 
+    color: white; 
+    border: 0px; 
+    font-family: 'NotoSans_Bold'
+}
+
+#kakao_button {
+    Background-Color: #ffeb00;
+    color: black; 
+    border: 0px; 
+    font-family: 'NotoSans_Bold';
+}
+
+#apple_button {
+    Background-Color: Black; 
+    color: white; 
+    border: 0px; 
+    font-family: 'NotoSans_Bold';
+}
