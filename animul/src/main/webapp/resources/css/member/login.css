@@ -1,6 +1,6 @@
 @font-face {
 	font-family: 'NotoSans_Bold';
-	src: url('./NotoSansKR-Bold') format('truetype')
+	src: url('./font/NotoSansKR-Bold.ttf') format('truetype')
 }
 
 body {
