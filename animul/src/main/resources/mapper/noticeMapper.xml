@@ -3,12 +3,22 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="notice">
-	<insert id="insert" parameterType="notice">	
+	<insert id="insert" parameterType="noticeVO">	
 	insert into animul.notice values (
-	#{notice_id},
+	null,
 	#{notice_title},
 	#{notice_content},
-	#{notice_date}
+	now()
 	)
   </insert>
+  
+  <update id="update" parameterType="noticeVO" >
+		update animul.notice
+		set notice_title = #{notice_title}, notice_content = #{notice_content} 
+		where notice_id = #{notice_id}
+  </update>
+  
+  <delete id="delete" parameterType="noticeVO" >
+	    delete from animul.notice where notice_id = #{notice_id}
+   </delete>
 </mapper>

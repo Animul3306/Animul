@@ -5,14 +5,24 @@
 <mapper namespace="ask">
   <insert id="insert" parameterType="askVO">	
 	insert into animul.ask values (
-	#{ask_id},
+	null,
 	#{member_id},
 	#{ask_title},
 	#{ask_content},
-	#{ask_date},
+	now(),
 	#{ask_file},
 	#{ask_category}
 	)
   </insert>
+  
+  <update id="update" parameterType="askVO" >
+		update animul.ask 
+		set ask_title = #{ask_title}, ask_content = #{ask_content} 
+		where ask_id = #{ask_id}
+  </update>
+  
+  <delete id="delete" parameterType="askVO" >
+	    delete from animul.ask where ask_id = #{ask_id}
+   </delete>
 	
 </mapper>

@@ -15,5 +15,14 @@ public class AskDAO {
 		return result;
 	}
 	
+	public int delete(AskVO vo) {
+		int result = my.delete("ask.delete", vo);
+		return result;
+		}
+	
+	public int update(AskVO vo) {
+		int result = my.update("ask.update", vo);
+		return result;
+		}
 	
 }
