@@ -15,4 +15,13 @@ public class Ask_replyDAO {
 	return result;
 	}
 	
+	public int delete(Ask_replyVO vo) {
+		int result = my.delete("ask_reply.delete", vo);
+		return result;
+		}
+	
+	public int update(Ask_replyVO vo) {
+		int result = my.update("ask_reply.update", vo);
+		return result;
+		}
 }

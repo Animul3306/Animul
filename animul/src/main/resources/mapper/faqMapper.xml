@@ -5,10 +5,21 @@
 <mapper namespace="faq">
 	<insert id="insert" parameterType="faqVO">	
 	insert into animul.faq values (
-	#{faq_id},
+	null,
 	#{faq_title},
 	#{faq_content},
 	#{faq_category}
 	)
   </insert>
+  
+  <update id="update" parameterType="faqVO" >
+		update animul.faq
+		set faq_title = #{faq_title}, faq_content = #{faq_content} 
+		where faq_id = #{faq_id}
+  </update>
+  
+  <delete id="delete" parameterType="faqVO" >
+	    delete from animul.faq where faq_id = #{faq_id}
+   </delete>
+   
 </mapper>

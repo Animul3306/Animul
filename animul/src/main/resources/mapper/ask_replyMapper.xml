@@ -3,14 +3,24 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="ask_reply">
-	<insert id="insert" parameterType="ask_replyVO">	
+   <insert id="insert" parameterType="ask_replyVO">	
 	insert into animul.ask_reply values (
-	#{ask_reply_id},
+	null,
 	#{member_id},
 	#{ask_reply_title},
 	#{ask_reply_content},
-	#{ask_reply_date},
+	now(),
 	#{ask_id}
 	)
   </insert>
+  
+  <update id="update" parameterType="ask_replyVO" >
+		update animul.ask_reply 
+		set ask_reply_title = #{ask_reply_title}, ask_reply_content = #{ask_reply_content} 
+		where ask_reply_id = #{ask_reply_id}
+  </update>
+  
+  <delete id="delete" parameterType="ask_replyVO" >
+	    delete from animul.ask_reply where ask_reply_id = #{ask_reply_id}
+   </delete>
 </mapper>
