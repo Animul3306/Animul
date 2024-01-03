@@ -25,4 +25,8 @@ public class MemberService {
 	public List<MemberVO> all() {
 		return dao.all();
 	}
+
+	public int login(MemberVO vo) {
+		return dao.login(vo);
+	}
 }

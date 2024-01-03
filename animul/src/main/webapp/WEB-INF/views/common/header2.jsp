@@ -1,72 +1,37 @@
-<!-- <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-<%@ page import="java.util.List" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> -->
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ page session="true" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
     <html>
 
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
         <title>Insert title here</title>
-        <style>
-            body {
-                margin: 0;
-                padding: 0;
+		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/header.css" />
+        <script>
+            function logout(){
+                document.logoutForm.submit();
             }
-    
-            header {
-                background-color: #8EC693;
-                width: 100%;
-                height: 100px;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                padding: 0 20px;
-            }
-    
-            #logo {
-                display: flex;
-                align-items: center;
-            }
-    
-            #logo img {
-                max-height: 100%;
-            }
-    
-            nav {
-                display: flex;
-            }
-    
-            nav a {
-                margin: 0 50px;
-                color: white;
-                text-decoration: none;
-                font-size: 20px;
-            }
-
-            #nav_left {
-                margin-left: auto;
-            }
-
-            #nav_right {
-                margin-right: auto;
-            }
-            
-            .login_group {
-                float: right;
-                margin-left: auto;
-                width: auto;
-            }
-            .login_group a {
-                margin: 0 10px;
-                color: black;
-                text-decoration: none;
-                font-size: 15px;
-            }
-        </style>
+        </script>
     </head>
     <body>
         <div class="login_group">
-            <a href="#">로그인</a>
+            <% 
+                Object loggedInUser = session.getAttribute("loggedInUser");
+
+                if(loggedInUser != null) {
+            %>
+                    <form:form name="logoutForm" action="${pageContext.request.contextPath}/member/Logout.do" method="post"><a href="#" onclick="logout()">로그아웃</a></form:form>
+            <%
+                } else {
+            %>
+            <a href="${pageContext.request.contextPath}/member/login.jsp">로그인</a>
+            <%
+                }
+            %>
+
             <a href="#">회원가입</a>
             <a href="#">고객센터</a>
         </div>  
@@ -79,7 +44,7 @@
             
             <div id="logo">
                 <!-- 로고 이미지를 넣어주세요. -->
-                <img src="${pageContext.request.contextPath}/resources/img/logo_transparent_resized.png" alt="Logo">
+                <a href="${pageContext.request.contextPath}/main.jsp"><img src="${pageContext.request.contextPath}/resources/img/logo_transparent_resized.png" alt="Logo"></a>
             </div>
 
             <nav id="nav_right">
@@ -88,5 +53,6 @@
             </nav>
         </header>
         <!-- 나머지 내용을 계속 작성하세요. -->
+        <br>
     </body>
 </html>
