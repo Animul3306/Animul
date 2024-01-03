@@ -23,10 +23,14 @@
 	</select>
 	
 	<delete id="delete" parameterType="memberVO">
-		delete from member where id="#{id}"
+		delete from member where member_id="#{id}"
 	</delete>
 	
 	<select id="count" resultType="Integer">
 		select count(*) from member
+	</select>
+
+	<select id="login" parameterType="memberVO" resultType="int">
+		select count(*) from member where id=#{id} and password=#{password}
 	</select>
 </mapper>

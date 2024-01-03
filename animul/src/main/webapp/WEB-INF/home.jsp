@@ -1,6 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
-<%@ include file="/WEB-INF/views/common/header2.jsp" %>
 <html>
 <head>
 	<title>Home</title>

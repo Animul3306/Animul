@@ -22,4 +22,8 @@ public class DiagnosisDAO {
 	public List<DiagnosisVO> list() {
 		return my.selectList("diagnosis.list");
 	}
+	
+	public List<DiagnosisVO> find(DiagnosisVO diagnosisVO) {
+		return my.selectList("diagnosis.find", diagnosisVO);
+	}
 }

@@ -1,0 +1,58 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #8EC693;
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#logo {
+    display: flex;
+    align-items: center;
+}
+
+#logo img {
+    max-height: 100%;
+}
+
+nav {
+    display: flex;
+}
+
+nav a {
+    width: 130px;
+    margin: 0 50px;
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+#nav_left {
+    margin-left: auto;
+}
+
+#nav_right {
+    margin-right: auto;
+}
+
+.login_group {
+    float: right;
+  	display: flex;
+    margin-left: auto;
+    width: auto;
+}
+.login_group form:form {
+    margin: 0 0px;
+}
+.login_group a {
+    margin: 0 10px;
+    color: black;
+    text-decoration: none;
+    font-size: 15px;
+}
