@@ -1,0 +1,74 @@
+@font-face {
+	font-family: 'NotoSans_Bold';
+	src: url('./font/NotoSansKR-Bold.ttf') format('truetype')
+}
+
+#join_text {
+    display: flex;
+    justify-content: center;
+}
+
+#join_text span {
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+
+    font-family: 'NotoSans_Bold';
+}
+
+#target_select {
+    display: flex;
+    justify-content: center;
+}
+
+#target_select #join_owner{
+    width: 335px;
+    height: 460px;
+    background-color: lightgray;
+    margin: 0 5px;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px 20px;
+}
+
+#target_select #join_service {
+    width: 335px;
+    height: 460px;
+    background-color: lightgray;
+    margin: 0 5px;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px 20px;
+}
+
+#pet_owner {
+    font-size: 25px;
+    font-weight: bold;
+    margin-top: 10px;
+
+    font-family: 'NotoSans_Bold';
+}
+
+#pet_owner_text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#button_owner {
+    width: 150px;
+    height: 50px;
+    border: 0px;
+    border-radius: 15px;
+    background-color: lightblue;
+}
