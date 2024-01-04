@@ -51,6 +51,77 @@
 
 .check {margin: 5px 0px;}
 
+.join-table{width:100%;border-top:1px solid #0dbcaf;border-bottom:1px solid #0dbcaf}
+.join-table tr{border-bottom:1px solid #e1e1e1}
+
+.join-table tr th {
+    padding: 20px 15px 20px 30px;
+    width: 195px;
+    height:46px;
+    text-align: left;
+    font-size: 18px;
+    font-weight: 700
+}
+
+.join-table tr td {
+    padding: 20px 15px;
+    width: 872px;
+    height: 46px;
+    font-size: 15px;
+    color: #777;
+    font-weight: 300;
+}
+
+.w45 {width: 88px; height: 45px}
+.w220 {width: 220px; height: 45px}
+.w400 {width: 400px; height: 45px}
+
+.input {
+	border: 1px;
+	border-color: lightgray;
+	padding: 0 5px;
+}
+#pass_not_same{
+    color: red;
+    display: none;
+}
+#pass_not_same2{
+    color: red;
+	display: none;
+}
+
+.button-gray {
+	width: 106.25px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.5;
+    padding: 0 10px;
+    text-align: center;
+    transition: all .15s ease;
+    cursor: pointer;
+    background-color: #60626c;
+}
+.button span{font-size:16px}
+
+.join-box .button {
+    line-height: 45px;
+    font-size: 18px;
+    vertical-align: top;
+    padding: 0 20px;
+    height: 45px;
+    outline: none;
+    text-rendering: auto;
+    letter-spacing: normal;
+    padding-block: 1px;
+    padding-inline: 6px;
+    border-width: 2px;
+    border-color: buttonborder;
+    border-image: initial;
+
+    -webkit-appearance: button;
+}
+
 #div_button {
     display: flex;
     justify-content: center;
@@ -86,6 +157,5 @@
     background-color: #8ec693;
     border: 0px;
     border-radius: 5px;
-    display: none;
+    display: block;
 }
-

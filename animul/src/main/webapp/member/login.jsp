@@ -8,6 +8,12 @@
 		<title>Login</title>
 		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/member/login.css" />
 		<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+		<script>
+			// 로그인 실패 시 알림창을 띄우는 함수
+			function showLoginError() {
+				alert('로그인에 실패했습니다. 아이디 또는 비밀번호를 확인해주세요.');
+			}
+		</script>
 	</head>
 	<body>
 		<form:form action="Login.do" method="post" modelAttribute="loginForm">
@@ -40,5 +46,13 @@
 			</div>
 		</div>
 		</form:form>
+
+		<c:if test="${not empty sessionScope.loginError}">
+	        <script>
+	            showLoginError();
+	        </script>
+	        <c:remove var="loginError" scope="session" />
+   		</c:if>
+
 	</body>
 </html>
