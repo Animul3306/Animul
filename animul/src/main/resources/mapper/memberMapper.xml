@@ -23,14 +23,30 @@
 	</select>
 	
 	<delete id="delete" parameterType="memberVO">
-		delete from member where member_id="#{id}"
+		delete from member where member_id=#{id}
 	</delete>
 	
 	<select id="count" resultType="Integer">
 		select count(*) from member
 	</select>
 
+	<select id="one" parameterType="memberVO" resultType="memberVO">
+		select * from member where member_id=#{id}
+	</select>
+
 	<select id="login" parameterType="memberVO" resultType="int">
-		select count(*) from member where id=#{id} and password=#{password}
+		select count(*) from member where member_id=#{id} and password=#{password}
+	</select>
+
+	<select id="selectId" parameterType="memberVO" resultType="boolean">
+		select count(*) from member where member_id=#{id}
+	</select>
+
+	<select id="selectEmail" parameterType="memberVO" resultType="boolean">
+		select count(*) from member where member_email=#{member_email}
+	</select>
+
+	<select id="selectNickname" parameterType="memberVO" resultType="boolean">
+		select count(*) from member where member_nickname=#{member_nickname}
 	</select>
 </mapper>

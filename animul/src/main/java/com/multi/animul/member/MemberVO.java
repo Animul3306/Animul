@@ -1,12 +1,14 @@
 package com.multi.animul.member;
 
+import java.sql.Date;
+
 public class MemberVO {
 	private String id;
 	private String password;
 	private String member_email;
 	private String member_nickname;
 	private String member_image;
-	private String member_birthday;
+	private Date member_birthday;
 	private String member_gender;
 	private int member_age;
 	private String member_name;
@@ -42,10 +44,10 @@ public class MemberVO {
 	public void setMember_image(String member_image) {
 		this.member_image = member_image;
 	}
-	public String getMember_birthday() {
+	public Date getMember_birthday() {
 		return member_birthday;
 	}
-	public void setMember_birthday(String member_birthday) {
+	public void setMember_birthday(Date member_birthday) {
 		this.member_birthday = member_birthday;
 	}
 	public String getMember_gender() {

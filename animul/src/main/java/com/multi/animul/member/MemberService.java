@@ -3,6 +3,8 @@ package com.multi.animul.member;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -26,7 +28,39 @@ public class MemberService {
 		return dao.all();
 	}
 
-	public int login(MemberVO vo) {
-		return dao.login(vo);
+	public boolean login(MemberVO vo) {
+		boolean isValid = false;
+
+		MemberVO resultVo = dao.one(vo);
+		try {
+			if(resultVo != null) {
+				isValid = BCrypt.checkpw(vo.getPassword(), resultVo.getPassword());
+			}
+		} catch(IllegalArgumentException e) { e.printStackTrace(); isValid = false;}
+
+		return isValid;
+	}
+
+	public boolean selectId(MemberVO vo) {
+		return dao.selectId(vo);
+	}
+
+	public boolean selectEmail(MemberVO vo) {
+		return dao.selectEmail(vo);
+	}
+
+	public boolean selectNickname(MemberVO vo) {
+		return dao.selectNickname(vo);
+	}
+
+	public int join(MemberVO vo) {
+		String pwd = vo.getPassword();
+
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		String hashedPwd = encoder.encode(pwd);
+
+		vo.setPassword(hashedPwd);
+
+		return dao.join(vo);
 	}
 }
