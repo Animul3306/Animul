@@ -68,7 +68,6 @@ public class MemberController {
 		return path;
 	}
 
-	
 	@RequestMapping(value="/member/Logout.do", method=RequestMethod.POST)
 	public String logout(HttpSession session) {
 		session.invalidate();
