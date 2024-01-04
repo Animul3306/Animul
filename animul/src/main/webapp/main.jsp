@@ -1,9 +1,10 @@
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ include file="/WEB-INF/views/common/header2.jsp" %>
 <html>
 <head>
-	<title>Home</title>
+	<title>Animul</title>
 	<style>
 		ul {
 			align-items: center;
@@ -28,10 +29,11 @@
         }
 	</style>
 
-<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/slider.css"/>">
+	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/slider.css"/>">
 </head>
 <body>
-    <c:set var="imageList" value="${['/resources/img/ad_banner01.png', '/resources/img/ad_banner02.png', '/resources/img/ad_banner03.jpg']}" />
+    <c:set var="imageList" value="/resources/img/ad_banner01.png,/resources/img/ad_banner02.png,/resources/img/ad_banner03.jpg" />
+	<c:set var="imageArray" value="${fn:split(imageList, ',')}" />
 
     <div class="slideshow-container">
         <c:forEach var="image" items="${imageList}">
@@ -46,9 +48,9 @@
     <script src="<c:url value="/resources/js/slider.js"/>"></script>
     
 <div class="disease">
-	<a href="#"><img src="./resources/img/disease_search.png"></a>
-	<a href="#"><img src="./resources/img/search.png"></a>
-	<a href="#"><img src="./resources/img/info.png"></a>
+	<a href="#"><img src="${pageContext.request.contextPath}/resources/img/disease_search.png"></a>
+	<a href="#"><img src="${pageContext.request.contextPath}/resources/img/search.png"></a>
+	<a href="#"><img src="${pageContext.request.contextPath}/resources/img/info.png"></a>
 </div>
 
 </body>

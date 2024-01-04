@@ -11,6 +11,7 @@ public class MemberDAO {
 	@Autowired
 	SqlSessionTemplate my;
 	
+	
 	public void insert(MemberVO vo) {
 		my.insert("member.insert", vo);
 	}
@@ -25,5 +26,9 @@ public class MemberDAO {
 	
 	public int count() {
 		return my.selectOne("fitness.count");
+	}
+
+	public int login(MemberVO vo) {
+		return my.selectOne("member.login", vo);
 	}
 }
