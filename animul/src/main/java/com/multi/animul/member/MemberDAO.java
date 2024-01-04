@@ -31,4 +31,24 @@ public class MemberDAO {
 	public int login(MemberVO vo) {
 		return my.selectOne("member.login", vo);
 	}
+
+	public MemberVO one(MemberVO vo) {
+		return my.selectOne("member.one", vo);
+	}
+
+	public boolean selectId(MemberVO vo) {
+		return my.selectOne("member.selectId", vo);
+	}
+
+	public boolean selectEmail(MemberVO vo) {
+		return my.selectOne("member.selectEmail", vo);
+	}
+
+	public boolean selectNickname(MemberVO vo) {
+		return my.selectOne("member.selectNickname", vo);
+	}
+
+	public int join(MemberVO vo) {
+		return my.insert("member.insert", vo);
+	}
 }
