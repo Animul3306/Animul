@@ -20,19 +20,27 @@
    		</h2>
    	
     <ul id="snb">
-        <li><a href="free.jsp">자유 토크</a></li>
-        <li><a href="local.jsp">산책 메이트ㆍ멍냥이 찾기</a></li>
+        <li><a href="/animul/bbs/free">자유 토크</a></li>
+        <li><a href="/animul/bbs/local">산책 메이트ㆍ멍냥이 찾기</a></li>
         <li><a href="https://www.animal.go.kr/front/awtis/protection/protectionList.do?menuNo=1000000060">유기동물보호센터 보호중</a></li>
         <li><a href="https://www.1365.go.kr/vols/search.do?query=%EC%9C%A0%EA%B8%B0">유기동물보호센터 봉사관련</a></li>
     </ul>
     <div style="padding-top:20px;"></div>
-</div>
-     <div id="contents">
-            <div class="pt-titarea">
-                <h3 class="tit">자유 게시판</h3>
-                <p>마이펫 자랑, 고민 등 자유롭게 작성하는 게시판 입니다!!</p>
+	</div>
+	
+            <div class="div-tab" style="padding-top:100px; margin-bottom:20px;">
+                <ul>
+                        <li name="tabCategory" data-val="1"><a href="/Community/MyPetNews?category=19" name="aCategory">서울/경기/인천</a></li>
+                        <li name="tabCategory" data-val="2"><a href="/Community/MyPetNews?category=20" name="aCategory">강원도</a></li>
+                        <li name="tabCategory" data-val="3"><a href="/Community/MyPetNews?category=21" name="aCategory">충청도</a></li>
+                        <li name="tabCategory" data-val="4"><a href="/Community/MyPetNews?category=21" name="aCategory">경상도</a></li>
+                        <li name="tabCategory" data-val="5"><a href="/Community/MyPetNews?category=21" name="aCategory">전라도</a></li>
+                        <li name="tabCategory" data-val="6"><a href="/Community/MyPetNews?category=21" name="aCategory">제주도</a></li>
+
+                </ul>
             </div>
-            <div class="hd-sch">
+            <div id="contents">
+             <div class="hd-sch">
                 <div class="hd">게시글 검색</div>
                 <div class="bd">
                     <select id="selSearchType" class="input">
@@ -47,7 +55,7 @@
                     <a style="cursor:pointer;" class="btn btn-sm btn-blue" id="aTermSearch">조회하기</a>
                 </div>
                 <div style="float:right;">
-                    <input type="checkbox" id="chkMyArticle" /><label for="chkMyArticle" style="font-size:14px;">나의 게시글 보기</label>
+                    <a style="cursor:pointer;" class="btn btn-sm btn-blue" id="aTermSearch">글쓰기</a>
                 </div>
             </div>
             <table class="list">
@@ -91,9 +99,12 @@
          		</tbody>
          		</table>
          		</div>
-         		
+         		</div>
 
-   
-         	
+                        
+                        
+	
+
+
 </body>
 </html>

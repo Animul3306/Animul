@@ -48,7 +48,8 @@
     <script src="<c:url value="/resources/js/slider.js"/>"></script>
     
 <div class="disease">
-	<a href="#"><img src="${pageContext.request.contextPath}/resources/img/disease_search.png"></a>
+	<a href="#"><img 
+	src="${pageContext.request.contextPath}/resources/img/disease_search.png"></a>
 	<a href="#"><img src="${pageContext.request.contextPath}/resources/img/search.png"></a>
 	<a href="#"><img src="${pageContext.request.contextPath}/resources/img/info.png"></a>
 </div>
