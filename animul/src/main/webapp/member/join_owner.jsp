@@ -20,8 +20,14 @@
 				var terms_box = document.getElementById('terms_box');
 				var join_box = document.getElementById('join_box');
 
+				var top_h3 = document.getElementById('top_h3');
+				var top_img = document.getElementById('top_img');
+
 				terms_box.style.display = 'none';
 				join_box.style.display = 'block';
+
+				top_h3.textContent = "회원가입";
+				top_img.src = "${pageContext.request.contextPath}/resources/img/member/tab2.png";
 			}
 
 			function checkboxControl() {
@@ -53,7 +59,7 @@
 			}
 
 			$(document).ready(function() {
-				$('#pass, #passcheck').change( function() {
+				$('#pass').change( function() {
 					var pass = $('#pass').val();
 					var passcheck = $('#passcheck').val();
 					var pass_not_same = $('#pass_not_same');
@@ -61,7 +67,6 @@
 
 					if (pass != passcheck) {
 						pass_not_same.css('display', 'block');
-						pass_not_same2.css('display', 'block');
 
 						checkPassword = false;
 					} else {
@@ -71,6 +76,23 @@
 						checkPassword = true;
 					}
 				});
+				$('#passcheck').change( function() {
+					var pass = $('#pass').val();
+					var passcheck = $('#passcheck').val();
+					var pass_not_same = $('#pass_not_same');
+					var pass_not_same2 = $('#pass_not_same2');
+					
+					if (pass != passcheck) {
+						pass_not_same2.css('display', 'block');
+
+						checkPassword = false;
+					} else {
+						pass_not_same.css('display', 'none');
+						pass_not_same2.css('display', 'none');
+
+						checkPassword = true;
+					}
+				})
 
 				$('#birth').change(function() {
 					var currentDate = new Date();
@@ -96,14 +118,14 @@
 					}
 
 					$.ajax({
-						url : './ConfirmId',
+						url : 'ConfirmId.do',
 						data : {
 							id : id
 						},
 						type : "POST",
 						dataType : 'json',
 						success : function(result) {
-							if ( result == true ) {
+							if ( result ) {
 								$("#label_id").css("color", "black").text("사용 가능한 ID 입니다.");
 
 								checkId = true;
@@ -127,14 +149,14 @@
 					}
 
 					$.ajax({
-						url : './ConfirmEmail',
+						url : './ConfirmEmail.do',
 						data : {
 							email : email
 						},
 						type : "POST",
 						dataType : 'json',
 						success : function(result) {
-							if ( result == true ) {
+							if ( result ) {
 								$("#label_email").css("color", "black").text("사용 가능한 이메일 입니다.");
 						
 								checkEmail = true;
@@ -158,14 +180,14 @@
 					}
 
 					$.ajax({
-						url : './ConfirmNickname',
+						url : 'ConfirmNickname.do',
 						data : {
 							nickname : nickname
 						},
 						type : "POST",
 						dataType : 'json',
 						success : function(result) {
-							if ( result == true ) {
+							if ( result ) {
 								$("#label_nickname").css("color", "black").text("사용 가능한 닉네임 입니다.");
 						
 								checkNickname = true;
@@ -181,10 +203,18 @@
 		</script>
 	</head>
 	<body>
+		<br><br>
         <div>
             <div id="join_text">
-                <span>회원가입<br></span>
+                <span>펫 오너 회원가입<br></span>
             </div>
+
+			<div id="join_top">
+				<h3 id="top_h3">이용약관</h3>
+				<img src="${pageContext.request.contextPath}/resources/img/member/tab1.png" id="top_img">
+				<br>
+			</div>
+
 			<div id="terms_box">
 				<span id="terms_text">이용약관 (필수)</span>
 
@@ -198,7 +228,6 @@
 						<span>이용약관에 동의합니다.</span>
 					</label>
 				</div>
-
 
 				<span id="terms_text">개인정보의 수집 및 이용에 대한 동의 (필수)</span>
 
@@ -240,7 +269,7 @@
 								<th>비밀번호*</th>
 								<td>
 									<div class="input_button">
-										<input id="pass" name="password" required="required" type="password" placeholder="8~20자리 영문, 숫자 특수문자" class="input w400">
+										<input id="pass" name="password" required="required" type="password" placeholder="8~20자리 영문, 숫자 특수문자" autoComplete="off" class="input w400">
 										<label id="pass_not_same">비밀번호와 비밀번호 확인이 다릅니다.</label>
 									</div>	
 								</td>
@@ -249,7 +278,7 @@
 								<th>비밀번호 확인*</th>
 								<td>
 									<div class="input_button">
-										<input id="passcheck" required="required" type="password" placeholder="8~20자리 영문, 숫자 특수문자" class="input w400">
+										<input id="passcheck" required="required" type="password" placeholder="8~20자리 영문, 숫자 특수문자" autoComplete="off" class="input w400">
 										<label id="pass_not_same2">비밀번호와 비밀번호 확인이 다릅니다.</label>	
 									</div>
 								</td>

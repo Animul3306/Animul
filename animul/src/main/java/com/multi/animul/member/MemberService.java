@@ -1,6 +1,7 @@
 package com.multi.animul.member;
 
 import java.util.List;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCrypt;
@@ -62,5 +63,24 @@ public class MemberService {
 		vo.setPassword(hashedPwd);
 
 		return dao.join(vo);
+	}
+
+	public String findId(MemberVO vo) {
+		return dao.findId(vo);
+	}
+
+	public Boolean findPwd(MemberVO vo) {
+		return dao.findPwd(vo);
+	}
+
+	public int resetPwd(MemberVO vo) {
+		String pwd = vo.getPassword();
+
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		String hashedPwd = encoder.encode(pwd);
+
+		vo.setPassword(hashedPwd);
+
+		return dao.resetPwd(vo);
 	}
 }

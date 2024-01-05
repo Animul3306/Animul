@@ -35,6 +35,18 @@ public class MemberDAO {
 	public MemberVO one(MemberVO vo) {
 		return my.selectOne("member.one", vo);
 	}
+	
+	public String findId(MemberVO vo) {
+		return my.selectOne("member.findId", vo);
+	}
+
+	public Boolean findPwd(MemberVO vo) {
+		return my.selectOne("member.findPwd", vo);
+	}
+
+	public int resetPwd(MemberVO vo) {
+		return my.update("member.resetPwd", vo);
+	}
 
 	public boolean selectId(MemberVO vo) {
 		return my.selectOne("member.selectId", vo);

@@ -23,16 +23,23 @@
 
                 if(loggedInUser != null) {
             %>
+            
                     <form:form name="logoutForm" action="${pageContext.request.contextPath}/member/Logout.do" method="post"><a href="#" onclick="logout()">로그아웃</a></form:form>
+            		
+            		<a href="#">마이페이지</a>
+            		
             <%
                 } else {
             %>
+            
             <a href="${pageContext.request.contextPath}/member/login.jsp">로그인</a>
+            
+            <a href="${pageContext.request.contextPath}/member/join.jsp">회원가입</a>
+            
             <%
                 }
             %>
-
-            <a href="${pageContext.request.contextPath}/member/join.jsp">회원가입</a>
+			
             <a href="#">고객센터</a>
         </div>  
         
