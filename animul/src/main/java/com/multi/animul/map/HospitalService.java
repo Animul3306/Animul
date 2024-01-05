@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 @Service
 public class HospitalService {
 
@@ -19,15 +20,15 @@ public class HospitalService {
 		 *  map single marker 출력 이미지.
 		 */
 	}
-	
+	/*
 	public List<HospitalVO> list(HospitalVO vo)	{
 		
-		List<HospitalVO> list1 = new ArrayList<>(); //dao.list(vo);
+		List<HospitalVO> list1 = dao.list(vo);
 		
 		return list1;
 		
 	}
-	
+	*/
 	public HospitalVO one(HospitalVO vo) {
 		
 		HospitalVO one1 = new HospitalVO(); //dao.one(vo);
@@ -37,5 +38,10 @@ public class HospitalService {
 	
 	public int count() {
 		return dao.count();
+	}
+	
+	public List<HospitalVO> list1(PageVO vo) {
+		List<HospitalVO> list1 = dao.list1(vo);
+		return list1;
 	}
 }
