@@ -63,7 +63,7 @@ body {
     flex-direction: column;
 }
 
-#login_box input {
+#login_box .login_input {
     height: 45px;
     width: 350px;
     margin: 5px;
@@ -73,7 +73,7 @@ body {
     text-indent: 10px;
 }
 
-#login_box #save_id {
+#login_box #remember_id {
     height: 15px;
     width: 15px;
 }

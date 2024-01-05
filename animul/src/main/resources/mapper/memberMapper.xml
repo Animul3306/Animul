@@ -34,6 +34,18 @@
 		select * from member where member_id=#{id}
 	</select>
 
+	<select id="findId" parameterType="memberVO" resultType="String">
+		select member_id from member where member_name=#{member_name} and member_email=#{member_email}
+	</select>
+
+	<select id="findPwd" parameterType="memberVO" resultType="Boolean">
+		select count(*) from member where member_id=#{id} and member_name=#{member_name} and member_email=#{member_email}
+	</select>
+
+	<update id="resetPwd" parameterType="memberVO">
+		update member set password=#{password} where member_id=#{id}
+	</update>
+
 	<select id="login" parameterType="memberVO" resultType="int">
 		select count(*) from member where member_id=#{id} and password=#{password}
 	</select>
