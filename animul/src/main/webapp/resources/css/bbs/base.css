@@ -1,13 +1,6 @@
 
 @charset "utf-8";
 
-@import url("swiper.min.css");
-@import url("jquery.bxslider.min.css");
-@import url("animations.css");
-@import url("jquery.mCustomScrollbar.min.css");
-@import url('jquery-ui.css');
-@import url('nice-select.css');
-@import url('font.css');
 
 /* --------------------------------------------
  * default
@@ -163,6 +156,6 @@ a.color-blue:hover{ text-decoration: underline;}
 .btn.btn-lg{ height: 60px; line-height: 58px; font-size: 18px;}
 .btn.btn-sm{ height: 34px; line-height: 32px; font-size: 14px; padding:0 15px; min-width:80px; }
 .btn.block{ width:100%; padding:0; display: block;}
-.btn.wide{ min-width: 270px;}
+.btn.wide{ min-width: 200px;}
 .btn.radius{ border-radius:3px;}
 .btn.radius2{ border-radius:30px;}

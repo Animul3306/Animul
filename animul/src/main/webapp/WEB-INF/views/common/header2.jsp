@@ -56,7 +56,7 @@
 
             <nav id="nav_right">
                 <a href="#">질병 조회</a>
-                <a href="#">게시판</a>
+                <a href="${pageContext.request.contextPath}/bbs/free">게시판</a>
             </nav>
         </header>
         <!-- 나머지 내용을 계속 작성하세요. -->

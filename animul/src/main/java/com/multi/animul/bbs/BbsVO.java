@@ -8,8 +8,16 @@ public class BbsVO {
 	private String bbs_file;
 	private String bbs_date;
 	private int bbs_hit;
-	private String cate;
+	private String bbs_cate;
+	private int bbs_menu;
 	
+	
+	public int getBbs_menu() {
+		return bbs_menu;
+	}
+	public void setBbs_menu(int bbs_menu) {
+		this.bbs_menu = bbs_menu;
+	}
 	public int getBbs_id() {
 		return bbs_id;
 	}
@@ -18,6 +26,12 @@ public class BbsVO {
 	}
 	public String getMember_id() {
 		return member_id;
+	}
+	public String getBbs_cate() {
+		return bbs_cate;
+	}
+	public void setBbs_cate(String bbs_cate) {
+		this.bbs_cate = bbs_cate;
 	}
 	public void setMember_id(String member_id) {
 		this.member_id = member_id;
@@ -52,18 +66,12 @@ public class BbsVO {
 	public void setBbs_hit(int bbs_hit) {
 		this.bbs_hit = bbs_hit;
 	}
-	public String getCate() {
-		return cate;
-	}
-	public void setCate(String cate) {
-		this.cate = cate;
-	}
-	
+
 	@Override
 	public String toString() {
 		return "BbsVO [bbs_id=" + bbs_id + ", member_id=" + member_id + ", bbs_title=" + bbs_title + ", bbs_content="
 				+ bbs_content + ", bbs_file=" + bbs_file + ", bbs_date=" + bbs_date + ", bbs_hit=" + bbs_hit + ", cate="
-				+ cate + "]";
+				+ bbs_cate + "]";
 	}
 	
 }
