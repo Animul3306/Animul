@@ -1,31 +1,65 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
+
 <mapper namespace="bbs">
-		<insert id="insert" parameterType="bbsVO" >
-		insert into bbs values (
+	<insert id="insert" parameterType="bbsVO">
+		insert into animul.bbs
+		values (
 		null,
-		#{member_id}
+		#{member_id},
 		#{bbs_title},
 		#{bbs_content},
 		#{bbs_file},
 		now(),
 		#{bbs_hit},
-		#{bbs_cate}
+		#{bbs_cate},
+		#{bbs_menu}
 		)
 	</insert>
-	<update id="update" parameterType="bbsVO" >
-		update bbs set bbs_title = #{bbs_title}, bbs_content = #{bbs_content} where bbs_id = #{bbs_id}
+
+	<update id="update" parameterType="bbsVO">
+		update animul.bbs 
+		set
+		bbs_cate = #{bbs_cate}, bbs_title = #{bbs_title}, bbs_content = #{bbs_content}
+		where 
+		bbs_id = #{bbs_id}
 	</update>
-	<delete id="delete" parameterType="bbsVO" >
-		delete from bbs where bbs_id = #{bbs_id}
+
+	<delete id="delete" parameterType="bbsVO">
+		delete from animul.bbs
+		where bbs_id = #{bbs_id}
 	</delete>
+
 	<select id="one" parameterType="bbsVO" resultType="bbsVO">
-		select * from bbs where bbs_id = #{bbs_id}
+		select * from
+		animul.bbs where bbs_id = #{bbs_id}
 	</select>
+
+
+	<select id="one2" parameterType="bbsVO" resultType="bbsVO">
+		select * from
+		animul.bbs where bbs_id = #{bbs_id}
+	</select>
+
+
 	<select id="list" resultType="bbsVO">
-		select * from bbs order by bbs_id desc
+		select * from animul.bbs where
+		bbs_menu=1 order by bbs_id desc
 	</select>
-	
+
+
+	<select id="list2" resultType="bbsVO">
+		select * from animul.bbs 
+		where
+		bbs_menu=2 order by bbs_id desc
+	</select>
+
+
+	<update id="updateHit">
+		update animul.bbs 
+		set bbs_hit= bbs_hit+1
+		where bbs_id = #{bbs_id}
+	</update>
+
 </mapper>
