@@ -24,4 +24,11 @@ public class Receipt_itemDAO {
 		return my.selectOne("receipt_item.list");
 	}
 	
+	public ReceiptTotalVO totalPrice(ReceiptTotalVO receiptTotalVO) {
+		return my.selectOne("receipt_item.totalPrice", receiptTotalVO);
+	}
+	
+	public List<ReceiptTotalVO> avgPrice() {
+		return my.selectList("receipt_item.avgPrice");
+	}
 }
