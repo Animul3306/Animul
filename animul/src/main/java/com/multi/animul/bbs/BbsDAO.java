@@ -20,15 +20,15 @@ public class BbsDAO {
 		return result;
 	}
 	
+
 	public int update(BbsVO vo) {
 		return my.update("bbs.update", vo);
 		
 	}
 
-	public int delete(BbsVO vo) {
-		int result = my.delete("bbs.delete", vo);
-		return result;
-
+	public void delete(int bbs_id) {
+		my.delete("bbs.delete", bbs_id);
+	
 	}
 	
 	public List<BbsVO> list() {
@@ -36,6 +36,10 @@ public class BbsDAO {
 		return list;
 	}
 	
+	public List<BbsVO> list2() {
+		List<BbsVO> list = my.selectList("bbs.list2");
+		return list;
+	}
 	
 	public BbsVO one(int bbs_id) {
 		return my.selectOne("bbs.one", bbs_id);

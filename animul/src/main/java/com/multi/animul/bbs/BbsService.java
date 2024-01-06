@@ -32,5 +32,14 @@ public class BbsService {
 		return dao.update(vo);
 	}
 
+	public void delete(int bbs_id) {
+		dao.delete(bbs_id);
+		
+	}
+
+	public List<BbsVO> list2() {
+		return dao.list2();
+	}
+
 	
 }

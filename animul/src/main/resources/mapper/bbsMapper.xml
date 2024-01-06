@@ -14,7 +14,8 @@
 		now(),
 		#{bbs_hit},
 		#{bbs_cate},
-		#{bbs_menu}
+		#{bbs_menu},
+		#{bbs_loc}
 		)
 	</insert>
 
@@ -46,6 +47,11 @@
 	<select id="list" resultType="bbsVO">
 		select * from animul.bbs where
 		bbs_menu=1 order by bbs_id desc
+	</select>
+
+	<select id="list2" resultType="bbsVO">
+		select * from animul.bbs where
+		bbs_menu=2 order by bbs_id desc
 	</select>
 
 
