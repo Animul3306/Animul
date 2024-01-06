@@ -55,13 +55,6 @@
 	</select>
 
 
-	<select id="list2" resultType="bbsVO">
-		select * from animul.bbs 
-		where
-		bbs_menu=2 order by bbs_id desc
-	</select>
-
-
 	<update id="updateHit">
 		update animul.bbs 
 		set bbs_hit= bbs_hit+1
