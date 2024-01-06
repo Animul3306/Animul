@@ -22,8 +22,8 @@ public class DiagnosisController {
 	
 	@RequestMapping("diagnosis/diagnosisOne")
 	public void one(DiagnosisVO diagnosisVO, Model model) {
-		DiagnosisVO diagnosisBag = diagnosisService.one(diagnosisVO);
-		model.addAttribute("diagnosisBag", diagnosisBag);
+		DiagnosisVO diagnosisbag = diagnosisService.one(diagnosisVO);
+		model.addAttribute("diagnosisbag", diagnosisbag);
 	}
 	
 	@RequestMapping("diagnosis/diagnosisList")

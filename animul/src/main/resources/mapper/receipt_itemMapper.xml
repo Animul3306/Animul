@@ -1,22 +1,76 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
+
 <mapper namespace="receipt_item">
 	<insert id="insert" parameterType="receipt_itemVO">
-		insert into animul.receipt values (
-			#{receipt_item_id},
-			#{receipt_item_receiptid},
-			#{receipt_item_diagnosisname},
-			#{receipt_item_price},
-			#{receipt_item_result}
+		insert into animul.receipt
+		values (
+		#{receipt_item_id},
+		#{receipt_item_receiptid},
+		#{receipt_item_diagnosisname},
+		#{receipt_item_price},
+		#{receipt_item_result}
 		)
 	</insert>
-	<select id="one" parameterType="receipt_itemVO" resultType="receipt_itemVO">
-		select * from animul.receipt_item where receipt_item_id = #{receipt_item_id}
+	<select id="one" parameterType="receipt_itemVO"
+		resultType="receipt_itemVO">
+		select * from animul.receipt_item where receipt_item_id =
+		#{receipt_item_id}
 	</select>
-	
+
 	<select id="list" resultType="receipt_itemVO">
-		select * from animul.receipt_item order by receipt_item_id desc
+		select * from animul.receipt_item
+		order by receipt_item_id desc
+	</select>
+
+	<select id="avgPrice" resultType="receiptTotalVO">
+		SELECT
+		i.receipt_item_diagnosisname, AVG(i.receipt_item_price) AS allAvgPrice
+		FROM animul.receipt r
+		JOIN animul.receipt_item i ON r.receipt_id = i.receipt_item_receiptid
+		GROUP BY i.receipt_item_diagnosisname;
+	</select>
+
+	<select id="totalPrice" parameterType="receiptTotalVO"
+		resultType="receiptTotalVO">
+		SELECT
+		AVG(CASE WHEN r.receipt_address like
+		CONCAT('%',#{gugunAddress},'%') OR
+		r.receipt_address IS NULL THEN
+		i.receipt_item_price END) AS
+		gugunAvgPrice,
+		MIN(CASE WHEN
+		r.receipt_address like CONCAT('%',#{gugunAddress},'%') OR
+		r.receipt_address IS NULL THEN i.receipt_item_price END) AS
+		gugunMinPrice,
+		MAX(CASE WHEN r.receipt_address like
+		CONCAT('%',#{gugunAddress},'%') OR
+		r.receipt_address IS NULL THEN
+		i.receipt_item_price END) AS
+		gugunMaxPrice,
+		AVG(CASE WHEN
+		r.receipt_address like CONCAT('%',#{sidoAddress},'%') OR
+		r.receipt_address IS NULL THEN i.receipt_item_price END) AS
+		sidoAvgPrice,
+		MIN(CASE WHEN r.receipt_address like
+		CONCAT('%',#{sidoAddress},'%') OR
+		r.receipt_address IS NULL THEN
+		i.receipt_item_price END) AS
+		sidoMinPrice,
+		MAX(CASE WHEN
+		r.receipt_address like CONCAT('%',#{sidoAddress},'%') OR
+		r.receipt_address IS NULL THEN i.receipt_item_price END) AS
+		sidoMaxPrice,
+		AVG(i.receipt_item_price) AS allAvgPrice,
+		MIN(i.receipt_item_price) AS allMinPrice,
+		MAX(i.receipt_item_price) AS
+		allMaxPrice
+		FROM
+		animul.receipt r
+		INNER JOIN animul.receipt_item i ON
+		r.receipt_id = i.receipt_item_receiptid
+		WHERE
+		i.receipt_item_diagnosisname = #{receipt_item_diagnosisname}
 	</select>
 </mapper>

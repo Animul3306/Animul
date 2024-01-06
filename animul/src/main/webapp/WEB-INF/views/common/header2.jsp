@@ -38,7 +38,7 @@
         
         <header>
             <nav id="nav_left">
-                <a href="#">진료비 조회</a>
+                <a href="${pageContext.request.contextPath}/diagnosis/diagnosisMain.jsp">진료비 조회</a>
                 <a href="#">주변시설 찾기</a>
             </nav>
             
