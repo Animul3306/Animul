@@ -10,8 +10,15 @@ public class BbsVO {
 	private int bbs_hit;
 	private String bbs_cate;
 	private int bbs_menu;
+	private int bbs_loc;
 	
 	
+	public int getBbs_loc() {
+		return bbs_loc;
+	}
+	public void setBbs_loc(int bbs_loc) {
+		this.bbs_loc = bbs_loc;
+	}
 	public int getBbs_menu() {
 		return bbs_menu;
 	}
@@ -66,12 +73,15 @@ public class BbsVO {
 	public void setBbs_hit(int bbs_hit) {
 		this.bbs_hit = bbs_hit;
 	}
-
+	
+	
 	@Override
 	public String toString() {
 		return "BbsVO [bbs_id=" + bbs_id + ", member_id=" + member_id + ", bbs_title=" + bbs_title + ", bbs_content="
-				+ bbs_content + ", bbs_file=" + bbs_file + ", bbs_date=" + bbs_date + ", bbs_hit=" + bbs_hit + ", cate="
-				+ bbs_cate + "]";
+				+ bbs_content + ", bbs_file=" + bbs_file + ", bbs_date=" + bbs_date + ", bbs_hit=" + bbs_hit
+				+ ", bbs_cate=" + bbs_cate + ", bbs_menu=" + bbs_menu + ", bbs_loc=" + bbs_loc + "]";
 	}
+
+
 	
 }
