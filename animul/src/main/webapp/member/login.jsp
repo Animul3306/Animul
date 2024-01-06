@@ -8,6 +8,12 @@
 		<title>Login</title>
 		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/member/login.css" />
 		<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+		<script>
+			// 로그인 실패 시 알림창을 띄우는 함수
+			function showLoginError() {
+				alert('로그인에 실패했습니다. 아이디 또는 비밀번호를 확인해주세요.');
+			}
+		</script>
 	</head>
 	<body>
 		<form:form action="Login.do" method="post" modelAttribute="loginForm">
@@ -16,9 +22,9 @@
 				<span>로그인<br></span>
 				<br>
 				<div id="login_box">
-					<input name="id" id="id" type="text" placeholder="아이디" />
-					<input name="password" id="password" type="password" placeholder="비밀번호" />
-					<label style="display:flex; align-items: center;"><input type="checkbox" id="save_id" />아이디 저장</label>
+					<input name="id" id="id" class="login_input" type="text" placeholder="아이디"  value='${not empty cookie.rememberedId ? cookie.rememberedId.value : ""}' />
+					<input name="password" id="password" class="login_input" type="password" placeholder="비밀번호" />
+					<label style="display:flex; align-items: center;"><input type="checkbox" name="remember_id" id="remember_id" />아이디 저장</label>
 				</div>
 			</div>
 			
@@ -33,12 +39,20 @@
 
 			<div id="underbar">
 				<span>|</span>
-				<span class="undertext"><a href="#">회원가입</a></span>
+				<span class="undertext"><a href="./join_owner.jsp">회원가입</a></span>
 				<span>|</span>
-				<span class="undertext"><a href="#">아이디 · 비밀번호 찾기</a></span>
+				<span class="undertext"><a href="./forgot.jsp">아이디 · 비밀번호 찾기</a></span>
 				<span>|</span>
 			</div>
 		</div>
 		</form:form>
+
+		<c:if test="${not empty sessionScope.loginError}">
+	        <script>
+	            showLoginError();
+	        </script>
+	        <c:remove var="loginError" scope="session" />
+   		</c:if>
+
 	</body>
 </html>

@@ -23,22 +23,29 @@
 
                 if(loggedInUser != null) {
             %>
+            
                     <form:form name="logoutForm" action="${pageContext.request.contextPath}/member/Logout.do" method="post"><a href="#" onclick="logout()">로그아웃</a></form:form>
+            		
+            		<a href="#">마이페이지</a>
+            		
             <%
                 } else {
             %>
+            
             <a href="${pageContext.request.contextPath}/member/login.jsp">로그인</a>
+            
+            <a href="${pageContext.request.contextPath}/member/join.jsp">회원가입</a>
+            
             <%
                 }
             %>
-
-            <a href="#">회원가입</a>
+          
             <a href="cs.jsp">고객센터</a>
         </div>  
         
         <header>
             <nav id="nav_left">
-                <a href="#">진료비 조회</a>
+                <a href="${pageContext.request.contextPath}/diagnosis/diagnosisMain.jsp">진료비 조회</a>
                 <a href="#">주변시설 찾기</a>
             </nav>
             
@@ -49,7 +56,7 @@
 
             <nav id="nav_right">
                 <a href="#">질병 조회</a>
-                <a href="#">게시판</a>
+                <a href="${pageContext.request.contextPath}/bbs/free">게시판</a>
             </nav>
         </header>
         <!-- 나머지 내용을 계속 작성하세요. -->

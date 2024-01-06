@@ -20,8 +20,8 @@
    		</h2>
    	
     <ul id="snb">
-        <li><a href="free.jsp">자유 토크</a></li>
-        <li><a href="local.jsp">산책 메이트ㆍ멍냥이 찾기</a></li>
+        <li><a href="/animul/bbs/free">자유 토크</a></li>
+        <li><a href="/animul/bbs/local">산책 메이트ㆍ멍냥이 찾기</a></li>
         <li><a href="https://www.animal.go.kr/front/awtis/protection/protectionList.do?menuNo=1000000060">유기동물보호센터 보호중</a></li>
         <li><a href="https://www.1365.go.kr/vols/search.do?query=%EC%9C%A0%EA%B8%B0">유기동물보호센터 봉사관련</a></li>
     </ul>
@@ -55,7 +55,7 @@
                     <a style="cursor:pointer;" class="btn btn-sm btn-blue" id="aTermSearch">조회하기</a>
                 </div>
                 <div style="float:right;">
-                    <input type="checkbox" id="chkMyArticle" /><label for="chkMyArticle" style="font-size:14px;">나의 게시글 보기</label>
+                    <a style="cursor:pointer;" class="btn btn-sm btn-blue" id="aTermSearch">글쓰기</a>
                 </div>
             </div>
             <table class="list">

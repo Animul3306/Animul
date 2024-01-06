@@ -9,8 +9,10 @@ public class HospitalVO {
 	private String  hospital_phone;
 	private int 	hospital_type;
 	private String	hospital_link;
-	private String	hosptial_picture;
-	
+	private String	hospital_picture;
+	private String	hospital_time;
+	private String  hospital_off;
+
 	public int getHospital_id() {
 		return hospital_id;
 	}
@@ -54,18 +56,29 @@ public class HospitalVO {
 		this.hospital_link = hospital_link;
 	}
 	public String getHosptial_picture() {
-		return hosptial_picture;
+		return hospital_picture;
 	}
 	public void setHosptial_picture(String hosptial_picture) {
-		this.hosptial_picture = hosptial_picture;
+		this.hospital_picture = hosptial_picture;
 	}
-	
+	public String getHospital_time() {
+		return hospital_time;
+	}
+	public void setHospital_time(String hospital_time) {
+		this.hospital_time = hospital_time;
+	}
+	public String getHospital_off() {
+		return hospital_off;
+	}
+	public void setHospital_off(String hospital_off) {
+		this.hospital_off = hospital_off;
+	}	
 	@Override
 	public String toString() {
 		return "HospitalVO [hospital_id=" + hospital_id + ", hospital_name=" + hospital_name + ", hospital_address="
 				+ hospital_address + ", hospital_zipcode=" + hospital_zipcode + ", hospital_phone=" + hospital_phone
 				+ ", hospital_type=" + hospital_type + ", hospital_link=" + hospital_link + ", hosptial_picture="
-				+ hosptial_picture + "]";
+				+ hospital_picture + hospital_time + hospital_off + "]";
 	}
 	
 	

@@ -22,4 +22,12 @@ public class Receipt_itemService {
 	public List<Receipt_itemVO> list() {
 		return receipt_itemDAO.list();
 	}
+	
+	public ReceiptTotalVO totalPrice(ReceiptTotalVO receiptTotalVO) {
+		return receipt_itemDAO.totalPrice(receiptTotalVO);
+	}
+	
+	public List<ReceiptTotalVO> avgPrice() {
+		return receipt_itemDAO.avgPrice();
+	}
 }

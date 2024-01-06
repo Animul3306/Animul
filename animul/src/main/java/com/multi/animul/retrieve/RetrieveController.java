@@ -8,10 +8,4 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class RetrieveController {
 	@Autowired
 	RetrieveDAO dao;
-	
-	@RequestMapping("retrieveInsert")
-	public void insert(RetrieveVO vo) {
-		// TODO Auto-generated method stub
-
-	}
 }
