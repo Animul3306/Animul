@@ -59,7 +59,7 @@ public class BbsController {
 		service.update(vo);
 		BbsVO vo2 = service.one(vo.getBbs_id());
 		model.addAttribute("vo2", vo2);
-		return "bbs/one";
+		return "redirect:free";
 
 	}
 

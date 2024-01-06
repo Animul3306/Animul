@@ -61,7 +61,7 @@
 
             <div class="btn-box">
                     <a href="update?bbs_id=${vo.bbs_id}" class="btn btn-blue wide">수정</a>
-                    <a style="cursor:pointer" class="btn btn-red wide" id="aDelete">삭제</a>
+                    <a href="delete?bbs_id=${vo.bbs_id}" style="cursor:pointer" class="btn btn-red wide" id="aDelete">삭제</a>
                		<a href="free" class="btn btn-gray wide">목록</a>
             </div>
         </div>

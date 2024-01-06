@@ -20,8 +20,8 @@ public class BbsDAO {
 		return result;
 	}
 	
-	public void update(BbsVO vo) {
-		my.update("bbs.update", vo);
+	public int update(BbsVO vo) {
+		return my.update("bbs.update", vo);
 		
 	}
 
@@ -44,7 +44,6 @@ public class BbsDAO {
 	public void hit(int bbs_id) {
 		my.update("bbs.updateHit",bbs_id);
 	}
-	
 	
 	
 }
