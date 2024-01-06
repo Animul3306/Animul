@@ -2,10 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="retrieve">
-	<insert id="insert" parameterType="retrieveVO">
-		insert into animul.retrieve
-		values (
+<mapper namespace="insurance">
+	<insert id="insert" parameterType="insuranceVO">
+		insert into insurance
+		values (		
+		#{insurance_company},
 		#{insurance_subscription},
 		#{insurance_period},
 		#{insurance_limitday},
@@ -16,6 +17,16 @@
 		#{insurance_discount},
 		#{insurance_feature},
 		#{insurance_reward}
+		#{insurance_price}
 		)
 	</insert>
+	
+	<select id="list" parameterType="String" resultType="insuranceVO">
+	select insurance_subscription, insurance_period, insurance_limitday, insurance_limityear, insurance_reward,
+	 insurance_self, insurance_disclaimer, insurance_Schadenersatz,
+	 insurance_discount, insurance_company, insurance_id, insurance_name, insurance_price, insurance_feature
+	 from insurance 
+	where insurance_company= #{insurance_company}
+	</select>
+	
 </mapper>
