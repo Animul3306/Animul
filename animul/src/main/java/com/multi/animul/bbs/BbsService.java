@@ -28,8 +28,8 @@ public class BbsService {
 		
 	}
 
-	public void update(BbsVO vo) {
-		dao.update(vo);
+	public int update(BbsVO vo) {
+		return dao.update(vo);
 	}
 
 	

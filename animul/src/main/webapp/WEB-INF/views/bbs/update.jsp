@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <title>Insert title here</title>
 
 <link href="../resources/css/bbs/style.css" rel="stylesheet">
@@ -45,7 +45,7 @@
 
 
 				<div class="hd-sch">
-					<form action="update">
+					<form action="update" method="post">
 						<input type="hidden" name="bbs_menu" value="1"> <label
 							for="exampleFormControlInput1" class="form-label">카테고리</label> <select
 							class="form-select" aria-label="Default select example"
@@ -58,6 +58,7 @@
 
 						<div class="mb-3">
 							<label for="exampleFormControlInput1" class="form-label">제목</label>
+							<input type="hidden" name="bbs_id" value="${vo.bbs_id}">
 							<input type="text" name="bbs_title" class="form-control"
 								id="exampleFormControlInput1" value="${vo.bbs_title}">
 							<label for="exampleFormControlInput1" class="form-label">작성자</label>
