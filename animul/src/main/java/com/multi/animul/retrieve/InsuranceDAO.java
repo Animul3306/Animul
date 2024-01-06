@@ -20,10 +20,10 @@ public class InsuranceDAO {
 		return result;
 	}
 
-	public List<InsuranceVO> list() {
-		List<InsuranceVO> list = my.selectList("insurance.list");
-		return list;
+	public List<InsuranceVO> list(String insurance_company){
+		return my.selectList("insurance.list", insurance_company);
 	}
+	
 
 	public int delete(InsuranceVO vo) {
 		int result = my.delete("insurance.delete", vo);
