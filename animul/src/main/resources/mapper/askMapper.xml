@@ -24,5 +24,13 @@
   <delete id="delete" parameterType="askVO" >
 	    delete from animul.ask where ask_id = #{ask_id}
    </delete>
+   
+   <select id="list" resultType="askVO">
+		select * from animul.ask order by ask_id desc
+	</select>
+	
+	<select id="one" parameterType="askVO" resultType="askVO">
+	    select * from animul.ask where ask_id = #{ask_id}
+	</select>
 	
 </mapper>

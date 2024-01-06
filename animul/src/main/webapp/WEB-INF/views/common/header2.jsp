@@ -39,8 +39,8 @@
             <%
                 }
             %>
-			
-            <a href="#">고객센터</a>
+          
+            <a href="cs.jsp">고객센터</a>
         </div>  
         
         <header>
