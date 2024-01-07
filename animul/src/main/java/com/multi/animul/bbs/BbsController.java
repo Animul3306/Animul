@@ -12,42 +12,50 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-
-
 @Controller
 public class BbsController {
 
 	@Autowired
 	BbsService service;
-	
+
 	// 게시글 작성
-	@RequestMapping("bbs/insert")
+	@RequestMapping("bbs/freeInsert")
 	public String insert(BbsVO vo) {
 		int insertResult = service.insert(vo);
 		if (insertResult > 0) {
-			return "redirect:free";
+			return "redirect:freeList";
 		} else {
-			return "insert";
+			return "freeInsert";
 		}
 	}
-	
+
 	// 자유 토크 게시판 목록
-	@RequestMapping("bbs/free")
-	public String list(BbsVO vo, Model model) {
-		List<BbsVO> list = service.list();
+	@RequestMapping("bbs/freeList")
+	public String list(BbsVO vo, Model model, @RequestParam(value = "page", required = false, defaultValue = "1") int page) {
+		List<BbsVO> list = service.pagingList(page);
 		model.addAttribute("list", list);
-		return "bbs/free";
+		//페이징
+		List<BbsVO> pagingList = service.pagingList(page);
+		PageVO pageVO = service.pagingParam(page);
+		model.addAttribute("freeList", pagingList);
+		model.addAttribute("paging", pageVO);
+		return "bbs/freeList";
 	}
-	
+
 	// 산책 메이트 + 멍냥이 찾기 게시판 목록
-	@RequestMapping("bbs/local")
-	public String list2(BbsVO vo, Model model) {
-		List<BbsVO> list = service.list2();
-		model.addAttribute("list",list);
-		return "bbs/local";
-		
+	@RequestMapping("bbs/localList")
+	public String list2(BbsVO vo, Model model, @RequestParam(value = "page", required = false, defaultValue = "1") int page) {
+		List<BbsVO> list = service.pagingList2(page);
+		model.addAttribute("list", list);
+		//페이징
+		List<BbsVO> pagingList = service.pagingList2(page);
+		PageVO pageVO = service.pagingParam2(page);
+		model.addAttribute("freeList", pagingList);
+		model.addAttribute("paging", pageVO);
+		return "bbs/localList";
+
 	}
-	
+
 	// 게시글 상세 페이지
 	@RequestMapping("bbs/one")
 	public String one(@RequestParam("bbs_id") int bbs_id, Model model) {
@@ -58,11 +66,11 @@ public class BbsController {
 	}
 
 	// 게시글 수정 페이지
-	@RequestMapping(value = "bbs/update", method = RequestMethod.GET)
+	@RequestMapping(value = "bbs/freeUpdate", method = RequestMethod.GET)
 	public String updateForm(@RequestParam("bbs_id") int bbs_id, Model model) {
 		BbsVO vo = service.one(bbs_id);
 		model.addAttribute("vo", vo);
-		return "bbs/update";
+		return "bbs/freeUpdate";
 	}
 
 	// 게시글 수정
@@ -71,14 +79,17 @@ public class BbsController {
 		service.update(vo);
 		BbsVO vo2 = service.one(vo.getBbs_id());
 		model.addAttribute("vo2", vo2);
-		return "redirect:free";
+		return "redirect:freeList";
 	}
-	
+
 	// 게시글 삭제
 	@RequestMapping("bbs/delete")
 	public String delete(@RequestParam("bbs_id") int bbs_id) {
 		service.delete(bbs_id);
-		return "redirect:free";
+		return "redirect:freeList";
 	}
 
+	// 페이징 
+
+	
 }

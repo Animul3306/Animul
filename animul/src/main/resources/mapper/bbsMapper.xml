@@ -38,12 +38,6 @@
 	</select>
 
 
-	<select id="one2" parameterType="bbsVO" resultType="bbsVO">
-		select * from
-		animul.bbs where bbs_id = #{bbs_id}
-	</select>
-
-
 	<select id="list" resultType="bbsVO">
 		select * from animul.bbs where
 		bbs_menu=1 order by bbs_id desc
@@ -53,7 +47,23 @@
 		select * from animul.bbs where
 		bbs_menu=2 order by bbs_id desc
 	</select>
+	
+	<select id="pagingList" parameterType="java.util.HashMap" resultType="bbsVO">
+		select * from animul.bbs where bbs_menu=1 order by bbs_id desc limit #{start}, #{limit}
+	</select>
+	
+	<select id="pagingList2" parameterType="java.util.HashMap" resultType="bbsVO">
+		select * from animul.bbs where bbs_menu=2 order by bbs_id desc limit #{start}, #{limit}
+	</select>
 
+	<select id="bbsCount" resultType="Integer">
+		select count(bbs_id) from animul.bbs where bbs_menu=1
+	</select>
+	
+	<select id="bbsCount2" resultType="Integer">
+		select count(bbs_id) from animul.bbs where bbs_menu=2
+	</select>
+	
 
 	<update id="updateHit">
 		update animul.bbs 
