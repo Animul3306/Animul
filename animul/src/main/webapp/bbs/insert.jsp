@@ -25,8 +25,8 @@
 				</h2>
 
 				<ul id="snb">
-					<li><a href="/animul/bbs/free">자유 토크</a></li>
-					<li><a href="/animul/bbs/local">산책 메이트ㆍ멍냥이 찾기</a></li>
+					<li><a href="/animul/bbs/freeList">자유 토크</a></li>
+					<li><a href="/animul/bbs/localList">산책 메이트ㆍ멍냥이 찾기</a></li>
 					<li><a
 						href="https://www.animal.go.kr/front/awtis/protection/protectionList.do?menuNo=1000000060">유기동물보호센터
 							보호중</a></li>
@@ -45,7 +45,7 @@
 
 
 				<div class="hd-sch">
-					<form action="insert"> <!--  bbs/insert -->
+					<form action="freeInsert"> <!--  bbs/insert -->
 					<input type="hidden" name="bbs_menu" value="1">
 						<label for="exampleFormControlInput1" class="form-label">카테고리</label> 
 						<select class="form-select" aria-label="Default select example" name="bbs_cate">							
@@ -71,7 +71,7 @@
 						
 						<div class="btn-box">
 						<button type="submit" class="btn btn-blue wide">글쓰기</button>
-						<a href="free" class="btn btn-gray wide">목록으로</a>
+						<a href="localList" class="btn btn-gray wide">목록으로</a>
 						</div>
 					</form>
 					</div>

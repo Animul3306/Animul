@@ -1,6 +1,7 @@
 package com.multi.animul.bbs;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,6 +50,21 @@ public class BbsDAO {
 		my.update("bbs.updateHit",bbs_id);
 	}
 	
+	public List<BbsVO> pagingList(Map<String, Integer> pagingParams) {
+		return my.selectList("bbs.pagingList", pagingParams);
+	}
+
+	public List<BbsVO> pagingList2(Map<String, Integer> pagingParams) {
+		return my.selectList("bbs.pagingList2", pagingParams);
+	}
+
+	public int bbsCount() {
+		return my.selectOne("bbs.bbsCount");
+	}
+	
+	public int bbsCount2() {
+		return my.selectOne("bbs.bbsCount2");
+	}
 	
 }
 

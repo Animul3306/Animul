@@ -479,6 +479,147 @@ table.tbl-pet.violet thead th {
     padding: 50px;
 }
 
+div.paging {
+    text-align: center;
+    padding: 0;
+    margin: 50px 0 0 0;
+    position: relative;
+    clear: both;
+}
+
+div.paging a, div.paging strong {
+    display: inline-block;
+    width: 38px;
+    height: 38px;
+    line-height: 36px;
+    color: #777;
+    text-align: center;
+    margin: 0;
+    vertical-align: middle;
+}
+
+div.paging a:hover, div.paging .on {
+    color: #6c89cd;
+    font-weight: 400;
+}
+
+div.paging .direction {
+    position: relative;
+    text-indent: -9999px;
+    border: #dbdbdb 1px solid;
+}
+
+div.paging .direction:hover {
+    background-color: #6c89cd;
+    border: #6c89cd 1px solid;
+}
+
+div.paging .direction > span {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+}
+
+div.paging .direction.first:before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -4px 0 0 0px;
+    width: 8px;
+    height: 8px;
+    display: block;
+    border: 1px solid #777;
+    border-top: none;
+    border-right: none;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+div.paging .direction.first:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -4px 0 0 -4px;
+    width: 8px;
+    height: 8px;
+    display: block;
+    border: 1px solid #777;
+    border-top: none;
+    border-right: none;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+div.paging .direction.prev:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -4px 0 0 -4px;
+    width: 8px;
+    height: 8px;
+    display: block;
+    border: 1px solid #777;
+    border-top: none;
+    border-right: none;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+div.paging .direction.next:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -4px 0 0 -4px;
+    width: 8px;
+    height: 8px;
+    display: block;
+    border: 1px solid #777;
+    border-top: none;
+    border-right: none;
+    -webkit-transform: rotate(-135deg);
+    transform: rotate(-135deg);
+}
+
+div.paging .direction.last:before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -4px 0 0 -8px;
+    width: 8px;
+    height: 8px;
+    display: block;
+    border: 1px solid #777;
+    border-top: none;
+    border-right: none;
+    -webkit-transform: rotate(-135deg);
+    transform: rotate(-135deg);
+}
+
+div.paging .direction.last:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -4px 0 0 -4px;
+    width: 8px;
+    height: 8px;
+    display: block;
+    border: 1px solid #777;
+    border-top: none;
+    border-right: none;
+    -webkit-transform: rotate(-135deg);
+    transform: rotate(-135deg);
+}
+
+div.paging .direction:hover:before, div.paging .direction:hover:after {
+    border-color: #fff;
+}
+
 .board_list {width:100%;border-top:2px solid #252525;border-bottom:1px solid #ccc}
 .board_list thead th:first-child{background-image:none}
 .board_list thead th {border-bottom:1px solid #ccc;padding:12px 0 13px 0;color:#3b3a3a;vertical-align:middle}
