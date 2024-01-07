@@ -20,8 +20,8 @@
    		</h2>
    	
     <ul id="snb">
-        <li><a href="/animul/bbs/free">자유 토크</a></li>
-        <li><a href="/animul/bbs/local">산책 메이트ㆍ멍냥이 찾기</a></li>
+        <li><a href="/animul/bbs/freeList">자유 토크</a></li>
+        <li><a href="/animul/bbs/localList">산책 메이트ㆍ멍냥이 찾기</a></li>
         <li><a href="https://www.animal.go.kr/front/awtis/protection/protectionList.do?menuNo=1000000060">유기동물보호센터 보호중</a></li>
         <li><a href="https://www.1365.go.kr/vols/search.do?query=%EC%9C%A0%EA%B8%B0">유기동물보호센터 봉사관련</a></li>
     </ul>
@@ -46,8 +46,8 @@
                     <select id="selSearchType" class="input">
                         <option value="1">제목 + 내용</option>
                         <option value="2">제목</option>
-                        <option value="3">댓글내용</option>
-                        <option value="4">게시글 + 댓글</option>
+                        <option value="3">작성자</option>
+
                     </select>
                     <input type="text" class="input" id="txtSearchKeyword" placeholder="검색어를 입력 하세요." style="width:250px;" value="">
                 </div>
@@ -71,7 +71,7 @@
                 </colgroup>
                 <thead>
                     <tr>
-                        <th class="noBrd">No</th>
+                        <th class="noBrd">NO</th>
                         <th>분류</th>
                         <th colspan="2">제목</th>
                         <th>작성자</th>
@@ -80,27 +80,65 @@
                         <th>조회수</th>
                     </tr>
          		</thead>
+                       <c:forEach items="${list}" var="vo">
                         <tr class="">
-                            <td class="noBrd">게시글번호</td>
-                            <td>카테고리</td>
+                            <td class="noBrd">${vo.bbs_id}</td>
+                            <td>${vo.bbs_cate}</td>
                             <td class="subject">
-                                   <a href="상세 게시글">제목</a>
+                                   <a href="one?bbs_id=${vo.bbs_id}">
+                                   ${vo.bbs_title}</a>
                             </td>
                             <td style="border-left-width:0px;">
                                 &nbsp;
                             </td>
                             <td>
-                                작성자
+                              ${vo.member_id}
                             </td>
-                            <td>작성일자</td>
+                            <td>${vo.bbs_date} </td>
                             <td>댓글수</td>
-                            <td>조회수</td>
+                            <td>${vo.bbs_hit}</td>
                         </tr>
+                    </c:forEach>
          		</tbody>
          		</table>
          		</div>
          		</div>
+         		
+			<div class="paging" style="padding-top:20px">
+				<c:choose>
+					<c:when test="${paging.page<=1}">
+					<span><a class="direction prev"></a></span>
+					</c:when>
+					<c:otherwise>
+						<a href="localList?page=${paging.page-1}" class="direction prev">[이전]</a>
+						
+						
+					</c:otherwise>
+				</c:choose>
+				
+				<c:forEach begin="${paging.startPage}" end="${paging.endPage}"
+					var="i" step="1">
+					<c:choose>
+						<c:when test="${i eq paging.page}">
+							<span>${i}</span>
+						</c:when>
 
+						<c:otherwise>
+							<a href="localList?page=${i}">${i}</a>
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
+
+				<c:choose>
+					<c:when test="${paging.page>=paging.maxPage}">
+						<span><a class="direction next"></a></span>
+					</c:when>
+					<c:otherwise>
+						<a href="localList?page=${paging.page+1}" class="direction next">[다음]</a>
+					</c:otherwise>
+				</c:choose>
+				
+			</div>
                         
                         
 	

@@ -22,8 +22,8 @@
 				</h2>
 
 				<ul id="snb">
-					<li><a href="/animul/bbs/free">자유 토크</a></li>
-					<li><a href="/animul/bbs/local">산책 메이트ㆍ멍냥이 찾기</a></li>
+					<li><a href="/animul/bbs/freeList">자유 토크</a></li>
+					<li><a href="/animul/bbs/localList">산책 메이트ㆍ멍냥이 찾기</a></li>
 					<li><a
 						href="https://www.animal.go.kr/front/awtis/protection/protectionList.do?menuNo=1000000060">유기동물보호센터
 							보호중</a></li>
@@ -60,9 +60,9 @@
 		
 
             <div class="btn-box">
-                    <a href="update?bbs_id=${vo.bbs_id}" class="btn btn-blue wide">수정</a>
+                    <a href="freeUpdate?bbs_id=${vo.bbs_id}" class="btn btn-blue wide">수정</a>
                     <a href="delete?bbs_id=${vo.bbs_id}" style="cursor:pointer" class="btn btn-red wide" id="delete">삭제</a>
-               		<a href="free" class="btn btn-gray wide">목록</a>
+               		<a href="freeList" class="btn btn-gray wide">목록</a>
             </div>
         </div>
     </div><!-- /wid1300 -->
