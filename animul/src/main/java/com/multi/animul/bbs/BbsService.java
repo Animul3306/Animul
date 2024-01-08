@@ -106,5 +106,7 @@ public class BbsService {
 
 		return pageVO;
 	}
+	
+
 
 }

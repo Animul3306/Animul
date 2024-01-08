@@ -1,5 +1,6 @@
 package com.multi.animul.bbs;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -64,6 +65,13 @@ public class BbsDAO {
 	
 	public int bbsCount2() {
 		return my.selectOne("bbs.bbsCount2");
+	}
+	
+	public List<BbsVO> search(String searchType, String keyword) {
+		HashMap<String, Object> data = new HashMap<>();
+	    data.put("searchType", searchType);
+	    data.put("keyword", keyword);
+	    return my.selectList("bbs.search", data);
 	}
 	
 }

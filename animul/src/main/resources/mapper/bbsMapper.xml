@@ -37,10 +37,10 @@
 		animul.bbs where bbs_id = #{bbs_id}
 	</select>
 
-
 	<select id="list" resultType="bbsVO">
 		select * from animul.bbs where
-		bbs_menu=1 order by bbs_id desc
+		bbs_menu=1 and
+		order by bbs_id desc
 	</select>
 
 	<select id="list2" resultType="bbsVO">
@@ -57,13 +57,37 @@
 	</select>
 
 	<select id="bbsCount" resultType="Integer">
-		select count(bbs_id) from animul.bbs where bbs_menu=1
+		select count(bbs_id) from animul.bbs where bbs_menu=1 
 	</select>
 	
 	<select id="bbsCount2" resultType="Integer">
 		select count(bbs_id) from animul.bbs where bbs_menu=2
 	</select>
 	
+	<select id="search" parameterType="java.util.HashMap" resultType="bbsVO">
+ 		select *
+		 from animul.bbs
+		 where bbs_menu = 1 
+		 <if test='option=="t"'>
+		  and bbs_title LIKE concat('%', #{keyword}, '%')
+		 </if>
+		 
+		 <if test='option=="c"'>
+		  and bbs_content LIKE concat('%', #{keyword}, '%')
+		 </if>
+		 
+		 <if test='option=="tw"'>
+		  and bbs_title LIKE concat('%', #{keyword}, '%') 
+		   or bbs_content LIKE concat('%', #{keyword}, '%')
+		 </if>
+		 
+		 <if test='option=="w"'>
+		  and bbs_id LIKE concat('%', #{keyword}, '%')
+		 </if>
+		
+		 order by bbs_id desc
+	</select>
+
 
 	<update id="updateHit">
 		update animul.bbs 

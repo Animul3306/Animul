@@ -26,7 +26,7 @@
 
 				<ul id="snb">
 					<li><a href="/animul/bbs/freeList">자유 토크</a></li>
-					<li><a href="/animul/bbs/local">산책 메이트ㆍ멍냥이 찾기</a></li>
+					<li><a href="/animul/bbs/localList">산책 메이트ㆍ멍냥이 찾기</a></li>
 					<li><a
 						href="https://www.animal.go.kr/front/awtis/protection/protectionList.do?menuNo=1000000060">유기동물보호센터
 							보호중</a></li>
@@ -45,38 +45,37 @@
 
 
 				<div class="hd-sch">
-					<form action="insert" method="post">
-						<input id="bbs_menu" type="number" name="bbs_menu" value="1" style="display:none"> 						
+					<form action="freeInsert"> <!--  bbs/insert -->
+					<input type="hidden" name="bbs_menu" value="1">
 						<label for="exampleFormControlInput1" class="form-label">카테고리</label> 
-						<select
-							class="form-select" aria-label="Default select example"
-							name="bbs_cate">
+						<select class="form-select" aria-label="Default select example" name="bbs_cate">							
 							<option value="자유 토크">자유 토크</option>
 							<option value="마이펫 자랑">마이펫 자랑</option>
 							<option value="고민 상담">고민 상담</option>
 							<option value="무료 나눔">무료 나눔</option>
 						</select><br>
-
+						
 						<div class="mb-3">
-							<label for="exampleFormControlInput1" class="form-label">제목</label>
+							<label for="exampleFormControlInput1" class="form-label">제목</label> 
 							<input type="text" name="bbs_title" class="form-control"
 								id="exampleFormControlInput1" placeholder="제목을 입력해주세요">
-							<label for="exampleFormControlInput1" class="form-label">작성자</label>
+							<label for="exampleFormControlInput1" class="form-label">작성자</label> 
 							<input type="text" name="member_id" class="form-control"
-								id="exampleFormControlInput1" placeholder=""> <label
-								for="exampleFormControlTextarea1" class="form-label">내용</label>
-							<textarea name="bbs_content" class="form-control"
-								id="exampleFormControlTextarea1" rows="6"></textarea>
-
-							<label for="formFile" class="form-label">첨부파일</label> <input
-								class="form-control" type="file" id="formFile" name="bbs_file"><br>
-							<br>
-					
-							<button type="submit" class="btn btn-info">글쓰기</button>
-							<a href="/freeList" class="btn btn-gray">목록으로</a>
+								id="exampleFormControlInput1" placeholder="">
+							<label for="exampleFormControlTextarea1" class="form-label">내용</label>
+							<textarea name="bbs_content" class="form-control" id="exampleFormControlTextarea1"
+								rows="6"></textarea>
+						
+						<label for="formFile" class="form-label">첨부파일</label> 
+						<input class="form-control" type="file" id="formFile" name="bbs_file"><br> <br>
+						
+						<div class="btn-box">
+						<button type="submit" class="btn btn-blue wide">글쓰기</button>
+						<a href="localList" class="btn btn-gray wide">목록으로</a>
+						</div>
 					</form>
-				</div>
+					</div>
 
-			</div>
+				</div>
 </body>
 </html>
