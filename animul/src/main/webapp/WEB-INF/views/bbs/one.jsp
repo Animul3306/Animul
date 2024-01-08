@@ -11,6 +11,7 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
 	rel="stylesheet">
 <link href="../resources/css/bbs/style.css" rel="stylesheet">
+ <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
 <style>
 </style>
 <body>
@@ -46,17 +47,36 @@
 						<li>작성일자 : ${vo.bbs_date}</li>
 						<li>조회수 : ${vo.bbs_hit}</li>
 					</ul>
-					<div class="dv-vew" id="dPostScriptList">
-						${vo.bbs_content}
-						
-					</div>
+					<div class="dv-vew" id="dPostScriptList">${vo.bbs_content}</div>
 				</div>
         <div class="bottom-write">
             <div class="inbx">
-                <textarea class="textarea block" id="txtComentContents"></textarea>
-                <a style="cursor:pointer" class="bt btn btn-blue" id="aRegArticleComment">댓글달기</a>
+           		<input type="text" id="commentWriter" placeholder="작성자">
+                <input type="text" class="textarea block" id="commentContents" placeholder="내용">
+                <button style="cursor:pointer" class="bt btn btn-blue" onclick="commentWrite()">댓글작성</button>           
             </div>
-        </div><!-- /bottom-write-->
+        </div>
+
+	<div class="bpttom-lst">
+		<div  id="comment-list">
+	    <table>
+	        <tr>
+	            <th>작성자</th>
+	            <th>내용</th>
+	            <th>작성시간</th>
+	        </tr>
+	        <c:forEach items="${replyList}" var="replyVO">
+	            <tr>
+	                <td>${replyVO.member_id}</td>
+	                <td>${replyVO.reply_content}</td>
+	                <td>${replyVO.reply_date}</td>
+	            </tr>
+	        </c:forEach>
+   		</table>
+    	</div>
+    </div>
+    
+        
 		
 
             <div class="btn-box">
@@ -64,8 +84,50 @@
                     <a href="delete?bbs_id=${vo.bbs_id}" style="cursor:pointer" class="btn btn-red wide" id="delete">삭제</a>
                		<a href="freeList" class="btn btn-gray wide">목록</a>
             </div>
+            </div><!-- /wid1300 -->
         </div>
-    </div><!-- /wid1300 -->
-				</div>
+   
+
 </body>
+<script>
+const commentWrite = () => {
+    const writer = document.getElementById("commentWriter").value;
+    const contents = document.getElementById("commentContents").value;
+    const board = '${vo.bbs_id}';
+    console.log("작성자: ", writer);
+    console.log("내용: ", contents);
+    $.ajax({
+        type: "post",
+        url: "${pageContext.request.contextPath}/comment/save",
+        data: {
+            "member_id" : writer,
+            "reply_content": contents,
+            "bbs_id" : board
+        },
+        dataType: "json",
+        success: function(replyList) {
+            console.log("작성성공");
+            console.log(replyList);
+            let output = "<table>";
+            output += "<th>작성자</th>";
+            output += "<th>내용</th>";
+            output += "<th>작성시간</th></tr>";
+            for(let i in replyList){
+                output += "<tr>";
+                output += "<td>"+replyList[i].member_id+"</td>";
+                output += "<td>"+replyList[i].reply_content+"</td>";
+                output += "<td>"+replyList[i].reply_date+"</td>";
+                output += "</tr>";
+            }
+            output += "</table>";
+            document.getElementById('comment-list').innerHTML = output;
+            document.getElementById('commentWriter').value='';
+            document.getElementById('commentContents').value='';
+        },
+        error: function() {
+            console.log("실패");
+        }
+    });
+}
+</script>
 </html>

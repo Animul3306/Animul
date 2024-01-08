@@ -44,8 +44,8 @@
                 <div class="hd">게시글 검색</div>
                 <div class="bd">
                     <select id="selSearchType" class="input">
-                        <option value="1">제목 + 내용</option>
-                        <option value="2">제목</option>
+                        <option value="title">제목 + 내용</option>
+                        <option value="content">제목</option>
                         <option value="3">작성자</option>
 
                     </select>

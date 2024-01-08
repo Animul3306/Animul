@@ -4,6 +4,9 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
+
 
 <!DOCTYPE html>
 <html>
@@ -42,25 +45,25 @@
 				</div>
 				<div class="hd-sch">
 					<div class="hd">게시글 검색</div>
-					<div class="bd">
-						<form action="selectCate">
-							<select id="selSearchType" class="input">
-								<option value="1">제목 + 내용</option>
-								<option value="2">제목</option>
-								<option value="3">작성자</option>
-							</select> <input type="text" class="input" id="txtSearchKeyword"
-								placeholder="검색어를 입력 하세요." style="width: 250px;" value="">
-					</div>
+					<div class="bd"> 
+					<form action="search" method="get">
+						<select name="option" class="input">
+							<option value="t" ${(PageVO.key == "t")?"selected":"" }>제목</option>
+							<option value="c" ${(PageVO.key == "c")?"selected":"" }>내용</option>
+							<option value="tc" ${(PageVO.key == "tc")?"selected":"" }>제목+내용</option>
+							<option value="w" ${(PageVO.key == "w")?"selected":"" }>작성자</option>
+						</select> 
+						<input type="text" class="input" name="word" value="${PageVO.word}" placeholder="검색어를 입력 하세요." style="width: 250px;" />
+					</div>	
+								
 					<div class="bt">
-						<a style="cursor: pointer;" class="btn btn-sm btn-blue"
-							id="aTermSearch">조회하기</a>
+						<button type="submit" style="cursor: pointer;" class="btn btn-sm btn-blue">조회하기</button>
 					</div>
-
 					<div style="float: right;">
 						<a href="insert.jsp" style="cursor: pointer;"
 							class="btn btn-sm btn-blue" id="aTermSearch">글쓰기</a>
 					</div>
-					</form>
+					</form>	
 				</div>
 				<table class="list">
 					<colgroup>
@@ -136,5 +139,16 @@
 				</c:choose>
 				
 			</div>
+			
+			
+			<script>
+			document.getElementById("searchBtn").onclick = function () {
+				let searchType = document.getElementsByName("searchType")[0].value;
+				let keyword = document.getElementsByName("keyword")[0].value;
+				let url = "bbs/freeList?searchType=" + searchType + "&keyword=" + keyword;
+				location.href = encodeURI(url);
+			};
+			</script>
+
 </body>
 </html>

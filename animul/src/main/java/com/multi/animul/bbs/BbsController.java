@@ -17,6 +17,9 @@ public class BbsController {
 
 	@Autowired
 	BbsService service;
+	
+	@Autowired
+	ReplyService replyservice;
 
 	// 게시글 작성
 	@RequestMapping("bbs/freeInsert")
@@ -56,13 +59,25 @@ public class BbsController {
 
 	}
 
-	// 게시글 상세 페이지
+	// 자유 토크 게시글 상세 페이지
 	@RequestMapping("bbs/one")
 	public String one(@RequestParam("bbs_id") int bbs_id, Model model) {
 		service.hit(bbs_id);
 		BbsVO vo = service.one(bbs_id);
 		model.addAttribute("vo", vo);
+        List<ReplyVO> replyList = replyservice.findAll(bbs_id);
+        model.addAttribute("replyList", replyList);
+		
 		return "bbs/one";
+	}
+	
+	// 산책 메이트 + 멍냥이 찾기 게시글 상세 페이지
+	@RequestMapping("bbs/one2")
+	public String one2(@RequestParam("bbs_id") int bbs_id, Model model) {
+		service.hit(bbs_id);
+		BbsVO vo = service.one(bbs_id);
+		model.addAttribute("vo", vo);
+		return "bbs/one2";
 	}
 
 	// 게시글 수정 페이지
@@ -89,7 +104,8 @@ public class BbsController {
 		return "redirect:freeList";
 	}
 
-	// 페이징 
+
+
 
 	
 }
