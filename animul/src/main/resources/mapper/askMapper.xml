@@ -17,7 +17,7 @@
   
   <update id="update" parameterType="askVO" >
 		update animul.ask 
-		set ask_title = #{ask_title}, ask_content = #{ask_content} 
+		set ask_category = #{ask_category}, ask_title = #{ask_title}, ask_content = #{ask_content} 
 		where ask_id = #{ask_id}
   </update>
   
