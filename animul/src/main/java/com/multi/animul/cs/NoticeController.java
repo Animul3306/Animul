@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class NoticeController {
 
 	@Autowired 
-	NoticeDAO dao;
+	NoticeService service;
 	
 	@RequestMapping("notice_insert")
 	public void insert(NoticeVO vo, Model model) {
-	int result	= dao.insert(vo);
+	int result	= service.insert(vo);
 	model.addAttribute("result", result);
 	}
 	
