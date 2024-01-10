@@ -21,12 +21,12 @@
 		
 		$(document).ready(function() {
 		    // Your other code...
-
-		    myChart = new Chart(ctx, {
-		        type: "bar",
-		        data: data,
-		        options: options,
-		    });
+			myChart = new Chart(ctx, {
+		          type: "bar",
+		          data: data,
+		          options: options,
+		          plugins: [ChartDataLabels]
+		        });
 		});
 		$.ajax({
 			url:"${pageContext.request.contextPath}/diagnosis/diagnosisList",
