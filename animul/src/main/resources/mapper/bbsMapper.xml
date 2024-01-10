@@ -95,4 +95,6 @@
 		where bbs_id = #{bbs_id}
 	</update>
 
+
+	<insert id="saveFile" parameterType="BbsVO"></insert>
 </mapper>

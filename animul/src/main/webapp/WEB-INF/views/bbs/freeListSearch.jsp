@@ -46,13 +46,14 @@
 				<div class="hd-sch">
 					<div class="hd">게시글 검색</div>
 					<div class="bd"> 
-					<form action="search" method="get">
-						<select name="type" class="input">
-							<option value="title" >제목</option>
-							<option value="content">내용</option>
-							<option value="writer">작성자</option>
+					
+						<select name="searchType" class="input">
+							<option value="title"<c:if test="${searchType eq 'title'}">selected</c:if>>제목</option>
+							<option value="content"<c:if test="${searchType eq 'content'}">selected</c:if>>내용</option>
+							<option value="title_content" <c:if test="${searchType eq 'title_content'}">selected</c:if>>내용</option>
+							<option value="writer"<c:if test="${searchType eq 'writer'}">selected</c:if>>작성자</option>
 						</select> 
-						<input type="text" class="input" name="keyword" value="${PageVO.keyword}" placeholder="검색어를 입력 하세요." style="width: 250px;" />
+						<input type="text" class="input" name="keyword" placeholder="검색어를 입력 하세요." style="width: 250px;" value="${paging.keyword}"/>
 					</div>	
 								
 					<div class="bt">
@@ -62,7 +63,7 @@
 						<a href="insert.jsp" style="cursor: pointer;"
 							class="btn btn-sm btn-blue" id="aTermSearch">글쓰기</a>
 					</div>
-					</form>	
+					\
 				</div>
 				<table class="list">
 					<colgroup>
