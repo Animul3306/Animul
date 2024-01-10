@@ -56,6 +56,7 @@
                         }
                     })
                 });
+                
                 $('#button_pwd').on("click", function() {
                     var id = $('#forgot_pwd_id').val();
                     var name = $('#forgot_pwd_name').val();
