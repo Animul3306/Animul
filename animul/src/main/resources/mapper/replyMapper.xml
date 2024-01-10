@@ -15,14 +15,15 @@
 		now()
 		)
 	</insert>
+	
 	<update id="update" parameterType="replyVO" >
 		update bbs_reply set reply_content = #{reply_content}, where member_id = #{member_id}
 	</update>
+	
 	<delete id="delete" parameterType="replyVO" >
 		delete from bbs_reply where reply_id = #{reply_id}
 	</delete>
-	
-	
+		
 	<select id="findAll" parameterType="int"  resultType="replyVO">
 		select * from bbs_reply where bbs_id = #{bbs_id} order by reply_id desc
 	</select>

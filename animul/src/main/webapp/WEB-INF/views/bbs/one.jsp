@@ -64,12 +64,14 @@
 	            <th>작성자</th>
 	            <th>내용</th>
 	            <th>작성시간</th>
+
 	        </tr>
 	        <c:forEach items="${replyList}" var="replyVO">
 	            <tr>
 	                <td>${replyVO.member_id}</td>
 	                <td>${replyVO.reply_content}</td>
-	                <td>${replyVO.reply_date}</td>
+	                <td>${replyVO.reply_date} </td>
+
 	            </tr>
 	        </c:forEach>
    		</table>
@@ -128,6 +130,26 @@ const commentWrite = () => {
             console.log("실패");
         }
     });
+    
+	$("#replyDelete").click (function(){
+
+		let reply_id = $(this).attr("reply_id");	
+		let bbs_id = '${vo.bbs_id}'
+		
+		$.ajax({
+			data : {
+				"reply_id" : reply_id,
+				"bbs_id" : bbs_id
+			},
+			url : "${pageContext.request.contextPath}/comment/delete",
+			type : 'POST',
+			success : function(result){
+				replyListInit();
+				alert('삭제가 완료되었습니다.');
+			}
+		});		
+			
+	 });
 }
 </script>
 </html>
