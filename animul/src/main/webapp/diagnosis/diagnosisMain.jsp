@@ -78,7 +78,6 @@
 <style>
 
 .suggestions {
-	position: absolute;
 	width:75%;
     height:auto;
     z-index: 1000;
@@ -145,7 +144,7 @@
 	</form> 
 	<div class="suggestions suggestions_pannel" id = "searchList"></div>
 </div>
-<button class="btn btn-outline-primary"> 영수증으로 가격 비교 </button>
+<button class="btn btn-outline-primary" onclick="location.href='./Comparison.jsp' "> 영수증으로 가격 비교 </button>
 <div class="chart">
 <div class="swiper mySwiper">
     <div class="swiper-wrapper">

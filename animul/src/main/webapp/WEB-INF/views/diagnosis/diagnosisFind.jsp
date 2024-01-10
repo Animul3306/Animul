@@ -10,8 +10,7 @@
 <table class="table table-bordered">
 	<c:forEach var="x" items="${diagnosisFind}">
         <tr>
-        	<td>
-			<a href="diagnosisOne?diagnosis_name=${x.diagnosis_name}">${x.diagnosis_name}</a>
+        	<td onClick="location.href='diagnosisOne?diagnosis_name=${x.diagnosis_name}'">${x.diagnosis_name}
 			</td>
 		</tr>   
 	</c:forEach>   
