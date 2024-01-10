@@ -17,7 +17,7 @@
 	</insert>
 	
 	<update id="update" parameterType="replyVO" >
-		update bbs_reply set reply_content = #{reply_content}, where member_id = #{member_id}
+		update bbs_reply set reply_content = #{reply_content}, where reply_id = #{reply_id}
 	</update>
 	
 	<delete id="delete" parameterType="replyVO" >
