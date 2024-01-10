@@ -15,6 +15,8 @@
 			var checkPassword = false;
 			var checkEmail = false;
 			var checkNickname = false;
+			
+			var authNumber = '';
 
 			function changeInvisible() {
 				var terms_box = document.getElementById('terms_box');
@@ -153,10 +155,12 @@
 					});
 				});
 				
-				$('#email').on("focusout", function() {
+				$('#emailCheck').on("click", function() {
 					var email = $("#email").val();
+					var emailPatten = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+					var emailCheckNumber = $("#emailCheckNumber");
 
-					if(email == '' || email.length == 0 || !email.includes('@') || !email.includes('.')) {
+					if(email == '' || email.length == 0 || !emailPatten.test(email)) {
 						$('#label_email').css("color", "red").text("이메일 형식을 확인해 주세요");
 
 						checkEmail = false;
@@ -164,7 +168,7 @@
 					}
 
 					$.ajax({
-						url : './ConfirmEmail.do',
+						url : 'ConfirmEmail.do',
 						data : {
 							email : email
 						},
@@ -173,11 +177,27 @@
 						success : function(result) {
 							if ( result == true ) {
 								$("#label_email").css("color", "black").text("사용 가능한 이메일 입니다.");
-						
-								checkEmail = true;
+								
+								$.ajax({
+									url: 'MailCheck.do',
+									data: {
+										email: email
+									},
+									type: "GET",
+									dataType: 'text',
+									success: function(result) {
+										console.log("data: " + result);
+
+										authNumber = result;
+										alert('인증번호를 보냈습니다.');
+
+										emailCheckNumber.css("display", "block");
+									}
+								});
+
 							} else {
 								$("#label_email").css("color", "red").text("사용할 수 없는 이메일 입니다.");
-						
+
 								checkEmail = false;
 							}
 						}
@@ -338,16 +358,22 @@
 							<tr>
 								<th>이메일*</th>
 								<td>
-									<div id="input_button">
-										<input required="required" type="email" maxlength="320" class="input w400" id="email" name="email">
+									<div>
+										<div class="input_button" >
+											<input required="required" type="email" maxlength="320" class="input w330" id="email" name="email">
+											<input type="button" class="w70" id="emailCheck" value="인증하기">
+										</div>
 										<label id="label_email"></label>
+										<div class="input_button">
+											<input id="emailCheckNumber" class="input w400" style="display: none" placeholder="인증 번호">
+										</div>
 									</div>
 								</td>
 							</tr>
 							<tr>
 								<th>닉네임*</th>
 								<td>
-									<div id="input_button">
+									<div class="input_button" style="margin-top: 10px;">
 										<input required="required" type="text" maxlength="20" class="input w400" id="nickname" name="nickname">
 										<label id="label_nickname"></label>
 									</div>
