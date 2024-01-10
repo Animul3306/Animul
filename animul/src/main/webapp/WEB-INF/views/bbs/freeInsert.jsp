@@ -67,7 +67,7 @@
 								rows="6"></textarea>
 						
 						<label for="formFile" class="form-label">첨부파일</label> 
-						<input class="form-control" type="file" id="formFile" name="bbs_file"><br> <br>
+						<input class="form-control" type="file" id="formFile" name="bbsFile"><br> <br>
 						
 						<div class="btn-box">
 						<button type="submit" class="btn btn-blue wide">글쓰기</button>

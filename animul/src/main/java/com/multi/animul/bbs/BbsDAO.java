@@ -67,11 +67,16 @@ public class BbsDAO {
 		return my.selectOne("bbs.bbsCount2");
 	}
 	
-	public List<BbsVO> search(String searchType, String keyword) {
+	public List<BbsVO> search(int pagingStart, int pageLimit, String searchType, String keyword) {
+		
 		HashMap<String, Object> data = new HashMap<>();
+		
+		data.put("pagingStart", pagingStart);
+		data.put("pageLimit", pageLimit);
+		
 	    data.put("searchType", searchType);
 	    data.put("keyword", keyword);
-	    return my.selectList("bbs.search", data);
+	    return my.selectList("bbs.listSearch", data);
 	}
 	
 }

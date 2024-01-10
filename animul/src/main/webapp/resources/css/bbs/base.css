@@ -130,6 +130,10 @@ a.color-blue:hover{ text-decoration: underline;}
 .btn-box.n2 .btn{ width:49%; float:left;}
 .btn-box.n2 .btn + .btn{ float:right;}
 .btn-box.lg{ margin-top:50px;}
+.btn-small .btn {
+  padding: 6px 10px; /* 작은 버튼의 내부 여백 설정 */
+  font-size: 10px; /* 작은 버튼의 폰트 크기 설정 */
+}
 
 .btn{ min-width:110px; padding:0 30px; display:inline-block;  vertical-align:middle; line-height:48px; margin:0; letter-spacing:-0.05em; white-space:nowrap; height:50px; color:#000; border:#333 1px solid; font-size:16px; text-align:center; background-color:#fff;}
 .btn.btn-ssm{ height: 26px; line-height: 24px; font-size:13px; padding:0 10px; min-width:60px;}
