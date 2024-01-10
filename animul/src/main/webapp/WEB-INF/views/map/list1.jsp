@@ -1,13 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ include file="/WEB-INF/views/common/header2.jsp"%>      
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="com.multi.animul.map.PageVO"%> 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Animul [동물병원]</title>
-
+ 
 <style>
 .map_wrap, .map_wrap * {margin:0;padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}
 .map_wrap a, .map_wrap a:hover, .map_wrap a:active{color:#000;text-decoration: none;}
@@ -45,62 +46,123 @@
 #pagination {margin:10px auto;text-align: center;}
 #pagination a {display:inline-block;margin-right:10px;}
 #pagination .on {font-weight: bold; cursor: default;color:#777;}
+
+
+    .map_wrap2 {position:relative;width:100%;height:700px;}
+    .title {font-weight:bold;display:block;}
+    .hAddr {position:absolute;left:10px;top:10px;border-radius: 2px;background:#fff;background:rgba(255,255,255,0.8);z-index:1;padding:5px;}
+    #centerAddr {display:block;margin-top:2px;font-weight: normal;}
+    .bAddr {padding:5px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;}
+
 </style>
-
 </head>
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
-<h2> 동물병원 위치 검색 </h2> <br>
-
+<body>
+		<div id="map_wrap2" class="bg_white">	        
+	        <div class="hAddr">
+	       		<span class="title">지도중심기준 행정동 주소정보</span>
+	       		<span id="centerAddr"></span>
+	       		<span id="latlang"></span>
+	   		</div>
+   		</div>
+   		
 	<h3>검색 위치</h3>
 	<div class="map_wrap">
-	    <div id="map4" style="width:55%;height:100%;position:relative;overflow:hidden;"></div>
+	    <div id="map4" style="width:80%;height:100%;position:relative;overflow:hidden;"></div>
 
-	    <div id="menu_wrap" class="bg_white"> <!-- <div id="menu_wrap" class="bg_white"style="width:80%;height:100%;position:relative;overflow:hidden;> 아래 리스트형태-->
+	    <div id="menu_wrap" class="bg_white">
 	        <div class="option">
 	            <div>
 	                <form onsubmit="searchPlaces(); return false;">
-	                    키워드 : <input type="text" value="광화문 동물병원" id="keyword" size="15"> 
-	                    <button type="submit">검색하기</button> 
+	                    키워드 : <input type="text" value="용인시 동물병원" id="keyword" name="keyword" size="15">	                    
+	                    <button type="submit" id="one1" >검색하기</button> 
+	                    
 	                </form>
 	            </div>
-	        </div>
+	        </div>	        
 	        <hr>
 	        <ul id="placesList"></ul>
 	        <div id="pagination"></div>
 	    </div>
+
 	</div>
+
 	<br><br>
-	 
+
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5454a62e5d0c9bb2b98dbfd591e5b4cb&libraries=services"></script>		
 	<script>
-
+ 
 // map4 지도
-
-	$(document).ready(function(){
-		
-		if ("geolocation" in navigator) {	/* geolocation 사용 가능 */
-			
-			navigator.geolocation.getCurrentPosition(function(data) {
-			 
-				var latitude4 = data.coords.latitude;
-				var longitude4 = data.coords.longitude;
-				var accuracy4 = data.coords.accuracy;
- 			
+	var latitude4;
+	var longitude4;
+	var accuracy4;
+	let address_detail=""; 
  	// 검색 리스트 
 	// 마커를 담을 배열입니다
 		var markers = [];
 		
 		var mapContainer4 = document.getElementById('map4'), // 지도를 표시할 div 
 		    mapOption4 = {
- 		        center: new kakao.maps.LatLng(latitude4, longitude4), // 지도의 중심좌표
-//		    	center: new kakao.maps.LatLng(37.566826, 126.9786567),
+			//	center: new kakao.maps.LatLng(latitude4, longitude4), // 지도의 중심좌표
+		    	center: new kakao.maps.LatLng(37.566826, 126.9786567),
 		        level: 3 // 지도의 확대 레벨
 		    };  
 		
 		// 지도를 생성합니다    
 		var map4 = new kakao.maps.Map(mapContainer4, mapOption4); 
+
+		/////////////////////////////////////////////////////////////////////////////////
+
+		if ("geolocation" in navigator) {	/* geolocation 사용 가능 */
+			
+			navigator.geolocation.getCurrentPosition(function(position) {	
+	        
+			var lat = position.coords.latitude, // 위도
+	            lon = position.coords.longitude; // 경도
+	        
+	        var locPosition = new kakao.maps.LatLng(lat, lon), // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
+	            message = '<div style="padding:5px;">여기에 위치</div>'; // 인포윈도우에 표시될 내용입니다
+	        
+	        // 마커와 인포윈도우를 표시합니다
+	        displayMarker(locPosition, message);
+	            
+	      });
+	    
+		} else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
+			    
+		    var locPosition = new kakao.maps.LatLng(33.450701, 126.570667),    
+		        message = 'geolocation을 사용할수 없어요..'
+			        
+		    displayMarker(locPosition, message);
+		}
+
+		// 지도에 마커와 인포윈도우를 표시하는 함수입니다
+		function displayMarker(locPosition, message) {
 		
+		    // 마커를 생성합니다
+		    var marker = new kakao.maps.Marker({  
+		        map: map4, 
+		        position: locPosition
+		    }); 
+		    
+		    var iwContent = message, // 인포윈도우에 표시할 내용
+		        iwRemoveable = true;
+		
+		    // 인포윈도우를 생성합니다
+		    var infowindow = new kakao.maps.InfoWindow({
+		        content : iwContent,
+		        removable : iwRemoveable
+		    });
+		    
+		    // 인포윈도우를 마커위에 표시합니다 
+		    infowindow.open(map4, marker);
+		    
+		    // 지도 중심좌표를 접속위치로 변경합니다
+		    map4.setCenter(locPosition);      
+		}
+		/////////////////////////////////////////////////////////////////////////////////
+	 
 		// 장소 검색 객체를 생성합니다
 		var ps = new kakao.maps.services.Places();  
 		
@@ -110,20 +172,185 @@
 		// 키워드로 장소를 검색합니다
 		searchPlaces();
 		
+	/////////////////////////////////////////////////////////////////////////////////////
+	// 지동 이동 주소 반환 //
+	
+	//주소-좌표 변환 객체를 생성합니다
+	var geocoder = new kakao.maps.services.Geocoder();
+	
+	var marker2 = new kakao.maps.Marker(), // 클릭한 위치를 표시할 마커입니다
+	infowindow2 = new kakao.maps.InfoWindow({zindex:1}); // 클릭한 위치에 대한 주소를 표시할 인포윈도우입니다
+
+	//현재 지도 중심좌표로 주소를 검색해서 지도 좌측 상단에 표시합니다
+	searchAddrFromCoords(map4.getCenter(), displayCenterInfo);
+		
+	//지도를 클릭했을 때 클릭 위치 좌표에 대한 주소정보를 표시하도록 이벤트를 등록합니다
+	kakao.maps.event.addListener(map4, 'click', function(mouseEvent) {
+	searchDetailAddrFromCoords(mouseEvent.latLng, function(result, status) {
+	    if (status === kakao.maps.services.Status.OK) {
+	    	var detailLat = mouseEvent.latLng.getLat(),
+	    		detailLng = mouseEvent.latLng.getLng()
+	    	
+	        var detailAddr = !!result[0].road_address ? '<div>도로명주소 : ' + result[0].road_address.address_name + '</div>' : '';
+	        detailAddr += '<div>지번 주소 : ' + result[0].address.address_name + '</div>';
+			detailLatlng = '<span class="latlng"> 위도: </span>' + detailLat + 
+           					'<span class="latlang"> 경도: </span>' + detailLng + '</div>' +
+           					'<span class="latlang"> </span>' + mouseEvent.latLng + '</div>';
+  
+	        var content = '<div class="bAddr">' +
+	                        '<span class="title">법정동 주소정보</span>' + 
+	                        detailAddr + 
+	                    '</div>';
+	      
+	        // 마커를 클릭한 위치에 표시합니다 
+	        marker2.setPosition(mouseEvent.latLng);
+	        marker2.setMap(map4);
+	
+	        // 인포윈도우에 클릭한 위치에 대한 법정동 상세 주소정보를 표시합니다
+	        infowindow2.setContent(content);
+	        infowindow2.open(map4, marker2);
+	        
+	        // 상세 주소와 상세 위도경도 정보를 함수로 전달합니다
+	        info_win(detailLatlng);
+	        inputTextAddr(result[0].address.address_name);
+	        
+			panTo(detailLat, detailLng);
+			
+			var addr = result[0].address.address_name + "동물병원";
+			console.log("centerAddr : " + addr);
+			searchPlaces2(addr);
+	    }   
+	  });
+	});
+	
+	//지도를 드래그했을 때 드래그 (중심) 위치 좌표에 대한 주소정보를 표시하도록 이벤트를 등록합니다
+	kakao.maps.event.addListener(map4, 'drag', function() {
+		var message = map4.getCenter().toString();
+		console.log(message);
+
+		searchDetailAddrFromCoords(map4.getCenter(), function(result, status) {
+	    if (status === kakao.maps.services.Status.OK)
+	    {
+	    	var detailLat = map4.getCenter().getLat().toString(),
+	    		detailLng = map4.getCenter().getLng().toString();
+	    	
+	        var detailAddr = !!result[0].road_address ? '<div>도로명주소 : ' + result[0].road_address.address_name + '</div>' : '';
+	        detailAddr += '<div>지번 주소 : ' + result[0].address.address_name + '</div>';
+			detailLatlng = '<span class="latlng"> 위도2: </span>' + detailLat + 
+           					'<span class="latlang"> 경도2: </span>' + detailLng + '</div>';
+  
+	        var content = '<div class="bAddr">' +
+	                        '<span class="title">법정동 주소정보2</span>' + 
+	                        detailAddr +
+	                    '</div>';
+		//	console.log(content);
+			
+	        // 마커를 클릭한 위치에 표시합니다 
+	        marker2.setPosition(map4.getCenter());
+	        marker2.setMap(map4);
+	
+	        // 인포윈도우에 클릭한 위치에 대한 법정동 상세 주소정보를 표시합니다
+	        infowindow2.setContent(content);
+	        infowindow2.open(map4, marker2);
+	        
+	        inputTextAddr(result[0].address.address_name);
+	        
+	        //setCenter(detailLat, detailLng);
+			panTo(detailLat, detailLng);
+			
+			var addr = result[0].address.address_name + "동물병원";
+			console.log("centerAddr2 : " + addr);
+			searchPlaces2(addr);
+	    }   
+	  });
+	});
+	
+	function inputTextAddr(addr) {
+		document.getElementById('keyword').value = addr;
+	}
+	
+    function panTo(lat, lng) {
+        // 이동할 위도 경도 위치를 생성합니다 
+        var moveLatLon = new kakao.maps.LatLng(lat, lng);
+       
+        // 지도 중심을 부드럽게 이동시킵니다
+        // 만약 이동할 거리가 지도 화면보다 크면 부드러운 효과 없이 이동합니다
+        map4.panTo(moveLatLon);            
+    }   
+	
+    function setCenter(lat, lng) {   
+        // 이동할 위도 경도 위치를 생성합니다 
+        var moveLatLon = new kakao.maps.LatLng(lat, lng);
+        
+        // 지도 중심을 이동 시킵니다
+        map4.setCenter(moveLatLon);
+    }
+    
+	function info_win(detail) {
+		console.log(detail);	
+	}
+ 
+	//중심 좌표나 확대 수준이 변경됐을 때 지도 중심 좌표에 대한 주소 정보를 표시하도록 이벤트를 등록합니다
+	kakao.maps.event.addListener(map4, 'idle', function() {		
+		searchAddrFromCoords(map4.getCenter(), displayCenterInfo);
+	});
+	
+	function searchAddrFromCoords(coords, callback) {
+	// 좌표로 행정동 주소 정보를 요청합니다
+		geocoder.coord2RegionCode(coords.getLng(), coords.getLat(), callback);         
+	}
+	
+	function searchDetailAddrFromCoords(coords, callback) {
+	// 좌표로 법정동 상세 주소 정보를 요청합니다 
+		geocoder.coord2Address(coords.getLng(), coords.getLat(), callback);
+	}
+	
+	//지도 좌측상단에 지도 중심좌표에 대한 주소정보를 표출하는 함수입니다
+	function displayCenterInfo(result, status) {
+		if (status === kakao.maps.services.Status.OK) {
+		    var infoDiv = document.getElementById('centerAddr');
+			var infoDiv2 = document.getElementById('keyword').textContent;
+			
+		    for(var i = 0; i < result.length; i++) {
+		        // 행정동의 region_type 값은 'H' 이므로
+		        if (result[i].region_type === 'H') {
+		            infoDiv.innerHTML = result[i].address_name;
+		            infoDiv2.innerHTML = result[i].address_name;		           	
+		            break;
+		        }
+		    }		    
+		}   		
+	}
+	// 지도 이동 주소 반환 //		
+	///////////////////////////////////////////////////////////////////////////////////////
+
 		// 키워드 검색을 요청하는 함수입니다
 		function searchPlaces() {
-		
-		    var keyword = document.getElementById('keyword').value;
-		
+		//	document.getElementById('keyword').value = document.getElementById('centerAddr').innerText;
+		    var keyword =  document.getElementById('keyword').value;
+			
 		    if (!keyword.replace(/^\s+|\s+$/g, '')) {
 		        alert('키워드를 입력해주세요!');
 		        return false;
 		    }
-		
+	 
 		    // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
-		    ps.keywordSearch( keyword, placesSearchCB); 
+		    ps.keywordSearch( keyword, placesSearchCB);		    
 		}
 		
+		// 키워드 검색을 요청하는 함수입니다
+		function searchPlaces2(place) {			
+		    var keyword = place;
+		 
+		    if (!keyword.replace(/^\s+|\s+$/g, '')) {
+		        alert('키워드를 입력해주세요!');
+		        return false;
+		    }
+	 
+		    // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
+		    ps.keywordSearch( keyword, placesSearchCB);
+		    
+		}
 		// 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
 		function placesSearchCB(data, status, pagination) {
 		    if (status === kakao.maps.services.Status.OK) {
@@ -304,26 +531,11 @@
 		    while (el.hasChildNodes()) {
 		        el.removeChild (el.lastChild);
 		    }
-		 }
-		}, function(error) {
-			alert(error);
-		}, {
-			enableHighAccuracy: true,
-			timeout: Infinity,
-			maximumAge: 0
-		});
-	} else {	/* geolocation 사용 불가능 */
-		alert('geolocation 사용 불가능');
-	}
-}); 
-
+		}
 </script>
-  
-
+ 
 <body>
- 페이지시작: ${page.start} , 페이지끝: ${page.end} , 현재페이지: ${page.page} 
-<span> 전체 게시물 ${count} , 현재 페이지 ((${page.start}+${page.page}-1)/${pages})</span>
-<hr color="red">
+	
 	<table border="1">
 	    <tr bgcolor="gray">
 	        <td>id</td>
@@ -340,21 +552,20 @@
 	        <td>${vo.hospital_name}</td>		        
 	        <td>${vo.hospital_address}</td>
 	        <td>${vo.hospital_phone}</td>
-	        <td>${vo.hospital_link}</td>
+	        <td>${vo.hospital_link}</td> <!-- <td><a href="${vo.hospital_link}"> ${vo.hospital_link} </a></td> -->	         
 	        <td>${vo.hospital_time}</td>
 	        <td>${vo.hospital_off}</td>	  
 	    </tr>
 	</c:forEach>
 	</table>
-<hr color="red">
-
- 	<br><br>
- 	
+	<br>
+	<span>전체 페이지 수 : ${pages}개 ,	전체 게시물 수 : ${count}개  </span> <br>	
+	<br>
  	<a href="list1?page=<%=1%>">
 		<button style="background:#e8e6f0"> First </button>
 	</a> 	 		
-		
-	<%	
+
+	<%
 	PageVO vo = (PageVO)request.getAttribute("page");
 	System.out.println(vo.toString());
 	int lastIndex = 0;
@@ -382,8 +593,7 @@
 	</a> 	
 		
  	<br><br>
-	
-	전체 게시물 수 : ${count}개 <br>
-	전체 페이지 수 : ${pages}개 <br>	
+	<span> 페이지시작: ${page.start} , 페이지끝: ${page.end} , 현재페이지: ${page.page} </span>
+			
 </body>
 </html>
