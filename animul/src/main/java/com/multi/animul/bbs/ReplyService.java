@@ -20,10 +20,11 @@ public class ReplyService {
 		return dao.findAll(bbs_id);
 	}
 
-	public void delete(int reply_id) {
-		dao.delete(reply_id);
+	public void delete(ReplyVO replyVO) {
+		dao.delete(replyVO);
 	}
-		
+
+	
 }
 		
 
