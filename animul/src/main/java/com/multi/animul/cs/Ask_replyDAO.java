@@ -1,5 +1,7 @@
 package com.multi.animul.cs;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -24,4 +26,11 @@ public class Ask_replyDAO {
 		int result = my.update("ask_reply.update", vo);
 		return result;
 		}
+	
+	public List<Ask_replyVO> list(int ask_id) {
+	return my.selectList("ask_reply.list", ask_id);
+	
+	}
+	
+	
 }
