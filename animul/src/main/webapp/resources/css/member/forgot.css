@@ -5,6 +5,11 @@
     align-items: center;
 }
 
+.forgot_title {
+    font-size: 30px;
+    margin-bottom: 15px;
+}
+
 .forgot_box {
     display: flex;
     flex-direction: column;
@@ -22,17 +27,42 @@
     align-items: center;
 }
 
-.forgot_body input {
-    width: 260px;
+.div_email {
+    display: flex;
+    flex-direction: row;
+}
+
+.w330 {
+    width: 330px;
     height: 45px;
+}
+
+.w220 {
+    width: 220px;
+    height: 45px;
+}
+
+.w100 {
+    width: 100px;
+    height: 57px;
+}
+
+.div_email_check {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.forgot_body input {
     border: 1px solid lightgray;
     
     padding: 5px;
     margin: 5px;
 }
 
-.forgot_body button {
-    width: 272px;
+.forgot_body .button_forgot {
+    width: 200px;
     height: 57px;
     
     border: 0px;

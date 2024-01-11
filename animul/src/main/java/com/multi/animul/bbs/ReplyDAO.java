@@ -19,6 +19,14 @@ public class ReplyDAO {
     public List<ReplyVO> findAll(int bbs_id) {
         return my.selectList("reply.findAll", bbs_id);
     }
+
+	public void delete(ReplyVO replyVO) {
+		my.delete("reply.delete", replyVO);
+		
+	}
+
+
+
 	
 	
 }

@@ -65,12 +65,15 @@
 							<label for="exampleFormControlTextarea1" class="form-label">내용</label>
 							<textarea name="bbs_content" class="form-control" id="exampleFormControlTextarea1"
 								rows="6"></textarea>
-						
+						</form>
+						<form method="post" action="${contextPath}/bbs/insert" enctype="multipart/form-data">
 						<label for="formFile" class="form-label">첨부파일</label> 
-						<input class="form-control" type="file" id="formFile" name="bbs_file"><br> <br>
+						<input class="form-control" type="file" name="bbs_file"><br> <br>
+						<img id="preview" src="#" width=200 height=150 alt="선택된 이미지가 없습니다" style="align-content: flex-end; ">
 						
 						<div class="btn-box">
 						<button type="submit" class="btn btn-blue wide">글쓰기</button>
+					
 						<a href="localList" class="btn btn-gray wide">목록으로</a>
 						</div>
 					</form>
@@ -78,4 +81,21 @@
 
 				</div>
 </body>
+
+<script type="text/javascript">
+
+   function readURL(input) {
+      var file = input.files[0] 
+      console.log(file)
+      if (file != '') {
+         var reader = new FileReader();
+         reader.readAsDataURL(file);
+         reader.onload = function (e) { 
+	     console.log(e.target)
+		console.log(e.target.result)
+           $('#preview').attr('src', e.target.result);
+          }
+      }
+  }  
+</script>
 </html>

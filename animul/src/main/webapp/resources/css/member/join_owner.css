@@ -78,8 +78,8 @@
     font-weight: 300;
 }
 
-.w45 {width: 88px; height: 45px}
-.w220 {width: 220px; height: 45px}
+.w70 {width: 70px; height: 45px}
+.w330 {width: 330px; height: 45px}
 .w400 {width: 400px; height: 45px}
 
 .input {
@@ -87,6 +87,17 @@
 	border-color: lightgray;
 	padding: 0 5px;
 }
+
+#id {
+	width: 330px;
+	height:45px;
+}
+
+#emailCheck {
+	width: 70px;
+	height: 45px;
+}
+
 #pass_not_same{
     color: red;
     display: none;
@@ -94,6 +105,11 @@
 #pass_not_same2{
     color: red;
 	display: none;
+}
+
+.input_button {
+    display: flex;
+    flex-direction: row;
 }
 
 .button-gray {

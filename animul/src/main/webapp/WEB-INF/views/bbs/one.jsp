@@ -11,7 +11,7 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
 	rel="stylesheet">
 <link href="../resources/css/bbs/style.css" rel="stylesheet">
- <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
 <style>
 </style>
 <body>
@@ -64,12 +64,19 @@
 	            <th>작성자</th>
 	            <th>내용</th>
 	            <th>작성시간</th>
+	            <th></th>
+	            <th></th>
+
 	        </tr>
 	        <c:forEach items="${replyList}" var="replyVO">
 	            <tr>
 	                <td>${replyVO.member_id}</td>
 	                <td>${replyVO.reply_content}</td>
-	                <td>${replyVO.reply_date}</td>
+	                <td>${replyVO.reply_date} </td>
+	       
+	                <td><button type="button" onclick="updateViewBtn('${replyVO.reply_id}','${replyVO.member_id}','${replyVO.reply_content}')">수정</button></td> </td>
+	                <td><button type="button" onclick="commentDelete('${replyVO.reply_id}')">삭제</button></td>
+
 	            </tr>
 	        </c:forEach>
    		</table>
@@ -90,7 +97,51 @@
 
 </body>
 <script>
-const commentWrite = () => {
+
+$(document).ready(function() {
+	replylist();
+});
+
+function replylist() {
+    console.log("댓글목록조회");
+    var url = "${pageContext.request.contextPath}/comment/list/";
+    var bbs_id = '${vo.bbs_id}';
+    var reply_id = '${replyVO.reply_id}';
+    
+    $.ajax({
+        url: url + bbs_id,
+        type: "POST",
+        dataType: "json",
+        success: function (result) {
+            var output = "";
+            if (result.length < 1) {
+                output = "등록된 댓글이 없습니다.";
+            } else {
+                output += "<table>";
+                output += "<th>작성자</th>";
+                output += "<th>내용</th>";
+                output += "<th>작성시간</th></tr>";
+                for (let i in result) {
+                    output += "<tr>";
+                    output += "<td>" + result[i].member_id + "</td>";
+                    output += "<td>" + result[i].reply_content + "</td>";
+                    output += "<td>" + result[i].reply_date + "</td>";
+                    output += "<td>";
+                    output += '<input type="button" onclick="updateViewBtn(' + result[i].reply_id + ', \'' + result[i].reply_content + '\', \'' + result[i].reply_content + '\')" value="수정">';
+                    output += '<input type="button" onclick="commentDelete(' + result[i].reply_id + ')" value="삭제">';
+                    output += "</td>";
+                    output += "</tr>";
+                }
+                output += "</table>";
+            }
+        }
+    });
+}
+
+
+
+
+	const commentWrite = () => {
     const writer = document.getElementById("commentWriter").value;
     const contents = document.getElementById("commentContents").value;
     const board = '${vo.bbs_id}';
@@ -117,6 +168,10 @@ const commentWrite = () => {
                 output += "<td>"+replyList[i].member_id+"</td>";
                 output += "<td>"+replyList[i].reply_content+"</td>";
                 output += "<td>"+replyList[i].reply_date+"</td>";
+                output += "<td>"
+                output += '<intput type="button" onclick="updateViewBtn(' + replyList[i].reply_id + ',' + replyList[i].reply_content + ', ' + replyList[i].reply_content + ')" value="수정">'
+                output += '<intput type="button" onclick="commentDelete(' + replyList[i].reply_id + ')" value="삭제">'
+                output += "</td>"
                 output += "</tr>";
             }
             output += "</table>";
@@ -127,7 +182,90 @@ const commentWrite = () => {
         error: function() {
             console.log("실패");
         }
-    });
+    });   
 }
+	
+	
+	
+	
+	function commentDelete(reply_id){
+		
+	    if (confirm("정말 삭제하시겠습니까?") == true){   
+		
+	        var url = "${pageContext.request.contextPath}/comment/delete/";
+	        
+	            $.ajax({
+	            	type:"post",
+	                url : url + reply_id,
+	                dataType :'json', 
+	                success : function(result) {
+	                	replylist();
+
+					},
+					error : function(request, status, error) {
+						console.log("에러 : " + request.status);
+						console.log("message : " + request.responseText);
+						console.log("error: error");
+					}
+	            });
+
+	    }else{  
+	           return false;	
+	    } 
+	}
+	
+
+	
+	function updateViewBtn(reply_id, member_id, reply_content) {
+		console.log("댓글 수정 화면");
+		var a = "";
+		a += '<div id="comment-list">';
+		a += '<table>';
+		a += '<tr>';
+		a += '<th>작성자</th>';
+		a += '<th>내용</th>';
+		a += '</tr>';
+		a += '<tr>';
+		a += '<td>'+ member_id;
+		a += '<td><textarea id="reply_edit_contetn">';
+		a += reply_content;
+		a += '</textarea></td>';
+		a += '<button type="button" onclick="commentUpdate(' + reply_id + ', \'' + member_id + '\')">댓글작성</button>';
+		a += '<button type="button" onclick="replylist()">';
+		a += '취소';
+		a += '</button>';
+		a += '</div>';
+		
+		$('#reply_id' + reply_id +'#reply_content').html(a);
+		$('#reply_id' + reply_id + '#reply_content').focus();
+	}
+	
+	function commentUpdate(reply_id, member_id){
+		
+		var url = "${pageContext.request.contextPath}/comment/update/";
+		var reply_content = $("reply_content").val();
+	        
+	            $.ajax({
+	            	type:"post",
+	                url : url + reply_id + "\\" + reply_content,
+	                dataType :'json', 
+	                success : function(result) {
+	                	
+	                	replylist();
+
+					},
+					error : function(request, status, error) {
+						console.log("에러 : " + request.status);
+						console.log("message : " + request.responseText);
+						console.log("error: error");
+					}
+	            });
+
+	}
+	
+	
+	
+	
+	
 </script>
 </html>

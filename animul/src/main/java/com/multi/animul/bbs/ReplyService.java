@@ -19,7 +19,12 @@ public class ReplyService {
 	public List<ReplyVO> findAll(int bbs_id) {
 		return dao.findAll(bbs_id);
 	}
-		
+
+	public void delete(ReplyVO replyVO) {
+		dao.delete(replyVO);
+	}
+
+	
 }
 		
 

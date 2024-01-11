@@ -109,6 +109,8 @@ body {
 }
 
 #kakao_button {
+    height: 45px;
+    margin: 2px;
     Background-Color: #ffeb00;
     color: black; 
     border: 0px; 
