@@ -109,7 +109,7 @@
 
 .input_button {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
 }
 
 .button-gray {
