@@ -23,4 +23,8 @@
   <delete id="delete" parameterType="ask_replyVO" >
 	    delete from animul.ask_reply where ask_reply_id = #{ask_reply_id}
    </delete>
+   
+   <select id="list" parameterType="int" resultType="ask_replyVO">
+		select * from animul.ask_reply where ask_id = #{ask_id}
+	</select>
 </mapper>
