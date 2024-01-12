@@ -50,13 +50,14 @@
 						<select name="type" class="input">
 							<option value="title" >제목</option>
 							<option value="content">내용</option>
+							<option value="title_content">내용</option>
 							<option value="writer">작성자</option>
 						</select> 
 						<input type="text" class="input" name="keyword" value="${PageVO.keyword}" placeholder="검색어를 입력 하세요." style="width: 250px;" />
 					</div>	
 								
 					<div class="bt">
-						<button type="submit" style="cursor: pointer;" class="btn btn-sm btn-blue" >조회하기</button>
+						<button type="button" id="searchBtn"style="cursor: pointer;" class="btn btn-sm btn-blue" >조회하기</button>
 					</div>
 					<div style="float: right;">
 						<a href="insert.jsp" style="cursor: pointer;"
@@ -143,4 +144,15 @@
 
 
 </body>
+<script>
+	document.getElementById("searchBtn").onclick = function () {
+    
+	  let searchType = document.getElementsByName("searchType")[0].value;
+	  let keyword =  document.getElementsByName("keyword")[0].value;
+	  
+	  console.log(searchType)
+	  console.log(keyword)
+	 };
+
+</script>
 </html>

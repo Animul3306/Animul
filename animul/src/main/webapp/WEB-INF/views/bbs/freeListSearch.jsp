@@ -4,7 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 
 
@@ -45,25 +45,31 @@
 				</div>
 				<div class="hd-sch">
 					<div class="hd">게시글 검색</div>
-					<div class="bd"> 
-					
+					<div class="bd">
+
 						<select name="searchType" class="input">
-							<option value="title"<c:if test="${searchType eq 'title'}">selected</c:if>>제목</option>
-							<option value="content"<c:if test="${searchType eq 'content'}">selected</c:if>>내용</option>
-							<option value="title_content" <c:if test="${searchType eq 'title_content'}">selected</c:if>>내용</option>
-							<option value="writer"<c:if test="${searchType eq 'writer'}">selected</c:if>>작성자</option>
-						</select> 
-						<input type="text" class="input" name="keyword" placeholder="검색어를 입력 하세요." style="width: 250px;" value="${paging.keyword}"/>
-					</div>	
-								
+							<option value="title"
+								<c:if test="${searchType eq 'title'}">selected</c:if>>제목</option>
+							<option value="content"
+								<c:if test="${searchType eq 'content'}">selected</c:if>>내용</option>
+							<option value="title_content"
+								<c:if test="${searchType eq 'title_content'}">selected</c:if>>내용</option>
+							<option value="writer"
+								<c:if test="${searchType eq 'writer'}">selected</c:if>>작성자</option>
+						</select> <input type="text" class="input" name="keyword"
+							placeholder="검색어를 입력 하세요." style="width: 250px;"
+							value="${paging.keyword}" />
+					</div>
+
 					<div class="bt">
-						<button type="submit" style="cursor: pointer;" class="btn btn-sm btn-blue" >조회하기</button>
+						<button type="submit" style="cursor: pointer;"
+							class="btn btn-sm btn-blue">조회하기</button>
 					</div>
 					<div style="float: right;">
 						<a href="insert.jsp" style="cursor: pointer;"
 							class="btn btn-sm btn-blue" id="aTermSearch">글쓰기</a>
 					</div>
-					\
+					
 				</div>
 				<table class="list">
 					<colgroup>
@@ -104,18 +110,19 @@
 				</table>
 			</div>
 
-			<div class="paging" style="padding-top:20px">
+			<div class="paging" style="padding-top: 20px">
 				<c:choose>
 					<c:when test="${paging.page<=1}">
-					<span><a class="direction prev"></a></span>
+						<span><a class="direction prev"></a></span>
 					</c:when>
 					<c:otherwise>
-						<a href="freeList?page=${paging.page-1}" class="direction prev">[이전]</a>
-						
-						
+						<a href="freeListSearch?page=${paging.page-1}"
+							class="direction prev">[이전]</a>
+
+
 					</c:otherwise>
 				</c:choose>
-				
+
 				<c:forEach begin="${paging.startPage}" end="${paging.endPage}"
 					var="i" step="1">
 					<c:choose>
@@ -124,7 +131,7 @@
 						</c:when>
 
 						<c:otherwise>
-							<a href="freeList?page=${i}">${i}</a>
+							<a href="freeListSearch?page=${i}">${i}</a>
 						</c:otherwise>
 					</c:choose>
 				</c:forEach>
@@ -134,14 +141,11 @@
 						<span><a class="direction next"></a></span>
 					</c:when>
 					<c:otherwise>
-						<a href="freeList?page=${paging.page+1}" class="direction next">[다음]</a>
+						<a href="freeListSearch?page=${paging.page+1}"
+							class="direction next">[다음]</a>
 					</c:otherwise>
 				</c:choose>
-				
+
 			</div>
-			
-			
-
-
 </body>
 </html>

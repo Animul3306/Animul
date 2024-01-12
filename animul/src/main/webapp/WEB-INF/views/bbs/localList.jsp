@@ -28,25 +28,20 @@
     <div style="padding-top:20px;"></div>
 	</div>
 	
-            <div class="div-tab" style="padding-top:100px; margin-bottom:20px;">
-                <ul>
-                        <li name="tabCategory" data-val="1"><a href="/Community/MyPetNews?category=19" name="aCategory">서울/경기/인천</a></li>
-                        <li name="tabCategory" data-val="2"><a href="/Community/MyPetNews?category=20" name="aCategory">강원도</a></li>
-                        <li name="tabCategory" data-val="3"><a href="/Community/MyPetNews?category=21" name="aCategory">충청도</a></li>
-                        <li name="tabCategory" data-val="4"><a href="/Community/MyPetNews?category=21" name="aCategory">경상도</a></li>
-                        <li name="tabCategory" data-val="5"><a href="/Community/MyPetNews?category=21" name="aCategory">전라도</a></li>
-                        <li name="tabCategory" data-val="6"><a href="/Community/MyPetNews?category=21" name="aCategory">제주도</a></li>
 
-                </ul>
-            </div>
-            <div id="contents">
+           
+        <div id="contents">
+            <div class="pt-titarea">
+					<h3 class="tit">산책 메이트 와 멍냥이 찾아요</h3>
+					<p>마이펫 자랑, 고민 등 자유롭게 작성하는 게시판 입니다!!</p>
+				</div>
              <div class="hd-sch">
                 <div class="hd">게시글 검색</div>
                 <div class="bd">
                     <select id="selSearchType" class="input">
                         <option value="title">제목 + 내용</option>
                         <option value="content">제목</option>
-                        <option value="3">작성자</option>
+                        <option value="writer">작성자</option>
 
                     </select>
                     <input type="text" class="input" id="txtSearchKeyword" placeholder="검색어를 입력 하세요." style="width:250px;" value="">
@@ -54,9 +49,10 @@
                 <div class="bt">
                     <a style="cursor:pointer;" class="btn btn-sm btn-blue" id="aTermSearch">조회하기</a>
                 </div>
-                <div style="float:right;">
-                    <a style="cursor:pointer;" class="btn btn-sm btn-blue" id="aTermSearch">글쓰기</a>
-                </div>
+               <div style="float: right;">
+						<a href="insert2.jsp" style="cursor: pointer;"
+							class="btn btn-sm btn-blue" id="aTermSearch">글쓰기</a>
+					</div>
             </div>
             <table class="list">
                 <colgroup>

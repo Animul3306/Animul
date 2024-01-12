@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 
 <link href="../resources/css/bbs/style.css" rel="stylesheet">
@@ -45,40 +45,57 @@
 
 
 				<div class="hd-sch">
-					<form action="freeupdate" method="post">
-						<input type="hidden" name="bbs_menu" value="1"> <label
-							for="exampleFormControlInput1" class="form-label">카테고리</label> <select
-							class="form-select" aria-label="Default select example"
-							name="bbs_cate">
+					<form action="freeInsert"> <!--  bbs/insert -->
+					<input type="hidden" name="bbs_menu" value="1">
+						<label for="exampleFormControlInput1" class="form-label">카테고리</label> 
+						<select class="form-select" aria-label="Default select example" name="bbs_cate">							
 							<option value="자유 토크">자유 토크</option>
 							<option value="마이펫 자랑">마이펫 자랑</option>
 							<option value="고민 상담">고민 상담</option>
 							<option value="무료 나눔">무료 나눔</option>
 						</select><br>
-
+						
 						<div class="mb-3">
-							<label for="exampleFormControlInput1" class="form-label">제목</label>
-							<input type="hidden" name="bbs_id" value="${vo.bbs_id}">
+							<label for="exampleFormControlInput1" class="form-label">제목</label> 
 							<input type="text" name="bbs_title" class="form-control"
-								id="exampleFormControlInput1" value="${vo.bbs_title}">
-							<label for="exampleFormControlInput1" class="form-label">작성자</label>
+								id="exampleFormControlInput1" placeholder="제목을 입력해주세요">
+							<label for="exampleFormControlInput1" class="form-label">작성자</label> 
 							<input type="text" name="member_id" class="form-control"
-								id="exampleFormControlInput1" value="${vo.member_id}"> <label
-								for="exampleFormControlTextarea1" class="form-label">내용</label>
-							<textarea name="bbs_content" class="form-control" id="exampleFormControlTextarea1" 
-										rows="6" >${vo.bbs_content}</textarea>
-
-							<label for="formFile" class="form-label">첨부파일</label> <input
-								class="form-control" type="file" id="formFile" name="bbs_file"><br>
-							<br>
-
-							<div class="btn-box">
-								<button type="submit" class="btn btn-blue wide">수정</button> 
-								<a href="freeList" class="btn btn-gray wide">목록</a>
-							</div>
+								id="exampleFormControlInput1" placeholder="">
+							<label for="exampleFormControlTextarea1" class="form-label">내용</label>
+							<textarea name="bbs_content" class="form-control" id="exampleFormControlTextarea1"
+								rows="6"></textarea>
+						</form>
+						<form method="post" action="${contextPath}/bbs/insert" enctype="multipart/form-data">
+						<label for="formFile" class="form-label">첨부파일</label> 
+						<input class="form-control" type="file" name="bbs_file"><br> <br>
+						<img id="preview" src="#" width=200 height=150 alt="선택된 이미지가 없습니다" style="align-content: flex-end; ">
+						
+						<div class="btn-box">
+						<button type="submit" class="btn btn-blue wide">글쓰기</button>
+					
+						<a href="localList" class="btn btn-gray wide">목록으로</a>
+						</div>
 					</form>
-				</div>
+					</div>
 
-			</div>
+				</div>
 </body>
+
+<script type="text/javascript">
+
+   function readURL(input) {
+      var file = input.files[0] 
+      console.log(file)
+      if (file != '') {
+         var reader = new FileReader();
+         reader.readAsDataURL(file);
+         reader.onload = function (e) { 
+	     console.log(e.target)
+		console.log(e.target.result)
+           $('#preview').attr('src', e.target.result);
+          }
+      }
+  }  
+</script>
 </html>

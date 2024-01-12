@@ -107,6 +107,9 @@ public class BbsService {
 		return pageVO;
 	}
 	
-
+	
+	public List<BbsVO> listSearch(int pageStart, int postNum, String Type, String keyword) {
+		return dao.search(pageStart, postNum, Type, keyword);
+	}
 
 }
