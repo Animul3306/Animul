@@ -9,25 +9,15 @@
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
 <script type="text/javascript">
-$(function () {
-    // submit 했을 때 처리
-    $('#ocrForm').on('submit', function (event) {
-        event.preventDefault();
-        var formData = new FormData($('#ocrForm')[0]);
-        var fileName = $('#uploadFile').val().split("\\").pop();
-        $.ajax({
-            url : "clovaOCR",
-            type : "post",
-            enctype : "multipart/form-data",
-            data : formData,
-            processData : false,
-            contentType : false,
-            success:function (result) {
-                $('#resultDiv').text(result);
-            },
-        });
-    })
-})
+$(function() {		
+	$.ajax({
+		url:"${pageContext.request.contextPath}/diagnosis/receiptList",
+		success: function(list) {
+			$('#resultDiv').html(list)
+		}//success
+	})//ajax
+	
+})//$
 </script>
 <style>
 .row {
@@ -40,12 +30,7 @@ $(function () {
 </head>
 <body>
 <div class="container mt-3">
-	<div class="row">
-		<form id="ocrForm" enctype="multipart/form-data">
-            파일 선택: <input type="file" id="uploadFile" name="uploadFile"> 
-            <button type="submit" class="btn btn-secondary">OCR판독</button>    
-		</form>
-	</div>
+	<div class="row" id="resultDiv"></div>
 </div>
 </body>
 </html>

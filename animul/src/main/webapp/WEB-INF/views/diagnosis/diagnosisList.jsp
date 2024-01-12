@@ -19,6 +19,36 @@ body {
 .col li {
   list-style-type: none;
 }
+
+a {
+  position: relative;
+  font-size: 16px;
+  text-decoration: none;
+  color: #000;
+  transition: all 0.2s;
+}
+
+.col li a:hover {
+  color: #01c9ca;  
+}
+
+.col li a:before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: #000;
+  transform: scale(0);
+  transition: all 0.2s;
+}
+
+.col li a:hover:before {
+  background: #01c9ca;
+  transform: scale(1);
+}
 </style>
 <div class="col">
 	<ul>

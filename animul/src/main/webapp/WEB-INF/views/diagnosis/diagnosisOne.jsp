@@ -14,6 +14,7 @@
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js" charset="utf-8"></script>  
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
 <script>
 	$(function() {	
@@ -62,7 +63,7 @@
 				 var ctx = document.getElementById("myChart").getContext("2d");
 
 			        var data = {
-			          labels: ["", "", "전국"],
+			          labels: ["", "","전국"],
 			          datasets: [
 			            {
 			              label: "최저가",
@@ -96,25 +97,52 @@
 		                    color: 'black',
 		                    font: {
 		                      weight: 'bold', // You can customize the font style
+		                      size: 20,
 		                    },
 		                    align:'top',
 		                    anchor: 'end',
 		                    display: true, // Display data labels on the bars
 
-		                  }
+		                  },
+		                  title: {
+			                    display: true, 
+			                    text: '${diagnosisbag.diagnosis_name}' + ' 평균가',
+			                    color: 'black',
+			                    font: {
+			                    	weight: 'bold',
+			                        size: 40, // Title font size
+			                    },
+			                },
+			                
 		                },
-			          scales: {
-			            x: {
-			              display: true,
-			              grid: {
-			                display: false, // Hide grid lines for the x-axis
-			              },
-			              ticks: {
-			                fontSize: 30, // Adjust the font size for x-axis labels (change as needed)
-			              },
-			            },
-			            
-			          },
+		                scales: {
+		                    x: {
+		                        display: true,
+		                        grid: {
+		                            display: false,
+		                        },
+		                        ticks: {
+		                        	color: 'black',
+		                        	font: {
+		                        		weight: 'bold',
+		                                size: 20,
+		                            }, // X-axis label font size
+		                        },
+		                    },
+		                    y: {
+		                        display: false,
+		                        grid: {
+		                            display: false,
+		                        },
+		                        min: result.allMinPrice - result.allMinPrice/10,
+		                        max: result.allMaxPrice + result.allMaxPrice/10,
+		                        ticks: {
+		                            beginAtZero: true,  // Start the scale from zero
+		                            stepSize: result.allMinPrice - result.allMinPrice/10,  // Set the step size between ticks
+
+		                        },
+		                    },
+		                },    
 			          
 			          elements: {
 			            line: {
@@ -129,6 +157,7 @@
 			          options: options,
 			          plugins: [ChartDataLabels]
 			        });
+			        console.log(myChart.options.scales.x)
 			}//success
 		})//ajax
 		$('document').ready(function() {
@@ -197,7 +226,6 @@
 				//dataType: "json",
 				success: function(result) {
 					console.log(result)
-					console.log(result[0])
 					if ($('#sido1').val() == "시/도 선택") {
 						myChart.data.labels[0] = "";
 					} else {
@@ -214,6 +242,7 @@
 					myChart.data.datasets[2].data[1] = result.gugunMaxPrice;
 					myChart.data.datasets[2].data[2] = result.allMaxPrice;
 					myChart.update();
+					
 				}//success
 			})//ajax
 		})//b1
@@ -248,6 +277,7 @@
 	justify-content: center;
 	border-radius: 30px;
 	text-align: ceter;
+	transition: all 0.5s ease;
 }
 
 #myChart {
@@ -255,18 +285,20 @@
 	padding:30px;
 	justify-content: center;
 	border-radius: 30px;
+	transition: all 0.5s ease;
 }
 
 .rowList {
 	padding-top: 25px;
 	display: flex;
 	justify-content: center;
+	transition: all 0.5s ease;
 }
 
 .btst {
 	margin: 0px 100px;
 	display: flex;
-
+	transition: all 0.5s ease;
 }
 
 .form-select {
@@ -297,7 +329,10 @@
 	<div id="result"></div>
 </div>
 <div class="chart">
-	<canvas id="myChart"></canvas>  
+	<canvas id="myChart" style="height:30vh; width:50vw"></canvas>  
+	<div style="position: absolute; bottom: 5%; left: 80%; transform: translateX(-50%); text-align: center;">
+      <p style="background-color: rgba(255, 255, 255, 0.7); border-radius: 5px;">*자료: 농림축산식품부, 영수증 통계</p>
+    </div>
 </div>
 <div class="rowList">
 		<div class="row w-50" id="diagnosisList"></div>
