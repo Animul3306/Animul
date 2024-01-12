@@ -54,7 +54,7 @@ public class ReplyController {
 		return map;
 	}
 	
-	@RequestMapping("/comment/update/{reply_id}/{reply_content")
+	@RequestMapping("/comment/update/{reply_id}/{reply_content}")
 	@ResponseBody
 	public Map<String, Object> update(@PathVariable int reply_id, @PathVariable String reply_content) {
 		System.out.println(reply_id);
@@ -64,6 +64,10 @@ public class ReplyController {
 			ReplyVO vo = new ReplyVO();
 			vo.setReply_id(reply_id);
 			vo.setReply_content(reply_content);
+			service.update(vo);
+			
+			System.out.println(reply_id);
+			System.out.println(reply_content);
 
 			map.put("result","success");
 			

@@ -24,6 +24,11 @@ public class ReplyService {
 		dao.delete(replyVO);
 	}
 
+	public void update(ReplyVO replyVO) {
+		dao.update(replyVO);
+		
+	}
+
 	
 }
 		
