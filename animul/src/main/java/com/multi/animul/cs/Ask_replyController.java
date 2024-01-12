@@ -13,8 +13,9 @@ public class Ask_replyController {
 	@Autowired
 	Ask_replyService service;
 	
-	@RequestMapping("ask_reply_insert")
+	@RequestMapping("cs/ask_reply_insert")
 	public void insert(Ask_replyVO vo, Model model) {
+		System.out.println(vo);
 		int result = service.insert(vo);
 		model.addAttribute("result", result);
 	}

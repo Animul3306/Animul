@@ -24,46 +24,46 @@ public class AskController {
 	Ask_replyService service2;
 	
 	
-	@RequestMapping("ask_insert")
+	@RequestMapping("cs/ask_insert")
 	public void insert(AskVO vo, Model model) {
 	int result = service.insert(vo);
 	model.addAttribute("result", result);
 	}
 	
 	
-	@RequestMapping("ask_delete")
+	@RequestMapping("cs/ask_delete")
 	public void delete(AskVO vo) {
 		int result = service.delete(vo);
 		
 	}
 	
-	@RequestMapping("ask_update")
+	@RequestMapping("cs/ask_update")
 	public void update(AskVO vo, Model model) {
 	    AskVO vo2= service.one(vo);
 		model.addAttribute("vo2", vo2);
 		System.out.println("------------->" + vo2);
 	}	
 	
-	@RequestMapping("ask_update2")
+	@RequestMapping("cs/ask_update2")
 	public String update2(AskVO vo) {
 	 
 		int result = service.update(vo);
 		if (result ==1) {
-			return "ask_update2";
-		}
-		return "ask_list";
-	}	
+			return "cs/ask_update2";
+		}else {
+		    return "cs/ask_list";}
+	    }	
 	
 	
 	
 	
-	@RequestMapping("ask_list")
+	@RequestMapping("cs/ask_list")
 	public void list(Model model) {
 	 List<AskVO> list = service.list();
 	 model.addAttribute("list", list);
 	}
 	
-	@RequestMapping("ask_one")
+	@RequestMapping("cs/ask_one")
 	public void one(AskVO vo, Model model) {
 	AskVO vo2 = service.one(vo);
 	List<Ask_replyVO> list = service2.list(vo.getAsk_id());
