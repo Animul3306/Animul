@@ -23,6 +23,14 @@ public class Receipt_itemService {
 		return receipt_itemDAO.list();
 	}
 	
+	public List<Receipt_itemVO> diagnosisList() {
+		return receipt_itemDAO.diagnosisList();
+	}
+	
+	public List<Receipt_itemVO> diagnosisMyList(ReceiptVO receiptVO){
+		return receipt_itemDAO.diagnosisMyList(receiptVO);
+	}
+	
 	public ReceiptTotalVO totalPrice(ReceiptTotalVO receiptTotalVO) {
 		return receipt_itemDAO.totalPrice(receiptTotalVO);
 	}
