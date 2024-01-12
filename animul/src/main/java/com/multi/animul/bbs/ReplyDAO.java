@@ -25,7 +25,9 @@ public class ReplyDAO {
 		
 	}
 
-
+	public void update(ReplyVO replyVO) {
+		my.update("reply.update", replyVO);
+	}
 
 	
 	

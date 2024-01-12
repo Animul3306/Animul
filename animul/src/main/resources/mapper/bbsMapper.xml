@@ -10,12 +10,13 @@
 		#{member_id},
 		#{bbs_title},
 		#{bbs_content},
-		#{bbs_file},
 		now(),
 		#{bbs_hit},
 		#{bbs_cate},
 		#{bbs_menu},
-		#{bbs_loc}
+		#{bbs_loc},
+		#{bbs_img},
+		#{bbs_thumbImg}
 		)
 	</insert>
 
@@ -64,30 +65,31 @@
 		select count(bbs_id) from animul.bbs where bbs_menu=2
 	</select>
 	
-	<select id="search" parameterType="java.util.HashMap" resultType="bbsVO">
+<!--  	<select id="search" parameterType="java.util.HashMap" resultType="bbsVO">
  		select *
 		 from animul.bbs
 		 where bbs_menu = 1 
-		 <if test='option=="t"'>
+		 <if test='type.equals("title")'>
 		  and bbs_title LIKE concat('%', #{keyword}, '%')
 		 </if>
 		 
-		 <if test='option=="c"'>
+		 <if test='type.equals("content")'>
 		  and bbs_content LIKE concat('%', #{keyword}, '%')
 		 </if>
 		 
-		 <if test='option=="tw"'>
+		 <if test='type.equals("title_content")'>
 		  and bbs_title LIKE concat('%', #{keyword}, '%') 
 		   or bbs_content LIKE concat('%', #{keyword}, '%')
 		 </if>
 		 
-		 <if test='option=="w"'>
+		 <if test='type.equals("writer")'>
 		  and bbs_id LIKE concat('%', #{keyword}, '%')
 		 </if>
 		
 		 order by bbs_id desc
+		 	limit #{start}, #{limit}
 	</select>
-
+-->
 
 	<update id="updateHit">
 		update animul.bbs 

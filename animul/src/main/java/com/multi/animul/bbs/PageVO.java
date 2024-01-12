@@ -8,7 +8,7 @@ public class PageVO {
 	private int endPage; //현재 페이지 기준 마지막 페이지 값
 	
 	private int displypost;
-	private int postNum;
+	private int postNum = 10;
 	
 	//검색에 필요한 변수
 	private String type; 

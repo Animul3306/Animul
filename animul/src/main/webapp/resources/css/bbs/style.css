@@ -342,7 +342,7 @@ table.tbl-pet.violet thead th {
 }
 
 .div-tab {
-    margin-bottom: 40px;
+    margin-bottom: 1px;
 }
 
 .div-tab ul {
@@ -639,3 +639,6 @@ div.paging .direction:hover:before, div.paging .direction:hover:after {
 .wdp_90 {width:90%}
 .btn {border-radius:3px;padding:5px 11px;color:#fff !important; display:inline-block; background-color:#6b9ab8; border:1px solid #56819d;vertical-align:middle}
 
+.select_img img{margin:20px,0;}
+
+.oriImg {width:800px; height:auto;}

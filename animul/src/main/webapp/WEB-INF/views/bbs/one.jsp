@@ -43,11 +43,15 @@
 				<div class="vew-wr">
 					<h4 class="subject">${vo.bbs_title}</h4>
 					<ul class="date">
+						<li>카테고리 : ${vo.bbs_cate}</li>
 						<li>작성자 : ${vo.member_id}</li>
 						<li>작성일자 : ${vo.bbs_date}</li>
 						<li>조회수 : ${vo.bbs_hit}</li>
 					</ul>
-					<div class="dv-vew" id="dPostScriptList">${vo.bbs_content}</div>
+					<div class="dv-vew" id="dPostScriptList">
+						${vo.bbs_content}<br>
+					<img src="${pageContext.request.contextPath}/${vo.bbs_img}" class="oriImg"/>
+					</div>
 				</div>
         <div class="bottom-write">
             <div class="inbx">
@@ -57,7 +61,7 @@
             </div>
         </div>
 
-	<div class="bpttom-lst">
+	<div class="bottom-lst">
 		<div  id="comment-list">
 	    <table>
 	        <tr>
@@ -113,31 +117,34 @@ function replylist() {
         type: "POST",
         dataType: "json",
         success: function (result) {
-            var output = "";
-            if (result.length < 1) {
-                output = "등록된 댓글이 없습니다.";
-            } else {
-                output += "<table>";
-                output += "<th>작성자</th>";
-                output += "<th>내용</th>";
-                output += "<th>작성시간</th></tr>";
-                for (let i in result) {
-                    output += "<tr>";
-                    output += "<td>" + result[i].member_id + "</td>";
-                    output += "<td>" + result[i].reply_content + "</td>";
-                    output += "<td>" + result[i].reply_date + "</td>";
-                    output += "<td>";
-                    output += '<input type="button" onclick="updateViewBtn(' + result[i].reply_id + ', \'' + result[i].reply_content + '\', \'' + result[i].reply_content + '\')" value="수정">';
-                    output += '<input type="button" onclick="commentDelete(' + result[i].reply_id + ')" value="삭제">';
-                    output += "</td>";
-                    output += "</tr>";
-                }
-                output += "</table>";
-            }
-        }
-    });
-}
+        	   var output = "";
+               output += "<table>";
+               output += "<th>작성자</th>";
+               output += "<th>내용</th>";
+               output += "<th>작성시간</th>";
+               output += "<th></th>";
+               output += "<th></th></tr>";
 
+               for (let i in result) {
+                   output += "<tr>";
+                   output += "<td>" + result[i].member_id + "</td>";
+                   output += "<td>" + result[i].reply_content + "</td>";
+                   output += "<td>" + result[i].reply_date + "</td>";
+                   output += "<td>";
+                   output += '<input type="button" onclick="updateViewBtn(' + result[i].reply_id + ', \'' + result[i].member_id + '\', \'' + result[i].reply_content + '\')" value="수정">';
+                   output += "</td>";
+                   output += "<td>";
+                   output += '<input type="button" onclick="commentDelete(' + result[i].reply_id + ')" value="삭제">';
+                   output += "</td>";
+                   output += "</tr>";
+               }
+
+               output += "</table>";
+               $('#comment-list').html(output);
+          
+           }
+       });
+   }
 
 
 
@@ -178,6 +185,10 @@ function replylist() {
             document.getElementById('comment-list').innerHTML = output;
             document.getElementById('commentWriter').value='';
             document.getElementById('commentContents').value='';
+            
+            replylist();
+            
+            
         },
         error: function() {
             console.log("실패");
@@ -188,69 +199,80 @@ function replylist() {
 	
 	
 	
-	function commentDelete(reply_id){
-		
-	    if (confirm("정말 삭제하시겠습니까?") == true){   
-		
+	function commentDelete(reply_id) {
+	    if (confirm("정말 삭제하시겠습니까?") == true) {
 	        var url = "${pageContext.request.contextPath}/comment/delete/";
-	        
-	            $.ajax({
-	            	type:"post",
-	                url : url + reply_id,
-	                dataType :'json', 
-	                success : function(result) {
-	                	replylist();
 
-					},
-					error : function(request, status, error) {
-						console.log("에러 : " + request.status);
-						console.log("message : " + request.responseText);
-						console.log("error: error");
-					}
-	            });
-
-	    }else{  
-	           return false;	
-	    } 
+	        $.ajax({
+	            type: "post",
+	            url: url + reply_id,
+	            dataType: 'json',
+	            success: function (result) {
+	                // 삭제가 성공했을 때만 댓글 목록을 갱신
+	                if (result=1) {
+	                    replylist();
+	                } else {
+	                    console.log("댓글 삭제 실패");
+	                }
+	            },
+	            error: function (request, status, error) {
+	                console.log("에러 : " + request.status);
+	                console.log("message : " + request.responseText);
+	                console.log("error: error");
+	            }
+	        });
+	    } else {
+	        return false;
+	    }
 	}
 	
 
 	
 	function updateViewBtn(reply_id, member_id, reply_content) {
-		console.log("댓글 수정 화면");
-		var a = "";
-		a += '<div id="comment-list">';
-		a += '<table>';
-		a += '<tr>';
-		a += '<th>작성자</th>';
-		a += '<th>내용</th>';
-		a += '</tr>';
-		a += '<tr>';
-		a += '<td>'+ member_id;
-		a += '<td><textarea id="reply_edit_contetn">';
-		a += reply_content;
-		a += '</textarea></td>';
-		a += '<button type="button" onclick="commentUpdate(' + reply_id + ', \'' + member_id + '\')">댓글작성</button>';
-		a += '<button type="button" onclick="replylist()">';
-		a += '취소';
-		a += '</button>';
-		a += '</div>';
-		
-		$('#reply_id' + reply_id +'#reply_content').html(a);
-		$('#reply_id' + reply_id + '#reply_content').focus();
+	    console.log("댓글 수정 화면");
+	    var a = "";
+	    
+	    a += '<div class="bpttom-lst">';
+	    a += '<div id="comment-list">';
+	    a += '<table>';
+	    a += '<tr>';
+	    a += '<th>작성자</th>';
+	    a += '<th>내용</th>';
+	    a += '<th></th>';
+	    a += '<th></th>';
+	    a += '</tr>';
+	    a += '<tr>';
+	    a += '<td>' + member_id + '</td>';
+	    a += '<td><textarea id="replyUpdateContent" style="width: 300px;">' + reply_content + '</textarea></td>';
+	    a += '<td>';
+	    a += '<button type="button" onclick="commentUpdate(' + reply_id + ')">댓글작성</button>';
+	    a += '</td>';
+	    a += '<td>';	    
+	    a += '<button type="button" onclick="replylist()">취소</button>';
+	    a += '</td>';	    
+	    a += '</tr>';
+	    a += '</div>';
+	    a += '</div>';
+
+	    $('#reply_id' + reply_id + '#reply_content').html(a);
+	    $('#reply_id' + reply_id + '#reply_content').focus();
+	    $('#comment-list').html(a);
 	}
 	
-	function commentUpdate(reply_id, member_id){
-		
+	
+	
+	
+	function commentUpdate(reply_id){
+		console.log("댓글 수정 들어감");
 		var url = "${pageContext.request.contextPath}/comment/update/";
-		var reply_content = $("reply_content").val();
+		var reply_content = $("#replyUpdateContent").val();
+		console.log(reply_content);
 	        
 	            $.ajax({
-	            	type:"post",
-	                url : url + reply_id + "\\" + reply_content,
+	            	url : url + reply_id + "/" + reply_content,
+	                type:"post",
 	                dataType :'json', 
 	                success : function(result) {
-	                	
 	                	replylist();
 
 					},
