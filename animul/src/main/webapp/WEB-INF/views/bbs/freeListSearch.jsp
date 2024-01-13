@@ -43,28 +43,33 @@
 					<h3 class="tit">자유 토크</h3>
 					<p>마이펫 자랑, 고민 등 자유롭게 작성하는 게시판 입니다!!</p>
 				</div>
+				<form action="freeListSearch" method="get">
 				<div class="hd-sch">
 					<div class="hd">게시글 검색</div>
-					<div class="bd">
-
-						<select name="searchType" class="input">
+					<div class="bd"> 
+					
+					<select name="type" class="input" value="${type}">
 							<option value="title"
-								<c:if test="${searchType eq 'title'}">selected</c:if>>제목</option>
+								<c:if test="${type=='title'}">selected="selected"</c:if>>제목</option>
 							<option value="content"
-								<c:if test="${searchType eq 'content'}">selected</c:if>>내용</option>
+								<c:if test="${type=='content'}">selected="selected"</c:if>>내용</option>
 							<option value="title_content"
-								<c:if test="${searchType eq 'title_content'}">selected</c:if>>내용</option>
+								<c:if test="${type=='title_content'}">selected="selected"</c:if>>제목+내용</option>
 							<option value="writer"
-								<c:if test="${searchType eq 'writer'}">selected</c:if>>작성자</option>
-						</select> <input type="text" class="input" name="keyword"
+								<c:if test="${type=='writer'}">selected="selected"</c:if>>작성자</option>
+						</select> 
+						
+						<input type="text" class="input" name="word"
 							placeholder="검색어를 입력 하세요." style="width: 250px;"
-							value="${paging.keyword}" />
+							value="${word}" />
+							
 					</div>
 
 					<div class="bt">
 						<button type="submit" style="cursor: pointer;"
 							class="btn btn-sm btn-blue">조회하기</button>
 					</div>
+					</form>
 					<div style="float: right;">
 						<a href="insert.jsp" style="cursor: pointer;"
 							class="btn btn-sm btn-blue" id="aTermSearch">글쓰기</a>
@@ -131,7 +136,7 @@
 						</c:when>
 
 						<c:otherwise>
-							<a href="freeListSearch?page=${i}">${i}</a>
+							<a href="freeListSearch?type=${type}&word=${word}&page=${i}">${i}</a>
 						</c:otherwise>
 					</c:choose>
 				</c:forEach>
@@ -141,8 +146,7 @@
 						<span><a class="direction next"></a></span>
 					</c:when>
 					<c:otherwise>
-						<a href="freeListSearch?page=${paging.page+1}"
-							class="direction next">[다음]</a>
+						<a href="freeListSearch?type=${type}&word=${word}&page=${paging.page + 1}" class="direction next">[다음]</a>
 					</c:otherwise>
 				</c:choose>
 
