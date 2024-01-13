@@ -43,22 +43,31 @@
 					<h3 class="tit">자유 토크</h3>
 					<p>마이펫 자랑, 고민 등 자유롭게 작성하는 게시판 입니다!!</p>
 				</div>
+				<form action="freeListSearch" method="get">
 				<div class="hd-sch">
 					<div class="hd">게시글 검색</div>
 					<div class="bd"> 
-					<form action="search" method="get">
-						<select name="type" class="input">
-							<option value="title" >제목</option>
-							<option value="content">내용</option>
-							<option value="title_content">내용</option>
-							<option value="writer">작성자</option>
-						</select> 
-						<input type="text" class="input" name="keyword" value="${PageVO.keyword}" placeholder="검색어를 입력 하세요." style="width: 250px;" />
-					</div>	
-								
-					<div class="bt">
-						<button type="button" id="searchBtn"style="cursor: pointer;" class="btn btn-sm btn-blue" >조회하기</button>
+					
+					<select name="type" class="input">
+							<option value="title"
+								<c:if test="${Type eq 'title'}">selected</c:if>>제목</option>
+							<option value="content"
+								<c:if test="${Type eq 'content'}">selected</c:if>>내용</option>
+							<option value="title_content"
+								<c:if test="${Type eq 'title_content'}">selected</c:if>>제목+내용</option>
+							<option value="writer"
+								<c:if test="${Type eq 'writer'}">selected</c:if>>작성자</option>
+						</select> <input type="text" class="input" name="word"
+							placeholder="검색어를 입력 하세요." style="width: 250px;"
+							value="${paging.word}" />
+							
 					</div>
+
+					<div class="bt">
+						<button type="submit" style="cursor: pointer;"
+							class="btn btn-sm btn-blue">조회하기</button>
+					</div>
+					</form>
 					<div style="float: right;">
 						<a href="insert.jsp" style="cursor: pointer;"
 							class="btn btn-sm btn-blue" id="aTermSearch">글쓰기</a>
@@ -110,7 +119,7 @@
 					<span><a class="direction prev"></a></span>
 					</c:when>
 					<c:otherwise>
-						<a href="freeList?page=${paging.page-1}" class="direction prev">[이전]</a>
+						<a href="freeList?page=${paging.page-1}&word=${word}" class="direction prev">[이전]</a>
 						
 						
 					</c:otherwise>
@@ -144,15 +153,5 @@
 
 
 </body>
-<script>
-	document.getElementById("searchBtn").onclick = function () {
-    
-	  let searchType = document.getElementsByName("searchType")[0].value;
-	  let keyword =  document.getElementsByName("keyword")[0].value;
-	  
-	  console.log(searchType)
-	  console.log(keyword)
-	 };
 
-</script>
 </html>
