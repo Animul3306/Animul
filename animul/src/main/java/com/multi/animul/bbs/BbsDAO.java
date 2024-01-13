@@ -51,7 +51,7 @@ public class BbsDAO {
 		my.update("bbs.updateHit",bbs_id);
 	}
 	
-	public List<BbsVO> pagingList(Map<String, Integer> pagingParams) {
+	public List<BbsVO> pagingList(Map<String, Object> pagingParams) {
 		return my.selectList("bbs.pagingList", pagingParams);
 	}
 
@@ -59,8 +59,8 @@ public class BbsDAO {
 		return my.selectList("bbs.pagingList2", pagingParams);
 	}
 
-	public int bbsCount() {
-		return my.selectOne("bbs.bbsCount");
+	public int bbsCount(Map<String, Object> pagingParams) {
+		return my.selectOne("bbs.bbsCount", pagingParams);
 	}
 	
 	public int bbsCount2() {
