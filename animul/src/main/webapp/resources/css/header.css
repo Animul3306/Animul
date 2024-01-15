@@ -1,3 +1,9 @@
+@font-face {
+	font-family: 'NotoSans_Regular';
+	src: url('./member/font/NotoSansKR-Regular.ttf') format('truetype')
+}
+
+
 body {
     margin: 0;
     padding: 0;
@@ -45,7 +51,8 @@ nav a {
     float: right;
   	display: flex;
     margin-left: auto;
-    width: auto;
+    width: 100%;
+    justify-content: flex-end;
 }
 .login_group form:form {
     margin: 0 0px;
@@ -54,6 +61,7 @@ nav a {
     margin: 0 10px;
     color: black;
     text-decoration: none;
-    font-size: 20px;
-    padding: 10px;
+    font-size: 15px;
+    padding: 8px;
+    font-family: 'NotoSans_Regular';
 }

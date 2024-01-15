@@ -88,7 +88,7 @@ body {
     align-item: center;
 }
 
-#login_button button {
+.h45 {
     height: 45px;
     width: 350px;
     margin: 3px 0px;
