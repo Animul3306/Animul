@@ -25,20 +25,16 @@
 				<ul id="snb">
 					<li><a href="/animul/bbs/freeList">자유 토크</a></li>
 					<li><a href="/animul/bbs/localList">산책 메이트ㆍ멍냥이 찾기</a></li>
-					<li><a
-						href="https://www.animal.go.kr/front/awtis/protection/protectionList.do?menuNo=1000000060">유기동물보호센터
-							보호중</a></li>
-					<li><a
-						href="https://www.1365.go.kr/vols/search.do?query=%EC%9C%A0%EA%B8%B0">유기동물보호센터
-							봉사관련</a></li>
+					<li><a href="/animul/bbs/protectList">유기동물보호센터 보호중</a></li>
+					<li><a href="/animul/bbs/shelterList">유기동물보호센터 보호소 </a></li>
 				</ul>
 				<div style="padding-top: 20px;"></div>
 			</div>
 
 			<div id="contents">
 				<div class="pt-titarea">
-					<h3 class="tit">자유 토크</h3>
-					<p>마이펫 자랑, 고민 등 자유롭게 작성하는 게시판 입니다!!</p>
+					<h3 class="tit">산책 메이트 와 멍냥이 찾기</h3>
+					<p>산책 메이트 와 멍냥이 찾는 게시판 입니다!!</p>
 				</div>
 				<div class="vew-wr">
 					<h4 class="subject">${vo.bbs_title}</h4>
@@ -50,26 +46,9 @@
 					</ul>
 					<div class="dv-vew" id="dPostScriptList">
 						${vo.bbs_content}<br>
-					<div class="select_img" th:if="${vo.bbs_img ne null}">
-       				 <img th:src="${vo.bbs_img}" />
-       				 <img src="${pageContext.request.contextPath}/${vo.bbs_img}" class="oriImg"/>
-   					 </div>
+					<img src="${pageContext.request.contextPath}/${vo.bbs_img}" class="oriImg"/>
 					</div>
 				</div>
-				<script>
-				 $("#bbs_img").change(function(){
-				        if(this.files && this.files[0]) {
-				            var reader = new FileReader();
-				            reader.onload = function(data) {
-				                $(".select_img img").attr("src", data.target.result).width(500);
-				                $(".select_img").show(); // 파일이 선택되었을 때 이미지 영역을 보여줌
-				            }
-				            reader.readAsDataURL(this.files[0]);
-				        } else {
-				            $(".select_img").hide(); // 파일이 선택되지 않았을 때 이미지 영역을 숨김
-				        }
-				    });
-			</script>
         <div class="bottom-write">
             <div class="inbx">
            		<input type="text" id="commentWriter" placeholder="작성자">
@@ -108,9 +87,9 @@
 		
 
             <div class="btn-box">
-                    <a href="freeUpdate?bbs_id=${vo.bbs_id}" class="btn btn-blue wide">수정</a>
-                    <a href="delete?bbs_id=${vo.bbs_id}" style="cursor:pointer" class="btn btn-red wide" id="delete">삭제</a>
-               		<a href="freeList" class="btn btn-gray wide">목록</a>
+                    <a href="localUpdate?bbs_id=${vo.bbs_id}" class="btn btn-blue wide">수정</a>
+                    <a href="delete2?bbs_id=${vo.bbs_id}" style="cursor:pointer" class="btn btn-red wide" id="delete">삭제</a>
+               		<a href="localList" class="btn btn-gray wide">목록</a>
             </div>
             </div><!-- /wid1300 -->
         </div>
