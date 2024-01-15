@@ -16,6 +16,10 @@ public class BbsService {
 	public int insert(BbsVO vo) {
 		return dao.insert(vo);
 	}
+	public int insert2(BbsVO vo) {
+		return dao.insert2(vo);
+	}
+
 
 	public List<BbsVO> list() {
 		return dao.list();
@@ -27,7 +31,10 @@ public class BbsService {
 
 	public void hit(int bbs_id) {
 		dao.hit(bbs_id);
-
+	}
+	
+	public void updateReplyCnt(int bbs_id) {
+		dao.updateReplyCnt(bbs_id);
 	}
 
 	public int update(BbsVO vo) {
@@ -47,19 +54,22 @@ public class BbsService {
 	
 	int pageLimit = 10; // 한 페이지 당 보여줄 글 갯수
 	int blockLimit = 5; // 하단에 보여줄 페이지 번호 갯수
-	public List<BbsVO> pagingList(int page) {
-		
+	public List<BbsVO> pagingList(Map<String, Object> map) {
+		int page = (int) map.get("page");
 		int pagingStart = (page - 1) * pageLimit;
-		Map<String, Integer> pagingParams = new HashMap<>();
+		Map<String, Object> pagingParams = new HashMap<>();
 		pagingParams.put("start", pagingStart);
 		pagingParams.put("limit", pageLimit);
+		pagingParams.put("word", map.get("word"));
+		pagingParams.put("type", map.get("type"));
 		List<BbsVO> pagingList = dao.pagingList(pagingParams);
 		return pagingList;
 	}
 
-	public PageVO pagingParam(int page) {
+	public PageVO pagingParam(Map<String, Object> map) {
+		int page = (int) map.get("page");
 		//전체 글 갯수 조회
-		int bbsCount = dao.bbsCount();
+		int bbsCount = dao.bbsCount(map);
 		// 전체 페이지 갯수 계산
 		int maxPage = (int)(Math.ceil((double)bbsCount/pageLimit));
 		// 시작 페이지 값 계산
@@ -77,19 +87,24 @@ public class BbsService {
 		return pageVO;
 	}
 	
-	public List<BbsVO> pagingList2(int page) {
-		
+	public List<BbsVO> pagingList2(Map<String, Object> map) {
+		int page = (int) map.get("page");
 		int pagingStart = (page - 1) * pageLimit;
-		Map<String, Integer> pagingParams = new HashMap<>();
+		Map<String, Object> pagingParams = new HashMap<>();
 		pagingParams.put("start", pagingStart);
 		pagingParams.put("limit", pageLimit);
+		pagingParams.put("word", map.get("word"));
+		pagingParams.put("type", map.get("type"));
 		List<BbsVO> pagingList = dao.pagingList2(pagingParams);
 		return pagingList;
 	}
 
-	public PageVO pagingParam2(int page) {
+
+	
+	public PageVO pagingParam2(Map<String, Object> map) {
+		int page = (int) map.get("page");
 		//전체 글 갯수 조회
-		int bbsCount = dao.bbsCount2();
+		int bbsCount = dao.bbsCount2(map);
 		// 전체 페이지 갯수 계산
 		int maxPage = (int)(Math.ceil((double)bbsCount/pageLimit));
 		// 시작 페이지 값 계산
@@ -106,6 +121,9 @@ public class BbsService {
 
 		return pageVO;
 	}
+	
+	
+	
 	
 
 

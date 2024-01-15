@@ -10,19 +10,41 @@
 		#{member_id},
 		#{bbs_title},
 		#{bbs_content},
-		#{bbs_file},
 		now(),
 		#{bbs_hit},
 		#{bbs_cate},
 		#{bbs_menu},
-		#{bbs_loc}
+		#{bbs_replyCnt},
+		#{bbs_img},
+		#{bbs_thumbImg}
+		)
+	</insert>
+
+	<insert id="insert2" parameterType="bbsVO">
+		insert into animul.bbs
+		values (
+		null,
+		#{member_id},
+		#{bbs_title},
+		#{bbs_content},
+		now(),
+		#{bbs_hit},
+		#{bbs_cate},
+		#{bbs_menu},
+		#{bbs_replyCnt},
+		#{bbs_img},
+		#{bbs_thumbImg}
 		)
 	</insert>
 
 	<update id="update" parameterType="bbsVO">
 		update animul.bbs 
 		set
-		bbs_cate = #{bbs_cate}, bbs_title = #{bbs_title}, bbs_content = #{bbs_content}
+		bbs_cate = #{bbs_cate}, 
+		bbs_title = #{bbs_title}, 
+		bbs_content = #{bbs_content}, 
+		bbs_img = #{bbs_img},
+		bbs_thumbImg = #{bbs_thumbImg}
 		where 
 		bbs_id = #{bbs_id}
 	</update>
@@ -39,56 +61,133 @@
 
 	<select id="list" resultType="bbsVO">
 		select * from animul.bbs where
-		bbs_menu=1 and
+		bbs_menu=1 
 		order by bbs_id desc
 	</select>
 
 	<select id="list2" resultType="bbsVO">
 		select * from animul.bbs where
-		bbs_menu=2 order by bbs_id desc
+		bbs_menu=2 
+		order by bbs_id desc
 	</select>
 	
 	<select id="pagingList" parameterType="java.util.HashMap" resultType="bbsVO">
-		select * from animul.bbs where bbs_menu=1 order by bbs_id desc limit #{start}, #{limit}
+		select * 
+		from animul.bbs 
+		where bbs_menu=1
+		<if test="word != '' and word != null">
+		    <choose>
+        <when test='type.equals("title")'>
+            and bbs_title LIKE concat('%', #{word}, '%')
+        </when>
+        <when test='type.equals("content")'>
+            and bbs_content LIKE concat('%', #{word}, '%')
+        </when>
+        <when test='type.equals("title_content")'>
+            and (bbs_title LIKE concat('%', #{word}, '%') or bbs_content LIKE concat('%', #{word}, '%'))
+        </when>
+        <when test='type.equals("writer")'>
+            and bbs_id LIKE concat('%', #{word}, '%')
+        </when>
+    </choose>
+		</if> 
+		order by bbs_id desc limit #{start}, #{limit}
 	</select>
 	
 	<select id="pagingList2" parameterType="java.util.HashMap" resultType="bbsVO">
-		select * from animul.bbs where bbs_menu=2 order by bbs_id desc limit #{start}, #{limit}
+				select * 
+		from animul.bbs 
+		where bbs_menu=2
+		<if test="word != '' and word != null">
+		    <choose>
+        <when test='type.equals("title")'>
+            and bbs_title LIKE concat('%', #{word}, '%')
+        </when>
+        <when test='type.equals("content")'>
+            and bbs_content LIKE concat('%', #{word}, '%')
+        </when>
+        <when test='type.equals("title_content")'>
+            and (bbs_title LIKE concat('%', #{word}, '%') or bbs_content LIKE concat('%', #{word}, '%'))
+        </when>
+        <when test='type.equals("writer")'>
+            and bbs_id LIKE concat('%', #{word}, '%')
+        </when>
+    </choose>
+		</if> 
+		order by bbs_id desc limit #{start}, #{limit}
 	</select>
 
-	<select id="bbsCount" resultType="Integer">
+	<select id="bbsCount" parameterType="java.util.HashMap" resultType="Integer">
 		select count(bbs_id) from animul.bbs where bbs_menu=1 
+		<if test="word != '' and word != null">
+		    <choose>
+        <when test='type.equals("title")'>
+            and bbs_title LIKE concat('%', #{word}, '%')
+        </when>
+        <when test='type.equals("content")'>
+            and bbs_content LIKE concat('%', #{word}, '%')
+        </when>
+        <when test='type.equals("title_content")'>
+            and (bbs_title LIKE concat('%', #{word}, '%') or bbs_content LIKE concat('%', #{word}, '%'))
+        </when>
+        <when test='type.equals("writer")'>
+            and bbs_id LIKE concat('%', #{word}, '%')
+        </when>
+    </choose>
+		</if>  
 	</select>
 	
-	<select id="bbsCount2" resultType="Integer">
-		select count(bbs_id) from animul.bbs where bbs_menu=2
+		<select id="bbsCount2" parameterType="java.util.HashMap" resultType="Integer">
+		select count(bbs_id) from animul.bbs where bbs_menu=2 
+		<if test="word != '' and word != null">
+		    <choose>
+        <when test='type.equals("title")'>
+            and bbs_title LIKE concat('%', #{word}, '%')
+        </when>
+        <when test='type.equals("content")'>
+            and bbs_content LIKE concat('%', #{word}, '%')
+        </when>
+        <when test='type.equals("title_content")'>
+            and (bbs_title LIKE concat('%', #{word}, '%') or bbs_content LIKE concat('%', #{word}, '%'))
+        </when>
+        <when test='type.equals("writer")'>
+            and bbs_id LIKE concat('%', #{word}, '%')
+        </when>
+    </choose>
+		</if>  
 	</select>
-	
-	<select id="search" parameterType="java.util.HashMap" resultType="bbsVO">
+
+<!--	<select id="search" parameterType="java.util.HashMap" resultType="bbsVO">
  		select *
 		 from animul.bbs
 		 where bbs_menu = 1 
-		 <if test='option=="t"'>
-		  and bbs_title LIKE concat('%', #{keyword}, '%')
+		 <if test='type.equals("title")'>
+		  and bbs_title LIKE concat('%', #{word}, '%')
 		 </if>
 		 
-		 <if test='option=="c"'>
-		  and bbs_content LIKE concat('%', #{keyword}, '%')
+		 <if test='type.equals("content")'>
+		  and bbs_content LIKE concat('%', #{word}, '%')
 		 </if>
 		 
-		 <if test='option=="tw"'>
-		  and bbs_title LIKE concat('%', #{keyword}, '%') 
-		   or bbs_content LIKE concat('%', #{keyword}, '%')
+		 <if test='type.equals("title_content")'>
+		  and bbs_title LIKE concat('%', #{word}, '%') 
+		   or bbs_content LIKE concat('%', #{word}, '%')
 		 </if>
 		 
-		 <if test='option=="w"'>
-		  and bbs_id LIKE concat('%', #{keyword}, '%')
+		 <if test='type.equals("writer")'>
+		  and bbs_id LIKE concat('%', #{word}, '%')
 		 </if>
 		
 		 order by bbs_id desc
+		 	limit #{start}, #{limit}
 	</select>
-
-
+  -->
+ 	 <update id="updateReplyCnt" parameterType="int">
+	update animul.bbs b
+	set b.bbs_replyCnt = (select count(reply_id) from bbs_reply where bbs_id = #{bbs_id})
+	where b.bbs_id = #{bbs_id}
+	</update>
+  
 	<update id="updateHit">
 		update animul.bbs 
 		set bbs_hit= bbs_hit+1
@@ -96,5 +195,4 @@
 	</update>
 
 
-	<insert id="saveFile" parameterType="BbsVO"></insert>
 </mapper>

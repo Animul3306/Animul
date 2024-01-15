@@ -11,7 +11,7 @@ public class NoticeController {
 	@Autowired 
 	NoticeService service;
 	
-	@RequestMapping("notice_insert")
+	@RequestMapping("cs/notice_insert")
 	public void insert(NoticeVO vo, Model model) {
 	int result	= service.insert(vo);
 	model.addAttribute("result", result);

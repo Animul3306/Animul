@@ -5,19 +5,32 @@ public class BbsVO {
 	private String member_id;
 	private String bbs_title;
 	private String bbs_content;
-	private String bbs_file;
+	private String bbs_img;
+	private String bbs_thumbImg;
 	private String bbs_date;
 	private int bbs_hit;
 	private String bbs_cate;
 	private int bbs_menu;
-	private int bbs_loc;
+	private int bbs_replyCnt;
 	
 	
-	public int getBbs_loc() {
-		return bbs_loc;
+	public String getBbs_img() {
+		return bbs_img;
 	}
-	public void setBbs_loc(int bbs_loc) {
-		this.bbs_loc = bbs_loc;
+	public void setBbs_img(String bbs_img) {
+		this.bbs_img = bbs_img;
+	}
+	public String getBbs_thumbImg() {
+		return bbs_thumbImg;
+	}
+	public void setBbs_thumbImg(String bbs_thumbImg) {
+		this.bbs_thumbImg = bbs_thumbImg;
+	}
+	public int getbbs_replyCnt() {
+		return bbs_replyCnt;
+	}
+	public void setbbs_replyCnt(int bbs_replyCnt) {
+		this.bbs_replyCnt = bbs_replyCnt;
 	}
 	public int getBbs_menu() {
 		return bbs_menu;
@@ -55,12 +68,7 @@ public class BbsVO {
 	public void setBbs_content(String bbs_content) {
 		this.bbs_content = bbs_content;
 	}
-	public String getBbs_file() {
-		return bbs_file;
-	}
-	public void setBbs_file(String bbs_file) {
-		this.bbs_file = bbs_file;
-	}
+
 	public String getBbs_date() {
 		return bbs_date;
 	}
@@ -73,14 +81,16 @@ public class BbsVO {
 	public void setBbs_hit(int bbs_hit) {
 		this.bbs_hit = bbs_hit;
 	}
-	
-	
 	@Override
 	public String toString() {
 		return "BbsVO [bbs_id=" + bbs_id + ", member_id=" + member_id + ", bbs_title=" + bbs_title + ", bbs_content="
-				+ bbs_content + ", bbs_file=" + bbs_file + ", bbs_date=" + bbs_date + ", bbs_hit=" + bbs_hit
-				+ ", bbs_cate=" + bbs_cate + ", bbs_menu=" + bbs_menu + ", bbs_loc=" + bbs_loc + "]";
+				+ bbs_content + ", bbs_img=" + bbs_img + ", bbs_thumbImg=" + bbs_thumbImg + ", bbs_date=" + bbs_date
+				+ ", bbs_hit=" + bbs_hit + ", bbs_cate=" + bbs_cate + ", bbs_menu=" + bbs_menu + ", bbs_replyCnt=" + bbs_replyCnt
+				+ "]";
 	}
+	
+	
+
 
 
 	
