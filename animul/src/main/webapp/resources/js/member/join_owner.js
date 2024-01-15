@@ -8,15 +8,18 @@ var checkId = false;
 			function changeInvisible() {
 				var terms_box = document.getElementById('terms_box');
 				var join_box = document.getElementById('join_box');
-
+                
 				var top_h3 = document.getElementById('top_h3');
 				var top_img = document.getElementById('top_img');
+                var top_img2 = document.getElementById('top_img2');
 
 				terms_box.style.display = 'none';
 				join_box.style.display = 'block';
 
 				top_h3.textContent = "회원가입";
-				top_img.src = "${pageContext.request.contextPath}/resources/img/member/tab2.png";
+
+                top_img.style.display = 'none';
+                top_img2.style.display = 'block';
 			}
 
 			function checkboxControl() {

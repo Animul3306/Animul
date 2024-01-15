@@ -63,4 +63,8 @@ public class MemberDAO {
 	public int join(MemberVO vo) {
 		return my.insert("member.insert", vo);
 	}
+
+	public MemberVO getUserInfoById(MemberVO vo) {
+		return my.selectOne("member.selectUser", vo);
+	}
 }
