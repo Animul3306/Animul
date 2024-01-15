@@ -11,7 +11,7 @@ public class BbsVO {
 	private int bbs_hit;
 	private String bbs_cate;
 	private int bbs_menu;
-	private int bbs_loc;
+	private int bbs_replyCnt;
 	
 	
 	public String getBbs_img() {
@@ -26,11 +26,11 @@ public class BbsVO {
 	public void setBbs_thumbImg(String bbs_thumbImg) {
 		this.bbs_thumbImg = bbs_thumbImg;
 	}
-	public int getBbs_loc() {
-		return bbs_loc;
+	public int getbbs_replyCnt() {
+		return bbs_replyCnt;
 	}
-	public void setBbs_loc(int bbs_loc) {
-		this.bbs_loc = bbs_loc;
+	public void setbbs_replyCnt(int bbs_replyCnt) {
+		this.bbs_replyCnt = bbs_replyCnt;
 	}
 	public int getBbs_menu() {
 		return bbs_menu;
@@ -85,7 +85,7 @@ public class BbsVO {
 	public String toString() {
 		return "BbsVO [bbs_id=" + bbs_id + ", member_id=" + member_id + ", bbs_title=" + bbs_title + ", bbs_content="
 				+ bbs_content + ", bbs_img=" + bbs_img + ", bbs_thumbImg=" + bbs_thumbImg + ", bbs_date=" + bbs_date
-				+ ", bbs_hit=" + bbs_hit + ", bbs_cate=" + bbs_cate + ", bbs_menu=" + bbs_menu + ", bbs_loc=" + bbs_loc
+				+ ", bbs_hit=" + bbs_hit + ", bbs_cate=" + bbs_cate + ", bbs_menu=" + bbs_menu + ", bbs_replyCnt=" + bbs_replyCnt
 				+ "]";
 	}
 	

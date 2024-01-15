@@ -15,6 +15,8 @@
 	rel="stylesheet"
 	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
 	crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+	
 </head>
 <body>
 	<div id="container">
@@ -39,38 +41,51 @@
 
 			<div id="contents">
 				<div class="pt-titarea">
-					<h3 class="tit">자유 토크</h3>
-					<p>마이펫 자랑, 고민 등 자유롭게 작성하는 게시판 입니다!!</p>
+					<h3 class="tit">산책 메이트 와 멍냥이 찾기</h3>
+					<p>산책 메이트 와 멍냥이 찾는 게시판 입니다!!</p>
 				</div>
 
 
 				<div class="hd-sch">
-					<form action="freeInsert"> <!--  bbs/insert -->
-					<input type="hidden" name="bbs_menu" value="1">
+					<form action="localInsert" enctype="multipart/form-data" method="post"> 
+					<input type="hidden" name="bbs_menu" value="2">
 						<label for="exampleFormControlInput1" class="form-label">카테고리</label> 
 						<select class="form-select" aria-label="Default select example" name="bbs_cate">							
-							<option value="자유 토크">자유 토크</option>
-							<option value="마이펫 자랑">마이펫 자랑</option>
-							<option value="고민 상담">고민 상담</option>
-							<option value="무료 나눔">무료 나눔</option>
+							<option value="산책 메이트 찾기">산책 메이트 찾기</option>
+							<option value="멍냥이 찾기">멍냥이 찾기</option>
+
 						</select><br>
 						
 						<div class="mb-3">
-							<label for="exampleFormControlInput1" class="form-label">제목</label> 
+							<label for="exampleFormControlInput1" class="form-label">제목</label>
 							<input type="text" name="bbs_title" class="form-control"
 								id="exampleFormControlInput1" placeholder="제목을 입력해주세요">
-							<label for="exampleFormControlInput1" class="form-label">작성자</label> 
+							<label for="exampleFormControlInput1" class="form-label">작성자</label>
 							<input type="text" name="member_id" class="form-control"
-								id="exampleFormControlInput1" placeholder="">
-							<label for="exampleFormControlTextarea1" class="form-label">내용</label>
-							<textarea name="bbs_content" class="form-control" id="exampleFormControlTextarea1"
-								rows="6"></textarea>
-						</form>
-						<form method="post" action="${contextPath}/bbs/insert" enctype="multipart/form-data">
-						<label for="formFile" class="form-label">첨부파일</label> 
-						<input class="form-control" type="file" name="bbs_file"><br> <br>
-						<img id="preview" src="#" width=200 height=150 alt="선택된 이미지가 없습니다" style="align-content: flex-end; ">
-						
+								id="exampleFormControlInput1" placeholder=""> <label
+								for="exampleFormControlTextarea1" class="form-label">내용</label>
+							<textarea name="bbs_content" class="form-control"
+								id="exampleFormControlTextarea1" rows="6"></textarea>
+								
+								
+						<div class="inputArea">
+							<label for="bbs_img" class="form-label">첨부파일(이미지)</label> <br>
+							<input type="file" id="bbs_img" name="file" />
+							
+							<div class="select_img"><img src="" /></div>
+							<script>
+								$("#bbs_img").change(function() {
+									if (this.files && this.files[0]) {
+										var reader = new FileReader;
+										reader.onload = function(data) {
+											$(".select_img img").attr("src", data.target.result).width(300);
+										}
+											reader.readAsDataURL(this.files[0]);
+										}
+								});
+							</script>
+							<%= request.getRealPath("/") %>
+							</div>
 						<div class="btn-box">
 						<button type="submit" class="btn btn-blue wide">글쓰기</button>
 					
