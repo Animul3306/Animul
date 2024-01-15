@@ -37,21 +37,20 @@
 
 			<div id="contents">
 				<div class="pt-titarea">
-					<h3 class="tit">자유 토크</h3>
-					<p>마이펫 자랑, 고민 등 자유롭게 작성하는 게시판 입니다!!</p>
+					<h3 class="tit">산책 메이트 와 멍냥이 찾기</h3>
+					<p>산책 메이트 와 멍냥이 찾는 게시판 입니다!!</p>
 				</div>
 
 
 				<div class="hd-sch">
-					<form action="freeupdate" enctype="multipart/form-data" method="post">
+					<form action="localUpdate" enctype="multipart/form-data" method="post">
 						<input type="hidden" name="bbs_menu" value="1"> <label
 							for="exampleFormControlInput1" class="form-label">카테고리</label> <select
 							class="form-select" aria-label="Default select example"
 							name="bbs_cate">
-							<option value="자유 토크">자유 토크</option>
-							<option value="마이펫 자랑">마이펫 자랑</option>
-							<option value="고민 상담">고민 상담</option>
-							<option value="무료 나눔">무료 나눔</option>
+							<option value="산책 메이트 찾기">산책 메이트 찾기</option>
+							<option value="멍냥이 찾기">멍냥이 찾기</option>
+
 						</select><br>
 
 						<div class="mb-3">
@@ -76,7 +75,6 @@
 								 </div>
 								 
 								 <script>
-								 
 								  $("#bbs_img").change(function(){
 								   if(this.files && this.files[0]) {
 								    var reader = new FileReader;
@@ -92,7 +90,7 @@
 
 							<div class="btn-box">
 								<button type="submit" class="btn btn-blue wide">수정</button> 
-								<a href="freeList" class="btn btn-gray wide">목록</a>
+								<a href="localList" class="btn btn-gray wide">목록</a>
 							</div>
 					</form>
 				</div>

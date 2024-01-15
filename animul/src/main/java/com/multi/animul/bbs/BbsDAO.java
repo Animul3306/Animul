@@ -22,6 +22,11 @@ public class BbsDAO {
 		return result;
 	}
 	
+	public int insert2(BbsVO vo) {
+		int result = my.insert("bbs.insert2", vo);
+		return result;
+	}
+	
 
 	public int update(BbsVO vo) {
 		return my.update("bbs.update", vo);
@@ -51,11 +56,15 @@ public class BbsDAO {
 		my.update("bbs.updateHit",bbs_id);
 	}
 	
+	public void updateReplyCnt(int bbs_id) {
+		my.update("updateReplyCnt", bbs_id);
+	}
+	
 	public List<BbsVO> pagingList(Map<String, Object> pagingParams) {
 		return my.selectList("bbs.pagingList", pagingParams);
 	}
 
-	public List<BbsVO> pagingList2(Map<String, Integer> pagingParams) {
+	public List<BbsVO> pagingList2(Map<String, Object> pagingParams) {
 		return my.selectList("bbs.pagingList2", pagingParams);
 	}
 
@@ -63,22 +72,11 @@ public class BbsDAO {
 		return my.selectOne("bbs.bbsCount", pagingParams);
 	}
 	
-	public int bbsCount2() {
-		return my.selectOne("bbs.bbsCount2");
+	public int bbsCount2(Map<String, Object> pagingParams) {
+		return my.selectOne("bbs.bbsCount2", pagingParams);
 	}
 	
-	public List<BbsVO> search(int start, int postNum, String Type, String keyword) {
-		
-		HashMap<String, Object> data = new HashMap<>();
-		
-		data.put("start", start);
-		data.put("limit", postNum);
-		
-	    data.put("Type", Type);
-	    data.put("keyword", keyword);
-	    
-	    return my.selectList("bbs.search", data);
-	}
+
 	
 }
 
