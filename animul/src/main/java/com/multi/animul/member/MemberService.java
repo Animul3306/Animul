@@ -1,5 +1,9 @@
 package com.multi.animul.member;
 
+import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
+import java.net.URLEncoder;
 import java.util.List;
 import java.util.Random;
 
@@ -7,6 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.util.UriComponents;
+import org.springframework.web.util.UriComponentsBuilder;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 
 @Service
 public class MemberService {
@@ -82,5 +90,14 @@ public class MemberService {
 		vo.setPassword(hashedPwd);
 
 		return dao.resetPwd(vo);
+	}
+
+	public MemberVO getUserInfoById(MemberVO vo) {
+		// return dao.getUserInfoById(vo);
+		MemberVO infoVO = dao.getUserInfoById(vo);
+
+		System.out.println("[Service] info:\n" + infoVO.toString());
+
+		return infoVO;
 	}
 }

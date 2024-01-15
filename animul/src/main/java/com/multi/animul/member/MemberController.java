@@ -1,22 +1,27 @@
 package com.multi.animul.member;
 
+import com.multi.animul.member.KakaoUtils;
+
+import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
 import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.oauth2.core.OAuth2Token;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
@@ -67,7 +72,6 @@ public class MemberController {
 		        Cookie cookie = new Cookie("rememberedId", vo.getId());
 		        response.addCookie(cookie);
 		    } else {
-		        // 아이디 삭제 쿠키 추가
 		        Cookie deleteCookie = new Cookie("rememberedId", "");
 		        deleteCookie.setMaxAge(0);
 		        response.addCookie(deleteCookie);
@@ -167,7 +171,7 @@ public class MemberController {
 		int result = service.join(vo);
 
 		if(result == 1) {
-			session.setAttribute("loggedInUser", vo);
+			session.setAttribute("loggedInUser", vo.getId());
 
 			path = "redirect:/main.jsp";
 		}
@@ -226,4 +230,58 @@ public class MemberController {
 
 		return path;
 	}
+
+	@RequestMapping(value="/member/naverLogin/OAuth2C", method=RequestMethod.GET)
+	public String naverLogin() {
+		
+
+		return "redirect:/main.jsp";
+	}
+
+	// private KakaoUtils kakaoUtils = new KakaoUtils();
+
+	@RequestMapping(value="/member/kakaoLogin/OAuth2C", method=RequestMethod.GET)
+	public String kakaoLoginCallback(@RequestParam String code) {
+		System.out.println("Code: " + code);
+
+		// OAuth2Token accessToken = KakaoUtils.getOAuthToken(code);
+
+		// System.out.println("accessToken = " + accessToken.getTokenValue());
+ 
+		String accessToken = KakaoUtils.getAccessToken(code);
+		System.out.println("accessToken = " + accessToken);
+
+		return "redirect:/main.jsp";
+	}
+
+	@RequestMapping(value="/member/userInfo.do", method=RequestMethod.GET)
+	public ResponseEntity<MemberVO> getUserInfo(HttpSession session) {
+		MemberVO vo = new MemberVO();
+		vo.setId((String) session.getAttribute("loggedInUser"));
+
+		System.out.println("[Controller] ID: " + vo.getId());
+
+		MemberVO infoVO = service.getUserInfoById(vo);
+		
+		System.out.println("[Controller] info: " + infoVO.toString());
+
+		return ResponseEntity.ok(infoVO);
+	}
+
+	@RequestMapping(value="/member/withdrawal.do", method=RequestMethod.POST)
+	public String withdrawal(HttpSession session) {
+		MemberVO vo = new MemberVO();
+		vo.setId((String) session.getAttribute("loggedInUser"));
+
+		service.delete(vo);
+		session.invalidate();
+
+		return "redirect:/member/alert-withdrawal.jsp";
+	}
+
+	@RequestMapping(value="/member/withdrawal-redirect.do", method=RequestMethod.POST)
+	public String requestMethodName(@RequestParam String param) {
+		return "redirect:main.jsp";
+	}
+	
 }

@@ -10,7 +10,7 @@
 		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/member/join_owner.css" />
 		<!-- <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/member/join/index.01a5f02e.css" /> -->
 		<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-		<script src="${pageContext.request.contextPath}/resources/js/join_owner.js"></script>
+		<script src="${pageContext.request.contextPath}/resources/js/member/join_owner.js"></script>
 	</head>
 	<body>
 		<br><br>
@@ -22,6 +22,7 @@
 			<div id="join_top">
 				<h3 id="top_h3">이용약관</h3>
 				<img src="${pageContext.request.contextPath}/resources/img/member/tab1.png" id="top_img">
+				<img src="../resources/img/member/tab2.png" id="top_img2" style="display: none">
 				<br>
 			</div>
 
@@ -134,11 +135,13 @@
 								<th>이메일*</th>
 								<td>
 									<div>
-										<div class="input_button" >
-											<input required="required" type="email" maxlength="320" class="input w330" id="email" name="email">
-											<input type="button" class="w70" id="emailCheck" value="인증하기">
+										<div>
+											<div class="input_button" >
+												<input required="required" type="email" maxlength="320" class="input w330" id="email" name="email">
+												<input type="button" class="w70" id="emailCheck" value="인증하기">
+											</div>
+											<label id="label_email"></label>
 										</div>
-										<label id="label_email"></label>
 										<div class="input_button">
 											<input required="required" id="emailCheckNumber" class="input w400" style="display: none" placeholder="인증 번호">
 										</div>
