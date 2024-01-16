@@ -64,7 +64,15 @@ public class MemberDAO {
 		return my.insert("member.insert", vo);
 	}
 
+	public int update(MemberVO vo) {
+		return my.update("member.update", vo);
+	}
+
 	public MemberVO getUserInfoById(MemberVO vo) {
 		return my.selectOne("member.selectUser", vo);
+	}
+
+	public String getPassword(MemberVO vo) {
+		return my.selectOne("member.selectPwd", vo);
 	}
 }
