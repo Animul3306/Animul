@@ -73,6 +73,28 @@ public class MemberService {
 		return dao.join(vo);
 	}
 
+	public int update(MemberVO vo) {
+		String pwd = vo.getPassword();
+
+		System.out.println("[Service]: " + vo.toString());
+
+		if (pwd == "") {
+			vo.setPassword(dao.getPassword(vo));
+		} else {
+			BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+			String hashedPwd = encoder.encode(pwd);
+			
+			vo.setPassword(hashedPwd);
+		}
+
+//		System.out.println("[Service]: Password " + vo.getPassword());
+
+		int result = dao.update(vo);
+//		System.out.println("[Service] Result: " + result);
+
+		return result;
+	}
+
 	public String findId(MemberVO vo) {
 		return dao.findId(vo);
 	}
@@ -96,7 +118,7 @@ public class MemberService {
 		// return dao.getUserInfoById(vo);
 		MemberVO infoVO = dao.getUserInfoById(vo);
 
-		System.out.println("[Service] info:\n" + infoVO.toString());
+		// System.out.println("[Service] info:\n" + infoVO.toString());
 
 		return infoVO;
 	}
