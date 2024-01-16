@@ -76,7 +76,7 @@ public class ReceiptController {
 		
 		ClovaOcr ocr2 = new ClovaOcr();
 		String fileName = uploadPath + "/" + savedName;
-		ArrayList<String> list = ocr2.ocr(fileName);
+		ArrayList<ArrayList<String>> list = ocr2.ocr(fileName);
 		model.addAttribute("list", list);
 		model.addAttribute("savedName", savedName);
 	}
