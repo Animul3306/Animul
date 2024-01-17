@@ -155,7 +155,8 @@
     justify-content: center;
 	margin: 10px 0px;
 }
-#div_button button {
+
+#div_button input {
     padding: 0 10px;
     margin: 0 5px;
 }

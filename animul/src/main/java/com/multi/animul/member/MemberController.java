@@ -22,6 +22,7 @@ import org.springframework.security.oauth2.core.OAuth2Token;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
@@ -85,6 +86,17 @@ public class MemberController {
 			path = "redirect:/member/login.jsp";
 		}
 		return path;
+	}
+
+	@RequestMapping(value="/member/checkSessionStatus.do")
+	public ResponseEntity<String> checkSessionStatus(HttpSession session) {
+		if ( session.getAttribute("loggedInUser") != null) {
+
+            return ResponseEntity.ok("SESSION_VALID");
+        } else {
+ 
+            return ResponseEntity.ok("SESSION_EXPIRED");
+        }
 	}
 	
 	@RequestMapping(value="/member/Logout.do", method=RequestMethod.POST)
@@ -183,6 +195,37 @@ public class MemberController {
 		return path;
 	}
 
+	@RequestMapping(value="/member/Update.do", method=RequestMethod.POST)
+	public ResponseEntity<String> Update(String password, String name, Date birth, String gender, int age, String email, String nickname, HttpSession session) {
+		MemberVO vo = new MemberVO();
+		String userId = (String)session.getAttribute("loggedInUser");
+
+		if (userId == null) { return ResponseEntity.status(HttpStatus.FORBIDDEN).build(); }
+
+		vo.setId(userId);
+		vo.setPassword(password);
+		vo.setMember_name(name);
+		vo.setMember_birthday(birth);
+		vo.setMember_gender(gender);
+		vo.setMember_age(age);
+		vo.setMember_email(email);
+		vo.setMember_nickname(nickname);
+		
+		// System.out.println("[Controller] Update: " + vo.toString());
+
+		int result = service.update(vo);
+
+		// System.out.println("[Controller] Result: " + result);
+
+		if(result == 1) {
+			return ResponseEntity.ok("");
+		}
+		else {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+		}
+
+	}
+
 	@RequestMapping(value="/member/FindId.do", method=RequestMethod.GET)
 	public ResponseEntity<String> FindId(@RequestParam("name") String name, @RequestParam("email") String email) {
 		MemberVO vo = new MemberVO();
@@ -256,13 +299,20 @@ public class MemberController {
 
 	@RequestMapping(value="/member/userInfo.do", method=RequestMethod.GET)
 	public ResponseEntity<MemberVO> getUserInfo(HttpSession session) {
-		MemberVO vo = new MemberVO();
-		vo.setId((String) session.getAttribute("loggedInUser"));
+		String userId = (String) session.getAttribute("loggedInUser");
 
-		System.out.println("[Controller] ID: " + vo.getId());
+		if (userId == null) {
+			return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+		}
+
+		MemberVO vo = new MemberVO();
+		vo.setId(userId);
+
+		// System.out.println("[Controller] ID: " + vo.getId());
 
 		MemberVO infoVO = service.getUserInfoById(vo);
-		
+		infoVO.setId(userId);
+
 		System.out.println("[Controller] info: " + infoVO.toString());
 
 		return ResponseEntity.ok(infoVO);
