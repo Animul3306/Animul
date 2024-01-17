@@ -1,14 +1,7 @@
 package com.multi.animul.bbs;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLEncoder;
-import java.security.Principal;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,12 +16,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 
 
 
@@ -43,7 +31,6 @@ public class BbsController {
 	
 	@Resource(name="uploadPath")
 	private String uploadPath;
-	
 
 	// 자유토크 게시글 작성 + 첨부파일
 	@RequestMapping("bbs/freeInsert")
@@ -63,7 +50,7 @@ public class BbsController {
 		vo.setBbs_img(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
 		vo.setBbs_thumbImg(File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
 		} else {
-	        // 파일이 존재하지 않을 경우 기본값 설정
+	        // 파일이 존재하지 않을 경우 기본값 설정 또는 파일이 없음
 	        vo.setBbs_img("/resources/img/imgUpload/none.png");
 	        vo.setBbs_thumbImg("/resources/img/imgUpload/none.png");
 	    }
@@ -102,7 +89,7 @@ public class BbsController {
 			vo.setBbs_img(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
 			vo.setBbs_thumbImg(File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
 			}else {
-		        // 파일이 존재하지 않을 경우 기본값 설정
+		        // 파일이 존재하지 않을 경우 기본값 설정 또는 파일이 없음
 		        vo.setBbs_img("/resources/img/imgUpload/none.png");
 		        vo.setBbs_thumbImg("/resources/img/imgUpload/none.png");
 		    }
@@ -348,18 +335,7 @@ public class BbsController {
 		return "redirect:localList";
 	}
 
-	// 보호중인 유기동물 리스트 
-	@RequestMapping(value = "bbs/protectList", produces="application/json;charset=UTF-8")
-	public String protectList(Model model)  {
-		ApiExplorerProtect test = new ApiExplorerProtect();
-		ArrayList<ProtectVO> list = test.test();
-		System.out.println("list.size : " + list.size());
-		model.addAttribute("list",list);
-		//페이징
-			
-		
-		return "bbs/protectList";
-	}
+
 
 	
 }
