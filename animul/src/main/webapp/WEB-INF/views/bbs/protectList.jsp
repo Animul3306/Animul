@@ -68,12 +68,28 @@
                                 <span class="thumb">
                                 <img src="${vo.popfile}" alt="" style="width:315px;height:315px;"></span>
                                 <div class="row">
-                                <span>발견 날짜</span>
-                                <span>${vo.happenDt}</span>
+	                                <span>발견 날짜</span>
+	                                <span>${vo.happenDt}</span>
         						</div>
         						<div class="row">
-                                <span>발견 장소</span>
-                                <span>${vo.happenPlace}</span>
+	                                <span>발견 장소</span>
+	                                <span>${vo.happenPlace}</span>
+                                </div>
+                                <div class="row">
+	                                <span>품종</span>
+	                                <span>${vo.kindCd}</span>
+                                </div>
+                                <div class="row">
+	                                <span>성별</span>
+	                                <span>${vo.sexCd}</span>
+                                </div>
+                                <div class="row">
+	                                <span>특징</span>
+	                                <span>${vo.specialMark}</span>
+                                </div>
+                                <div class="row">
+	                                <span>상태</span>
+	                                <span>${vo.processState}</span>
                                 </div>
 
                             </a>
@@ -82,18 +98,7 @@
                 	</div>	
                 	
        
- <%--      				 <c:forEach items="${list}" var="vo" >
-						<tr class="">
-							<td>${vo.desertionNo}</td>
-							<td><src="${vo.filename}"></td>
-							<td>${vo.happenDt}</td>
-							<td>${vo.happenPlace}</td>
-							<td>${vo.kindCd}</td>
-							<td>${vo.age}</td>
-							<td>${vo.weight}</td>
-							<td>${vo.noticeSdt}</td>
-						</tr>
-					</c:forEach> --%>
+
 	
 </body>
 </html>
