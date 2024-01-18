@@ -4,15 +4,15 @@
   
 <mapper namespace="receipt">
 	<insert id="insert" parameterType="receiptVO">
-		insert into animul.receipt values (
-			#{receipt_id},
-			#{receipt_myid},
-			#{receipt_hospitalname},
-			#{receipt_address},
-			#{receipt_date},
-			#{receipt_price}
-		)
-	</insert>
+        insert into animul.receipt values (
+            #{receipt_id},
+            #{receipt_myid},
+            #{receipt_hospitalname},
+            #{receipt_address},
+            #{receipt_date},
+            #{receipt_price}
+        )
+    </insert>
 	
 	<insert id="review" parameterType="receiptVO">
 		insert into animul.receipt values (

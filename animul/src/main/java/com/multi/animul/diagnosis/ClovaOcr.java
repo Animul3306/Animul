@@ -22,6 +22,7 @@ public class ClovaOcr {
 		String secretKey = "SVF5Uk5nVGVYT3BZRk10dWRwSWxva1VQQXpCVXZDb2Q=";
 		String imageFile = fileName;
 		ArrayList<String> list = new ArrayList<String>();
+		ArrayList<String> findUid = new ArrayList<String>();
 		try {
 			URL url = new URL(apiURL);
 			HttpURLConnection con = (HttpURLConnection)url.openConnection();
@@ -68,13 +69,14 @@ public class ClovaOcr {
 			}
 			br.close();
 
-			System.out.println(response);
+			//System.out.println(response);
 			JSONObject json2 = new JSONObject(response.toString());
 			System.out.println(json2);
 			JSONArray images_arr = json2.getJSONArray("images");
 			JSONObject images_0 = images_arr.getJSONObject(0);
 			JSONArray fields_arr = images_0.getJSONArray("fields");
-			
+			System.out.println("uid: " + images_0.getString("uid"));
+			findUid.add(images_0.getString("uid"));
 			for (int i = 0; i < fields_arr.length(); i++) {
 				JSONObject inferText = fields_arr.getJSONObject(i);
 				String text = inferText.getString("inferText").replace(",", "").replaceAll(" ", "");
@@ -86,6 +88,7 @@ public class ClovaOcr {
 			System.out.println(e);
 		}
 		ArrayList<ArrayList<String>> receiptAnalyzeList = receiptAnalyze(list);
+		receiptAnalyzeList.add(0, findUid);
 		return receiptAnalyzeList;
 	}
 

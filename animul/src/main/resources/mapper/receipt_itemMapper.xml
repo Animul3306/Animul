@@ -4,13 +4,12 @@
 
 <mapper namespace="receipt_item">
 	<insert id="insert" parameterType="receipt_itemVO">
-		insert into animul.receipt
+		insert into animul.receipt_item
 		values (
 		#{receipt_item_id},
 		#{receipt_item_receiptid},
 		#{receipt_item_diagnosisname},
-		#{receipt_item_price},
-		#{receipt_item_result}
+		#{receipt_item_price}
 		)
 	</insert>
 	<select id="one" parameterType="receipt_itemVO"
