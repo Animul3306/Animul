@@ -9,6 +9,8 @@ public class AskVO {
 	private String ask_date;
 	private String ask_file;
 	private String ask_category;
+	private String ask_status;
+	
 	public int getAsk_id() {
 		return ask_id;
 	}
@@ -51,12 +53,18 @@ public class AskVO {
 	public void setAsk_category(String ask_category) {
 		this.ask_category = ask_category;
 	}
+	public String getAsk_status() {
+		return ask_status;
+	}
+	public void setAsk_status(String ask_status) {
+		this.ask_status = ask_status;
+	}
 	
 	@Override
 	public String toString() {
 		return "AskVO [ask_id=" + ask_id + ", member_id=" + member_id + ", ask_title=" + ask_title + ", ask_content="
 				+ ask_content + ", ask_date=" + ask_date + ", ask_file=" + ask_file + ", ask_category=" + ask_category
-				+ "]";
+				+ ", ask_status=" + ask_status + "]";
 	}
 	
     

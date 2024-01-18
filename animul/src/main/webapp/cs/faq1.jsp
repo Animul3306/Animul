@@ -221,7 +221,7 @@
     
     <ul class="list-unstyled ps-0">
       <li class="mb-1">
-        <a href=""><button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">안내/이벤트</button></a>
+        <a href="notice_list2?page=1"><button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">안내/이벤트</button></a>
       </li>
      
     </ul>
@@ -230,7 +230,7 @@
     
     <ul class="list-unstyled ps-0">
       <li class="mb-1">
-        <a href="ask_list"><button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">내 문의내역</button></a>
+        <a href="ask_list2?page=1"><button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">내 문의내역</button></a>
       </li>
       <li class="mb-1">
         <a href="ask_insert.jsp"><button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">문의하기</button></a>
@@ -274,7 +274,7 @@
                   <p class="card-text">
                     챗봇 상담: 24시간 <br>
                     챗봇으로 해결되지 않은 문의는 1:1문의로 남겨주세요.</p>
-                  <a href="#" class="btn btn-primary">챗봇</a>
+                  <button class="btn btn-primary" onclick="window.open('chatBOT.jsp','챗봇','width=700,height=700,location=no,status=no,scrollbars=yes');">챗봇</button>
                 </div>
               </div>
             </div>
