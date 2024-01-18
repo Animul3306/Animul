@@ -32,5 +32,11 @@ public class Ask_replyDAO {
 	
 	}
 	
+	public Ask_replyVO one(Ask_replyVO vo) {
+	Ask_replyVO vo3 =my.selectOne("ask_reply.one", vo);
+	return vo3;
+	}
+	
+	
 	
 }
