@@ -7,6 +7,7 @@
 <%@ include file="/WEB-INF/views/common/header2.jsp" %>
 
 <% AskVO vo2=(AskVO)request.getAttribute("vo2"); %>
+
 <html>
 <head>
 	<script src="/docs/5.3/assets/js/color-modes.js"></script>
@@ -128,8 +129,7 @@
     </style>
 
     
-    <!-- Custom styles for this template -->
-    <link href="sidebars.css" rel="stylesheet">
+   
 </head>
 <body>
  <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
@@ -239,7 +239,7 @@
     
     <ul class="list-unstyled ps-0">
       <li class="mb-1">
-        <a href=""><button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">안내/이벤트</button></a>
+        <a href="notice_list2?page=1"><button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">안내/이벤트</button></a>
       </li>
      
     </ul>
@@ -248,7 +248,7 @@
     
     <ul class="list-unstyled ps-0">
       <li class="mb-1">
-        <a href="ask_list"><button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">내 문의내역</button></a>
+        <a href="ask_list2?page=1"><button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">내 문의내역</button></a>
       </li>
       <li class="mb-1">
         <a href="ask_insert.jsp"><button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">문의하기</button></a>
@@ -270,7 +270,7 @@
 <table class="table">
   <thead>
     <tr>
-      <th scope="col"></th>
+      <th scope="col">번호</th>
       <th scope="col">분류</th>
       <th scope="col">제목</th>
       <th scope="col">작성자</th>
@@ -306,28 +306,40 @@
 
 <div class="d-grid gap-2 col-2 mx-auto mt-3">
   
-  <a href="ask_list"><button class="btn btn-primary" type="button">목록으로</button></a>
+  <a href="ask_list2?page=1"><button class="btn btn-primary" type="button">목록으로</button></a>
   
 </div>
 
 <div class="d-grid gap-1 d-md-flex justify-content-md-end">
-  <button class="btn btn-danger" onclick="window.open('ask_reply_insert.jsp','1:1문의 답변','width=1210,height=460,location=no,status=no,scrollbars=yes');">답변하기</button>
+  <button class="btn btn-danger" onclick="window.open('ask_reply_insert.jsp?askId=<%=vo2.getAsk_id()%>','1:1문의 답변','width=1210,height=460,location=no,status=no,scrollbars=yes');">답변하기</button>
   <a href="ask_update?ask_id=<%=vo2.getAsk_id() %>"><button class="btn btn-primary" type="button">수정</button></a>
   <a href="ask_delete?ask_id=<%=vo2.getAsk_id() %>"><button class="btn btn-primary" type="button">삭제</button></a>
+  
 </div>
 
 
 
-<div class="ask_reply_content">
-<h5>1:1문의 답변결과</h5>
-<div class="position-relative p-5 text-muted bg-body border border-dashed rounded-5">
 
-<% List<Ask_replyVO> list =(List<Ask_replyVO>)request.getAttribute("list"); %>
-<% for(Ask_replyVO vo:list){ %>
-   <%= vo.getAsk_reply_content() %>
-<%}%>
-</div>
-</div>
+
+ <% List<Ask_replyVO> list =(List<Ask_replyVO>)request.getAttribute("list"); %>
+ <% for(Ask_replyVO vo:list){ %>
+
+  <div class="ask_reply_content">
+    <h4>1:1문의 답변결과</h4>    
+    <div class="position-relative p-5 text-muted bg-body border border-dashed rounded-5">
+	 
+	<h5> <%= vo.getAsk_reply_title() %> </h5> <br>
+     <%= vo.getAsk_reply_content() %><br>
+	 
+    <div style="float:right;">
+	작성날짜 : <%= vo.getAsk_reply_date() %>
+	<button class="btn btn-danger btn-sm" onclick="window.open('ask_reply_update?ask_reply_id=<%=vo.getAsk_reply_id()%>','1:1문의 답변수정','width=1210,height=460,location=no,status=no,scrollbars=yes');">수정</button>
+    <button class="btn btn-danger btn-sm" onclick="window.open('ask_reply_delete?ask_reply_id=<%=vo.getAsk_reply_id()%>','1:1문의 답변삭제','width=1210,height=460,location=no,status=no,scrollbars=yes');">삭제</button>
+    </div>
+
+    </div>
+  </div>
+ <%}%>
 
 
 </div> 
@@ -340,6 +352,5 @@
  </main>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
-    <script src="sidebars.js"></script>
 </body>
 </html>

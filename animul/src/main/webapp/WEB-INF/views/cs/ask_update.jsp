@@ -110,17 +110,10 @@
         display: block !important;
       }
    		
-   	  .update{
-   	  	margin: 60px;
-   	   
-   	  }			
-   
-	  #ask_content{
-	  width:700px;
-	  height:200px;
+   	  .ask_update {
+	  margin: 20px;
 	  
-	  }   
-   
+	  
     </style>
 
     
@@ -235,7 +228,7 @@
     
     <ul class="list-unstyled ps-0">
       <li class="mb-1">
-        <a href=""><button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">안내/이벤트</button></a>
+        <a href="notice_list2?page=1"><button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">안내/이벤트</button></a>
       </li>
      
     </ul>
@@ -244,7 +237,7 @@
     
     <ul class="list-unstyled ps-0">
       <li class="mb-1">
-        <a href="ask_list"><button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">내 문의내역</button></a>
+        <a href="ask_list2?page=1"><button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">내 문의내역</button></a>
       </li>
       <li class="mb-1">
         <a href="ask_insert.jsp"><button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">문의하기</button></a>
@@ -253,34 +246,53 @@
   
   </div>
 
-<div class="update">	
-  <h2>1:1문의 수정하기</h2><br>
-  <form action="ask_update2">
-    <input type="hidden" name="ask_id" value="${vo2.ask_id}">
-    <input type="hidden" name="ask_category" value="${vo2.ask_category}">
-      
-      <table border="1"  class="table table-hover">
-        
-        <tr  class="table-warning">
-          <td width="200">제목</td>
-          <td width="700"><input name="ask_title" value="${vo2.ask_title}" style="width:700px"></td>
-        </tr>
-        <tr  class="table-warning">
-          <td width="200">내용</td>
-          <td width="700"><input id="ask_content" name="ask_content" value="${vo2.ask_content}" ></td>
-          
-        </tr>
-      
-        <tr  class="table-warning">
-          <td width="700" colspan="2">
-            <button type="submit" class="btn btn-primary">수정하기</button>
-            <a href="ask_list"><button class="btn btn-primary" type="button">취소</button></a>
-          </td>
-        </tr>
-      </table>
-  </form>
-  
-</div>  
+
+<div class="ask_update">
+			<form action="ask_update2">
+				<div class="mx-auto p-2" style="width: 900px;">
+					<p class="fs-2">1:1문의 수정</p>
+				</div>
+				<div class="container">
+					<input type="hidden" name="ask_id" value="${vo2.ask_id}">
+                    
+					<div class="mb-3">
+						<input name="member_id" type="text" class="form-control"
+							id="exampleFormControlInput1" placeholder="작성자"
+							value="${member_id}">
+					</div>
+					<div class="mb-3">
+						<input name="ask_title" type="text" class="form-control"
+							id="exampleFormControlInput1" placeholder="제목입력"
+							value="${vo2.ask_title}">
+					</div>
+					<select name="ask_category" class="form-select"
+						aria-label="Default select example">
+						<option selected>${vo2.ask_category}</option>
+						<option value="회원정보">회원정보</option>
+						<option value="진료비 조회">진료비 조회</option>
+						<option value="질병 검색">질병 검색</option>
+						<option value="주변시설 찾기">주변시설 찾기</option>
+						<option value="기타">기타</option>
+					</select>
+
+					<div class="mb-3">
+						<label for="exampleFormControlTextarea1" class="form-label">
+						</label>
+						<textarea name="ask_content" class="form-control"
+							id="exampleFormControlTextarea1" rows="7" placeholder="내용입력"></textarea>
+					</div>
+
+
+
+					<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+						<button class="btn btn-primary me-md-2" type="submit">수정</button>
+						<a href="ask_list2?page=1"><button class="btn btn-primary" type="button">취소</button></a>
+					</div>
+				</div>
+			</form>
+
+		</div>
+ 
 
 
 </main>
