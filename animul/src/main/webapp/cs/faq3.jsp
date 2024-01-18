@@ -221,7 +221,7 @@
     
     <ul class="list-unstyled ps-0">
       <li class="mb-1">
-        <a href=""><button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">안내/이벤트</button></a>
+        <a href="notice_list2?page=1"><button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">안내/이벤트</button></a>
       </li>
      
     </ul>
@@ -230,7 +230,7 @@
     
     <ul class="list-unstyled ps-0">
       <li class="mb-1">
-        <a href="ask_list"><button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">내 문의내역</button></a>
+        <a href="ask_list2?page=1"><button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">내 문의내역</button></a>
       </li>
       <li class="mb-1">
         <a href="ask_insert.jsp"><button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">문의하기</button></a>
