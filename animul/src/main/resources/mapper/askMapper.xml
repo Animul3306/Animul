@@ -11,16 +11,25 @@
 	#{ask_content},
 	now(),
 	#{ask_file},
-	#{ask_category}
+	#{ask_category},
+	#{ask_status}
 	)
   </insert>
   
   <update id="update" parameterType="askVO" >
 		update animul.ask 
-		set ask_category = #{ask_category}, ask_title = #{ask_title}, ask_content = #{ask_content} 
+		set ask_title = #{ask_title}, 
+		    ask_content = #{ask_content},
+		    ask_category = #{ask_category}  
 		where ask_id = #{ask_id}
   </update>
   
+  <update id="update2" parameterType="askVO" >
+		update animul.ask 
+		set ask_status = #{ask_status}
+		where ask_id = #{ask_id}
+  </update>
+
   <delete id="delete" parameterType="askVO" >
 	    delete from animul.ask where ask_id = #{ask_id}
    </delete>
@@ -28,9 +37,25 @@
    <select id="list" resultType="askVO">
 		select * from animul.ask order by ask_id desc
 	</select>
-	
+
 	<select id="one" parameterType="askVO" resultType="askVO">
 	    select * from animul.ask where ask_id = #{ask_id}
 	</select>
+	
+<!--paging  -->
+
+	<select id="count" resultType="int">
+		select count(*)	from ask
+	</select>
+	
+	<select id="list2" parameterType="pageVO" resultType="askVO">
+	select *
+	from 
+	    (select 
+	     row_number() over(order by ask_id desc) ask_no,
+	     a.* from ask a) a2
+	where a2.ask_no between ${start} and ${end}
+	</select>
+	
 	
 </mapper>
