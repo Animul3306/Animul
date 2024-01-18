@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
@@ -20,12 +21,6 @@ public class ReceiptController {
 	
 	@Autowired
 	Receipt_itemService receipt_itemService;
-	
-	@RequestMapping("diagnosis/receiptInsert")
-	public void  insert(ReceiptVO receiptVO, Model model) {
-		 int insertResult = receiptService.insert(receiptVO);
-		 model.addAttribute("insertResult", insertResult);
-	}
 	
 	@RequestMapping("diagnosis/reviewInsert")
 	public void review(ReceiptVO receiptVO, Model model) {
@@ -57,8 +52,9 @@ public class ReceiptController {
 		 model.addAttribute("diagnosisResult", diagnosisResult);
 	}
 	
+	@ResponseBody
 	@RequestMapping("diagnosis/clovaOCR")
-	public void clovaOcr(HttpServletRequest request, MultipartFile file, Model model) throws IOException {
+	public int clovaOcr(HttpServletRequest request, MultipartFile file, Model model) throws Exception {
 		//파일첨부한 경우에는 file이름 텍스트 + 이미지파일자체 
 		
 		//1. 파일의 이름 + 파일 저장 위치를 알아와야한다. ==> String
@@ -77,7 +73,8 @@ public class ReceiptController {
 		ClovaOcr ocr2 = new ClovaOcr();
 		String fileName = uploadPath + "/" + savedName;
 		ArrayList<ArrayList<String>> list = ocr2.ocr(fileName);
-		model.addAttribute("list", list);
-		model.addAttribute("savedName", savedName);
+		int insertResult = receiptService.insert(list);
+		
+		return insertResult;
 	}
 }
