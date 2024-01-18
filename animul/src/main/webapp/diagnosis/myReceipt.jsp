@@ -31,12 +31,23 @@ $(function() {
 	            processData : false,
 	            contentType : false,
 	            success:function (result) {
-	                $('#ocr').html(result);
+	            	console.log(result)
+	            	if(result == 1) {
+	        			var complete = confirm("영수증 등록 성공, 등록한 영수증을 확인하시겠습니까?")
+	        			if(complete) {
+	        				alert("네")
+	        			} else {
+	        				alert("아니요")				
+	        			}
+	            	} else {
+	            		alert("영수증 등록 실패")
+	            	}
 	            },
 	            error:function (e) {
 	                alert("오류 발생" + e);
 	            }
 	        });
+	        document.getElementById("file").value ='';
 	    })
 	
 })//$
