@@ -88,7 +88,7 @@ body {
     align-item: center;
 }
 
-#login_button button {
+.h45 {
     height: 45px;
     width: 350px;
     margin: 3px 0px;
@@ -109,6 +109,8 @@ body {
 }
 
 #kakao_button {
+    height: 45px;
+    margin: 2px;
     Background-Color: #ffeb00;
     color: black; 
     border: 0px; 

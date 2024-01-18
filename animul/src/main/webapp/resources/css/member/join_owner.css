@@ -96,6 +96,12 @@
 #emailCheck {
 	width: 70px;
 	height: 45px;
+
+    margin-left: 10px;
+}
+
+#emailCheckNumber {
+    margin-top: 10px;
 }
 
 #pass_not_same{
@@ -109,7 +115,7 @@
 
 .input_button {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
 }
 
 .button-gray {
@@ -149,7 +155,8 @@
     justify-content: center;
 	margin: 10px 0px;
 }
-#div_button button {
+
+#div_button input {
     padding: 0 10px;
     margin: 0 5px;
 }
