@@ -6,7 +6,8 @@
 <html>
 <head>
 	<script src="/docs/5.3/assets/js/color-modes.js"></script>
-
+	
+    
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
@@ -115,6 +116,9 @@
       color:blue;
       }
      
+      .container{
+      margin:15px;
+      }
       
      
     </style>
@@ -231,7 +235,7 @@
     
     <ul class="list-unstyled ps-0">
       <li class="mb-1">
-        <a href=""><button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">안내/이벤트</button></a>
+        <a href="notice_list2?page=1"><button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">안내/이벤트</button></a>
       </li>
      
     </ul>
@@ -240,7 +244,7 @@
     
     <ul class="list-unstyled ps-0">
       <li class="mb-1">
-        <a href="ask_list"><button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">내 문의내역</button></a>
+        <a href="ask_list2?page=1"><button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">내 문의내역</button></a>
       </li>
       <li class="mb-1">
         <a href="ask_insert.jsp"><button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">문의하기</button></a>
@@ -249,10 +253,12 @@
   
   </div>
 	
+<div class="container">	   
     <table class="table mt-3">
       <thead>
         <tr>
-         <th scope="col"></th>
+      
+         <th scope="col">상태</th>
          <th scope="col">분류</th>
          <th scope="col">제목</th>
          <th scope="col">작성자</th>
@@ -266,7 +272,7 @@
   	    for(AskVO vo:list){
   	   %>
         <tr>
-         <th scope="row"><%=vo.getAsk_id() %></th>
+         <th scope="row"><%=vo.getAsk_status() %></th>
          <td><%=vo.getAsk_category() %></td>
          <td><a href="ask_one?ask_id=<%=vo.getAsk_id() %>"><%=vo.getAsk_title() %></a></td>
          <td><%=vo.getMember_id() %></td>
@@ -277,8 +283,21 @@
 	  <%} %>   
       </tbody>
     </table>
+
+    <div class="d-grid gap-2 col-2 mx-auto mt-4 mb-4">
   
+      <a href="ask_insert.jsp"><button class="btn btn-primary" type="button">등록하기</button></a>
   
+    </div>  
+
+ 
+ </div>
+ 
+ 
+ 
+ 
+ 
+ 
   	
  </main>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
