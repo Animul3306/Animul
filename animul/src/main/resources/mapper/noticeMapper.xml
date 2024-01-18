@@ -8,17 +8,47 @@
 	null,
 	#{notice_title},
 	#{notice_content},
-	now()
+	now(),
+	#{member_id},
+	#{notice_category},
+	#{notice_status}
 	)
   </insert>
   
   <update id="update" parameterType="noticeVO" >
 		update animul.notice
-		set notice_title = #{notice_title}, notice_content = #{notice_content} 
+		set notice_title = #{notice_title}, 
+		    notice_content = #{notice_content}, 
+		    notice_category = #{notice_category},
+		    notice_status = #{notice_status}
 		where notice_id = #{notice_id}
   </update>
   
   <delete id="delete" parameterType="noticeVO" >
 	    delete from animul.notice where notice_id = #{notice_id}
    </delete>
+   
+   <select id="list" resultType="noticeVO">
+		select * from animul.notice order by notice_id desc
+	</select>
+	
+	<select id="one" parameterType="noticeVO" resultType="noticeVO">
+	    select * from animul.notice where notice_id = #{notice_id}
+	</select>
+	
+	<!--paging  -->
+
+	<select id="count" resultType="int">
+		select count(*)	from notice
+	</select>
+	
+	<select id="list2" parameterType="pageVO" resultType="noticeVO">
+	select *
+	from 
+	    (select 
+	     row_number() over(order by notice_id desc) notice_no,
+	     n.* from notice n) n2
+	where n2.notice_no between ${start} and ${end}
+	</select>
+   
 </mapper>

@@ -6,6 +6,7 @@
 <head>
 <script src="/docs/5.3/assets/js/color-modes.js"></script>
 
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
@@ -122,7 +123,7 @@
 	display: block !important;
 }
 
-.ask_wrap {
+.notice_wrap {
 	margin: 20px;
 }
 </style>
@@ -280,7 +281,7 @@
 							class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
 							data-bs-toggle="collapse" data-bs-target="#home-collapse"
 							aria-expanded="true">내 문의내역</button></a></li>
-				<li class="mb-1"><a href=""><button
+				<li class="mb-1"><a href="ask_insert.jsp"><button
 							class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
 							data-bs-toggle="collapse" data-bs-target="#home-collapse"
 							aria-expanded="true">문의하기</button></a></li>
@@ -288,37 +289,46 @@
 
 		</div>
 
-		<div class="ask_wrap">
-			<form action="ask_insert">
+		<div class="notice_wrap">
+			<form action="notice_insert">
 				<div class="mx-auto p-2" style="width: 900px;">
-					<p class="fs-2">1:1문의 등록</p>
+					<p class="fs-2">공지사항 등록</p>
 				</div>
 				<div class="container">
 					
-					<input type="hidden" name="ask_status" value="답변대기중">
+					<div class="mb-3">
+					<select name="notice_status" class="form-select"
+						aria-label="Default select example">
+						<option selected>상태를 선택해주세요.</option>
+						<option value="예정">예정</option>
+						<option value="진행중">진행중</option>
+						<option value="종료">종료</option>
+						<option value="상시">상시</option>
+					</select>
+					</div>
+					
 					<div class="mb-3">
 						<input name="member_id" type="text" class="form-control"
 							id="exampleFormControlInput1" placeholder="작성자"
 							value="${member_id}">
 					</div>
 					<div class="mb-3">
-						<input name="ask_title" type="text" class="form-control"
+						<input name="notice_title" type="text" class="form-control"
 							id="exampleFormControlInput1" placeholder="제목입력">
 					</div>
-					<select name="ask_category" class="form-select"
+					<select name="notice_category" class="form-select"
 						aria-label="Default select example">
-						<option selected>문의할 내용의 분류를 선택해주세요.</option>
-						<option value="회원정보">회원정보</option>
-						<option value="진료비 조회">진료비 조회</option>
-						<option value="질병 검색">질병 검색</option>
-						<option value="주변시설 찾기">주변시설 찾기</option>
-						<option value="기타">기타</option>
+						<option selected>분류를 선택해주세요.</option>
+						<option value="안내">안내</option>
+						<option value="이벤트">이벤트</option>
 					</select>
-
+					
+					
+						
 					<div class="mb-3">
 						<label for="exampleFormControlTextarea1" class="form-label">
 						</label>
-						<textarea name="ask_content" class="form-control"
+						<textarea name="notice_content" class="form-control"
 							id="exampleFormControlTextarea1" rows="7" placeholder="내용입력"></textarea>
 					</div>
 
@@ -326,7 +336,7 @@
 
 					<div class="d-grid gap-2 d-md-flex justify-content-md-end">
 						<button class="btn btn-primary me-md-2" type="submit">등록</button>
-						<a href="ask_list2?page=1"><button class="btn btn-primary" type="button">취소</button></a>
+						<a href="notice_list2?page=1"><button class="btn btn-primary" type="button">취소</button></a>
 					</div>
 				</div>
 			</form>
@@ -338,6 +348,7 @@
 
 
 	</main>
+	
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"

@@ -27,4 +27,8 @@
    <select id="list" parameterType="int" resultType="ask_replyVO">
 		select * from animul.ask_reply where ask_id = #{ask_id}
 	</select>
+	
+	<select id="one" parameterType="ask_replyVO" resultType="ask_replyVO">
+	    select * from animul.ask_reply where ask_reply_id = #{ask_reply_id}
+	</select>
 </mapper>
