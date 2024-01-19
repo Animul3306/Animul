@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
-<%@ include file="/WEB-INF/views/common/header2.jsp"%>  
+<%@ include file="/WEB-INF/views/common/header2.jsp"%>   
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="com.multi.animul.map.PageVO"%> 
 
@@ -14,10 +14,10 @@
 
 </style>
 <!--  <link href="../resources/map/map.css" rel="stylesheet"> -->  
+
 </head>
 
 <body>
-<table>			
 	<div id="map_wrap2" class="bg_white">	        
         <div class="hAddr">
        		<span class="title"></span>
@@ -25,51 +25,61 @@
        		<span id="latlang"></span>
    		</div>
   	</div>
-
-	<tr> 
+		 
 	<div style="display:flex;padding:10px;">
 	<form name="curPositionAddr">
-		<label>검색 위치 : </label>
+	<!-- 	<label>검색 위치 : </label> -->
 		<label id="centerAddr"></label>
 	</form>
 	</div>
-	</tr>
 	
-	<tr>
-	<div id="radioInfo" style="display:flex;padding:10px;">		 
-	<form name="RadioForm">	 
+	<div id="radioInfo" style="display:flex;padding:10px;">	
+	<form action="" name="RadioForm">	 
 		<input type="radio" name="radiokeyword" value="동물병원" onclick="SearchAddingWord()" checked />
 		<label>동물병원</label>	
-		<input type="radio" name="radiokeyword" value="반려동물용품" onclick="SearchAddingWord()" disabled/>
+		<input type="radio" name="radiokeyword" value="반려동물용품" onclick="SearchAddingWord()" disabled />
 		<label>펫샾</label>	
-		<input type="radio" name="radiokeyword" value="동물보호" onclick="SearchAddingWord()" disabled/>
-		<label>동물보호센터</label>
+		<input type="radio" name="radiokeyword" value="동물보호" onclick="SearchAddingWord()" disabled />
+		<label>동물보호센터</label>			 	
 	</form>
 	</div>
-	</tr>
-	<tr>
-	<div id="region" style="display:flex;padding:10px;">
-		<form onsubmit="RegionClass(); return false;">
-	  		<select name="addressRegion" id="addressRegion1"></select>
-			<select name="addressDo" id="addressDo1"></select>
-			<select name="addressSiGunGu" id="addressSiGunGu1"></select>
-			<button type="submit">지역검색</button>
-		</form>
+	
+	<div id="keywordse" style="display:flex;padding:10px;">
+ 	<form action="list3" method="get">
+ 		<label> 키워드 검색 </label> 	
+		<input type="text" id="keywordSearch1" name="keywordSearch1">			
+		<input type="submit" value="검색"> 	
+ 	</form>	
 	</div>
-	</tr>
-</table>	
-	<div style="display:flex;padding:10px;">
-	<div id="map" style="width:99%;height:450px;overflow:hidden;"></div>
-	</div>
+	
+	<div id="region" style="display:flex;padding:10px;">	
+	<form action="list2" method="get">
+	<label> 주소 선택 </label> 	
+  		<select name="addressRegion" id="addressRegion2"></select>
+		<select name="addressDo" id="addressDo2"></select>
+		<select name="addressSiGunGu" id="addressSiGunGu2" onchange="RegionClass2(this); return false;"></select>
+	</form>								 
+ 		
+	<form action="list2" method="get" >
+		<input type="text" id="centerAddr1" name="centerAddr1" value='${addr}'>			
+		<input type="submit" value="검색">
+	</form>
+	</div>		
+ 
+	
 	<br>
+	<div style="display:flex;padding:10px;">	
+	<div id="map" style="width:99%;height:450px;"></div>
+	</div>
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script> 
  	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5454a62e5d0c9bb2b98dbfd591e5b4cb&libraries=services"></script>
  	<script type="text/javascript" src="../resources/js/address.js"></script>		
 	<script>
 //	const animalHospital = "동물병원";
- 
+ 	
 	var searchaddingkeyword = "동물병원";
 	SearchAddingWord();
+	<% String addressSearchKeword; %>
 	
 	function RegionClass(){
 		var inputData = document.getElementById("addressDo1").value;
@@ -84,15 +94,12 @@
 		return inputData;
 	}
 	
-	function RegionClass2(){
+	function RegionClass2(s){
 		var inputData = document.getElementById("addressDo2").value;
-		inputData += " ";
-		inputData += document.getElementById("addressSiGunGu2").value;
-		inputData += " " + searchaddingkeyword;
-		searchPlaces2(inputData);
-		document.getElementById('keyword').value = "";
-		
-		document.getElementById("centerAddr2").value = inputData;
+		inputData += " ";					 
+		inputData += s[s.selectedIndex].text; // document.getElementById("addressSiGunGu2").text;
+		document.getElementById("centerAddr1").value = inputData;
+		addressSearchKeword= inputData;
 		
 		return inputData;
 	}
@@ -112,11 +119,12 @@
 		
 		return curLocation;
 	} 
-	function getCurrentKeyword(keywords) {
+	
+	function getCurrentAddr() {
 	 
-		document.getElementById("centerAddr3").value = "한영";
+		var cur = document.getElementById("centerAddr").innerText;
+	 	document.getElementById("centerAddr1").value = cur;
 	 
-		return "한영";
 	} 	
 	function CurrentLocationSearch(lat, lon){
 		map4.panTo(lat, lon);
@@ -126,25 +134,26 @@
 		searchaddingkeyword = document.querySelector('input[name="radiokeyword"]:checked').value;		
 //		alert(searchaddingkeyword);
 	}
- 
-// map 지도
+	
+	 
+	// map 지도
 
 	var infowindow = new kakao.maps.InfoWindow({zIndex:1});
 	
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
 	    mapOption = { 
-	        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+	        center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
 	        level: 4 // 지도의 확대 레벨
 	    };
 	
 	var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-	 
+
 	var bounds = new kakao.maps.LatLngBounds(); //지도 범위를 설정
-	
+
 	// 마커를 표시할 위치와 title 객체 배열입니다	 
 	var positions = new Array();
 
-	<c:forEach items="${list1}" var="vo">
+	<c:forEach items="${list2}" var="vo">
 		positions.push({ title: '${vo.hospital_name}',
 						 latlng: new kakao.maps.LatLng(${vo.hospital_latitude}, ${vo.hospital_longitude}),
 						 address: '${vo.hospital_address}',
@@ -179,38 +188,9 @@
 	    displayMarker(positions[i]);
   	    
 		bounds.extend(new kakao.maps.LatLng(positions[i].latlng.getLat(), positions[i].latlng.getLng() ));
-			
+		map.setBounds(bounds); // 지도 범위를 재설정합니다	
 	}
-	
-	map.setBounds(bounds); // 지도 범위를 재설정합니다
-
-	if ("geolocation" in navigator) {	/* geolocation 사용 가능 */
-		
-		navigator.geolocation.getCurrentPosition(function(position) {	
-        
-		var lat = position.coords.latitude, // 위도
-           	lon = position.coords.longitude; // 경도
-        
-        var locPosition = new kakao.maps.LatLng(lat, lon), // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
-            message = '<div style="padding:5px;">내 위치</div>'; // 인포윈도우에 표시될 내용입니다
-        
-      		// 지도 중심을 부드럽게 이동시킵니다	            
-            map.panTo(locPosition);            
-            
-            // 마커와 인포윈도우를 표시합니다
-        	displayMarker2(locPosition, message);
- 
-      });
-    
-	} else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
-		    
-	    var locPosition = new kakao.maps.LatLng(33.450701, 126.570667),    
-	        message = 'geolocation을 사용할수 없어요..';
  	
-	    displayMarker2(locPosition, message);
-	    
-	}
-	
 	// 지도에 마커와 인포윈도우를 표시하는 함수입니다
 	function displayMarker2(locPosition, message) {
 	
@@ -257,41 +237,7 @@
 	    });
 
 	}
-	    // 마커에 클릭이벤트를 등록합니다
-/*	    kakao.maps.event.addListener(marker, 'click', function() {
-	    	searchDetailAddrFromCoords(mouseEvent.latLng, function(result, status) {
-	    	    if (status === kakao.maps.services.Status.OK) {
-	    	    	var detailLat = mouseEvent.latLng.getLat(),
-	    	    		detailLng = mouseEvent.latLng.getLng()
-	    	    	
-	    	        var detailAddr = !!result[0].road_address ? '<div>도로명주소 : ' + result[0].road_address.address_name + '</div>' : '';
-	    	        detailAddr += '<div>지번 주소 : ' + result[0].address.address_name + '</div>';
-	    	        detailAddr += '<div>전화 번호 : ' + result[0].tel + '</div>';
-	    	      
-	    			detailLatlng = '<span class="latlng"> 위도: </span>' + detailLat + 
-	               					'<span class="latlang"> 경도: </span>' + detailLng + '</div>' +
-	             
-	    	        var content = '<div class="bAddr">' +
-	    	                        '<span class="title">클릭 위치 주소</span>' + 
-	    	                        detailAddr + 
-	    	          	          '</div>';
-	    	                    
-	       	        // 마커를 클릭한 위치에 표시합니다 
-//	       	        marker.setPosition(mouseEvent.latLng);
-//	       	        marker.setMap(map);
-	       	
-	       	        // 인포윈도우에 클릭한 위치에 대한 법정동 상세 주소정보를 표시합니다
-//	  		    infowindow.setContent('<div style="padding:5px;font-size:12px;">' + place.title + '</div>');
-	       	        infowindow.setContent(content);
-	       	        infowindow.open(map, marker);	    	                    
-
-	    	    }   
-	  	  });	  	
-	    });
-//	}	
-	*/
- 		 
-/////////////////////
+	/////////////////////
 // 주소 select box
 
 $(function(){
@@ -300,7 +246,7 @@ $(function(){
 
 var areaSelectMaker = function(target){
     if(target == null || $(target).length == 0){
-        console.warn("Unknown Area Tag");
+        console.warn("Unkwon Area Tag");
         return;
     }
   // var area
@@ -348,74 +294,89 @@ var areaSelectMaker = function(target){
     }
 }
 
+////////////////////////////////////////
+
 </script>
 
-<body>	
- <div id="tablelist1" style="display:flex;padding:10px;">
+<br>
+<body>
+	
+ <div id="tablelist2" style="display:flex;padding:10px;">
 	<table border="1" width="99%">
 	    <tr bgcolor="gray">
 	        <td>id</td>
-	        <td>병원명</td>
-	        <td>위도</td>
-	        <td>경도</td>		        
+	        <td>병원명</td>	        
 	        <td>주소</td>		        
 	        <td>전화번호</td>
 	        <td>홈페이지</td>
 	        <td>운영시간</td>
 	        <td>휴일</td>		        
 	    </tr>
-	<c:forEach items="${list1}" var="vo">
+	<c:forEach items="${list2}" var="vo">
 	    <tr>
 	        <td>${vo.hospital_id}</td>		        
-	        <td>${vo.hospital_name}</td>
-	        <td>${vo.hospital_latitude}</td>
-	        <td>${vo.hospital_longitude}</td>		        
+	        <td>${vo.hospital_name}</td>		        
 	        <td>${vo.hospital_address}</td>
 	        <td>${vo.hospital_phone}</td>
-	        <td>${vo.hospital_link}</td> 	         
+	        <td><a href="${vo.hospital_link}" target=_blank> ${vo.hospital_link} </a></td> 	         
 	        <td>${vo.hospital_time}</td>
 	        <td>${vo.hospital_off}</td>  
 		</tr>
 	</c:forEach>
-	</table> 	
-	</div>
-	<br>
-	<div id="tablelistpages1" style="display:flex;padding:10px;">	
- 	<a href="list1?page=<%=1%>">
+</table>
+ </div>
+	 	
+	<br>		
+<div id="tablelistpages2" style="display:flex;padding:10px;">	
+ 	<a href="list2?page=<%=1%>&centerAddr1=${addr}">
 		<button style="background:#e8e6f0"> First </button>
 	</a> 	 		
 
-
 	<%
-	PageVO vo = (PageVO)request.getAttribute("page");
+	PageVO vo = (PageVO)request.getAttribute("page");	
 	System.out.println(vo.toString());
 	int lastIndex = 0;
+	lastIndex = (int)request.getAttribute("pages");
+	int startIndex = 0;
 	
-	System.out.println("start:" + vo.getStart() + "end:" + vo.getEnd() + "current:" + vo.getPage());
+	//전체페이지 11, 페이지 1~10, 11
+	//전체페이지 4, 페이지 1~10 (0)
 	
-	if(vo.getEnd() - vo.getStart() < 9) {
-		lastIndex = vo.getPage() + (vo.getEnd()-vo.getStart());		
+	//1~201 레코드
+	// 처음실행 1~10페이지 10개씩 10페이지
+	// next클릭 11~20페이지 10개식 10페이지
+	// next클릭 21페이지	1개 1페이지
+	
+	// 페이지가 10개 이하
+	if( vo.getTotalPageCount() <= 10 )
+	{
+		startIndex = vo.getStart();
+		lastIndex = vo.getEnd();	
 	}
-	else{
-		lastIndex = vo.getPage() + 9;
+	else if( vo.getTotalPageCount() > 10 )
+	{
+		//페이지 10개 출력
+		startIndex = vo.getPage();
+		lastIndex = vo.getPage() + 9;		
+		//Next button 다음 페이지 10개 출력		
 	}
-	
-	for(int v=vo.getPage(); v<=lastIndex; v++) {
+
+	for(int v=startIndex; v<=lastIndex; v++) {
 	%>	
-		<a href="list1?page=<%=v%>">
+		<a href="list2?page=<%=v%>&centerAddr1=${addr}"> 
 			<button style="background:#cceb34"><%=v%></button>
 		</a>
 	<%	
 	}
 	%>
 	<% int last = (int)request.getAttribute("pages"); %>
- 	<a href="list1?page=<%=last%>">
+ 	<a href="list2?page=<%=last%>&centerAddr1=${addr}">
 		<button style="background:#d3cfe3"> Last </button>
-	</a> 	
-	</div>	
+	</a>
+	 </div>
  	<br>
- 	<div id="tablelistpagesnums1" style="display:flex;padding:10px;">	
- 	<span> 현재 페이지: ${page.page}, 전체 페이지: ${pages}개 ,	전체 게시물 수: ${count}개  </span> <br>	
+ 	<div id="tablelistpagesnums2" style="display:flex;padding:10px;">	
+    <span> 현재 페이지: ${page.page}, 전체 페이지: ${pages}개 ,	전체 게시물 수: ${count}개  </span> <br>		
 	</div>
 </body>
 </html>
