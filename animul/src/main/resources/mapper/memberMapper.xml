@@ -9,7 +9,6 @@
 			#{password},
 			#{member_email},
 			#{member_nickname},
-			#{member_image},
 			#{member_birthday},
 			#{member_gender},
 			#{member_age},

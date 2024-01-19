@@ -7,7 +7,6 @@ public class MemberVO {
 	private String password;
 	private String member_email;
 	private String member_nickname;
-	private String member_image;
 	private Date member_birthday;
 	private String member_gender;
 	private int member_age;
@@ -37,12 +36,6 @@ public class MemberVO {
 	}
 	public void setMember_nickname(String member_nickname) {
 		this.member_nickname = member_nickname;
-	}
-	public String getMember_image() {
-		return member_image;
-	}
-	public void setMember_image(String member_image) {
-		this.member_image = member_image;
 	}
 	public Date getMember_birthday() {
 		return member_birthday;
@@ -78,7 +71,7 @@ public class MemberVO {
 	@Override
 	public String toString() {
 		return "memberVO [id=" + id + ", password=" + password + ", member_email=" + member_email + ", member_nickname="
-				+ member_nickname + ", member_image=" + member_image + ", member_birthday=" + member_birthday
+				+ member_nickname + ", member_birthday=" + member_birthday
 				+ ", member_gender=" + member_gender + ", member_age=" + member_age + ", member_name=" + member_name
 				+ ", is_admin=" + is_admin + "]";
 	}
