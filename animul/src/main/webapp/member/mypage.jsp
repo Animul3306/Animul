@@ -46,18 +46,25 @@
                 }
             }, 2000);
             
+            function changeIframeSrc(src) {
+                // iframe 요소를 가져오기
+                var iframe = document.getElementById('iframe');
+
+                // 새로운 src로 변경
+                iframe.src = src;
+            }
         </script>
 	</head>
 	<body>
         <div style="display: flex; flex-direction: row; height: auto;">
-            <div id="left_bar">
+            <div id="left-bar">
                 <div>
-                    <label>마이페이지</label>
+                    <label class="left-bar-title">마이페이지</label>
                 </div>
                 <div id="menu_list">
-                    <label>내 정보 수정</label>
-                    <label>마이펫</label>
-                    <label>커뮤니티 내역</label>
+                    <label class="left-bar-menu" onclick="changeIframeSrc('mypage-myinfo.jsp')">내 정보 수정</label>
+                    <label class="left-bar-menu" onclick="changeIframeSrc('mypage-mypet.jsp')">마이펫</label>
+                    <label class="left-bar-menu">커뮤니티 내역</label>
                 </div>
             </div>
             <div id="main_bar">

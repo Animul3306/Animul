@@ -122,4 +122,5 @@ public class MemberService {
 
 		return infoVO;
 	}
+
 }

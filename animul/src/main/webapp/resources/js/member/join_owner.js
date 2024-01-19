@@ -3,7 +3,7 @@ var checkId = false;
 			var checkEmail = false;
 			var checkNickname = false;
 			
-			var authNumber = '';
+			var authNumber = 'abcd';
 
 			function changeInvisible() {
 				var terms_box = document.getElementById('terms_box');

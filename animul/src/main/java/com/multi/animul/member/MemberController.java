@@ -313,7 +313,7 @@ public class MemberController {
 		MemberVO infoVO = service.getUserInfoById(vo);
 		infoVO.setId(userId);
 
-		System.out.println("[Controller] info: " + infoVO.toString());
+		// System.out.println("[Controller] info: " + infoVO.toString());
 
 		return ResponseEntity.ok(infoVO);
 	}
