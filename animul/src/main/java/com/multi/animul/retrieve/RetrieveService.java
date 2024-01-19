@@ -10,10 +10,11 @@ public class RetrieveService {
 	@Autowired
 	RetrieveDAO dao;
 	
-	public List<RetrieveVO> list() {
-		return dao.list();
+	public List<RetrieveVO> list(int symptom_id) {
+		return dao.list(symptom_id);
 	}
 
+	//serivce.selectList(symptom_id);
 	public List<SymptomVO> selectList() {
 		return dao.selectList();
 	}
