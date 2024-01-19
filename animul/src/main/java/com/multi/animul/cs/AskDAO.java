@@ -41,6 +41,11 @@ public class AskDAO {
 		return list;
 	}
 	
+	public List<AskVO> list1() {
+		List<AskVO> list1 = my.selectList("ask.list1");
+		return list1;
+	}
+	
 	public List<AskVO> list2(PageVO pageVO) {
 		List<AskVO> list2 =	my.selectList("ask.list2", pageVO);
 		return list2;

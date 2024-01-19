@@ -1,4 +1,4 @@
-<%@page import="com.multi.animul.cs.AskVO"%>
+<%@page import="com.multi.animul.cs.NoticeVO"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -6,8 +6,7 @@
 <html>
 <head>
 	<script src="/docs/5.3/assets/js/color-modes.js"></script>
-	
-    
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
@@ -117,12 +116,9 @@
       }
      
       .container{
-      margin:15px;
+       margin:25px;
       }
       
-      .btn-group{
-      margin: auto;
-      }
      
     </style>
 
@@ -255,12 +251,11 @@
     </ul>  
   
   </div>
-	
-<div class="container">	   
+<div class="container">	
     <table class="table mt-3">
       <thead>
         <tr>
-      
+         
          <th scope="col">상태</th>
          <th scope="col">분류</th>
          <th scope="col">제목</th>
@@ -271,55 +266,39 @@
       </thead>
   
       <tbody class="table-group-divider">
-       <c:forEach items="${list}" var="vo">
+       <%   ArrayList<NoticeVO> list = (ArrayList<NoticeVO>)request.getAttribute("list");
+       		for(NoticeVO vo : list){
+  	   %>
         <tr>
-         <th scope="row">${vo.ask_status}</th>
-         <td>${vo.ask_category}</td>
-         <td><a href="ask_one?ask_id=${vo.ask_id}">${vo.ask_title}</a></td>
-         <td>${vo.member_id}</td>
-		 <td>${vo.ask_date}</td>	        
+         <th scope="row"><%=vo.getNotice_status() %></th>
+         <td><%=vo.getNotice_category() %></td>
+         <td><a href="notice_one?notice_id=<%=vo.getNotice_id() %>"><%=vo.getNotice_title() %></a></td>
+         <td><%=vo.getMember_id() %></td>
+		 <td><%=vo.getNotice_date() %></td>	        
 		      
-        </c:forEach>
+        
         </tr>
-	 
+	  <%} %>   
       </tbody>
     </table>
-
-    <div class="d-grid gap-2 col-2 mx-auto mt-4 mb-4">
+ 	
+ 	<div class="d-grid gap-2 col-2 mx-auto mt-4 mb-4">
   
-      <a href="ask_insert.jsp"><button class="btn btn-primary" type="button">등록하기</button></a>
+      <a href="notice_insert.jsp"><button class="btn btn-primary" type="button">등록하기</button></a>
   
-    </div>  
-<%
-	int pages = (int)request.getAttribute("pages");
-	for(int p = 1; p <= pages; p++){
-%>
-	<div class="btn-group" role="group" aria-label="Second group">
-    <a href="ask_list2?page=<%= p %>">
-    <button type="button" class="btn btn-secondary"><%= p %></button>
-    </a>
-  </div>
-	
-	
-	
-<%		
-	}
-%>
-
- <div class="btn-group dropend" role="group">
+    </div> 
+  <a href="notice_list2?page=1"><button type="button" class="btn btn-secondary">전체 공지</button></a>
+  <div class="btn-group dropend" role="group">
     <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-      답변완료/ 대기중
+      진행중/ 예정
     </button>
     <ul class="dropdown-menu">
-      <li><a class="dropdown-item" href="ask_list">답변완료</a></li>
-      <li><a class="dropdown-item" href="ask_list1">답변대기중</a></li>
+      <li><a class="dropdown-item" href="notice_list">진행중</a></li>
+      <li><a class="dropdown-item" href="notice_list1">예정</a></li>
     </ul>
   </div> 
- </div>
  
- 
- 
- 
+ </div> 
  
  
   	

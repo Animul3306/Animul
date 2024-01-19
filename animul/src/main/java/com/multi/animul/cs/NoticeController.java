@@ -42,6 +42,12 @@ public class NoticeController {
 		model.addAttribute("list", list);
 	}
 	
+	@RequestMapping("cs/notice_list1")
+	public void list1(Model model) {
+		List<NoticeVO> list=service.list1();
+		model.addAttribute("list", list);
+	}
+	
 	@RequestMapping("cs/notice_list2")
 	public void list2(PageVO pageVO, Model model) {
 		pageVO.setStartEnd();

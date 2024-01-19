@@ -289,7 +289,7 @@
 		</div>
 
 		<div class="ask_wrap">
-			<form action="ask_insert">
+			<form action="ask_insert" id="form" method="post" enctype="multipart/form-data">
 				<div class="mx-auto p-2" style="width: 900px;">
 					<p class="fs-2">1:1문의 등록</p>
 				</div>
@@ -321,7 +321,10 @@
 						<textarea name="ask_content" class="form-control"
 							id="exampleFormControlTextarea1" rows="7" placeholder="내용입력"></textarea>
 					</div>
-
+					
+					
+                        <input  type="file" name="file" id="file">
+                  
 
 
 					<div class="d-grid gap-2 d-md-flex justify-content-md-end">
