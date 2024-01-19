@@ -19,8 +19,8 @@ public class Receipt_itemService {
 		return receipt_itemDAO.one(receipt_itemVO);
 	}
 	
-	public List<Receipt_itemVO> list() {
-		return receipt_itemDAO.list();
+	public List<Receipt_itemVO> itemList(Receipt_itemVO receipt_itemVO) {
+		return receipt_itemDAO.itemList(receipt_itemVO);
 	}
 	
 	public List<Receipt_itemVO> diagnosisList() {

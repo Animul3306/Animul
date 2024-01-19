@@ -20,9 +20,11 @@ public class Receipt_itemDAO {
 		return my.selectOne("receipt_item.one", receipt_itemVO);
 	}
 	
-	public List<Receipt_itemVO> list() {
-		return my.selectOne("receipt_item.list");
+	public List<Receipt_itemVO> itemList(Receipt_itemVO receipt_itemVO) {
+		return my.selectList("receipt_item.itemList", receipt_itemVO);
 	}
+	
+
 	
 	public List<Receipt_itemVO> diagnosisList() {
 		return my.selectList("receipt_item.diagnosisList");

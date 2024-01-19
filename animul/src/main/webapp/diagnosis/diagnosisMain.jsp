@@ -10,6 +10,7 @@
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/diagnosis/main.css" />
 <script type="text/javascript">
 	$(function() {	
 		var swiper = new Swiper(".mySwiper", {
@@ -70,69 +71,7 @@
 		})//search	
 	})//$
 </script>
-<style>
 
-.suggestions {
-	position:absolute;
-	width:75%;
-    height:auto;
-    z-index: 1000;
-}
-
-.suggestions > div:hover {
-    background-color: rgb(207, 204, 204);
-}
-
-.row {
-	padding-right: 50px;
-	padding-left: 50px;
-
-}
-
-.chart{
-	margin: 25px 100px;
-	padding: 25px;
-	background-color: #8EC693;
-	border-radius: 30px;
-}
-
-.rowList {
-	padding-top: 25px;
-	display: flex;
-	justify-content: center;
-}
-
-.swiper {
-    width: 100%;
-    height: 100%;
-    }
-
-.swiper-slide {
-   text-align: center;
-   font-size: 18px;
-   background: #fff;
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   border-radius: 30px;
-}
-
-.btnCon {
-	margin: 0px 100px;
-	display: flex;
-	justify-content: center;
-}
-
-#b1{
-	width: 100%;	
-}
-
-.swiper-slide:hover {
-    background-color: skyblue;
-    /* Add any additional styles you want to apply when hovering */
-}
-		
-</style>
 </head>
 <body>
 <div class="btnCon">
@@ -153,7 +92,7 @@
 	<div class="suggestions suggestions_pannel" id = "searchList"></div>
 </div>
 
-<div class="chart">
+<div class="swiperCon">
 <div class="swiper mySwiper">
     <div class="swiper-wrapper">
     </div>
