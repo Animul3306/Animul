@@ -22,6 +22,11 @@ public class BbsDAO {
 		return result;
 	}
 	
+	public int insert2(BbsVO vo) {
+		int result = my.insert("bbs.insert2", vo);
+		return result;
+	}
+	
 
 	public int update(BbsVO vo) {
 		return my.update("bbs.update", vo);
@@ -51,33 +56,27 @@ public class BbsDAO {
 		my.update("bbs.updateHit",bbs_id);
 	}
 	
-	public List<BbsVO> pagingList(Map<String, Integer> pagingParams) {
+	public void updateReplyCnt(int bbs_id) {
+		my.update("updateReplyCnt", bbs_id);
+	}
+	
+	public List<BbsVO> pagingList(Map<String, Object> pagingParams) {
 		return my.selectList("bbs.pagingList", pagingParams);
 	}
 
-	public List<BbsVO> pagingList2(Map<String, Integer> pagingParams) {
+	public List<BbsVO> pagingList2(Map<String, Object> pagingParams) {
 		return my.selectList("bbs.pagingList2", pagingParams);
 	}
 
-	public int bbsCount() {
-		return my.selectOne("bbs.bbsCount");
+	public int bbsCount(Map<String, Object> pagingParams) {
+		return my.selectOne("bbs.bbsCount", pagingParams);
 	}
 	
-	public int bbsCount2() {
-		return my.selectOne("bbs.bbsCount2");
+	public int bbsCount2(Map<String, Object> pagingParams) {
+		return my.selectOne("bbs.bbsCount2", pagingParams);
 	}
 	
-	public List<BbsVO> search(int pagingStart, int pageLimit, String searchType, String keyword) {
-		
-		HashMap<String, Object> data = new HashMap<>();
-		
-		data.put("pagingStart", pagingStart);
-		data.put("pageLimit", pageLimit);
-		
-	    data.put("searchType", searchType);
-	    data.put("keyword", keyword);
-	    return my.selectList("bbs.listSearch", data);
-	}
+
 	
 }
 

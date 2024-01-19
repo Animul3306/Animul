@@ -8,6 +8,7 @@ public class Ask_replyVO {
 	private String ask_reply_content;
 	private String ask_reply_date;
 	private int ask_id;
+	
 	public int getAsk_reply_id() {
 		return ask_reply_id;
 	}

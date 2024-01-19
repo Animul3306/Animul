@@ -22,6 +22,7 @@
 		      },
 		      slidesPerView: 3,
 		      spaceBetween: 20,
+		      resistance : false,
 		      loop: true,
 		      scrollbar: {
 		        el: '.swiper-scrollbar',
@@ -29,6 +30,8 @@
 		      },
 		 
 		    });
+		
+		
 		
 		$.ajax({
 			url:"${pageContext.request.contextPath}/diagnosis/diagnosisList",
@@ -41,18 +44,10 @@
 			url:"${pageContext.request.contextPath}/diagnosis/avgPrice",
 			dataType:"json",
 			success: function(list) {
-				console.log(list)
-				console.log(list[0].allAvgPrice)
-				console.log(list[0].receipt_item_diagnosisname)
-			   // var htmlArr= "<div class='swiper-slide'>" +list[0].allAvgPrice+ "</div>"
-			       
 			        for(var i=0;i<list.length;i++){
-			        	swiper.appendSlide("<div class='swiper-slide'>" + list[i].receipt_item_diagnosisname + '<br>평균가 ' +list[i].allAvgPrice+ "원</div>");
+			        	var click = "location.href='diagnosisOne?diagnosis_name=" + list[i].receipt_item_diagnosisname + "'"
+			        	swiper.appendSlide("<div class='swiper-slide'" + "onClick=\"" + click + "\">" + list[i].receipt_item_diagnosisname + '<br>평균가 ' +list[i].allAvgPrice+ "원</div>");   	
 			       }
-			       //swiper.addSlide(1, '<div class="swiper-slide">Slide 111"</div>')
-			       //swiper.appendSlide('<div class="swiper-slide">'list[0].allAvgPrice +  " " +list[0].receipt_item_diagnosisname'</div>');
-			       //swiper.appendSlide("<div class='swiper-slide'>" +list[0].allAvgPrice+ "</div>");
-			       //swiper.appendSlide(htmlArr);
 			       swiper.update();
 			}//success
 		})//ajax
@@ -78,6 +73,7 @@
 <style>
 
 .suggestions {
+	position:absolute;
 	width:75%;
     height:auto;
     z-index: 1000;
@@ -93,10 +89,8 @@
 
 }
 
-
 .chart{
-	
-	margin: 0px 100px;
+	margin: 25px 100px;
 	padding: 25px;
 	background-color: #8EC693;
 	border-radius: 30px;
@@ -114,7 +108,6 @@
     }
 
 .swiper-slide {
-   
    text-align: center;
    font-size: 18px;
    background: #fff;
@@ -124,14 +117,29 @@
    border-radius: 30px;
 }
 
-.btn {
+.btnCon {
 	margin: 0px 100px;
+	display: flex;
+	justify-content: center;
+}
+
+#b1{
+	width: 100%;	
+}
+
+.swiper-slide:hover {
+    background-color: skyblue;
+    /* Add any additional styles you want to apply when hovering */
 }
 		
 </style>
 </head>
 <body>
-<div class="container mt-5">
+<div class="btnCon">
+	<button id="b1" class="btn btn-outline-primary" onclick="location.href='./myReceipt.jsp' "> 내 영수증 내역(가격 비교) </button>
+	<button id="b1" class="btn btn-outline-primary" onclick="location.href='./allReceipt.jsp'"> 전체 영수증 내역 </button>
+</div>
+<div class="container mt-3">
 	<form class="d-flex">
 		<div class="input-group">
 			<input type="text" class="form-control" id="search" value="" placeholder="" >
@@ -144,7 +152,7 @@
 	</form> 
 	<div class="suggestions suggestions_pannel" id = "searchList"></div>
 </div>
-<button class="btn btn-outline-primary" onclick="location.href='./Comparison.jsp' "> 영수증으로 가격 비교 </button>
+
 <div class="chart">
 <div class="swiper mySwiper">
     <div class="swiper-wrapper">

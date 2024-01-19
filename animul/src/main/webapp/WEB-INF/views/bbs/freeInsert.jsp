@@ -45,7 +45,7 @@
 
 
 				<div class="hd-sch">
-					<form action="freeInsert"> <!--  bbs/insert -->
+					<form action="freeInsert"> 
 					<input type="hidden" name="bbs_menu" value="1">
 						<label for="exampleFormControlInput1" class="form-label">카테고리</label> 
 						<select class="form-select" aria-label="Default select example" name="bbs_cate">							

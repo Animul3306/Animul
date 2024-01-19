@@ -20,10 +20,15 @@ public class ReplyDAO {
         return my.selectList("reply.findAll", bbs_id);
     }
 
-	public void delete(int reply_id) {
-		my.delete("reply.delete", reply_id);
+	public void delete(ReplyVO replyVO) {
+		my.delete("reply.delete", replyVO);
 		
 	}
+
+	public void update(ReplyVO replyVO) {
+		my.update("reply.update", replyVO);
+	}
+
 	
 	
 }
