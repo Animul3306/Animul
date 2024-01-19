@@ -21,8 +21,9 @@ public class RetrieveDAO {
 		return result;
 	}
 
-	public List<RetrieveVO> list() {
-		List<RetrieveVO> list = my.selectList("retrieve.list");
+	//증상 병명가져오기
+	public List<RetrieveVO> list(int symptom_id) {
+		List<RetrieveVO> list = my.selectList("retrieve.list", symptom_id);
 		return list;
 	}
 
@@ -33,6 +34,7 @@ public class RetrieveDAO {
 	
 	//1.service method -> dao.selectList() 
 	//2,, controller 
+	//부위별 증상가져오기
 	public List<SymptomVO> selectList() {
 		List<SymptomVO> list = my.selectList("retrieve.list1");
 		return list;

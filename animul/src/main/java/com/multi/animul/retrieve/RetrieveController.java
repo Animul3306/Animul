@@ -12,10 +12,25 @@ public class RetrieveController {
 	@Autowired
 	RetrieveService serivce;
 
-	//views/insurance.jsp
-	//views/retrieve/insurance.jsp
+	//<a href='retrieve2?symptom_id=4'>
+	@RequestMapping("retrieve/retrieveDetail")
+	public String retrieveDetail(int symptom_id, Model model){
+		//controller -> dao -> mapper.xml -> mysql
+		//controller -> service -> dao -> mapper.xml -> mysql
+		
+		List<RetrieveVO> list = serivce.list(symptom_id);
+
+		
+		model.addAttribute("list", list);
+		
+		System.out.println(list.size());
+		return "retrieve/retrieveDetail"; //---> retrieve2.jsp
+	}
+
+	
+	//<a href='retrieve2?symptom_id=4'>
 	@RequestMapping("retrieve/retrieve2")
-	public String retrieve(Model model){
+	public String retrieve( Model model){
 		//controller -> dao -> mapper.xml -> mysql
 		//controller -> service -> dao -> mapper.xml -> mysql
 		
@@ -25,30 +40,7 @@ public class RetrieveController {
 		model.addAttribute("list", list);
 		return "retrieve/retrieve2"; //---> retrieve2.jsp
 	}
-
-	@RequestMapping("retrieve/retrieve_list")
-	public String retrieve_list( Model model){
-		//controller -> dao -> mapper.xml -> mysql
-		//controller -> service -> dao -> mapper.xml -> mysql
-		
-		List<RetrieveVO> list = serivce.list();
-
-		
-		model.addAttribute("list", list);
-		return "retrieve/retrieve2"; //insurance.jsp ȣ��
-	 }
-		/*
-		 * @RequestMapping("retrieve/retrieve_select") public String
-		 * retrieve_select(String symptom_text, Model model){
-		 * 
-		 * 
-		 * System.out.println(symptom_text); List<RetrieveVO> list =
-		 * serivce.list(symptom_text);
-		 * 
-		 * 
-		 * model.addAttribute("list", list); return "retrieve/insurance";
-		 * //insurance.jsp ȣ�� }
-		 */
+		 
 	
 	
 

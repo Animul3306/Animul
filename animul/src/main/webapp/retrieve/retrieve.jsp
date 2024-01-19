@@ -37,7 +37,7 @@ p {font-size =50px
 
 		<h3 align = "center">아래 이미지를 클릭하십시요</h3>
 	<p>
-	<table border=0 class="table table-hover" align=center>
+	<table border=0 class="table table-hover" align="center">
 		<tr>
 			<td>
 				<button type="button">
