@@ -348,18 +348,32 @@ public class BbsController {
 		return "redirect:localList";
 	}
 
+	
+	
 	// 보호중인 유기동물 리스트 
-	@RequestMapping(value = "bbs/protectList", produces="application/json;charset=UTF-8")
-	public String protectList(Model model)  {
-		ApiExplorerProtect test = new ApiExplorerProtect();
-		ArrayList<ProtectVO> list = test.test();
+	@RequestMapping("bbs/protectList")
+	public String protectList(@RequestParam(value = "page", required = false, defaultValue = "1") String page ,
+								Model model)  {
+		ApiExplorerProtect protectAPI = new ApiExplorerProtect();
+		ArrayList<ProtectVO> list = protectAPI.protectAPI(page);
 		System.out.println("list.size : " + list.size());
 		model.addAttribute("list",list);
-		//페이징
-			
 		
+
+
 		return "bbs/protectList";
 	}
 
+	
+	@RequestMapping("bbs/protectOne")
+	public String one3(@RequestParam("desertionNo") int desertionNo, 
+						@RequestParam(value = "page", required = false, defaultValue = "1") String page,
+						Model model) {
+		ApiExplorerProtect protectAPI = new ApiExplorerProtect();
+		ArrayList<ProtectVO> list = protectAPI.protectAPI(page);
+		System.out.println("list.size : " + list.size());
+		model.addAttribute("list",list);
+		return "bbs/protectOne";
+	}
 	
 }

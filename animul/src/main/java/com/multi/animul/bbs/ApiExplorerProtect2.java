@@ -18,10 +18,12 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 @Component
-public class ApiExplorerProtect {
+public class ApiExplorerProtect2 {
 	
 	
-	public ArrayList<ProtectVO> protectAPI(String page){
+	public static void main (String[] args) {
+		
+	 
 		// 1. URL을 만들기 위한 StringBuilder.
         StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/1543061/abandonmentPublicSrvc/abandonmentPublic"); /*URL*/
         String responseText = null;
@@ -37,7 +39,7 @@ public class ApiExplorerProtect {
 	        //urlBuilder.append("&" + URLEncoder.encode("care_reg_no","UTF-8") + "=" + URLEncoder.encode(" ", "UTF-8")); /*보호소번호 (보호소 조회 OPEN API 참조)*/
 	        //urlBuilder.append("&" + URLEncoder.encode("state","UTF-8") + "=" + URLEncoder.encode(" ", "UTF-8")); /*상태(전체 : null(빈값), 공고중 : notice, 보호중 : protect)*/
 	        //urlBuilder.append("&" + URLEncoder.encode("neuter_yn","UTF-8") + "=" + URLEncoder.encode(" ", "UTF-8")); /*상태 (전체 : null(빈값), 예 : Y, 아니오 : N, 미상 : U)*/
-	        urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode(page, "UTF-8")); /*페이지 번호 (기본값 : 1)*/
+	        urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); /*페이지 번호 (기본값 : 1)*/
 	        urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("15", "UTF-8")); /*페이지당 보여줄 개수 (1,000 이하), 기본값 : 10*/
 	        urlBuilder.append("&" + URLEncoder.encode("_type","UTF-8") + "=" + URLEncoder.encode("json", "UTF-8")); /*xml(기본값) 또는 json*/
 	        
@@ -98,6 +100,7 @@ public class ApiExplorerProtect {
       		//body에서 totalCount 접근
       		int totalCount = bodyObj.get("totalCount").getAsInt();
       		System.out.println("totalCount : "+totalCount);
+
       		
       		
       		JsonObject itemsObj = bodyObj.getAsJsonObject("items");
@@ -107,7 +110,7 @@ public class ApiExplorerProtect {
       		//JsonArray itemArr = bodyObj.getAsJsonArray("items");
       		System.out.println("itemArr : "+itemArr);
       		
-
+      
       		
       		
       		//items에 있는 각 item을 Vo에 담고,담은 Vo들을 ArrayList에 담기
@@ -152,9 +155,9 @@ public class ApiExplorerProtect {
       		}
               
               
-        
+        // 문자열로 바꾸기
 		
-		return list;
+	
 		
 	}
 }
