@@ -3,5 +3,29 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="retrieve">
+	<insert id="insert" parameterType="retrieveVO">
+		insert into insurance
+		values (
+		#{symptom_id},
+		#{symptom_text},
+		#{region_id},
+		#{region_text},
+		#{result},
+		#{result_text},
+		#{img}
+		)
+	</insert>
+
+	<select id="list" parameterType="String" resultType="retrieveVO">
+		select symptom_id, symptom_text, region_id, region_text, result,
+		result_text, img
+		from retrieve
+		where rd_region= #{rd_region}
+	</select>
+
+	<select id="list1" resultType="symptomVO">
+		select symptom_id,symptom_text, region_id, region_text from symptom
 	
+	</select>
+
 </mapper>

@@ -30,5 +30,12 @@ public class RetrieveDAO {
 		int result = my.delete("retrieve.delete", vo);
 		return result;
 	}
+	
+	//1.service method -> dao.selectList() 
+	//2,, controller 
+	public List<SymptomVO> selectList() {
+		List<SymptomVO> list = my.selectList("retrieve.list1");
+		return list;
+	}
 
 }
