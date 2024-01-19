@@ -34,6 +34,11 @@ public class NoticeDAO {
 		return list;
 	}
 	
+	public List<NoticeVO> list1() {
+		List<NoticeVO> list1 = my.selectList("notice.list1");
+		return list1;
+	}
+	
 	public List<NoticeVO> list2(PageVO pageVO) {
 		List<NoticeVO> list2 =	my.selectList("notice.list2", pageVO);
 		return list2;

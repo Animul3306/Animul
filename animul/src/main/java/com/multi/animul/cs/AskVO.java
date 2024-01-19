@@ -7,10 +7,9 @@ public class AskVO {
 	private String ask_title;
 	private String ask_content;
 	private String ask_date;
-	private String ask_file;
 	private String ask_category;
 	private String ask_status;
-	
+	private String ask_img;
 	public int getAsk_id() {
 		return ask_id;
 	}
@@ -41,12 +40,6 @@ public class AskVO {
 	public void setAsk_date(String ask_date) {
 		this.ask_date = ask_date;
 	}
-	public String getAsk_file() {
-		return ask_file;
-	}
-	public void setAsk_file(String ask_file) {
-		this.ask_file = ask_file;
-	}
 	public String getAsk_category() {
 		return ask_category;
 	}
@@ -59,12 +52,17 @@ public class AskVO {
 	public void setAsk_status(String ask_status) {
 		this.ask_status = ask_status;
 	}
-	
+	public String getAsk_img() {
+		return ask_img;
+	}
+	public void setAsk_img(String ask_img) {
+		this.ask_img = ask_img;
+	}
 	@Override
 	public String toString() {
 		return "AskVO [ask_id=" + ask_id + ", member_id=" + member_id + ", ask_title=" + ask_title + ", ask_content="
-				+ ask_content + ", ask_date=" + ask_date + ", ask_file=" + ask_file + ", ask_category=" + ask_category
-				+ ", ask_status=" + ask_status + "]";
+				+ ask_content + ", ask_date=" + ask_date + ", ask_category=" + ask_category + ", ask_status="
+				+ ask_status + ", ask_img=" + ask_img + "]";
 	}
 	
     
