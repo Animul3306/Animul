@@ -6,7 +6,14 @@ public class ReplyVO {
 	private String member_id;
 	private String reply_content;
 	private String reply_date;
+	private int reply_cnt;
 	
+	public int getReply_cnt() {
+		return reply_cnt;
+	}
+	public void setReply_cnt(int reply_cnt) {
+		this.reply_cnt = reply_cnt;
+	}
 	public int getReply_id() {
 		return reply_id;
 	}
@@ -37,12 +44,13 @@ public class ReplyVO {
 	public void setReply_date(String reply_date) {
 		this.reply_date = reply_date;
 	}
-	
 	@Override
 	public String toString() {
 		return "ReplyVO [reply_id=" + reply_id + ", bbs_id=" + bbs_id + ", member_id=" + member_id + ", reply_content="
-				+ reply_content + ", reply_date=" + reply_date + "]";
+				+ reply_content + ", reply_date=" + reply_date + ", reply_cnt=" + reply_cnt + "]";
 	}
+	
+
 	
 	
 	

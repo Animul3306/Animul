@@ -1,38 +1,46 @@
 package com.multi.animul.retrieve;
 
 public class RetrieveVO {
-	private String rd_animal;
-	private String rd_retrievedisease;
-	private String rd_result;
-	private String rd_list;
-	public String getRd_animal() {
-		return rd_animal;
+	private int symptom_id;
+	private String result;
+	private String result_text;
+	private String img;
+	private int result_id;
+	public int getSymptom_id() {
+		return symptom_id;
 	}
-	public void setRd_animal(String rd_animal) {
-		this.rd_animal = rd_animal;
+	public void setSymptom_id(int symptom_id) {
+		this.symptom_id = symptom_id;
 	}
-	public String getRd_retrievedisease() {
-		return rd_retrievedisease;
+	public String getResult() {
+		return result;
 	}
-	public void setRd_retrievedisease(String rd_retrievedisease) {
-		this.rd_retrievedisease = rd_retrievedisease;
+	public void setResult(String result) {
+		this.result = result;
 	}
-	public String getRd_result() {
-		return rd_result;
+	public String getResult_text() {
+		return result_text;
 	}
-	public void setRd_result(String rd_result) {
-		this.rd_result = rd_result;
+	public void setResult_text(String result_text) {
+		this.result_text = result_text;
 	}
-	public String getRd_list() {
-		return rd_list;
+	public String getImg() {
+		return img;
 	}
-	public void setRd_list(String rd_list) {
-		this.rd_list = rd_list;
+	public void setImg(String img) {
+		this.img = img;
+	}
+	public int getResult_id() {
+		return result_id;
+	}
+	public void setResult_id(int result_id) {
+		this.result_id = result_id;
 	}
 	@Override
 	public String toString() {
-		return "RetrieveVO [rd_animal=" + rd_animal + ", rd_retrievedisease=" + rd_retrievedisease + ", rd_result="
-				+ rd_result + ", rd_list=" + rd_list + "]";
+		return "RetrieveVO [symptom_id=" + symptom_id + ", result=" + result + ", result_text=" + result_text + ", img="
+				+ img + ", result_id=" + result_id + "]";
 	}
-
+	
+	
 }

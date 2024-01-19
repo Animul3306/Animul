@@ -41,19 +41,20 @@
 <%
 	List<InsuranceVO> list = (List<InsuranceVO>) request.getAttribute("list");
 int result = 0;
-
 if (list != null) {//보험회 클릭시
 	result = list.size();
 }
 %>
 <body>
 	<table>
-	<tr><td>
-		<a href="insurance_select?insurance_company=KB">KB다이렉트</a></td>
-		<tr>
-		<a href="insurance_select?insurance_company=KB">KB다이렉트</a></td>
+	<tr><th>
+		<a href="insurance_select?insurance_company=KB">KB다이렉트</a></th>
+		<th>
+		<a href="insurance_select?insurance_company=hyundai">현대해상</a></th>
 		</tr>
 	</table>
+	<h3 align= "right"><a href="retrieve.jsp">돌아가기 </a>
+		</h3>
 	<%
 		if (result > 0) {
 
@@ -120,6 +121,5 @@ if (list != null) {//보험회 클릭시
 
 
 
-	<h3>현대해상</h3>
 </body>
 </html>

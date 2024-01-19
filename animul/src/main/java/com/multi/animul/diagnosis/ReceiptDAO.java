@@ -24,6 +24,10 @@ public class ReceiptDAO {
 		return my.selectOne("receipt.one", receiptVO);
 	}
 	
+	public List<ReceiptVO> myList(ReceiptVO receiptVO) {
+		return my.selectList("receipt.mylist", receiptVO);
+	}
+	
 	public List<ReceiptVO> list(){
 		return my.selectList("receipt.list");
 	}

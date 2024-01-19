@@ -6,6 +6,9 @@ public class NoticeVO {
 	private String notice_title;
 	private String notice_content;
 	private String notice_date;
+	private String member_id;
+	private String notice_category;
+	private String notice_status;
 	public int getNotice_id() {
 		return notice_id;
 	}
@@ -30,13 +33,30 @@ public class NoticeVO {
 	public void setNotice_date(String notice_date) {
 		this.notice_date = notice_date;
 	}
-	
+	public String getMember_id() {
+		return member_id;
+	}
+	public void setMember_id(String member_id) {
+		this.member_id = member_id;
+	}
+	public String getNotice_category() {
+		return notice_category;
+	}
+	public void setNotice_category(String notice_category) {
+		this.notice_category = notice_category;
+	}
+	public String getNotice_status() {
+		return notice_status;
+	}
+	public void setNotice_status(String notice_status) {
+		this.notice_status = notice_status;
+	}
 	@Override
 	public String toString() {
 		return "NoticeVO [notice_id=" + notice_id + ", notice_title=" + notice_title + ", notice_content="
-				+ notice_content + ", notice_date=" + notice_date + "]";
+				+ notice_content + ", notice_date=" + notice_date + ", member_id=" + member_id + ", notice_category="
+				+ notice_category + ", notice_status=" + notice_status + "]";
 	}
-	
 	
 	
 	

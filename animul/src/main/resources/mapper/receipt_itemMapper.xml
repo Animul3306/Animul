@@ -4,13 +4,12 @@
 
 <mapper namespace="receipt_item">
 	<insert id="insert" parameterType="receipt_itemVO">
-		insert into animul.receipt
+		insert into animul.receipt_item
 		values (
 		#{receipt_item_id},
 		#{receipt_item_receiptid},
 		#{receipt_item_diagnosisname},
-		#{receipt_item_price},
-		#{receipt_item_result}
+		#{receipt_item_price}
 		)
 	</insert>
 	<select id="one" parameterType="receipt_itemVO"
@@ -22,6 +21,21 @@
 	<select id="list" resultType="receipt_itemVO">
 		select * from animul.receipt_item
 		order by receipt_item_id desc
+	</select>
+	
+	
+	<select id="diagnosisList" resultType="receipt_itemVO">
+		SELECT receipt_item_receiptid, GROUP_CONCAT(receipt_item_diagnosisname SEPARATOR ', ') AS receipt_item_diagnosisname
+		FROM animul.receipt_item
+		GROUP BY receipt_item_receiptid;
+	</select>
+	
+	<select id="diagnosisMyList" parameterType="receiptVO" resultType="receipt_itemVO">
+		select receipt_item_receiptid, GROUP_CONCAT(ri.receipt_item_diagnosisname SEPARATOR ', ') AS receipt_item_diagnosisname
+		FROM animul.receipt_item ri
+		JOIN animul.receipt r ON ri.receipt_item_receiptid = r.receipt_id
+		where r.receipt_myid = #{receipt_myid}
+		GROUP BY r.receipt_id, r.receipt_hospitalname;
 	</select>
 
 	<select id="avgPrice" resultType="receiptTotalVO">

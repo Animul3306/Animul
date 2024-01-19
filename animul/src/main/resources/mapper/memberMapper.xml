@@ -9,7 +9,6 @@
 			#{password},
 			#{member_email},
 			#{member_nickname},
-			#{member_image},
 			#{member_birthday},
 			#{member_gender},
 			#{member_age},
@@ -60,5 +59,27 @@
 
 	<select id="selectNickname" parameterType="memberVO" resultType="boolean">
 		select count(*) from member where member_nickname=#{member_nickname}
+	</select>
+
+	<select id="selectUser" parameterType="memberVO" resultType="memberVO">
+		select member_id, member_email, member_nickname, member_birthday, member_gender, member_age, member_name from member where member_id=#{id}
+	</select>
+
+	<update id="update" parameterType="memberVO">
+		UPDATE member
+		SET 
+			password=#{password},
+			member_email=#{member_email},
+			member_nickname=#{member_nickname},
+			member_birthday=#{member_birthday},
+			member_gender=#{member_gender},
+			member_age=#{member_age},
+			member_name=#{member_name}
+		WHERE
+			member_id=#{id};
+	</update>
+
+	<select id="selectPwd" parameterType="memberVO" resultType="String">
+		select password from member where member_id=#{id}
 	</select>
 </mapper>
