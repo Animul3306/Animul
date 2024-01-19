@@ -12,7 +12,20 @@
 <title>Insert title here</title>
 <link href="../resources/css/bbs/style.css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
-
+<script>
+	function showSlides(n) {
+		var currentPage = location.href;
+		var index = currentPage.indexOf("page=");
+		
+		if (index != -1) {
+			var page = 	parseInt(currentPage.substring(index+5, currentPage.length));
+			
+			location.href = "protectList?page=" + (page + n);
+		} else if( n != -1 ) {
+			location.href = "protectList?page=" + (n + 1);
+		}
+	}
+</script>
 </head>
 <body>
 
@@ -97,6 +110,48 @@
                 		</c:forEach>
                 	</div>	
                 	
+                	
+                	
+                	<div class="paging" style="padding-top:20px">
+                		<a onclick="showSlides(-1)" class="direction prev">&#10094;</a>
+                		<a onclick="showSlides(1)" class="direction next">&#10095;</a>
+				
+				
+				<%-- <c:choose>
+					<c:when test="${paging.page<=1}">
+					<span><a class="direction prev"></a></span>
+					</c:when>
+					<c:otherwise>
+						<a href="protectList?page=${paging.page-1}" class="direction prev">[이전]</a>
+						
+						
+					</c:otherwise>
+				</c:choose>
+				
+				<c:forEach begin="${paging.startPage}" end="${paging.endPage}"
+					var="i" step="1">
+					<c:choose>
+						<c:when test="${i eq paging.page}">
+							<span>${i}</span>
+						</c:when>
+
+						<c:otherwise>
+							<a href="protectList?page=${i}">${i}</a>
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
+
+				<c:choose>
+					<c:when test="${paging.page>=paging.maxPage}">
+						<span><a class="direction next"></a></span>
+					</c:when>
+					<c:otherwise>
+						<a href="protectList?page=${paging.page+1}" class="direction next">[다음]</a>
+					</c:otherwise>
+				</c:choose>
+				
+			</div>
+			 --%>
        
 
 	

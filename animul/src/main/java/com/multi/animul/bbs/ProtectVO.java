@@ -24,6 +24,40 @@ public class ProtectVO {
     private String orgNm;
     private String chargeNm;
     private String officetel;
+    
+    //페이징
+    private String totalCount;
+    private int maxPage; // 전체 필요한 페이지 갯수
+	private int startPage; //현재 페이지 기준 시작페이지 값
+	private int endPage; //현재 페이지 기준 마지막 페이지 값
+    
+    
+    
+    
+	public int getMaxPage() {
+		return maxPage;
+	}
+	public void setMaxPage(int maxPage) {
+		this.maxPage = maxPage;
+	}
+	public int getStartPage() {
+		return startPage;
+	}
+	public void setStartPage(int startPage) {
+		this.startPage = startPage;
+	}
+	public int getEndPage() {
+		return endPage;
+	}
+	public void setEndPage(int endPage) {
+		this.endPage = endPage;
+	}
+	public String getTotalCount() {
+		return totalCount;
+	}
+	public void setTotalCount(String totalCount) {
+		this.totalCount = totalCount;
+	}
 	public String getDesertionNo() {
 		return desertionNo;
 	}
@@ -156,7 +190,6 @@ public class ProtectVO {
 	public void setOfficetel(String officetel) {
 		this.officetel = officetel;
 	}
-	
 	@Override
 	public String toString() {
 		return "ProtectVO [desertionNo=" + desertionNo + ", filename=" + filename + ", happenDt=" + happenDt
@@ -165,8 +198,9 @@ public class ProtectVO {
 				+ noticeEdt + ", popfile=" + popfile + ", processState=" + processState + ", sexCd=" + sexCd
 				+ ", neuterYn=" + neuterYn + ", specialMark=" + specialMark + ", careNm=" + careNm + ", careTel="
 				+ careTel + ", careAddr=" + careAddr + ", orgNm=" + orgNm + ", chargeNm=" + chargeNm + ", officetel="
-				+ officetel + "]";
+				+ officetel + ", totalCount=" + totalCount + "]";
 	}
+	
 
 	 
 	

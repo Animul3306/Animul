@@ -1,5 +1,6 @@
 package com.multi.animul.bbs;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -49,6 +50,7 @@ public class BbsService {
 	public List<BbsVO> list2() {
 		return dao.list2();
 	}
+	
 	
 	
 	
@@ -125,6 +127,11 @@ public class BbsService {
 	
 	
 	
+	
+	
+	
+	
+
 
 
 }
