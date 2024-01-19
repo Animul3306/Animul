@@ -1,3 +1,32 @@
+@font-face {
+	font-family: 'NotoSans_Bold';
+	src: url('./font/NotoSansKR-Bold.ttf') format('truetype')
+}
+@font-face {
+	font-family: 'NotoSans_Regular';
+	src: url('./font/NotoSansKR-Regular.ttf') format('truetype')
+}
+
+#left-bar {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 10px;
+}
+
+.left-bar-title {
+    font-size: 30px;
+    font-family: "NotoSans_Bold";
+    margin: 10px 0;
+}
+
+.left-bar-menu {
+    font-size: 20;
+    font-family: "NotoSans_Regular";
+    margin: 10px 0;
+    cursor: pointer;
+}
+
 #menu_list {
     display: flex;
     flex-direction: column;

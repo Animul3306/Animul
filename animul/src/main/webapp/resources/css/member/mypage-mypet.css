@@ -1,0 +1,105 @@
+@font-face {
+	font-family: 'NotoSans_Bold';
+	src: url('./font/NotoSansKR-Bold.ttf') format('truetype')
+}
+@font-face {
+	font-family: 'NotoSans_Regular';
+	src: url('./font/NotoSansKR-Regular.ttf') format('truetype')
+}
+
+.mypet-list-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 0 40px;
+    margin: 30px 0;
+}
+
+.prev, .next {
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -22px;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.prev {
+    left: 0;
+}
+
+.next {
+    right: 0;
+}
+
+.mypet-card {
+    width: 324px;
+    height: 457px;
+    padding: 3px 3px;
+
+    background: #dbdee8;
+}
+
+.mypet-card-inner {
+    width: 264px;
+    height: 377px;
+    padding: 40px 30px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+
+    background: white;
+}
+
+.mypet-name {
+    font-size: 25px;
+    font-family: 'NotoSans_Bold';
+    margin: 10px 0px;
+}
+
+.mypet-content {
+    font-size: 20px;
+    font-family: 'NotoSans_Regular';
+    margin: 5px 0px;
+}
+
+.empty {
+    width: 100%;
+    height: 100%;
+}
+
+.mypet-card-button {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#button-detail {
+    width: 150px;
+    height: 60px;
+    border: none;
+    border-radius: 10px;
+
+    background: #8EC693;
+    cursor: pointer;
+}
+
+#mypet-add-container {
+    display: flex;
+    justify-content: center;
+}
+
+#button-add {
+    width: 150px;
+    height: 60px;
+    border: none;
+    border-radius: 10px;
+    background: #8ec693;
+
+    display: flex;
+    justify-content: center;
+}
