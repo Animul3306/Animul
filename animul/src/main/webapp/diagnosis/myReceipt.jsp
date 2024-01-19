@@ -7,6 +7,9 @@
 <title>Insert title here</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js" charset="utf-8"></script>  
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 $(function() {		
@@ -19,6 +22,7 @@ $(function() {
 			$('#resultDiv').html(list)
 		}//success
 	})//ajax
+	
 	
 	 $('#ocrForm').on('submit', function (event) {
 	        event.preventDefault();
@@ -70,6 +74,7 @@ $(function() {
         </form>
 		
 	</div>
+	<div class="row mt-3" id="resultDiv2"></div>
 	<div class="row mt-3" id="resultDiv"></div>
 </div>
 </body>
