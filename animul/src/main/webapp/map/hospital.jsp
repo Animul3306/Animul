@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/views/common/header2.jsp"%>
+<%@ include file="/WEB-INF/views/common/header2.jsp"%> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,7 +15,7 @@
 .bg_white {background:#fff;}
 #menu_wrap hr {display: block; height: 1px;border: 0; border-top: 2px solid #5F5F5F;margin:3px 0;}
 #menu_wrap .option{text-align: center;}
-#menu_wrap .option p {margin:10px 0;}  
+#menu_wrap .option p {margin:10px 0;}
 #menu_wrap .option button {margin-left:5px;}
 #placesList li {list-style: none;}
 #placesList .item {position:relative;border-bottom:1px solid #888;overflow: hidden;cursor: pointer;min-height: 65px;}
@@ -44,11 +44,19 @@
 #pagination {margin:10px auto;text-align: center;}
 #pagination a {display:inline-block;margin-right:10px;}
 #pagination .on {font-weight: bold; cursor: default;color:#777;}
+.map_wrap2 {position:relative;width:100%;height:700px;}
+.title {font-weight:bold;display:block;}
+.hAddr {position:absolute;left:10px;top:10px;border-radius: 2px;background:#fff;background:rgba(255,255,255,0.8);z-index:1;padding:5px;}
+#centerAddr2 {display:block;margin-top:2px;font-weight: normal;}
+.bAddr {padding:5px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;}
+.region {padding:15px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;}
 </style>
 <!--   <link href="../resources/css/map/map.css" rel="stylesheet"> -->   
 </head>
 
 <body>
+<table>
+	<tr>
 	<div id="map_wrap2" class="bg_white">	        
         <div class="hAddr">
        		<span class="title"></span>
@@ -56,19 +64,29 @@
        		<span id="latlang"></span>
    		</div>
   	</div>
-		 
-	<h3>검색 위치</h3> 	
-	현재 내 위치정보:<label id="centerAddr">현재 내 위치정보</label> <br> 
-	<form action="" name="RadioForm">	 
+	</tr>
+	<div style="display:flex;padding:10px;">
+	<form name="curPositionAddr">
+		<label>검색 위치 : </label>
+		<label id="centerAddr"></label>
+	</form>
+	</div>
+	<tr>
+
+	<div id="radioInfo" style="display:flex;padding:10px;">		 
+	<form name="RadioForm">	 
 		<input type="radio" name="radiokeyword" value="동물병원" onclick="SearchAddingWord()" checked />
 		<label>동물병원</label>	
 		<input type="radio" name="radiokeyword" value="반려동물용품" onclick="SearchAddingWord()"/>
 		<label>펫샾</label>	
 		<input type="radio" name="radiokeyword" value="동물보호" onclick="SearchAddingWord()"/>
-		<label>동물보호센터</label>			 	
+		<label>동물보호센터</label>
 	</form>
-	<br>
-	<div id="region">
+	</div>
+
+	</tr> 
+	<tr>
+	<div id="region" style="display:flex;padding:10px;">
 		<form onsubmit="RegionClass(); return false;">
 	  		<select name="addressRegion" id="addressRegion1"></select>
 			<select name="addressDo" id="addressDo1"></select>
@@ -76,10 +94,11 @@
 			<button type="submit">지역검색</button>
 		</form>
 	</div>
+	</tr>
 	<br>	 	
-	<div class="map_wrap" style="display:flex;">
+	<div class="map_wrap" style="display:flex;padding:10px;">
 	
-	    <div id="map4" style="width:100%;height:100%;overflow:hidden;"></div>
+	    <div id="map4" style="width:99%;height:100%;overflow:hidden;"></div>
 
 	    <div id="menu_wrap" class="bg_white">
 	        <div class="option">
@@ -95,6 +114,7 @@
 	        <div id="pagination"></div>
 	    </div>
 	</div>
+</table>	
 	<br><br>
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script> 
  	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5454a62e5d0c9bb2b98dbfd591e5b4cb&libraries=services"></script>
@@ -382,9 +402,10 @@
 		function searchPlaces() {
 		//	document.getElementById('keyword').value = document.getElementById('centerAddr').innerText;
 		//	document.getElementById('keyword').value+= " " + searchaddingkeyword;
+			
 		    var keyword =  document.getElementById('keyword').value + " " +
 		    				document.getElementById('centerAddr').innerText;
-			//keyword += "동물병원";
+						
 		    if (!keyword.replace(/^\s+|\s+$/g, '')) {
 		        alert('키워드를 입력해주세요!');
 		        return false;
@@ -547,29 +568,6 @@
 		    return el;
 		}
  
-/*
-function getListItem(index, places) {
-	var el = document.createElement('li'),
-	itemStr = '<span class="markerbg marker_' + (index+1) + '"></span>' +
-	            '<div class="info">' +
-	            '   <h5>' + places.place_name + '</h5>';
- 
-	if (places.road_address_name) {
-	    itemStr += '    <span>' + places.road_address_name + '</span>' +
-	                '   <span class="jibun gray">' +  places.address_name  + '</span>';
-	} else {
-	    itemStr += '    <span>' +  places.address_name  + '</span>'; 
-	} 
-   
-	  itemStr += '  <span class="tel">' + places.phone  + '</span>' +
-	            '</div>';           
-	
-	el.innerHTML = itemStr;
-	el.className = 'item';
-	
-	return el;
-}
-*/
 		// 마커를 생성하고 지도 위에 마커를 표시하는 함수입니다
 		function addMarker(position, idx, title) {
 		    var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png', // 마커 이미지 url, 스프라이트 이미지를 씁니다
