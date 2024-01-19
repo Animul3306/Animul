@@ -19,6 +19,10 @@ public class AskService {
 		return dao.list();
 	}
 	
+	public List<AskVO> list1() {
+		return dao.list1();
+	}
+	
 	public List<AskVO> list2(PageVO pageVO){
 		return dao.list2(pageVO);
 	}

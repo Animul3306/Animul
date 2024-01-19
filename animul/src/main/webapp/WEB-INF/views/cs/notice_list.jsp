@@ -287,7 +287,16 @@
       <a href="notice_insert.jsp"><button class="btn btn-primary" type="button">등록하기</button></a>
   
     </div> 
- 
+ <a href="notice_list2?page=1"><button type="button" class="btn btn-secondary">전체 공지</button></a>
+ <div class="btn-group dropend" role="group">
+    <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+      진행중/ 예정
+    </button>
+    <ul class="dropdown-menu">
+      <li><a class="dropdown-item" href="notice_list">진행중</a></li>
+      <li><a class="dropdown-item" href="notice_list1">예정</a></li>
+    </ul>
+  </div> 
  
  </div> 
  

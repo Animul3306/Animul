@@ -10,9 +10,9 @@
 	#{ask_title},
 	#{ask_content},
 	now(),
-	#{ask_file},
 	#{ask_category},
-	#{ask_status}
+	#{ask_status},
+	#{ask_img}
 	)
   </insert>
   
@@ -35,7 +35,11 @@
    </delete>
    
    <select id="list" resultType="askVO">
-		select * from animul.ask order by ask_id desc
+		select * from animul.ask a  where ask_status='답변완료' order by ask_id desc
+	</select>
+	
+	<select id="list1" resultType="askVO">
+		select * from animul.ask a  where ask_status='답변대기중' order by ask_id desc
 	</select>
 
 	<select id="one" parameterType="askVO" resultType="askVO">

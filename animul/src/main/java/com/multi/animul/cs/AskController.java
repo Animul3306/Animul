@@ -4,10 +4,14 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 
 
@@ -23,12 +27,37 @@ public class AskController {
 	
 	
 	@RequestMapping("cs/ask_insert")
-	public void insert(AskVO vo, Model model) {
-	int result = service.insert(vo);
-	model.addAttribute("result", result);
+	public void insert(AskVO vo,
+					   HttpServletRequest request,
+					   MultipartFile file,
+			           Model model) throws Exception {
+	
+		
+	
+	
+	
+	service.insert(vo);
+    String savedName = file.getOriginalFilename();
+	String uploadPath = request.getSession().getServletContext().getRealPath("/resources/upload");
+	File target = new File(uploadPath + "/" + savedName);
+	file.transferTo(target);
+	model.addAttribute("savedName", savedName);
+	System.out.println("이미지 넣기 전" + vo );
+	vo.setAsk_img(savedName);
+	System.out.println("이미지 넣은 후" + vo );
+	service.insert(vo);
+	
+	
+	
+	
+	
 	}
 	
 	
+	
+
+
+
 	@RequestMapping("cs/ask_delete")
 	public void delete(AskVO vo) {
 		int result = service.delete(vo);
@@ -55,6 +84,12 @@ public class AskController {
 	@RequestMapping("cs/ask_list")
 	public void list(Model model) {
 	 List<AskVO> list = service.list();
+	 model.addAttribute("list", list);
+	}
+	
+	@RequestMapping("cs/ask_list1")
+	public void list1(Model model) {
+	 List<AskVO> list = service.list1();
 	 model.addAttribute("list", list);
 	}
 	

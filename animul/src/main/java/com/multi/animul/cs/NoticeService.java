@@ -19,6 +19,10 @@ public class NoticeService {
 		return dao.list();
 	}
 	
+	public List<NoticeVO> list1() {
+		return dao.list1();
+	}
+	
 	public List<NoticeVO> list2(PageVO pageVO){
 		return dao.list2(pageVO);
 	}
