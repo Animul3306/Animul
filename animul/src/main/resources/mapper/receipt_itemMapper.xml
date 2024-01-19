@@ -12,6 +12,14 @@
 		#{receipt_item_price}
 		)
 	</insert>
+	
+	<select id="itemList" parameterType="receipt_itemVO"
+		resultType="receipt_itemVO">
+		select * from animul.receipt_item where receipt_item_receiptid = 
+		#{receipt_item_receiptid}
+	</select>
+	
+	
 	<select id="one" parameterType="receipt_itemVO"
 		resultType="receipt_itemVO">
 		select * from animul.receipt_item where receipt_item_id =

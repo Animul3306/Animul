@@ -113,7 +113,6 @@
 			                        size: 40, // Title font size
 			                    },
 			                },
-			                
 		                },
 		                scales: {
 		                    x: {
