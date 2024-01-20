@@ -3,7 +3,7 @@ package com.multi.animul.cs;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
-
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -36,25 +36,42 @@ public class AskController {
 	
 	
 	
-	service.insert(vo);
-    String savedName = file.getOriginalFilename();
-	String uploadPath = request.getSession().getServletContext().getRealPath("/resources/upload");
+	
+    
+	if(file.getOriginalFilename()!= null && file.getOriginalFilename() != ""){
+   
+	String ext = file.getOriginalFilename();
+    String savedName = getUuid() + ext;
+	    
+    String uploadPath = request.getSession().getServletContext().getRealPath("resources/upload");
 	File target = new File(uploadPath + "/" + savedName);
+	System.out.println(uploadPath);
 	file.transferTo(target);
 	model.addAttribute("savedName", savedName);
 	System.out.println("이미지 넣기 전" + vo );
 	vo.setAsk_img(savedName);
 	System.out.println("이미지 넣은 후" + vo );
+	
+	
+	}else {
+		vo.setAsk_img("none.png");
+	}
+	
 	service.insert(vo);
-	
-	
 	
 	
 	
 	}
 	
 	
-	
+
+	public static String getUuid() {
+		return UUID.randomUUID().toString().replaceAll("-", "");
+	}
+
+
+
+
 
 
 
