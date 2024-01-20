@@ -4,8 +4,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,7 +30,10 @@ public class ReplyController {
 	
 	
 	@RequestMapping(value = "/comment/save", method = RequestMethod.POST)
-	public @ResponseBody List<ReplyVO> save(@ModelAttribute ReplyVO replyVO) {
+	public @ResponseBody List<ReplyVO> save(@ModelAttribute ReplyVO replyVO, HttpSession session, Model model) {
+		String loggedInUser = (String) session.getAttribute("loggedInUser");
+		replyVO.setMember_id(loggedInUser);
+		model.addAttribute(replyVO);
         System.out.println("ReplyVO = " + replyVO);
         service.save(replyVO);
         // 해당 게시글에 작성된 댓글 리스트를 가져옴

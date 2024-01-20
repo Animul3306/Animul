@@ -43,9 +43,10 @@
 					<p>마이펫 자랑, 고민 등 자유롭게 작성하는 게시판 입니다!!</p>
 				</div>
 
-
+			
 				<div class="hd-sch">
-					<form action="freeInsert" enctype="multipart/form-data" method="post">
+				
+					<form action="freeInsert" enctype="multipart/form-data" method="post" onsubmit ="return chkSubmit()">
 						
 						<input type="hidden" name="bbs_menu" value="1"> <label
 							for="exampleFormControlInput1" class="form-label">카테고리</label> <select
@@ -56,15 +57,15 @@
 							<option value="고민 상담">고민 상담</option>
 							<option value="무료 나눔">무료 나눔</option>
 						</select><br>
-
 						<div class="mb-3">
 							<label for="exampleFormControlInput1" class="form-label">제목</label>
 							<input type="text" name="bbs_title" class="form-control"
 								id="exampleFormControlInput1" placeholder="제목을 입력해주세요">
 							<label for="exampleFormControlInput1" class="form-label">작성자</label>
+							
 							<input type="text" name="member_id" class="form-control"
-								id="exampleFormControlInput1" placeholder=""> <label
-								for="exampleFormControlTextarea1" class="form-label">내용</label>
+								id="exampleFormControlInput1" placeholder=" <%= session.getAttribute("loggedInUser") %>" readonly="readonly"> 
+							<label for="exampleFormControlTextarea1" class="form-label">내용</label>
 							<textarea name="bbs_content" class="form-control"
 								id="exampleFormControlTextarea1" rows="6"></textarea>
 								
@@ -89,7 +90,7 @@
 							</div>
 							
 							<div class="btn-box">
-								<button type="submit" class="btn btn-blue wide">글쓰기</button>
+								<button class="btn btn-blue wide">글쓰기</button>
 								<a href="localList" class="btn btn-gray wide">목록으로</a>
 							</div>
 						</div>
@@ -113,5 +114,22 @@
 			}
 		}
 	}
+
+	function chkSubmit() {
+		if( $('[name = bbs_title]').val().trim() === '')  {
+			alert('제목을 입력하세요!');
+			$('[name = bbs_title]').focus();
+			return false;
+		}
+		if( $('[name = bbs_content]').val().trim() === '')  {
+			alert('내용을 입력하세요!');
+			$('[name = bbs_content]').focus();
+			return false;
+		}
+		return true;
+
+	}
+
+	
 </script>
 </html>
