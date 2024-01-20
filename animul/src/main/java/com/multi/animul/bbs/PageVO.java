@@ -6,6 +6,8 @@ public class PageVO {
 	private int maxPage; // 전체 필요한 페이지 갯수
 	private int startPage; //현재 페이지 기준 시작페이지 값
 	private int endPage; //현재 페이지 기준 마지막 페이지 값
+	private int totalCount; // 전체 게시물 갯수
+	private int pageLimit; //한 페이지당 보여줄 게시물 갯수
 	
 	//검색에 필요한 변수
 	private String type; 
@@ -13,6 +15,22 @@ public class PageVO {
 	
 	
 
+
+	public int getPageLimit() {
+		return pageLimit;
+	}
+
+	public void setPageLimit(int pageLimit) {
+		this.pageLimit = pageLimit;
+	}
+
+	public int getTotalCount() {
+		return totalCount;
+	}
+
+	public void setTotalCount(int totalCount) {
+		this.totalCount = totalCount;
+	}
 
 	public String getType() {
 		return type;
@@ -66,8 +84,13 @@ public class PageVO {
 	@Override
 	public String toString() {
 		return "PageVO [page=" + page + ", maxPage=" + maxPage + ", startPage=" + startPage + ", endPage=" + endPage
-				+ ", type=" + type + ", word=" + word + "]";
+				+ ", totalCount=" + totalCount + ", pageLimit=" + pageLimit + ", type=" + type + ", word=" + word + "]";
 	}
+
+	
+
+
+	
 
 
 

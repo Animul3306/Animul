@@ -47,7 +47,7 @@
 
 
 				<div class="hd-sch">
-					<form action="localInsert" enctype="multipart/form-data" method="post"> 
+					<form action="localInsert" enctype="multipart/form-data" method="post" onsubmit ="return chkSubmit()"> 
 					<input type="hidden" name="bbs_menu" value="2">
 						<label for="exampleFormControlInput1" class="form-label">카테고리</label> 
 						<select class="form-select" aria-label="Default select example" name="bbs_cate">							
@@ -62,8 +62,8 @@
 								id="exampleFormControlInput1" placeholder="제목을 입력해주세요">
 							<label for="exampleFormControlInput1" class="form-label">작성자</label>
 							<input type="text" name="member_id" class="form-control"
-								id="exampleFormControlInput1" placeholder=""> <label
-								for="exampleFormControlTextarea1" class="form-label">내용</label>
+								id="exampleFormControlInput1" placeholder=" <%= session.getAttribute("loggedInUser") %>" readonly="readonly"> 
+							<label for="exampleFormControlTextarea1" class="form-label">내용</label>
 							<textarea name="bbs_content" class="form-control"
 								id="exampleFormControlTextarea1" rows="6"></textarea>
 								
@@ -112,5 +112,20 @@
           }
       }
   }  
+   
+   function chkSubmit() {
+		if( $('[name = bbs_title]').val().trim() === '')  {
+			alert('제목을 입력하세요!');
+			$('[name = bbs_title]').focus();
+			return false;
+		}
+		if( $('[name = bbs_content]').val().trim() === '')  {
+			alert('내용을 입력하세요!');
+			$('[name = bbs_content]').focus();
+			return false;
+		}
+		return true;
+
+	}
 </script>
 </html>

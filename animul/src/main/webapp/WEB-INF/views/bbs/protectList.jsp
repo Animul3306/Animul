@@ -77,7 +77,7 @@
 					<div class="pro-lst" style="border-top:#E8EDF0 1px solid; margin-top:10px; padding-left:20px;">
 					<c:forEach items="${list}" var="vo" >
                         <div class="probx">
-                            <a href="${vo.desertionNo}" target="_blank">
+                            <a href="${pageContext.request.contextPath}/protectOne?desertionNo=${vo.desertionNo}" target="_blank">
                                 <span class="thumb">
                                 <img src="${vo.popfile}" alt="" style="width:315px;height:315px;"></span>
                                 <div class="row">
@@ -104,6 +104,11 @@
 	                                <span>상태</span>
 	                                <span>${vo.processState}</span>
                                 </div>
+                                <div class="row">
+	                                <span>보호센터</span>
+	                                <span>${vo.careNm}</span>
+                                </div>
+                                
 
                             </a>
                 		</div>

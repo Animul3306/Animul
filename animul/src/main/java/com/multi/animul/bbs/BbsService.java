@@ -85,6 +85,8 @@ public class BbsService {
 		pageVO.setMaxPage(maxPage);
 		pageVO.setStartPage(startPage);
 		pageVO.setEndPage(endPage);
+		pageVO.setTotalCount(bbsCount);
+		pageVO.setPageLimit(pageLimit);
 
 		return pageVO;
 	}
@@ -120,6 +122,9 @@ public class BbsService {
 		pageVO.setMaxPage(maxPage);
 		pageVO.setStartPage(startPage);
 		pageVO.setEndPage(endPage);
+		pageVO.setTotalCount(bbsCount);
+		pageVO.setPageLimit(pageLimit);
+
 
 		return pageVO;
 	}
