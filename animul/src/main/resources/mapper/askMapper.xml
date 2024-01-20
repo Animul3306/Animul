@@ -52,7 +52,7 @@
 		select count(*)	from ask
 	</select>
 	
-	<select id="list2" parameterType="pageVO" resultType="askVO">
+	<select id="list2" parameterType="pagecsVO" resultType="askVO">
 	select *
 	from 
 	    (select 

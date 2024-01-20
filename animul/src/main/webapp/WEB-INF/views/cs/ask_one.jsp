@@ -297,6 +297,9 @@
    
     
     <p class="col-lg-6 mx-auto mt-5 mb-5">
+      <img src="${pageContext.request.contextPath}/resources/upload/<%=vo2.getAsk_img() %>">
+      <br>
+      <br>
       <%=vo2.getAsk_content() %>
     </p>
     
@@ -304,18 +307,19 @@
   
 </div>
 
-<div class="d-grid gap-2 col-2 mx-auto mt-3">
+
+ <div class="d-grid gap-2 col-2 mx-auto mt-3">
   
   <a href="ask_list2?page=1"><button class="btn btn-primary" type="button">목록으로</button></a>
   
 </div>
 
-<div class="d-grid gap-1 d-md-flex justify-content-md-end">
-  <button class="btn btn-danger" onclick="window.open('ask_reply_insert.jsp?askId=<%=vo2.getAsk_id()%>','1:1문의 답변','width=1210,height=460,location=no,status=no,scrollbars=yes');">답변하기</button>
+<div class="mb-5">
   <a href="ask_update?ask_id=<%=vo2.getAsk_id() %>"><button class="btn btn-primary" type="button">수정</button></a>
   <a href="ask_delete?ask_id=<%=vo2.getAsk_id() %>"><button class="btn btn-primary" type="button">삭제</button></a>
+  <button class="btn btn-danger" onclick="window.open('ask_reply_insert.jsp?askId=<%=vo2.getAsk_id()%>','1:1문의 답변','width=1210,height=460,location=no,status=no,scrollbars=yes');">답변하기</button>
   
-</div>
+</div> 
 
 
 
