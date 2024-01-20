@@ -59,11 +59,17 @@
 							class="btn btn-sm btn-blue">조회하기</button>
 					</div>
 					</form>
+					<% if(session.getAttribute("loggedInUser") != null){ %>
 					<div style="float: right;">
 						<a href="insert.jsp" style="cursor: pointer;"
 							class="btn btn-sm btn-blue" id="aTermSearch">글쓰기</a>
 					</div>
-					
+					<%} else { %>
+					<div style="float: right;">
+						<a href="../member/login.jsp" style="cursor: pointer;"
+							class="btn btn-sm btn-blue" id="aTermSearch">글쓰기</a>
+					</div>
+					<%} %>
 				</div>
 				<table class="list">
 					<colgroup>
@@ -90,7 +96,7 @@
 					
 					<c:forEach items="${list}" var="vo" varStatus="status">
 						<tr class="">
-							<td class="noBrd">${fn:length(list)- status.index}</td>
+							<td class="noBrd">${paging.totalCount - ((paging.page-1)* paging.pageLimit + status.index)}</td>
 							<td>${vo.bbs_cate}</td>
 							<td class="subject"><a href="one?bbs_id=${vo.bbs_id}">
 									${vo.bbs_title}</a></td>

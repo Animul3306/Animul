@@ -58,12 +58,17 @@
 							class="btn btn-sm btn-blue">조회하기</button>
 					</div>
 					</form>	
-              		 <div style="float: right;">
+              		<% if(session.getAttribute("loggedInUser") != null){ %>
+					<div style="float: right;">
 						<a href="insert2.jsp" style="cursor: pointer;"
 							class="btn btn-sm btn-blue" id="aTermSearch">글쓰기</a>
 					</div>
-					
-	
+					<%} else { %>
+					<div style="float: right;">
+						<a href="../member/login.jsp" style="cursor: pointer;"
+							class="btn btn-sm btn-blue" id="aTermSearch">글쓰기</a>
+					</div>
+					<%} %>
             </div>
             <table class="list">
                 <colgroup>

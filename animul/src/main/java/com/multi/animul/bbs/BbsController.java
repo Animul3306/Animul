@@ -15,6 +15,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -47,7 +48,18 @@ public class BbsController {
 
 	// 자유토크 게시글 작성 + 첨부파일
 	@RequestMapping("bbs/freeInsert")
-	public String insert(BbsVO vo, @RequestParam(value="file", required=false) MultipartFile file )throws Exception {
+	public String insert(BbsVO vo, 
+						@RequestParam(value="file", required=false) MultipartFile file, 
+						HttpSession session
+						, Model model)throws Exception {
+		
+		String loggedInUser = (String) session.getAttribute("loggedInUser");
+		vo.setMember_id(loggedInUser);
+		
+		System.out.println(loggedInUser);
+		System.out.println("member_id = " + vo.getMember_id());
+		model.addAttribute("vo", vo);
+		
 		
 		System.out.println(vo);
 		System.out.println(file);
@@ -86,11 +98,21 @@ public class BbsController {
 
 	// 산책메이트 멍냥이찾기 게시글 작성 + 첨부파일
 		@RequestMapping("bbs/localInsert")
-		public String insert2(BbsVO vo, @RequestParam(value="file", required=false) MultipartFile file )throws Exception {
+		public String insert2(BbsVO vo, @RequestParam(value="file", required=false) MultipartFile file,
+				HttpSession session, Model model)throws Exception {
+			
+			String loggedInUser = (String) session.getAttribute("loggedInUser");
+			vo.setMember_id(loggedInUser);
+			
+			System.out.println(loggedInUser);
+			System.out.println("member_id = " + vo.getMember_id());
+			model.addAttribute("vo", vo);
+			
 			
 			System.out.println(vo);
 			System.out.println(file);
 			
+		
 			
 			String imgUploadPath = uploadPath + File.separator + "imgUpload";
 			String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
@@ -129,8 +151,14 @@ public class BbsController {
 			Model model, 
 			@RequestParam(value = "page", required = false, defaultValue = "1") int page,
 			@RequestParam(value = "word", required = false, defaultValue = "") String word,
-			@RequestParam(value = "type", required = false, defaultValue = "") String type
+			@RequestParam(value = "type", required = false, defaultValue = "") String type,
+			HttpSession session
 			) {
+		
+		String loggedInUser = (String) session.getAttribute("loggedInUser");
+		vo.setMember_id(loggedInUser);
+		model.addAttribute(vo);
+		
 		Map<String, Object> map = new HashMap<>();
 		map.put("page", page);
 		map.put("word", word);
@@ -359,21 +387,34 @@ public class BbsController {
 		System.out.println("list.size : " + list.size());
 		model.addAttribute("list",list);
 		
-
-
 		return "bbs/protectList";
 	}
 
-	
-	@RequestMapping("bbs/protectOne")
-	public String one3(@RequestParam("desertionNo") int desertionNo, 
-						@RequestParam(value = "page", required = false, defaultValue = "1") String page,
-						Model model) {
-		ApiExplorerProtect protectAPI = new ApiExplorerProtect();
-		ArrayList<ProtectVO> list = protectAPI.protectAPI(page);
-		System.out.println("list.size : " + list.size());
-		model.addAttribute("list",list);
-		return "bbs/protectOne";
+	@RequestMapping("bbs/protextListSearch")
+	public String listSearch3(
+			BbsVO vo, 
+			Model model, 
+			@RequestParam(value = "page", required = false, defaultValue = "1") int page,
+			@RequestParam(value = "word", required = false, defaultValue = "") String word,
+			@RequestParam(value = "type", required = false, defaultValue = "") String type
+			) {
+		System.out.println("word: "+word+" / page: "+page);
+		System.out.println(type);
+		Map<String, Object> map = new HashMap<>();
+		map.put("page", page);
+		map.put("word", word);
+		map.put("type", type);
+		List<BbsVO> list = service.pagingList2(map);
+		model.addAttribute("list", list);
+		//페이징
+		List<BbsVO> pagingList = service.pagingList2(map);
+		PageVO pageVO = service.pagingParam2(map);
+		model.addAttribute("freeList", pagingList);
+		model.addAttribute("paging", pageVO);
+		model.addAttribute("word", word);
+		model.addAttribute("type", type);
+		return "bbs/freeListSearch";
 	}
+	
 	
 }

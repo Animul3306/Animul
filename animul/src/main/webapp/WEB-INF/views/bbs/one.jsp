@@ -70,14 +70,19 @@
 				        }
 				    });
 			</script>
+		
         <div class="bottom-write">
+        <c:if test="${sessionScope.loggedInUser ne null and vo.member_id ne null and sessionScope.loggedInUser eq vo.member_id}">
+
             <div class="inbx">
-           		<input type="text" id="commentWriter" placeholder="작성자">
+           		<input type="text" id="commentWriter" readonly="readonly" placeholder="<%= session.getAttribute("loggedInUser") %>" >
                 <input type="text" class="textarea block" id="commentContents" placeholder="내용">
                 <button style="cursor:pointer" class="bt btn btn-blue" onclick="commentWrite()">댓글작성</button>           
             </div>
+        </c:if>    
+            
         </div>
-
+	
 	<div class="bottom-lst">
 		<div  id="comment-list">
 	    <table>
@@ -91,7 +96,7 @@
 	        </tr>
 	        <c:forEach items="${replyList}" var="replyVO">
 	            <tr>
-	                <td>${replyVO.member_id}</td>
+	                <td><%= session.getAttribute("loggedInUser") %></td>
 	                <td>${replyVO.reply_content}</td>
 	                <td>${replyVO.reply_date} </td>
 	       
@@ -106,10 +111,13 @@
     
         
 		
-
+		
             <div class="btn-box">
-                    <a href="freeUpdate?bbs_id=${vo.bbs_id}" class="btn btn-blue wide">수정</a>
-                    <a href="delete?bbs_id=${vo.bbs_id}" style="cursor:pointer" class="btn btn-red wide" id="delete">삭제</a>
+        <c:if test="${sessionScope.loggedInUser ne null and vo.member_id ne null and sessionScope.loggedInUser eq vo.member_id}">
+		    <a href="freeUpdate?bbs_id=${vo.bbs_id}" class="btn btn-blue wide">수정</a>
+		    <a href="delete?bbs_id=${vo.bbs_id}" style="cursor:pointer" class="btn btn-red wide" id="delete">삭제</a>
+		</c:if>
+       
                		<a href="freeList" class="btn btn-gray wide">목록</a>
             </div>
             </div><!-- /wid1300 -->
@@ -148,11 +156,13 @@ function replylist() {
                    output += "<td>" + result[i].reply_content + "</td>";
                    output += "<td>" + result[i].reply_date + "</td>";
                    output += "<td>";
+                   output += "<c:if test="${sessionScope.loggedInUser ne null and vo.member_id ne null and sessionScope.loggedInUser eq vo.member_id}">"
                    output += '<input type="button" onclick="updateViewBtn(' + result[i].reply_id + ', \'' + result[i].member_id + '\', \'' + result[i].reply_content + '\')" value="수정">';
                    output += "</td>";
                    output += "<td>";
                    output += '<input type="button" onclick="commentDelete(' + result[i].reply_id + ')" value="삭제">';
                    output += "</td>";
+                   output += "</c:if>";
                    output += "</tr>";
                }
 
