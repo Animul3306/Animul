@@ -16,7 +16,7 @@ $(function() {
 	$.ajax({
 		url:"${pageContext.request.contextPath}/diagnosis/receiptMyList",
 		data: {
-			receipt_myid: "apple",  //나중에 로그인 세션으로 바꾸기
+			receipt_myid: "qpzmal100",  //나중에 로그인 세션으로 바꾸기
 		},
 		success: function(list) {
 			$('#resultDiv').html(list)

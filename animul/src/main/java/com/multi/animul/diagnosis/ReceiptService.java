@@ -30,7 +30,7 @@ public class ReceiptService {
 		int itemResult = 0;
 		receiptVO.setReceipt_id(list.get(0).get(0));
 		//나중에 세션으로 바꿔야하는거
-		receiptVO.setReceipt_myid("apple");
+		receiptVO.setReceipt_myid("qpzmal100");
 		//이것도 검색해서 나오는걸로
 		receiptVO.setReceipt_hospitalname(list.get(1).get(0));
 		receiptVO.setReceipt_address(list.get(2).get(0));
