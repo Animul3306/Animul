@@ -1,0 +1,10 @@
+@charset "utf-8";
+
+.border {
+  border-width: 10px;
+  border-color: black;
+  border-style: solid;
+  width: 70px;
+  height: 70px;
+  align= "center"
+}

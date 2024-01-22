@@ -4,29 +4,29 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class MypetController {
 	@Autowired
 	MypetService service;
 	
-	@RequestMapping("mypetInsert")
+	@PostMapping("mypetInsert")
 	public void insert(MypetVO vo) {
 		service.insert(vo);
 	}
 	
-	@RequestMapping("mypetDelete")
+	@PostMapping("mypetDelete")
 	public void delete(MypetVO vo) {
 		service.delete(vo);
 	}
 	
-	@RequestMapping("mypetCount")
+	@PostMapping("mypetCount")
 	public int count() {
 		return service.count();
 	}
 	
-	@RequestMapping("mypetAll")
+	@PostMapping("mypetAll")
 	public List<MypetVO> all() {
 		return service.all();
 	}

@@ -1,10 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <%@ include file="/WEB-INF/views/common/header2.jsp"%> 
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <title>Animul [동물병원/반려동물용품점/동물보호센터]</title>
 
 <style>
@@ -175,7 +175,7 @@
 	           	lon = position.coords.longitude; // 경도
 	        
 	        var locPosition = new kakao.maps.LatLng(lat, lon), // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
-	            message = '<div style="padding:5px;">여기에 위치</div>'; // 인포윈도우에 표시될 내용입니다
+	            message = '<div style="padding:5px;">내 위치</div>'; // 인포윈도우에 표시될 내용입니다
 	        
           		// 지도 중심을 부드럽게 이동시킵니다	            
 	            map4.panTo(locPosition);            
@@ -716,6 +716,5 @@ var areaSelectMaker = function(target){
 ////////////////////////////////////////
 
 </script>
-
 </body>
 </html>

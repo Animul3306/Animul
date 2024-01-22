@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <%@ include file="/WEB-INF/views/common/header2.jsp"%>   
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="com.multi.animul.map.PageVO"%> 
@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <title>Animul [동물병원/반려동물용품점/동물보호센터]</title>
 
 <style>
@@ -69,7 +69,7 @@
 	
 	<br>
 	<div style="display:flex;padding:10px;">	
-	<div id="map" style="width:100%;height:350px;"></div>
+	<div id="map" style="width:99%;height:450px;"></div>
 	</div>
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script> 
  	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5454a62e5d0c9bb2b98dbfd591e5b4cb&libraries=services"></script>
@@ -142,17 +142,14 @@
 	
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
 	    mapOption = { 
-	        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+	        center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
 	        level: 4 // 지도의 확대 레벨
 	    };
 	
 	var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 
-	////////////////////////////////////////////////////////
- 
-	////////////////////////////////////////////////////////
 	var bounds = new kakao.maps.LatLngBounds(); //지도 범위를 설정
-	
+
 	// 마커를 표시할 위치와 title 객체 배열입니다	 
 	var positions = new Array();
 
@@ -193,8 +190,32 @@
 		bounds.extend(new kakao.maps.LatLng(positions[i].latlng.getLat(), positions[i].latlng.getLng() ));
 		map.setBounds(bounds); // 지도 범위를 재설정합니다	
 	}
+ 	
+	// 지도에 마커와 인포윈도우를 표시하는 함수입니다
+	function displayMarker2(locPosition, message) {
 	
+	    // 마커를 생성합니다
+	    var marker = new kakao.maps.Marker({  
+	        map: map, 
+	        position: locPosition
+	    }); 
+	    
+	    var iwContent = message, // 인포윈도우에 표시할 내용
+	        iwRemoveable = true;
 	
+	    // 인포윈도우를 생성합니다
+	    var infowindow = new kakao.maps.InfoWindow({
+	        content : iwContent,
+	        removable : iwRemoveable
+	    });
+	    
+	    // 인포윈도우를 마커위에 표시합니다 
+	    infowindow.open(map, marker);
+	    
+	    // 지도 중심좌표를 접속위치로 변경합니다
+	    map.setCenter(locPosition);    
+	    
+	}
 	
 	function displayMarker(place) {
  
@@ -284,9 +305,7 @@ var areaSelectMaker = function(target){
 	<table border="1" width="99%">
 	    <tr bgcolor="gray">
 	        <td>id</td>
-	        <td>병원명</td>
-	        <td>위도</td>
-	        <td>경도</td>		        
+	        <td>병원명</td>	        
 	        <td>주소</td>		        
 	        <td>전화번호</td>
 	        <td>홈페이지</td>
@@ -296,12 +315,10 @@ var areaSelectMaker = function(target){
 	<c:forEach items="${list2}" var="vo">
 	    <tr>
 	        <td>${vo.hospital_id}</td>		        
-	        <td>${vo.hospital_name}</td>
-	        <td>${vo.hospital_latitude}</td>
-	        <td>${vo.hospital_longitude}</td>		        
+	        <td>${vo.hospital_name}</td>		        
 	        <td>${vo.hospital_address}</td>
 	        <td>${vo.hospital_phone}</td>
-	        <td>${vo.hospital_link}</td> <!-- <td><a href="${vo.hospital_link}"> ${vo.hospital_link} </a></td> -->	         
+	        <td><a href="${vo.hospital_link}" target=_blank> ${vo.hospital_link} </a></td> 	         
 	        <td>${vo.hospital_time}</td>
 	        <td>${vo.hospital_off}</td>  
 		</tr>

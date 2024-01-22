@@ -15,6 +15,8 @@
 	rel="stylesheet"
 	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
 	crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+	
 </head>
 <body>
 	<div id="container">
@@ -27,12 +29,8 @@
 				<ul id="snb">
 					<li><a href="/animul/bbs/freeList">자유 토크</a></li>
 					<li><a href="/animul/bbs/localList">산책 메이트ㆍ멍냥이 찾기</a></li>
-					<li><a
-						href="https://www.animal.go.kr/front/awtis/protection/protectionList.do?menuNo=1000000060">유기동물보호센터
-							보호중</a></li>
-					<li><a
-						href="https://www.1365.go.kr/vols/search.do?query=%EC%9C%A0%EA%B8%B0">유기동물보호센터
-							봉사관련</a></li>
+					<li><a href="/animul/bbs/protectList">유기동물보호센터 보호중</a></li>
+					<li><a href="/animul/bbs/shelterList">유기동물보호센터 보호소 </a></li>
 				</ul>
 				<div style="padding-top: 20px;"></div>
 			</div>
@@ -45,7 +43,7 @@
 
 
 				<div class="hd-sch">
-					<form action="update" method="post">
+					<form action="freeupdate" enctype="multipart/form-data" method="post">
 						<input type="hidden" name="bbs_menu" value="1"> <label
 							for="exampleFormControlInput1" class="form-label">카테고리</label> <select
 							class="form-select" aria-label="Default select example"
@@ -68,9 +66,29 @@
 							<textarea name="bbs_content" class="form-control" id="exampleFormControlTextarea1" 
 										rows="6" >${vo.bbs_content}</textarea>
 
-							<label for="formFile" class="form-label">첨부파일</label> <input
-								class="form-control" type="file" id="formFile" name="bbs_file"><br>
-							<br>
+							<div class="inputArea">
+								 <label for="bbs_img">이미지</label>
+								 <input type="file" id="bbs_img" name="file" />
+								 <div class="select_img">
+								  <img src="${vo.bbs_img}" />
+								  <input type="hidden" name="bbs_img" value="${vo.bbs_img}" />
+								  <input type="hidden" name="bbs_thumbImg" value="${vo.bbs_thumbImg}" /> 
+								 </div>
+								 
+								 <script>
+								 
+								  $("#bbs_img").change(function(){
+								   if(this.files && this.files[0]) {
+								    var reader = new FileReader;
+								    reader.onload = function(data) {
+								     $(".select_img img").attr("src", data.target.result).width(500);        
+								    }
+								    reader.readAsDataURL(this.files[0]);
+								   }
+								  });
+								 </script>
+								 <%=request.getRealPath("/") %>
+								</div>
 
 							<div class="btn-box">
 								<button type="submit" class="btn btn-blue wide">수정</button> 

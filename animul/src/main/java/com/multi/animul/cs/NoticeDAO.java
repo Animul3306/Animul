@@ -34,8 +34,24 @@ public class NoticeDAO {
 		return list;
 	}
 	
-	public BbsVO one(NoticeVO vo) {
-		BbsVO vo2 = my.selectOne("notice.one", vo);
+	public List<NoticeVO> list1() {
+		List<NoticeVO> list1 = my.selectList("notice.list1");
+		return list1;
+	}
+	
+	public List<NoticeVO> list2(PageVO pageVO) {
+		List<NoticeVO> list2 =	my.selectList("notice.list2", pageVO);
+		return list2;
+	}
+	
+	public int count() {
+		return my.selectOne("notice.count");
+	}
+	
+	
+	
+	public NoticeVO one(NoticeVO vo) {
+		NoticeVO vo2 = my.selectOne("notice.one", vo);
 		return vo2;
 	}
 	

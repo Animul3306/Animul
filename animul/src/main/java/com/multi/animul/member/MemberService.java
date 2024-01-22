@@ -1,5 +1,9 @@
 package com.multi.animul.member;
 
+import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
+import java.net.URLEncoder;
 import java.util.List;
 import java.util.Random;
 
@@ -7,6 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.util.UriComponents;
+import org.springframework.web.util.UriComponentsBuilder;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 
 @Service
 public class MemberService {
@@ -65,6 +73,28 @@ public class MemberService {
 		return dao.join(vo);
 	}
 
+	public int update(MemberVO vo) {
+		String pwd = vo.getPassword();
+
+		System.out.println("[Service]: " + vo.toString());
+
+		if (pwd == "") {
+			vo.setPassword(dao.getPassword(vo));
+		} else {
+			BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+			String hashedPwd = encoder.encode(pwd);
+			
+			vo.setPassword(hashedPwd);
+		}
+
+//		System.out.println("[Service]: Password " + vo.getPassword());
+
+		int result = dao.update(vo);
+//		System.out.println("[Service] Result: " + result);
+
+		return result;
+	}
+
 	public String findId(MemberVO vo) {
 		return dao.findId(vo);
 	}
@@ -83,4 +113,14 @@ public class MemberService {
 
 		return dao.resetPwd(vo);
 	}
+
+	public MemberVO getUserInfoById(MemberVO vo) {
+		// return dao.getUserInfoById(vo);
+		MemberVO infoVO = dao.getUserInfoById(vo);
+
+		// System.out.println("[Service] info:\n" + infoVO.toString());
+
+		return infoVO;
+	}
+
 }

@@ -24,9 +24,11 @@
                 if(loggedInUser != null) {
             %>
             
-                    <form:form name="logoutForm" action="${pageContext.request.contextPath}/member/Logout.do" method="post"><a href="#" onclick="logout()">로그아웃</a></form:form>
+                    <form:form name="logoutForm" action="${pageContext.request.contextPath}/member/Logout.do" method="post" style="display: flex">
+                        <a href="#" onclick="logout()">로그아웃</a>
+                    </form:form>
             		
-            		<a href="#">마이페이지</a>
+            		<a href="${pageContext.request.contextPath}/member/mypage.jsp">마이페이지</a>
             		
             <%
                 } else {
@@ -46,7 +48,7 @@
         <header>
             <nav id="nav_left">
                 <a href="${pageContext.request.contextPath}/diagnosis/diagnosisMain.jsp">진료비 조회</a>
-                <a href="#">주변시설 찾기</a>
+                <a href="${pageContext.request.contextPath}/map/hospital.jsp">주변시설 찾기</a>
             </nav>
             
             <div id="logo">
@@ -55,7 +57,7 @@
             </div>
 
             <nav id="nav_right">
-                <a href="#">질병 조회</a>
+                <a href="${pageContext.request.contextPath}/retrieve/retrieve.jsp">질병 조회</a>
                 <a href="${pageContext.request.contextPath}/bbs/freeList">게시판</a>
             </nav>
         </header>

@@ -29,9 +29,30 @@ public class AskDAO {
 		return result;
 		}
 	
+	public int update2(AskVO vo2) {
+		      int result = my.update("ask.update2", vo2);
+		      return result;
+	}
+	
+	
+	
 	public List<AskVO> list() {
 		List<AskVO> list = my.selectList("ask.list");
 		return list;
+	}
+	
+	public List<AskVO> list1() {
+		List<AskVO> list1 = my.selectList("ask.list1");
+		return list1;
+	}
+	
+	public List<AskVO> list2(PageVO pageVO) {
+		List<AskVO> list2 =	my.selectList("ask.list2", pageVO);
+		return list2;
+	}
+	
+	public int count() {
+		return my.selectOne("ask.count");
 	}
 	
 	public AskVO one(AskVO vo) {
