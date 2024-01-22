@@ -61,7 +61,7 @@ public class ReceiptController {
 		String savedName = file.getOriginalFilename();
 		System.out.println(savedName);
 		
-		String uploadPath = request.getSession().getServletContext().getRealPath("resources/upload");
+		String uploadPath = request.getSession().getServletContext().getRealPath("resources/upload2");
 		System.out.println(uploadPath + "/" + savedName);
 		
 		//2. 파일객체를 생성 ==> 파일을 인식(램에 저장)

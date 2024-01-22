@@ -42,7 +42,7 @@
                 }
             %>
           
-            <a href="cs.jsp">고객센터</a>
+            <a href="${pageContext.request.contextPath}/cs/cs.jsp">고객센터</a>
         </div>  
         
         <header>

@@ -14,7 +14,7 @@
 	</tr>
 	<c:forEach var="x" items="${receiptResult}"  varStatus="status">
         <tr>
-        	<td>${x.receipt_id}</td>
+        	<td>${status.count}</td>
         	<td>${x.receipt_hospitalname}</td>
 			<td>${x.receipt_address}</td>
 			<td>${diagnosisResult[status.index].receipt_item_diagnosisname}</td>
