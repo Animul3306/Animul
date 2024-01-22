@@ -12,6 +12,8 @@ public class HospitalVO {
 	private String	hospital_picture;
 	private String	hospital_time;
 	private String  hospital_off;
+	private double  hospital_latitude;
+	private double  hospital_longitude;
 
 	public int getHospital_id() {
 		return hospital_id;
@@ -72,13 +74,25 @@ public class HospitalVO {
 	}
 	public void setHospital_off(String hospital_off) {
 		this.hospital_off = hospital_off;
-	}	
+	}
+	public double getHospital_latitude() {
+		return hospital_latitude;
+	}
+	public void setHospital_latitude(double hospital_latitude) {
+		this.hospital_latitude = hospital_latitude;
+	}
+	public double getHospital_longitude() {
+		return hospital_longitude;
+	}
+	public void setHospital_longitude(double hospital_longitude) {
+		this.hospital_longitude = hospital_longitude;
+	}
 	@Override
 	public String toString() {
 		return "HospitalVO [hospital_id=" + hospital_id + ", hospital_name=" + hospital_name + ", hospital_address="
 				+ hospital_address + ", hospital_zipcode=" + hospital_zipcode + ", hospital_phone=" + hospital_phone
 				+ ", hospital_type=" + hospital_type + ", hospital_link=" + hospital_link + ", hosptial_picture="
-				+ hospital_picture + hospital_time + hospital_off + "]";
+				+ hospital_picture + hospital_time + hospital_off + hospital_latitude + " " + hospital_longitude + "]";
 	}
 	
 	

@@ -17,14 +17,10 @@ public class PageVO {
 					
 	private int recordSize; // 페이지당 출력 데이터 개수
 	private int pageSize; // 화면 하단에 출력할 페이지 사이즈
-/*
-	public PageVO(int totalRecordCount) {
-		if(totalRecordCount > 0) {
-			this.totalRecordCount = totalRecordCount;
-			calculation();
-		}		
-	}
-*/	
+
+	private String currentAddress; // 검색할 주소
+	private String keywordSearch;
+
 	public PageVO() {
 		this.curPage = 1;
 		
@@ -48,15 +44,24 @@ public class PageVO {
 		
 		limitStart = (getPage()-1) * getRecordSize(); // limit 시작 위치 계산
 		 // 이전 페이지 존재여부 existPrevPage  = start != 1 
-		start = start + limitStart;
-		end = end + limitStart;
+//		start = start + limitStart;
+//		end = end + limitStart;
 		
 		if(start == 1)
 			existPrevPage = false;		
 		else
 			existPrevPage = true; 
 		
-		existNextPage = ( end * getRecordSize() ) < totalRecordCount; // 다음 페이지 존재여부
+		int trc = totalRecordCount - (getRecordSize() * getPage());
+		System.out.println("calculation :  trc:" +trc + ", totalRecordCount : " + totalRecordCount + 
+							", getRecordSize(): " + getRecordSize() + ", getPage():" + getPage() );
+		if(totalRecordCount - (getRecordSize() * getPage()) > 0) 
+			existNextPage = true; 
+		else
+			existNextPage = false;  
+		System.out.println("existNextPage :" +existNextPage);
+	//	전체레코드수 : 19 , 페이지당 레코드수 : 10, 현재 페이지 : 2, 전체레코드수 - 페이지당 레코드수 * 현재페이지 > 0 ? true : false  
+	//	existNextPage = ( end * getRecordSize() ) < totalRecordCount; // 다음 페이지 존재여부
 	}
 
 	public void calculation_cur(int totalRecordCount) {
@@ -83,7 +88,26 @@ public class PageVO {
 		
 		existNextPage = ( endPage * getRecordSize() ) < totalRecordCount; // 다음 페이지 존재여부
 	}
+	
+	public String getKeywordSearch() {
+		return keywordSearch;
+	}
 
+	public void setKeywordSearch(String keywordSearch) {
+		this.keywordSearch = keywordSearch;
+	}
+	
+	public String getCurrentAddress() {
+		return currentAddress;
+	}
+	
+	public void setCurrentAddress(String currentAddress) {
+		this.currentAddress = currentAddress;
+	}
+	
+	public int getTotalPageCount() {
+		return totalPageCount;
+	}
 	
 	public int getCurPage() {
 		return curPage;
