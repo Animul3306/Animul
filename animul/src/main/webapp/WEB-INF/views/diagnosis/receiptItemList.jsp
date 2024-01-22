@@ -259,7 +259,7 @@ $(function() {
       <p style="background-color: rgba(255, 255, 255, 0.7); border-radius: 5px;">*자료: 농림축산식품부, 영수증 통계</p>
     </div>
 </div>
-<table id="myItemTable" class="table table-hover">
+<table id="myItemTable" class="table table-bordered">
 	<tr>
         <td>번호</td>
 		<td>진료명</td>
