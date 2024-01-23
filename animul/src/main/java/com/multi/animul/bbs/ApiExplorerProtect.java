@@ -2,11 +2,8 @@ package com.multi.animul.bbs;
 
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
@@ -21,7 +18,7 @@ import com.google.gson.JsonParser;
 public class ApiExplorerProtect {
 	
 	
-	public ArrayList<ProtectVO> protectAPI(String page){
+	public ArrayList<ProtectVO> protectAPI(String page, String upr_cd){
 		// 1. URL을 만들기 위한 StringBuilder.
         StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/1543061/abandonmentPublicSrvc/abandonmentPublic"); /*URL*/
         String responseText = null;
@@ -32,7 +29,7 @@ public class ApiExplorerProtect {
 	        urlBuilder.append("&" + URLEncoder.encode("endde","UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); /*유기날짜(검색 종료일) (YYYYMMDD)*/
 	        //urlBuilder.append("&" + URLEncoder.encode("upkind","UTF-8") + "=" + URLEncoder.encode(upkind, "UTF-8")); /*축종코드 (개 : 417000, 고양이 : 422400, 기타 : 429900)*/
 	        //urlBuilder.append("&" + URLEncoder.encode("kind","UTF-8") + "=" + URLEncoder.encode(" ", "UTF-8")); /*품종코드 (품종 조회 OPEN API 참조)*/
-	       // urlBuilder.append("&" + URLEncoder.encode("upr_cd","UTF-8") + "=" + URLEncoder.encode(upr_cd, "UTF-8")); /*시도코드 (시도 조회 OPEN API 참조)*/
+	        urlBuilder.append("&" + URLEncoder.encode("upr_cd","UTF-8") + "=" + URLEncoder.encode(upr_cd, "UTF-8")); /*시도코드 (시도 조회 OPEN API 참조)*/
 	        //urlBuilder.append("&" + URLEncoder.encode("org_cd","UTF-8") + "=" + URLEncoder.encode(" ", "UTF-8")); /*시군구코드 (시군구 조회 OPEN API 참조)*/
 	        //urlBuilder.append("&" + URLEncoder.encode("care_reg_no","UTF-8") + "=" + URLEncoder.encode(" ", "UTF-8")); /*보호소번호 (보호소 조회 OPEN API 참조)*/
 	        //urlBuilder.append("&" + URLEncoder.encode("state","UTF-8") + "=" + URLEncoder.encode(" ", "UTF-8")); /*상태(전체 : null(빈값), 공고중 : notice, 보호중 : protect)*/
@@ -108,7 +105,7 @@ public class ApiExplorerProtect {
       		
       		
       		//items에 있는 각 item을 Vo에 담고,담은 Vo들을 ArrayList에 담기
-      		ArrayList<ProtectVO> list = new ArrayList<>();
+      		ArrayList<ProtectVO> list = new ArrayList<ProtectVO>();
       		
       		System.out.println("==========================");
       		for(int i=0; i<itemArr.size(); i++) {
@@ -135,10 +132,11 @@ public class ApiExplorerProtect {
       			vo.setCareTel(item.get("careTel").getAsString());
       			vo.setCareAddr(item.get("careAddr").getAsString());
       			vo.setOrgNm(item.get("orgNm").getAsString());
-      			vo.setChargeNm(item.get("chargeNm").getAsString());
+      			//vo.setChargeNm(item.get("chargeNm").getAsString());
       			vo.setOfficetel(item.get("officetel").getAsString());
       			//vo.setUpkind(item.get("upkind").getAsString());
-      			//vo.setupr_cd(item.get("upr_cd").getAsString());
+      			//vo.setUpr_cd(item.get("upr_cd").getAsString());
+      			//vo.setTotalCount(item.get("totalCount").getAsInt());
       			
       			list.add(vo);
       		}

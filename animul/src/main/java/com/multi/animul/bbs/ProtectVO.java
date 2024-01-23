@@ -26,21 +26,29 @@ public class ProtectVO {
     private String officetel;
     private String upkind;
     private String upr_cd;
+    private int totalCount;
    
 
     
+	public int getTotalCount() {
+		return totalCount;
+	}
+	public void setTotalCount(int totalCount) {
+		this.totalCount = totalCount;
+	}
+	public String getUpr_cd() {
+		return upr_cd;
+	}
+	public void setUpr_cd(String upr_cd) {
+		this.upr_cd = upr_cd;
+	}
 	public String getUpkind() {
 		return upkind;
 	}
 	public void setUpkind(String upkind) {
 		this.upkind = upkind;
 	}
-	public String getupr_cd() {
-		return upr_cd;
-	}
-	public void setupr_cd(String upr_cd) {
-		this.upr_cd = upr_cd;
-	}
+	
 	public String getDesertionNo() {
 		return desertionNo;
 	}
@@ -183,6 +191,8 @@ public class ProtectVO {
 				+ careTel + ", careAddr=" + careAddr + ", orgNm=" + orgNm + ", chargeNm=" + chargeNm + ", officetel="
 				+ officetel + ", upkind=" + upkind + ", upr_cd=" + upr_cd + "]";
 	}
+	
+	
 
 
 	 
