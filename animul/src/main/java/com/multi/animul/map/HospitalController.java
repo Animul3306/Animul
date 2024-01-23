@@ -2,15 +2,10 @@ package com.multi.animul.map;
 
 import java.util.List;
 
-import javax.security.auth.message.callback.PrivateKeyCallback.Request;
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping(value="/map")
@@ -19,31 +14,6 @@ public class HospitalController {
 	@Autowired
 	HospitalService service;
  
-	@RequestMapping(value="/one")
-	public HospitalVO one(HospitalVO vo) {
-		
-		/*
-		 * service 함수 호출 -> dao 함수 호출 ->
-		 * return 페이지 
-		 */
-		
-		HospitalVO one1 = new HospitalVO(); //service.method_one(vo); 
-		
-		return one1;
-	}
-	
-	@RequestMapping(value="/count")
-	public void count(Model model) {
-/*
-		int count = service.count();
-		System.out.println("count: " + count);
-	
-		model.addAttribute("count", count);
-*/	
-	//	return "redirect:main";
-	//	return "foward:main";
-	}
- 	 
 	@RequestMapping(value="/list1") 
 	public void list1(PageVO pageVO, Model model) { //start , end
  	
@@ -72,13 +42,15 @@ public class HospitalController {
 	}
  
 	@RequestMapping(value="/list2")
-	public void list2(String centerAddr1, PageVO pageVO, Model model) {		
-//		System.out.println("Controller centerAddr : " + centerAddr1);
-		pageVO.setCurrentAddress(centerAddr1);		
+	public void list2(String centerType, String centerAddr1, PageVO pageVO, Model model) {		
+ 	//	System.out.println("Controller centerType : " + centerType + " , centerAddr1" + centerAddr1);
+		pageVO.setCurrentAddress(centerAddr1);
+		pageVO.setCenterType(centerType);
 		pageVO.setStartEnd();
 		
 		List<HospitalVO> list = service.list2(pageVO);
-//		System.out.println(list.toString());
+ 		System.out.println(list.toString());
+ 		System.out.println(pageVO.getCenterType());
 		
 		int count = service.countAddress(pageVO);
 		int pages = count / 10;
@@ -93,17 +65,19 @@ public class HospitalController {
 		model.addAttribute("count", count);
 		model.addAttribute("page", pageVO);
 		model.addAttribute("addr", centerAddr1);
+		model.addAttribute("centerType1", centerType);
 		
-//		return "redirect:list2.jsp";
 	}
 
 	@RequestMapping(value="/list3")	
-	public void list3(String keywordSearch1, PageVO pageVO, Model model) {		
-		pageVO.setKeywordSearch(keywordSearch1);		
+	public void list3(String centerType2, String keywordSearch1, PageVO pageVO, Model model) {		
+	 	System.out.println("Controller centerType2 : " + centerType2 + " , centerAddr1" + keywordSearch1);
+		pageVO.setKeywordSearch(keywordSearch1);
+		pageVO.setCenterType(centerType2);
 		pageVO.setStartEnd();
 		
 		List<HospitalVO> list = service.list3(pageVO);
- //		System.out.println(list.toString());
+		System.out.println(list.toString());
  		
 		int count = service.countKeyword(pageVO);
 		int pages = count / 10;
@@ -118,7 +92,8 @@ public class HospitalController {
 		model.addAttribute("count", count);
 		model.addAttribute("page", pageVO);
 		model.addAttribute("keywd", keywordSearch1);
-
-	//	return "redirect:SearchMain.jsp?list=list3?keyword=keywordSearch1";
+		model.addAttribute("centerType21", centerType2);
+ 	 
 	} 
+
 }
