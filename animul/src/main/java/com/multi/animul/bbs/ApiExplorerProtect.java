@@ -30,9 +30,9 @@ public class ApiExplorerProtect {
 			urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=rox78OnV4UZCBEHRVpxi84xhU%2F9FcbBch18WPOXMbIBeRrOF72uwzuyhGb%2BAbdQ8o3ylceUYkqIsgHxUzeaFPA%3D%3D");
 	        urlBuilder.append("&" + URLEncoder.encode("bgnde","UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); /*유기날짜(검색 시작일) (YYYYMMDD)*/
 	        urlBuilder.append("&" + URLEncoder.encode("endde","UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); /*유기날짜(검색 종료일) (YYYYMMDD)*/
-	        //urlBuilder.append("&" + URLEncoder.encode("upkind","UTF-8") + "=" + URLEncoder.encode(" ", "UTF-8")); /*축종코드 (개 : 417000, 고양이 : 422400, 기타 : 429900)*/
+	        //urlBuilder.append("&" + URLEncoder.encode("upkind","UTF-8") + "=" + URLEncoder.encode(upkind, "UTF-8")); /*축종코드 (개 : 417000, 고양이 : 422400, 기타 : 429900)*/
 	        //urlBuilder.append("&" + URLEncoder.encode("kind","UTF-8") + "=" + URLEncoder.encode(" ", "UTF-8")); /*품종코드 (품종 조회 OPEN API 참조)*/
-	        //urlBuilder.append("&" + URLEncoder.encode("upr_cd","UTF-8") + "=" + URLEncoder.encode(" ", "UTF-8")); /*시도코드 (시도 조회 OPEN API 참조)*/
+	       // urlBuilder.append("&" + URLEncoder.encode("upr_cd","UTF-8") + "=" + URLEncoder.encode(upr_cd, "UTF-8")); /*시도코드 (시도 조회 OPEN API 참조)*/
 	        //urlBuilder.append("&" + URLEncoder.encode("org_cd","UTF-8") + "=" + URLEncoder.encode(" ", "UTF-8")); /*시군구코드 (시군구 조회 OPEN API 참조)*/
 	        //urlBuilder.append("&" + URLEncoder.encode("care_reg_no","UTF-8") + "=" + URLEncoder.encode(" ", "UTF-8")); /*보호소번호 (보호소 조회 OPEN API 참조)*/
 	        //urlBuilder.append("&" + URLEncoder.encode("state","UTF-8") + "=" + URLEncoder.encode(" ", "UTF-8")); /*상태(전체 : null(빈값), 공고중 : notice, 보호중 : protect)*/
@@ -66,11 +66,10 @@ public class ApiExplorerProtect {
 	        StringBuilder sb = new StringBuilder();
 	        String line;
 	        while ((line = rd.readLine()) != null) {
-	        	 System.out.println("line : " + line);
 	            sb.append(line);
 	        }
 	        responseText  = sb.toString();
-	        System.out.println("responseText : " + responseText);
+	       
 	        
 	        // 10. 객체 해제
 	        rd.close();
@@ -84,28 +83,26 @@ public class ApiExplorerProtect {
         	//json 데이터 원하는 데이터만 추출하여 Vo에 담기
       		//응답데이터 Text를 JSONObject화 시키는 작업 (파싱)
             JsonObject totalObj = JsonParser.parseString(responseText).getAsJsonObject();
-      		System.out.println("total : "+totalObj);
+ 
       		
       		//전체 JSON 형식으로부터 response 속성명으로 접근한 것.
       		JsonObject responseObj = totalObj.getAsJsonObject("response");
-      		System.out.println("response : "+responseObj);
+      	
       		
       		//전체 JSON 형식으로부터 response 속성명으로 접근한 것.
       		JsonObject bodyObj = responseObj.getAsJsonObject("body");
-      		System.out.println("body : "+bodyObj);
+      	
       		
       		
       		//body에서 totalCount 접근
       		int totalCount = bodyObj.get("totalCount").getAsInt();
-      		System.out.println("totalCount : "+totalCount);
+     
       		
       		
       		JsonObject itemsObj = bodyObj.getAsJsonObject("items");
       		JsonArray itemArr = itemsObj.getAsJsonArray("item");
-      		
-      		//body에서 items(JSONArray형태) 접근
-      		//JsonArray itemArr = bodyObj.getAsJsonArray("items");
-      		System.out.println("itemArr : "+itemArr);
+      		System.out.println(itemArr);
+
       		
 
       		
@@ -140,16 +137,13 @@ public class ApiExplorerProtect {
       			vo.setOrgNm(item.get("orgNm").getAsString());
       			vo.setChargeNm(item.get("chargeNm").getAsString());
       			vo.setOfficetel(item.get("officetel").getAsString());
-      			vo.setTotalCount(bodyObj.get("totalCount").getAsString());
+      			//vo.setUpkind(item.get("upkind").getAsString());
+      			//vo.setupr_cd(item.get("upr_cd").getAsString());
       			
       			list.add(vo);
       		}
-      		System.out.println("다 담은 list : "+list);
+      	
       		
-      		//list에 담긴 VO객체 확인
-      		for(ProtectVO vo : list) {
-      			System.out.println(vo);
-      		}
               
               
         

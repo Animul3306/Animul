@@ -77,7 +77,7 @@
 					<div class="pro-lst" style="border-top:#E8EDF0 1px solid; margin-top:10px; padding-left:20px;">
 					<c:forEach items="${list}" var="vo" >
                         <div class="probx">
-                            <a href="${pageContext.request.contextPath}/protectOne?desertionNo=${vo.desertionNo}" target="_blank">
+                            <a href="${pageContext.request.contextPath}/bbs/protectOne?desertionNo=${vo.desertionNo}">
                                 <span class="thumb">
                                 <img src="${vo.popfile}" alt="" style="width:315px;height:315px;"></span>
                                 <div class="row">
