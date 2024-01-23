@@ -716,6 +716,5 @@ var areaSelectMaker = function(target){
 ////////////////////////////////////////
 
 </script>
-
 </body>
 </html>
