@@ -384,12 +384,30 @@ public class BbsController {
 								Model model)  {
 		ApiExplorerProtect protectAPI = new ApiExplorerProtect();
 		ArrayList<ProtectVO> list = protectAPI.protectAPI(page);
-		System.out.println("list.size : " + list.size());
 		model.addAttribute("list",list);
 		
 		return "bbs/protectList";
 	}
+	
+	// 보호중인 유기동물 상세 페이지
+	@RequestMapping("bbs/protectOne")
+	public String one3(@RequestParam("desertionNo") String desertionNo, 
+						@RequestParam(value = "page", required = false, defaultValue = "1") String page, Model model) {
+		ApiExplorerProtect protectAPI = new ApiExplorerProtect();
+		ArrayList<ProtectVO> list = protectAPI.protectAPI(page);
+		
+		for (ProtectVO vo : list) {
+	        if (vo.getDesertionNo().equals(desertionNo)) {   
+	        	System.out.println("vo = " + vo);
+	            model.addAttribute("vo", vo);
+	            
+	        }
+	    }
+		
+		return "bbs/protectOne";
+	}
 
+	
 	@RequestMapping("bbs/protextListSearch")
 	public String listSearch3(
 			BbsVO vo, 

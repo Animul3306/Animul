@@ -674,3 +674,54 @@ div.paging .direction:hover:before, div.paging .direction:hover:after {
     padding: 20px;
     border: #eee 1px solid;
 }
+
+.top1 {
+	display: flex;
+    flex-direction: row;
+    gap: 2rem;
+}
+
+.img-container {
+    margin-bottom: 0;
+    width: 50%;
+}
+
+.img-container img {
+    aspect-ratio: 1/1;
+    border: 1px solid #051619;
+    object-fit: cover;
+    width: 100%;
+}
+
+.description1 {
+    width: 50%;
+}
+.noticeNo1 {
+    align-items: center;
+    background-color: #8ec693;
+    border: 1px solid #051619;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+    padding-block: 0.2rem;
+    width: 100%;
+}
+
+.table1 {
+    display: grid;
+    font-size: 1.6rem;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+}
+
+.row1 {
+    border-bottom: 1px solid #051619;
+    border-inline: 1px solid #051619;
+    display: grid;
+    grid-template-columns: .5fr 1fr;
+    grid-template-rows: auto;
+    padding: 0.4rem 0.4rem;
+    text-align: center;
+    font-size: 17px;
+}
