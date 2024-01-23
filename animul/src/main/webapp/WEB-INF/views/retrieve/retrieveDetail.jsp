@@ -33,8 +33,8 @@ if (list != null) {
 	%>
 
 
-	<div style="border: 1px solid gold; float: left; width: 33%;" class="box">
-
+	<!-- <div style="border: 1px solid gold; float: left; width: 25%;" class="box"> -->
+	<div style="display: inline-block"" class="box">
 		<h2><%=bag.getResult_id()%>
 			<%=bag.getResult()%></h2>
 		<br>
@@ -42,20 +42,23 @@ if (list != null) {
 		<h2>증상 특징</h2>
 		<br>
 		<%=bag.getResult_text()%>
-</div>
-
-	<div style="border: 1px solid gold; float: left; width: 33%;">
-	 <img src="${pageContext.request.contextPath}/resources/img/retrieve/<%=bag.getImg()%>" width ="400"/>
 	</div>
+
+	<!-- <div style="border: 1px solid gold; float: left; width: 30%;"> -->
+	 
+	<div style="display: inline-block">
+		   <img
+			src="${pageContext.request.contextPath}/resources/img/retrieve/<%=bag.getImg()%>" />
+	</div>
+
+	    
+		     
+		<%
+		}
+	%>
+		<%
+			}
+		%>
 	
-	<%
-		}
-	%>
-
-	<%
-		}
-	%>
-
-
 </body>
 </html>
