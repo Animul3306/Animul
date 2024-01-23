@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
@@ -8,31 +8,36 @@
 	</select>
 	
 	<select id="countAddress" resultType="int" parameterType="PageVO">
-		select count(*) from hospital where hospital_address like concat('%', #{currentAddress}, '%')
+		select count(*) from hospital where hospital_type=#{centerType} 
+		and hospital_address like concat('%', #{currentAddress}, '%')
+		and hospital_type=#{centerType}
 	</select>
 
 	<select id="countKeyword" resultType="int" parameterType="PageVO">
 		select count(*) from hospital where hospital_name like concat('%', #{keywordSearch}, '%')
+		and hospital_type=#{centerType}
 	</select>
 	
 	<select id="list3" resultType="hospitalVO" parameterType="PageVO">		
 		select * from (
 		select ROW_NUMBER() over(order by hospital_id ) as hospital_no, b.*
-		from hospital b where b.hospital_name like concat('%', #{keywordSearch}, '%') ) hospital2		
+		from hospital b where b.hospital_name like concat('%', #{keywordSearch}, '%') 
+		and b.hospital_type=#{centerType}) hospital2		
 		where hospital2.hospital_no between ${start} and ${end}		
 	</select>
 	
-	<select id="list2" resultType="hospitalVO" parameterType="PageVO">		
+	<select id="list2" resultType="hospitalVO" parameterType="PageVO">	
 		select * from (
 		select ROW_NUMBER() over(order by hospital_id ) as hospital_no, b.*
-		from hospital b where b.hospital_address like concat('%', #{currentAddress}, '%') ) hospital2		
+		from hospital b where b.hospital_address like concat('%', #{currentAddress}, '%')
+		and b.hospital_type=#{centerType} ) hospital2		
 		where hospital2.hospital_no between ${start} and ${end}
 	</select>
 	
 	<select id="list1" resultType="hospitalVO" parameterType="PageVO">
 		select * from (
 		select ROW_NUMBER() over(order by hospital_id ) as hospital_no, b.*
-		from hospital b) hospital2
+		from hospital b ) hospital2
 		where hospital2.hospital_no between ${start} and ${end}
 	</select>
 	

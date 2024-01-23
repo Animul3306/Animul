@@ -21,12 +21,17 @@ public class PageVO {
 	private String currentAddress; // 검색할 주소
 	private String keywordSearch;
 
+	private String centerType; // 검색 타입 (병원, 펫샾)
+
 	public PageVO() {
 		this.curPage = 1;
 		
 		this.page = 1;
 		this.recordSize = 10;
 		this.pageSize = 10;
+		
+		this.start=1;
+		this.end=1000;
 	}
 
 	public void calculation(int totalRecordCount) {
@@ -63,30 +68,13 @@ public class PageVO {
 	//	전체레코드수 : 19 , 페이지당 레코드수 : 10, 현재 페이지 : 2, 전체레코드수 - 페이지당 레코드수 * 현재페이지 > 0 ? true : false  
 	//	existNextPage = ( end * getRecordSize() ) < totalRecordCount; // 다음 페이지 존재여부
 	}
+		
+ 	public String getCenterType() {
+		return centerType;
+	}
 
-	public void calculation_cur(int totalRecordCount) {
-		this.totalRecordCount = totalRecordCount;
-		totalPageCount = ((totalRecordCount - 1) / getRecordSize()) +1; // 전체 페이지 수
-		//현재 페이지 번호가 전체 페이지 수보다 큰 경우, 현재 페이지에 전체 페이지 수 저장
-		if(getCurPage() > totalPageCount) {
-			setCurPage(totalPageCount);
-		}
-		
-		startPage = ( (getCurPage()-1) / getPageSize() ) * getPageSize() + 1;		//첫 페이지 번호
-		endPage = startPage + getPageSize() - 1; 	// 끝 페이지 번호
-		
-		if(endPage > totalPageCount) { endPage = totalPageCount; }
-		
-		limitStart = (getCurPage()-1) * getRecordSize(); // limit 시작 위치 계산
-		 // 이전 페이지 존재여부 existPrevPage  = start != 1 
-		curPage = limitStart + curPage;
-		
-		if(startPage == 1)
-			existPrevPage = false;		
-		else
-			existPrevPage = true; 
-		
-		existNextPage = ( endPage * getRecordSize() ) < totalRecordCount; // 다음 페이지 존재여부
+	public void setCenterType(String centerType) {
+		this.centerType = centerType;
 	}
 	
 	public String getKeywordSearch() {
@@ -203,11 +191,10 @@ public class PageVO {
    ////////////////////////////////////////////////////////////////////////////
 	@Override
 	public String toString() {
-		return "PageVO [start=" + start + ", end=" + end + ", page=" + page + ", totalRecordCount=" + totalRecordCount
+		return "PageVO [centerType="+centerType + ", start=" + start + ", end=" + end + ", page=" + page + ", totalRecordCount=" + totalRecordCount
 				+ ", totalPageCount=" + totalPageCount + ", limitStart=" + limitStart + ", existPrevPage="
 				+ existPrevPage + ", existNextPage=" + existNextPage + ", recordSize=" + recordSize + ", pageSize="
 				+ pageSize + "]";
 	}
 
 }
-
