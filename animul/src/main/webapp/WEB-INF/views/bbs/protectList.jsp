@@ -13,21 +13,65 @@
 <link href="../resources/css/bbs/style.css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
 <script>
-	function showSlides(n) {
-		var currentPage = location.href;
-		var index = currentPage.indexOf("page=");
-		
-		if (index != -1) {
-			var page = 	parseInt(currentPage.substring(index+5, currentPage.length));
-			
-			location.href = "protectList?page=" + (page + n);
-		} else if( n != -1 ) {
-			location.href = "protectList?page=" + (n + 1);
-		}
-	}
+var value;
+var uprSelect;
+
+function showSlides(n) {
+    var currentPage = location.href;
+    var index = currentPage.indexOf("page=");
+
+    if (index != -1) {
+        var page = parseInt(currentPage.substring(index + 5, currentPage.length));
+        uprSelect = document.getElementById("upr");
+        value = uprSelect.options[uprSelect.selectedIndex].value;
+        
+        console.log("uprSelect" + uprSelect);
+        console.log("value = " + value);
+        console.log("page = " + page);
+        location.href = "protectList?upr_cd=" + value + "&page=" + (page + n);
+        
+    } else if (n != -1) {
+    	uprSelect = document.getElementById("upr");
+    	value = uprSelect.options[uprSelect.selectedIndex].value;
+    	console.log("uprSelect" + uprSelect);
+        console.log("value = " + value);
+        console.log("page = " + page);
+    	location.href = "protectList?upr_cd=" + value + "&page=" + (n + 1);
+        
+        
+    }
+}
+
+function selectUpr() {
+    uprSelect = document.getElementById("upr");
+    value = uprSelect.options[uprSelect.selectedIndex].value;
+    
+    console.log(value);
+    
+    //location.href = "protectList?upr_cd=" + value ;
+
+    
+    
+/*      const len = uprSelect.options.length;
+    
+    for (let i=0; i<len; i++){  
+      	//select box의 option value가 입력 받은 value의 값과 일치할 경우 selected
+        if(uprSelect.options[i].value == value){
+        	console.log("ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ");
+        	uprSelect.options[i].selected = true;
+        }
+      }  
+    value2 = uprSelect.options[uprSelect.selectedIndex].value; */
+    
+    //console.log(value2); 
+  
+    
+}
+
 </script>
 </head>
 <body>
+
 
 	<div id="container">
 		<div class="wid1300">
@@ -46,26 +90,51 @@
 
 			<div id="contents">
 				<div class="pt-titarea">
-					<h3 class="tit">유기동물보호센터 보호중..</h3>
+					<h3 class="tit">유기동물보호센터 보호중</h3>
 					<p>전국 유기동물 보호센터에 보호중인 동물들 입니다.</p>
 				</div>
-				<form action="" method="get">
+				<form action="protectList" method="get">
 				<div class="hd-sch">
-					<div class="hd">게시글 검색</div>
-					<div class="bd"> 
+					<div class="hd">지역 검색</div>
+					<div class="bd">
+				<select id="upr" name="upr_cd" class="input" onchange="selectUpr()">
+			    <%
+			        // 백엔드에서 전달받은 upr_cd 값을 얻어오기
+			        String uprCdFromBackend = (String) request.getAttribute("upr_cd");
+			
+			        // 옵션 리스트 정의
+			        String[][] options = {
+			            {"6110000", "서울특별시"},
+			            {"6260000", "부산광역시"},
+			            {"6270000", "대구광역시"},
+			            {"6280000", "인천광역시"},
+			            {"6290000", "광주광역시"},
+			            {"5690000", "세종특별자치시"},
+			            {"6300000", "대전광역시"},
+			            {"6530000", "울산광역시"},
+			            {"6430000", "경기도"},
+			            {"6440000", "강원특별자치도"},
+			            {"6540000", "충청북도"},
+			            {"6460000", "충청남도"},
+			            {"6470000", "경상북도"},
+			            {"6480000", "경상남도"},
+			            {"6500000", "제주특별자치도"}
+			        };
+			
+			        // 옵션 리스트를 돌며 각각의 옵션에 대한 HTML 코드 생성
+			        for (String[] option : options) {
+			            String value = option[0];
+			            String label = option[1];
+			
+			            // upr_cd 값과 현재 옵션의 value 값이 일치하는지 확인하여 selected 속성 추가
+			            String selectedAttribute = (uprCdFromBackend != null && uprCdFromBackend.equals(value)) ? "selected" : "";
+			    %>
+			    <option value="<%= value %>" <%= selectedAttribute %>><%= label %></option>
+			    <%
+			        }
+			    %>
+				</select>
 					
-					<select name="type" class="input">
-							<option value="title"
-								<c:if test="${Type eq 'title'}">selected</c:if>>제목</option>
-							<option value="content"
-								<c:if test="${Type eq 'content'}">selected</c:if>>내용</option>
-							<option value="title_content"
-								<c:if test="${Type eq 'title_content'}">selected</c:if>>제목+내용</option>
-							<option value="writer"
-								<c:if test="${Type eq 'writer'}">selected</c:if>>작성자</option>
-						</select> <input type="text" class="input" name="word"
-							placeholder="검색어를 입력 하세요." style="width: 250px;"
-							value="" />
 							
 					</div>
 
@@ -73,6 +142,7 @@
 						<button type="submit" style="cursor: pointer;"
 							class="btn btn-sm btn-blue">조회하기</button>
 					</div>
+			 </form>
 					 
 					<div class="pro-lst" style="border-top:#E8EDF0 1px solid; margin-top:10px; padding-left:20px;">
 					<c:forEach items="${list}" var="vo" >
