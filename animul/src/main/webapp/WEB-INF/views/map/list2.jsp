@@ -11,13 +11,81 @@
 <title>Animul [동물병원/반려동물용품점/동물보호센터]</title>
 
 <style>
+body {
+  color: #666;
+  font: 14px/24px "Open Sans", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", Sans-Serif;
+}
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 99%;
+}
+th,
+td {
+  padding: 6px 15px;
+}
+th {
+  background: #42444e;
+  color: #fff;
+  text-align: left;
+}
+tr:first-child th:first-child {
+  border-top-left-radius: 6px;
+}
+tr:first-child th:last-child {
+  border-top-right-radius: 6px;
+}
+td {
+  border-right: 1px solid #c6c9cc;
+  border-bottom: 1px solid #c6c9cc;
+}
+td:first-child {
+  border-left: 1px solid #c6c9cc;
+}
+tr:nth-child(even) td {
+  background: #eaeaed;
+}
+tr:last-child td:first-child {
+  border-bottom-left-radius: 6px;
+}
+tr:last-child td:last-child {
+  border-bottom-right-radius: 6px;
+  
+  .pagination {
+  display: inline-block;
+}
+}
+
+.leftpadding {
+  display:flex;
+  padding:10px;
+  }
+ 
+} 
+ 
+ .tooltip {
+  position: fixed;
+  padding: 10px 20px;
+  border: 1px solid #b3c9ce;
+  border-radius: 4px;
+  text-align: center;
+  font: italic 14px/1.3 sans-serif;
+  color: #333;
+  background: #fff;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, .3);
+}
 
 </style>
-<!--  <link href="../resources/map/map.css" rel="stylesheet"> -->  
-
+<!--  <link href="../resources/map/map.css" rel="stylesheet">  <link href="../resources/map/mstyle.css" rel="stylesheet"> -->  
+ 
 </head>
 
 <body>
+ 
+	<div class="login_group">  
+		<a href="hospital.jsp" data-tooltip="kakao API를 사용하는 지도로 이동합니다."> API Map Link </a>			
+	</div>
+	
 	<div id="map_wrap2" class="bg_white">	        
         <div class="hAddr">
        		<span class="title"></span>
@@ -33,39 +101,41 @@
 	</form>
 	</div>
 	
-	<div id="radioInfo" style="display:flex;padding:10px;">	
-	<form action="" name="RadioForm">	 
-		<input type="radio" name="radiokeyword" value="동물병원" onclick="SearchAddingWord()" checked />
-		<label>동물병원</label>	
-		<input type="radio" name="radiokeyword" value="반려동물용품" onclick="SearchAddingWord()" disabled />
+	<div class="leftpadding">	
+	<form action="list2" name="RadioForm">	 
+		<input type="radio" id="radio1" name="radiokeyword" value="동물병원" onclick="checkRadio()" />
+		<label>동물병원</label>
+		<input type="radio" id="radio2" name="radiokeyword" value="반려동물용품" onclick="checkRadio()" />
 		<label>펫샾</label>	
-		<input type="radio" name="radiokeyword" value="동물보호" onclick="SearchAddingWord()" disabled />
-		<label>동물보호센터</label>			 	
+		<input type="radio" id="radio3" name="radiokeyword" value="동물보호" onclick="checkRadio()" disabled />
+		<label>동물보호센터</label>
+				 	
 	</form>
 	</div>
-	
-	<div id="keywordse" style="display:flex;padding:10px;">
- 	<form action="list3" method="get">
- 		<label> 키워드 검색 </label> 	
-		<input type="text" id="keywordSearch1" name="keywordSearch1">			
-		<input type="submit" value="검색"> 	
- 	</form>	
-	</div>
-	
-	<div id="region" style="display:flex;padding:10px;">	
+
+	<div class="leftpadding">	
 	<form action="list2" method="get">
-	<label> 주소 선택 </label> 	
+	<label> 주소 </label> &ensp; 	
   		<select name="addressRegion" id="addressRegion2"></select>
 		<select name="addressDo" id="addressDo2"></select>
 		<select name="addressSiGunGu" id="addressSiGunGu2" onchange="RegionClass2(this); return false;"></select>
 	</form>								 
- 		
+ 	&nbsp;	
 	<form action="list2" method="get" >
-		<input type="text" id="centerAddr1" name="centerAddr1" value='${addr}'>			
+		<input type="text" id="centerAddr1" name="centerAddr1" value='${addr}' style="background-color:#e6e6e6">	
+		<input type="hidden" id="centerType" name="centerType" value='${centerType1}' >			
 		<input type="submit" value="검색">
 	</form>
 	</div>		
- 
+ 	
+	<div class="leftpadding">	
+ 	<form action="list3" method="get">
+ 		<label> 상호 </label> &ensp;	
+		<input type="text" id="keywordSearch1" name="keywordSearch1">	
+		<input type="hidden" id="centerType2" name="centerType2">			
+		<input type="submit" value="검색">
+ 	</form>	
+	</div>
 	
 	<br>
 	<div style="display:flex;padding:10px;">	
@@ -75,67 +145,79 @@
  	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5454a62e5d0c9bb2b98dbfd591e5b4cb&libraries=services"></script>
  	<script type="text/javascript" src="../resources/js/address.js"></script>		
 	<script>
-//	const animalHospital = "동물병원";
- 	
-	var searchaddingkeyword = "동물병원";
-	SearchAddingWord();
-	<% String addressSearchKeword; %>
-	
-	function RegionClass(){
-		var inputData = document.getElementById("addressDo1").value;
-		inputData += " ";
-		inputData += document.getElementById("addressSiGunGu1").value;
-		inputData += " " + searchaddingkeyword;
-		searchPlaces2(inputData);
-		document.getElementById('keyword').value = "";
-		
-		document.getElementById("centerAddr1").value = inputData;
-		
-		return inputData;
-	}
-	
+
+///////////////////// Tooltip
+	 
+	   let tooltipElem;
+
+	    document.onmouseover = function(event) {
+	      let target = event.target;
+
+	      // data-tooltip 속성이 있는 요소
+	      let tooltipHtml = target.dataset.tooltip;
+	      if (!tooltipHtml) return;
+
+	      // 툴팁 요소를 만듭니다.
+
+	      tooltipElem = document.createElement('div');
+	      tooltipElem.className = 'tooltip';
+	      tooltipElem.innerHTML = tooltipHtml;
+	      document.body.append(tooltipElem);
+
+	      // 툴팁 요소를 data-tooltip 속성이 있는 요소 위, 가운데에 위치시킵니다.
+	      let coords = target.getBoundingClientRect();
+
+	      let left = coords.left + (target.offsetWidth - tooltipElem.offsetWidth) / 2;
+	      if (left < 0) left = 0; // 툴팁이 창 왼쪽 가장자리를 넘지 않도록 합니다.
+
+	      let top = coords.top - tooltipElem.offsetHeight - 5;
+	      if (top < 0) { // 툴팁이 창 위로 넘치면 요소 아래에 보여줍니다.
+	        top = coords.top + target.offsetHeight + 5;
+	      }
+
+	      tooltipElem.style.left = left + 'px';
+	      tooltipElem.style.top = top + 'px';
+	    };
+
+	    document.onmouseout = function(e) {
+
+	      if (tooltipElem) {
+	        tooltipElem.remove();
+	        tooltipElem = null;
+	      }
+
+	    };
+	 
+	/////////////////////
+
 	function RegionClass2(s){
 		var inputData = document.getElementById("addressDo2").value;
 		inputData += " ";					 
 		inputData += s[s.selectedIndex].text; // document.getElementById("addressSiGunGu2").text;
 		document.getElementById("centerAddr1").value = inputData;
-		addressSearchKeword= inputData;
+	//	addressSearchKeword= inputData;
 		
 		return inputData;
 	}
-	
-	function CurrentLocation(){
-		var inputData = document.getElementById("centerAddr").innerText;	
-		console.log(inputData);
-		inputData += " " + searchaddingkeyword;
-		searchPlaces2(inputData);
-	
-		return inputData;
+ 
+	function checkRadio() {		
+	    if (document.getElementById('radio1').checked) {
+	        document.getElementById('centerType').value = "1";
+	        document.getElementById('centerType2').value = "1";
+	    }	    
+	    if (document.getElementById('radio2').checked) {
+    	 	document.getElementById('centerType').value = "2";
+    	 	document.getElementById('centerType2').value = "2";
+	    }	    
+	    if (document.getElementById('radio3').checked) {
+	    	 document.getElementById('centerType').value = "3";
+	    	 document.getElementById('centerType2').value = "3";	
+	    }
+	    var a= document.getElementById('centerType').value;
+	    var b= document.getElementById('centerType2').value;
+ 
 	}
-	
-	function getCurrentLocation() {
-		var curLocation = document.getElementById("centerAddr").innerText;
-		document.getElementById("centerAddr1").value = curLocation;
-		
-		return curLocation;
-	} 
-	
-	function getCurrentAddr() {
-	 
-		var cur = document.getElementById("centerAddr").innerText;
-	 	document.getElementById("centerAddr1").value = cur;
-	 
-	} 	
-	function CurrentLocationSearch(lat, lon){
-		map4.panTo(lat, lon);
-	}
-	
-	function SearchAddingWord(){
-		searchaddingkeyword = document.querySelector('input[name="radiokeyword"]:checked').value;		
-//		alert(searchaddingkeyword);
-	}
-	
-	 
+		 
 	// map 지도
 
 	var infowindow = new kakao.maps.InfoWindow({zIndex:1});
@@ -295,7 +377,7 @@ var areaSelectMaker = function(target){
 }
 
 ////////////////////////////////////////
-
+// var h_type = document.querySelector('input[name="radiokeyword"]:checked').value;
 </script>
 
 <br>
@@ -305,20 +387,28 @@ var areaSelectMaker = function(target){
 	<table border="1" width="99%">
 	    <tr bgcolor="gray">
 	        <td>id</td>
-	        <td>병원명</td>	        
+	        <td>상호</td>	        
 	        <td>주소</td>		        
 	        <td>전화번호</td>
 	        <td>홈페이지</td>
 	        <td>운영시간</td>
 	        <td>휴일</td>		        
 	    </tr>
+    	
 	<c:forEach items="${list2}" var="vo">
 	    <tr>
 	        <td>${vo.hospital_id}</td>		        
 	        <td>${vo.hospital_name}</td>		        
 	        <td>${vo.hospital_address}</td>
 	        <td>${vo.hospital_phone}</td>
-	        <td><a href="${vo.hospital_link}" target=_blank> ${vo.hospital_link} </a></td> 	         
+	        <c:choose>
+			 <c:when test ="${vo.hospital_link eq '정보없음'}" > 
+			  	<td>${vo.hospital_link}</td>	        
+	         </c:when>
+	         <c:otherwise>
+	       		<td><a href="${vo.hospital_link}" target=_blank> ${vo.hospital_link} </a></td>
+	         </c:otherwise>
+	        </c:choose>
 	        <td>${vo.hospital_time}</td>
 	        <td>${vo.hospital_off}</td>  
 		</tr>
@@ -328,8 +418,8 @@ var areaSelectMaker = function(target){
 	 	
 	<br>		
 <div id="tablelistpages2" style="display:flex;padding:10px;">	
- 	<a href="list2?page=<%=1%>&centerAddr1=${addr}">
-		<button style="background:#e8e6f0"> First </button>
+ 	<a href="list2?page=<%=1%>&centerAddr1=${addr}&centerType=${centerType1}">
+		<button style="background:#d3cfe3"> First </button>
 	</a> 	 		
 
 	<%
@@ -363,14 +453,14 @@ var areaSelectMaker = function(target){
 
 	for(int v=startIndex; v<=lastIndex; v++) {
 	%>	
-		<a href="list2?page=<%=v%>&centerAddr1=${addr}"> 
-			<button style="background:#cceb34"><%=v%></button>
+		<a href="list2?page=<%=v%>&centerAddr1=${addr}&centerType=${centerType1}"> 
+			<button style="background:#e6e6e6"><%=v%></button>
 		</a>
 	<%	
 	}
 	%>
 	<% int last = (int)request.getAttribute("pages"); %>
- 	<a href="list2?page=<%=last%>&centerAddr1=${addr}">
+ 	<a href="list2?page=<%=last%>&centerAddr1=${addr}&centerType=${centerType1}">
 		<button style="background:#d3cfe3"> Last </button>
 	</a>
 	 </div>
