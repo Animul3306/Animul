@@ -125,6 +125,7 @@
       
       .ask_reply_content{
       margin-top:20px;
+      margin-bottom:50px;
       }
     </style>
 

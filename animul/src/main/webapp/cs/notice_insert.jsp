@@ -288,7 +288,7 @@
 			</ul>
 
 		</div>
-				
+
 <% if(session.getAttribute("loggedInUser") != null && session.getAttribute("loggedInUser").equals("admin") ) { %>
 		<div class="notice_wrap">
 			<form action="notice_insert" name="frm" method="post" onsubmit="return chkSubmit()">
