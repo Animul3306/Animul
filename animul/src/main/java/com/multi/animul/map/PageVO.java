@@ -31,7 +31,7 @@ public class PageVO {
 		this.pageSize = 10;
 		
 		this.start=1;
-		this.end=1000;
+		this.end=16000;
 	}
 
 	public void calculation(int totalRecordCount) {
