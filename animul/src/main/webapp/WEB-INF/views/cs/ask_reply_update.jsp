@@ -26,7 +26,7 @@
 					<div class="mb-3">
 						<input name="member_id" type="hidden" class="form-control"
 							id="exampleFormControlInput1" placeholder="작성자"
-							value="${member_id}">
+							value="<%= session.getAttribute("loggedInUser") %>">
 					</div>
 					
 					<div class="mb-3">
