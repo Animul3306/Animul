@@ -16,12 +16,14 @@ import java.util.UUID;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import com.sun.xml.internal.txw2.output.IndentingXMLStreamWriter;
-
 public class ClovaOcr {
+	
+	
 	public ArrayList<ArrayList<String>> ocr(String fileName) {
-		String apiURL = "https://amyv5uss3u.apigw.ntruss.com/custom/v1/26935/32450a3b73e5fefc74658a551b5f468904b86e05b0717edea20870314ef93312/general";
-		String secretKey = "SVF5Uk5nVGVYT3BZRk10dWRwSWxva1VQQXpCVXZDb2Q=";
+		ApiKey apiKey = new ApiKey();
+		apiKey.readApiKey();
+		String apiURL = apiKey.getApiKey();
+		String secretKey = apiKey.getApiSecret();
 		String imageFile = fileName;
 		ArrayList<String> list = new ArrayList<String>();
 		ArrayList<String> findUid = new ArrayList<String>();
