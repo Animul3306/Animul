@@ -11,7 +11,52 @@
 <title>Animul [동물병원/반려동물용품점/동물보호센터]</title>
 
 <style>
-
+body {
+  color: #666;
+  font: 14px/24px "Open Sans", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", Sans-Serif;
+}
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+}
+th,
+td {
+  padding: 6px 15px;
+}
+th {
+  background: #42444e;
+  color: #fff;
+  text-align: left;
+}
+tr:first-child th:first-child {
+  border-top-left-radius: 6px;
+}
+tr:first-child th:last-child {
+  border-top-right-radius: 6px;
+}
+td {
+  border-right: 1px solid #c6c9cc;
+  border-bottom: 1px solid #c6c9cc;
+}
+td:first-child {
+  border-left: 1px solid #c6c9cc;
+}
+tr:nth-child(even) td {
+  background: #eaeaed;
+}
+tr:last-child td:first-child {
+  border-bottom-left-radius: 6px;
+}
+tr:last-child td:last-child {
+  border-bottom-right-radius: 6px;
+  
+  .pagination {
+  display: inline-block;
+}
+  
+ 
+}
 </style>
 <!--  <link href="../resources/map/map.css" rel="stylesheet"> -->  
 </head>
@@ -66,7 +111,7 @@
  	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5454a62e5d0c9bb2b98dbfd591e5b4cb&libraries=services"></script>
  	<script type="text/javascript" src="../resources/js/address.js"></script>		
 	<script>
-//	const animalHospital = "동물병원";
+//	const animalsearchCenter = "동물병원";
  
 	var searchaddingkeyword = "동물병원";
 	SearchAddingWord();
@@ -145,11 +190,11 @@
 	var positions = new Array();
 
 	<c:forEach items="${list1}" var="vo">
-		positions.push({ title: '${vo.hospital_name}',
-						 latlng: new kakao.maps.LatLng(${vo.hospital_latitude}, ${vo.hospital_longitude}),
-						 address: '${vo.hospital_address}',
-						 tel: '${vo.hospital_phone}',
-						 working: '${vo.hospital_time}'
+		positions.push({ title: '${vo.searchCenter_name}',
+						 latlng: new kakao.maps.LatLng(${vo.searchCenter_latitude}, ${vo.searchCenter_longitude}),
+						 address: '${vo.searchCenter_address}',
+						 tel: '${vo.searchCenter_phone}',
+						 working: '${vo.searchCenter_time}'
 						});	
  	</c:forEach>
 
@@ -366,22 +411,29 @@ var areaSelectMaker = function(target){
 	    </tr>
 	<c:forEach items="${list1}" var="vo">
 	    <tr>
-	        <td>${vo.hospital_id}</td>		        
-	        <td>${vo.hospital_name}</td>
-	        <td>${vo.hospital_latitude}</td>
-	        <td>${vo.hospital_longitude}</td>		        
-	        <td>${vo.hospital_address}</td>
-	        <td>${vo.hospital_phone}</td>
-	        <td>${vo.hospital_link}</td> 	         
-	        <td>${vo.hospital_time}</td>
-	        <td>${vo.hospital_off}</td>  
+	        <td>${vo.searchCenter_id}</td>		        
+	        <td>${vo.searchCenter_name}</td>
+	        <td>${vo.searchCenter_latitude}</td>
+	        <td>${vo.searchCenter_longitude}</td>		        
+	        <td>${vo.searchCenter_address}</td>
+	        <td>${vo.searchCenter_phone}</td>
+	        <c:choose>
+			 <c:when test ="${vo.searchCenter_link eq '정보없음'}" > 
+			  	<td>${vo.searchCenter_link}</td>	        
+	         </c:when>
+	         <c:otherwise>
+	       		<td><a href="${vo.searchCenter_link}" target=_blank> ${vo.searchCenter_link} </a></td>
+	         </c:otherwise>
+	        </c:choose> 	         
+	        <td>${vo.searchCenter_time}</td>
+	        <td>${vo.searchCenter_off}</td>  
 		</tr>
 	</c:forEach>
 	</table> 	
 	</div>
 	<br>
-	<div id="tablelistpages1" style="display:flex;padding:10px;">	
- 	<a href="list1?page=<%=1%>">
+	<div class="tablelistpages" style="display:flex;padding:10px;">	
+ 	  <a href="list1?page=#<%=1%>">
 		<button style="background:#e8e6f0"> First </button>
 	</a> 	 		
 
