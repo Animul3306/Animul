@@ -244,7 +244,7 @@
     
     <ul class="list-unstyled ps-0">
       <li class="mb-1">
-        <a href="ask_list2?page=1"><button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">내 문의내역</button></a>
+        <a href="ask_list2?page=1"><button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">문의 내역</button></a>
       </li>
       <li class="mb-1">
         <a href="ask_insert.jsp"><button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">문의하기</button></a>
@@ -257,13 +257,13 @@
   <div class="position-relative p-5 text-center text-muted bg-body border border-dashed rounded-5">
     
     <svg class="bi mt-5 mb-3" width="48" height="48"><use xlink:href="#check2-circle"/></svg>
-    <h1 class="text-body-emphasis">문의내역이 수정되었습니다.</h1>
+    <h1 class="text-body-emphasis">문의 내역이 수정되었습니다.</h1>
     <p class="col-lg-6 mx-auto mt-3 mb-5">
      
     </p>
     
       <a href="ask_list2?page=1">
-      <button class="btn btn-primary px-5 mb-5" type="button">내 문의내역
+      <button class="btn btn-primary px-5 mb-5" type="button">문의 내역
       </button>
       </a>
     

@@ -108,19 +108,10 @@
         display: block !important;
       }
       
-       .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
+      .accordion-body{
+      width:1100px;
       }
-
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
+      
     </style>
 
     
@@ -252,34 +243,30 @@
     </ul>  
   
   </div>
-
-  
-  
-  <div class="container my-5">
+<div class="container my-5">
    <div class="position-relative p-5 text-center text-muted bg-body border border-dashed rounded-5">
     
     <svg class="bi mt-5 mb-3" width="48" height="48"><use xlink:href="#check2-circle"/></svg>
-    <h1 class="text-body-emphasis">문의 내역이 삭제되었습니다.</h1>
+    <h3 class="text-body-emphasis">해당게시물에 접근권한이 없습니다.</h3>
     <p class="col-lg-6 mx-auto mt-3 mb-5">
-      
+     권한을 가진 사용자라면 로그인 해주세요. 
     </p>
+    <br>
+    <br>
+     	
     
-      <a href="ask_list2?page=1">
-      <button class="btn btn-primary px-5 mb-5" type="button">문의 내역
-      </button>
-      </a>
     
    </div>
   </div>
+	
  
   
-  
+ 
  
 
 
 </main>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
-    
 </body>
 </html>

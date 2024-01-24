@@ -248,7 +248,7 @@
     
     <ul class="list-unstyled ps-0">
       <li class="mb-1">
-        <a href="ask_list2?page=1"><button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">내 문의내역</button></a>
+        <a href="ask_list2?page=1"><button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">문의 내역</button></a>
       </li>
       <li class="mb-1">
         <a href="ask_insert.jsp"><button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">문의하기</button></a>
@@ -257,20 +257,16 @@
   
   </div>
 
+<% String member_id = vo2.getMember_id();  %>
 
-
-
-
-
-
-
+<% if(session.getAttribute("loggedInUser") != null && session.getAttribute("loggedInUser").equals(member_id)) { %>
 
 	
 <div class="container mt-5">
 <table class="table">
   <thead>
     <tr>
-      <th scope="col">번호</th>
+      <th scope="col">상태</th>
       <th scope="col">분류</th>
       <th scope="col">제목</th>
       <th scope="col">작성자</th>
@@ -280,7 +276,7 @@
   </thead>
   <tbody class="table-group-divider">
     <tr>
-      <th scope="row"><%=vo2.getAsk_id() %></th>
+      <th scope="row"><%=vo2.getAsk_status()%></th>
       <td><%=vo2.getAsk_category() %></td>
       <td><%=vo2.getAsk_title() %></td>
       <td><%=vo2.getMember_id() %></td>
@@ -316,7 +312,89 @@
 
 <div class="mb-5">
   <a href="ask_update?ask_id=<%=vo2.getAsk_id() %>"><button class="btn btn-primary" type="button">수정</button></a>
-  <a href="ask_delete?ask_id=<%=vo2.getAsk_id() %>"><button class="btn btn-primary" type="button">삭제</button></a>
+  <a href="ask_delete?ask_id=<%=vo2.getAsk_id() %>"><button class="btn btn-primary" type="button" onclick="return confirm('정말 삭제하시겠습니까?')">삭제</button></a>
+  
+</div> 
+
+
+
+
+
+ <% List<Ask_replyVO> list =(List<Ask_replyVO>)request.getAttribute("list"); %>
+ <% for(Ask_replyVO vo:list){ %>
+
+  <div class="ask_reply_content">
+    <h4>1:1문의 답변결과</h4>    
+    <div class="position-relative p-5 text-muted bg-body border border-dashed rounded-5">
+	 
+	<h5> <%= vo.getAsk_reply_title() %> </h5> <br>
+     <%= vo.getAsk_reply_content() %><br>
+	 
+    <div style="float:right;">
+	작성날짜 : <%= vo.getAsk_reply_date() %>
+    
+    
+    </div>
+
+    </div>
+  </div>
+ <%}%>
+
+
+</div> 
+
+<%}else if(session.getAttribute("loggedInUser") != null && session.getAttribute("loggedInUser").equals("admin")){ %>
+	<div class="container mt-5">
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">상태</th>
+      <th scope="col">분류</th>
+      <th scope="col">제목</th>
+      <th scope="col">작성자</th>
+      <th scope="col">작성날짜</th>
+      
+    </tr>
+  </thead>
+  <tbody class="table-group-divider">
+    <tr>
+      <th scope="row"><%=vo2.getAsk_status() %></th>
+      <td><%=vo2.getAsk_category() %></td>
+      <td><%=vo2.getAsk_title() %></td>
+      <td><%=vo2.getMember_id() %></td>
+      <td><%=vo2.getAsk_date() %></td>
+      
+      	
+    </tr>
+  
+  </tbody>
+</table>
+<div>
+  <div class="position-relative p-5 text-center text-muted bg-body border border-dashed rounded-5">
+    
+   
+    
+    <p class="col-lg-6 mx-auto mt-5 mb-5">
+      <img src="${pageContext.request.contextPath}/resources/upload/<%=vo2.getAsk_img() %>">
+      <br>
+      <br>
+      <%=vo2.getAsk_content() %>
+    </p>
+    
+  </div>
+  
+</div>
+
+
+ <div class="d-grid gap-2 col-2 mx-auto mt-3">
+  
+  <a href="ask_list2?page=1"><button class="btn btn-primary" type="button">목록으로</button></a>
+  
+</div>
+
+<div class="mb-5">
+  <a href="ask_update?ask_id=<%=vo2.getAsk_id() %>"><button class="btn btn-primary" type="button">수정</button></a>
+  <a href="ask_delete?ask_id=<%=vo2.getAsk_id() %>"><button class="btn btn-primary" type="button" onclick="return confirm('정말 삭제하시겠습니까?')">삭제</button></a>
   <button class="btn btn-danger" onclick="window.open('ask_reply_insert.jsp?askId=<%=vo2.getAsk_id()%>','1:1문의 답변','width=1210,height=460,location=no,status=no,scrollbars=yes');">답변하기</button>
   
 </div> 
@@ -339,6 +417,8 @@
 	작성날짜 : <%= vo.getAsk_reply_date() %>
 	<button class="btn btn-danger btn-sm" onclick="window.open('ask_reply_update?ask_reply_id=<%=vo.getAsk_reply_id()%>','1:1문의 답변수정','width=1210,height=460,location=no,status=no,scrollbars=yes');">수정</button>
     <button class="btn btn-danger btn-sm" onclick="window.open('ask_reply_delete?ask_reply_id=<%=vo.getAsk_reply_id()%>','1:1문의 답변삭제','width=1210,height=460,location=no,status=no,scrollbars=yes');">삭제</button>
+    
+    
     </div>
 
     </div>
@@ -348,7 +428,11 @@
 
 </div> 
 
-
+<% }else{
+	
+	response.sendRedirect("block.jsp"); %>	
+   	
+<%}%>
 
 
 
