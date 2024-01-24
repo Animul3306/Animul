@@ -64,7 +64,7 @@
                 <div id="menu_list">
                     <label class="left-bar-menu" onclick="changeIframeSrc('mypage-myinfo.jsp')">내 정보 수정</label>
                     <label class="left-bar-menu" onclick="changeIframeSrc('mypage-mypet.jsp')">마이펫</label>
-                    <label class="left-bar-menu">커뮤니티 내역</label>
+                    <label class="left-bar-menu" onclick="changeIframeSrc('mypage-community.jsp')">커뮤니티 내역</label>
                 </div>
             </div>
             <div id="main_bar">
