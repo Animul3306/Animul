@@ -11,10 +11,14 @@ public class MypetDAO {
 	@Autowired
 	SqlSessionTemplate my;
 	
-	public void insert(MypetVO vo) {
-		my.insert("mypet.insert", vo);
+	public int insert(MypetVO vo) {
+		return my.insert("mypet.insert", vo);
 	}
 	
+	public int update(MypetVO vo) {
+		return my.update("mypet.update", vo);
+	}
+
 	public List<MypetVO> all() {
 		return my.selectList("mypet.all");
 	}
@@ -25,5 +29,13 @@ public class MypetDAO {
 	
 	public int count() {
 		return my.selectOne("mypet.count");
+	}
+
+	public List<MypetVO> simple_inquiry(MypetVO vo) {
+		return my.selectList("mypet.simple_inquiry", vo);
+	}
+
+	public MypetVO inquiry(MypetVO vo) {
+		return my.selectOne("mypet.inquiry", vo);
 	}
 }
