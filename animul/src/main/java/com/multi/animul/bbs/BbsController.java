@@ -367,12 +367,12 @@ public class BbsController {
 		ApiExplorerProtect protectAPI = new ApiExplorerProtect();
 		ArrayList<ProtectVO> list = protectAPI.protectAPI(page, upr_cd);
 		model.addAttribute("list", list);
+		model.addAttribute("page", page);
 		model.addAttribute("upr_cd", upr_cd);
 
 		return "bbs/protectList";
 	}
 
-	
 	// 보호중인 유기동물 상세 페이지
 	@RequestMapping("bbs/protectOne")
 	public String one3(@RequestParam("desertionNo") String desertionNo,
@@ -381,34 +381,24 @@ public class BbsController {
 
 		ApiExplorerProtect protectAPI = new ApiExplorerProtect();
 		ArrayList<ProtectVO> list = protectAPI.protectAPI(page, upr_cd);
+		model.addAttribute("upr_cd", upr_cd);
+		model.addAttribute("list", list);
+		model.addAttribute("page", page);
+		System.out.println("upr_cd = " + upr_cd);
+		System.out.println("page = " + page);
 
+		System.out.println("list = " + list);
 		for (ProtectVO vo : list) {
 			if (vo.getDesertionNo().equals(desertionNo)) {
 				System.out.println("vo = " + vo);
-				
+				System.out.println("upr_cd = " + upr_cd);
 				model.addAttribute("vo", vo);
-			
+				model.addAttribute("upr_cd", upr_cd);
 
 			}
 		}
 
 		return "bbs/protectOne";
 	}
-
-	/*
-	 * @RequestMapping("bbs/protectListSearch") public String listSearch3(Model
-	 * model,
-	 * 
-	 * @RequestParam(value = "page", required = false, defaultValue = "1") String
-	 * page,
-	 * 
-	 * @RequestParam(value = "upr_cd", defaultValue = "6110000") String upr_cd) {
-	 * System.out.println("protectListSerch"); System.out.println(upr_cd);
-	 * ApiExplorerProtect protectAPI = new ApiExplorerProtect();
-	 * ArrayList<ProtectVO> list = protectAPI.protectAPI(page, upr_cd);
-	 * ArrayList<ProtectVO> list2 = new ArrayList<ProtectVO>(); for (ProtectVO vo :
-	 * list) { if (vo.getUpr_cd().equals(upr_cd)) { list2.add(vo);
-	 * model.addAttribute("list2", list2); } } return "bbs/protectListSearch"; }
-	 */
 
 }

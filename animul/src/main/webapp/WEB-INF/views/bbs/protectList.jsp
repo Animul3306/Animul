@@ -30,6 +30,20 @@ function showSlides(n) {
         console.log("page = " + page);
         location.href = "protectList?upr_cd=" + value + "&page=" + (page + n);
         
+        $.ajax({
+            type: "GET",
+            url: "protectList",
+            data: { upr_cd: value, page: (page + n) },
+            success: function (data) {
+                // 서버에서 받은 응답에 따라 필요한 처리 수행
+                console.log("AJAX success", data);
+                // 여기에서 페이지 리로딩 등의 추가 동작을 수행할 수 있음
+            },
+            error: function (error) {
+                console.error("AJAX error", error);
+            }
+        });
+        
     } else if (n != -1) {
     	uprSelect = document.getElementById("upr");
     	value = uprSelect.options[uprSelect.selectedIndex].value;
@@ -47,24 +61,7 @@ function selectUpr() {
     value = uprSelect.options[uprSelect.selectedIndex].value;
     
     console.log(value);
-    
-    //location.href = "protectList?upr_cd=" + value ;
-
-    
-    
-/*      const len = uprSelect.options.length;
-    
-    for (let i=0; i<len; i++){  
-      	//select box의 option value가 입력 받은 value의 값과 일치할 경우 selected
-        if(uprSelect.options[i].value == value){
-        	console.log("ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ");
-        	uprSelect.options[i].selected = true;
-        }
-      }  
-    value2 = uprSelect.options[uprSelect.selectedIndex].value; */
-    
-    //console.log(value2); 
-  
+   
     
 }
 
@@ -132,22 +129,29 @@ function selectUpr() {
 			    <option value="<%= value %>" <%= selectedAttribute %>><%= label %></option>
 			    <%
 			        }
+			 
+			   
 			    %>
 				</select>
 					
-							
+					
+					
 					</div>
 
 					<div class="bt">
 						<button type="submit" style="cursor: pointer;"
 							class="btn btn-sm btn-blue">조회하기</button>
 					</div>
-			 </form>
+				 </form>
+				 
+				 
+				 
+				 
 					 
 					<div class="pro-lst" style="border-top:#E8EDF0 1px solid; margin-top:10px; padding-left:20px;">
 					<c:forEach items="${list}" var="vo" >
                         <div class="probx">
-                            <a href="${pageContext.request.contextPath}/bbs/protectOne?desertionNo=${vo.desertionNo}">
+                            <a href="${pageContext.request.contextPath}/bbs/protectOne?upr_cd=${upr_cd}&desertionNo=${vo.desertionNo}&page=${page}">
                                 <span class="thumb">
                                 <img src="${vo.popfile}" alt="" style="width:315px;height:315px;"></span>
                                 <div class="row">
