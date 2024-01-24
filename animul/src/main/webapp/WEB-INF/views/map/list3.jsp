@@ -83,7 +83,7 @@ tr:last-child td:last-child {
 
 	<div class="login_group">
 		<label></label>
-		<a href="hospital.jsp" data-tooltip="kakao API를 사용하는 지도로 이동합니다."> API Map Link </a>
+		<a href="SearchCenter.jsp" data-tooltip="kakao API를 사용하는 지도로 이동합니다."> API Map Link </a>
 	</div>
 	
 	<div id="map_wrap2" class="bg_white">	        
@@ -235,11 +235,11 @@ tr:last-child td:last-child {
 	var positions = new Array();
 
 	<c:forEach items="${list3}" var="vo">
-		positions.push({ title: '${vo.hospital_name}',
-						 latlng: new kakao.maps.LatLng(${vo.hospital_latitude}, ${vo.hospital_longitude}),
-						 address: '${vo.hospital_address}',
-						 tel: '${vo.hospital_phone}',
-						 working: '${vo.hospital_time}'
+		positions.push({ title: '${vo.searchCenter_name}',
+						 latlng: new kakao.maps.LatLng(${vo.searchCenter_latitude}, ${vo.searchCenter_longitude}),
+						 address: '${vo.searchCenter_address}',
+						 tel: '${vo.searchCenter_phone}',
+						 working: '${vo.searchCenter_time}'
 						});	
  	</c:forEach>
 
@@ -385,20 +385,20 @@ $(function() {
 	    </tr>
 	<c:forEach items="${list3}" var="vo">
 	    <tr>
-	        <td>${vo.hospital_id}</td>		        
-	        <td>${vo.hospital_name}</td>
-	        <td>${vo.hospital_address}</td>
-	        <td>${vo.hospital_phone}</td>
+	        <td>${vo.searchCenter_id}</td>		        
+	        <td>${vo.searchCenter_name}</td>
+	        <td>${vo.searchCenter_address}</td>
+	        <td>${vo.searchCenter_phone}</td>
 	        <c:choose>
-			 <c:when test ="${vo.hospital_link eq '정보없음'}" > 
-			  	<td>${vo.hospital_link}</td>	        
+			 <c:when test ="${vo.searchCenter_link eq '정보없음'}" > 
+			  	<td>${vo.searchCenter_link}</td>	        
 	         </c:when>
 	         <c:otherwise>
-	       		<td><a href="${vo.hospital_link}" target=_blank> ${vo.hospital_link} </a></td>
+	       		<td><a href="${vo.searchCenter_link}" target=_blank> ${vo.searchCenter_link} </a></td>
 	         </c:otherwise>
 	        </c:choose>             
-	        <td>${vo.hospital_time}</td>
-	        <td>${vo.hospital_off}</td>  
+	        <td>${vo.searchCenter_time}</td>
+	        <td>${vo.searchCenter_off}</td>  
 		</tr>
 	</c:forEach>
  </table>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+				   
+<mapper namespace="searchcenter">
+	<select id="count" resultType="int" parameterType="PageVO">
+		select count(*) from searchcenter
+	</select>
+	
+	<select id="countAddress" resultType="int" parameterType="PageVO">
+		select count(*) from searchcenter where searchcenter_type=#{centerType} 
+		and searchcenter_address like concat('%', #{currentAddress}, '%')
+		and searchcenter_type=#{centerType}
+	</select>
+
+	<select id="countKeyword" resultType="int" parameterType="PageVO">
+		select count(*) from searchcenter where searchcenter_name like concat('%', #{keywordSearch}, '%')
+		and searchcenter_type=#{centerType}
+	</select>
+	
+	<select id="list3" resultType="SearchCenterVO" parameterType="PageVO">		
+		select * from (
+		select ROW_NUMBER() over(order by searchcenter_id ) as searchcenter_no, b.*
+		from searchcenter b where b.searchcenter_name like concat('%', #{keywordSearch}, '%') 
+		and b.searchcenter_type=#{centerType} ) searchcenter2		
+		where searchcenter2.searchcenter_no between ${start} and ${end}		
+	</select>
+	
+	<select id="list2" resultType="SearchCenterVO" parameterType="PageVO">	
+		select * from (
+		select ROW_NUMBER() over(order by searchcenter_id ) as searchcenter_no, b.*
+		from searchcenter b where b.searchcenter_address like concat('%', #{currentAddress}, '%')
+		and b.searchcenter_type=#{centerType} ) searchcenter2		
+		where searchcenter2.searchcenter_no between ${start} and ${end}
+	</select>
+	
+	<select id="list1" resultType="SearchCenterVO" parameterType="PageVO">
+		select * from (
+		select ROW_NUMBER() over(order by searchcenter_id ) as searchcenter_no, b.*
+		from searchcenter b ) searchcenter2
+		where searchcenter2.searchcenter_no between ${start} and ${end}
+	</select>
+	
+	<select id="one" resultType="SearchCenterVO" parameterType="String">
+		select * from searchcenter where searchcenter_id=#{searchcenter_id}
+	</select>
+</mapper>
