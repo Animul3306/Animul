@@ -22,7 +22,12 @@ $(function() {
 	          plugins: [ChartDataLabels]
 	        });
 	});
-
+    
+    var originalString = document.getElementById('address').value;
+    var separatedArray = originalString.split(' ')
+    var firstElement = separatedArray.slice(0, 1).join(' ');
+    var secondElement = separatedArray.slice(1, 2).join(' ');
+    
     // Attach click event to each row
     for (var i = 1; i < rowList.length; i++) {
         // Use a closure to capture the value of i
@@ -33,6 +38,8 @@ $(function() {
             		url:"${pageContext.request.contextPath}/diagnosis/totalPrice",
             		data: {
             			receipt_item_diagnosisname: rowList[index].cells[1].textContent,
+            			sidoAddress: firstElement,
+            			gugunAddress: secondElement,
                     },
             		success: function(result) {
             			console.log(result)
@@ -43,28 +50,28 @@ $(function() {
             			 var ctx = document.getElementById("myChart").getContext("2d");
 
             		        var data = {
-            		          labels: ["", "","전국"],
+            		          labels: [firstElement, secondElement,"전국"],
             		          datasets: [
             		            {
             		              label: "최저가",
             		              backgroundColor: "rgba(75,192,192,0.4)",
             		              borderColor: "rgba(75,192,192,1)",
             		              borderWidth: 1,
-            		              data: [0, 0, result.allMinPrice],
-            		            },
-            		            {
-            		              label: "평균",
-            		              backgroundColor: "rgba(255, 206, 86, 0.4)",
-            		              borderColor: "rgba(255, 206, 86, 1)",
-            		              borderWidth: 1,
-            		              data: [0, 0, result.allAvgPrice],
-            		            },
-            		            {
-            		              label: "최대가",
-            		              backgroundColor: "rgba(255, 99, 132, 0.4)",
-            		              borderColor: "rgba(255,99,132,1)",
-            		              borderWidth: 1,
-            		              data: [0, 0, result.allMaxPrice],
+            		              data: [result.sidoMinPrice, result.gugunMinPrice, result.allMinPrice],
+        			            },
+        			            {
+        			              label: "평균",
+        			              backgroundColor: "rgba(255, 206, 86, 0.4)",
+        			              borderColor: "rgba(255, 206, 86, 1)",
+        			              borderWidth: 1,
+        			              data: [result.sidoAvgPrice, result.gugunAvgPrice, result.allAvgPrice],
+        			            },
+        			            {
+        			              label: "최대가",
+        			              backgroundColor: "rgba(255, 99, 132, 0.4)",
+        			              borderColor: "rgba(255,99,132,1)",
+        			              borderWidth: 1,
+        			              data: [result.sidoMaxPrice, result.gugunMaxPrice, result.allMaxPrice],
             		            },
             		          ],
             		        };
@@ -86,7 +93,7 @@ $(function() {
             	                  },
             	                  title: {
             		                    display: true, 
-            		                    text: '${diagnosisbag.diagnosis_name}' + ' 평균가',
+            		                    text: rowList[index].cells[1].textContent + ' 평균가',
             		                    color: 'black',
             		                    font: {
             		                    	weight: 'bold',
@@ -97,18 +104,20 @@ $(function() {
             		                    annotations: {
             		                      line1: {
             		                        type: 'line',
-            		                        yMin: rowList[index].cells[2].textContent,
-            		                        yMax: rowList[index].cells[2].textContent,
+            		                        yMin: rowList[index].cells[3].textContent,
+            		                        yMax: rowList[index].cells[3].textContent,
             		                        borderColor: 'rgb(255, 99, 132)',
             		                        borderWidth: 2,
             		                      },
             		                      label1: {
             		                          type: 'label',
-            		                          xValue: 2.45,
-            		                          yValue: rowList[index].cells[2].textContent + 20,
-            		                          content: ['My'],
+            		                          xValue: 0.5,
+            		                          yValue: rowList[index].cells[3].textContent,
+            		                          content: ["MY " + rowList[index].cells[2].textContent + "원"],
+            		                          backgroundColor:'rgb(255, 99, 132)',
             		                          font: {
-            		                            size: 18
+            		                            size: 18,
+            		                            fontWeight: 'bold'
             		                          }
             		                        },
             		                    }
@@ -134,11 +143,11 @@ $(function() {
             	                        grid: {
             	                            display: false,
             	                        },
-            	                        min: result.allMinPrice - result.allMinPrice/10,
-            	                        max: result.allMaxPrice + result.allMaxPrice/10,
+            	                        min: result.allMinPrice - result.allMinPrice/2,
+            	                        max: result.allMaxPrice + result.allMaxPrice/2,
             	                        ticks: {
             	                            beginAtZero: true,  // Start the scale from zero
-            	                            stepSize: result.allMinPrice - result.allMinPrice/10,  // Set the step size between ticks
+            	                            stepSize: result.allMinPrice - result.allMinPrice/2,  // Set the step size between ticks
 
             	                        },
             	                    },
@@ -253,9 +262,10 @@ $(function() {
 
 
 </script>
+<input type="hidden" id="address" value="${receipt.receipt_address}"/>
 <div class="chart">
 	<canvas id="myChart" style="height:30vh; width:50vw"></canvas>  
-	<div style="position: absolute; bottom: 5%; left: 80%; transform: translateX(-50%); text-align: center;">
+	<div style="position: absolute; bottom: 66%; left: 77%; transform: translateX(-50%); text-align: center;">
       <p style="background-color: rgba(255, 255, 255, 0.7); border-radius: 5px;">*자료: 농림축산식품부, 영수증 통계</p>
     </div>
 </div>
@@ -269,7 +279,8 @@ $(function() {
 		<tr>
 			<td>${status.count}</td>
         	<td>${x.receipt_item_diagnosisname}</td>
-        	<td>${x.receipt_item_price}</td>
+        	<td><fmt:formatNumber type="number" maxFractionDigits="3" value="${x.receipt_item_price}" /></td>
+        	<td style="display: none;">${x.receipt_item_price}</td>
 		</tr>      
 	</c:forEach>      
 </table>

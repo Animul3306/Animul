@@ -21,6 +21,11 @@
 		)
 	</insert>
 	
+	<select id="duplicate" parameterType="receiptVO" resultType="int">
+		select count(*) from animul.receipt 
+		where receipt_date =  #{receipt_date} and receipt_hospitalname = #{receipt_hospitalname}
+	</select>
+	
 	<select id="one" parameterType="receiptVO" resultType="receiptVO">
 		select * from animul.receipt where receipt_id = #{receipt_id}
 	</select>

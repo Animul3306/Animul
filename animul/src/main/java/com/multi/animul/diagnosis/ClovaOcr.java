@@ -16,9 +16,11 @@ import java.util.UUID;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import com.sun.xml.internal.txw2.output.IndentingXMLStreamWriter;
+
 public class ClovaOcr {
 	public ArrayList<ArrayList<String>> ocr(String fileName) {
-		String apiURL = "https://fotdsyrcm1.apigw.ntruss.com/custom/v1/26935/32450a3b73e5fefc74658a551b5f468904b86e05b0717edea20870314ef93312/general";
+		String apiURL = "https://amyv5uss3u.apigw.ntruss.com/custom/v1/26935/32450a3b73e5fefc74658a551b5f468904b86e05b0717edea20870314ef93312/general";
 		String secretKey = "SVF5Uk5nVGVYT3BZRk10dWRwSWxva1VQQXpCVXZDb2Q=";
 		String imageFile = fileName;
 		ArrayList<String> list = new ArrayList<String>();
@@ -97,6 +99,17 @@ public class ClovaOcr {
 	private ArrayList<ArrayList<String>> receiptAnalyze(ArrayList<String> list){
 		ArrayList<ArrayList<String>> receiptOrganize = new ArrayList<ArrayList<String>>();
 		
+		for (int i = 0; i < list.size(); i++) {
+		    if (list.get(i).contains("할인")) {
+		        for (int j = i; j < list.size(); ) {
+		            list.remove(j);
+		            if (j < list.size() && list.get(j).matches("-\\d+")) {
+		            	list.remove(j);
+		                break;
+		            }
+		        }
+		    }
+		}
 		
 		System.out.println(list);
 		
@@ -115,86 +128,93 @@ public class ClovaOcr {
 
 		ArrayList<String> findSigungu = new ArrayList<String>();
 		//전이랑 전화가 나오기 전까지 시 구 군의 마지막 인덱스 출력
-		String[] targetSuffixes = {"시", "구", "군"}; // 찾고자 하는 문자열의 접미사 배열
-		
-        int lastIndex = -1; // 찾은 문자열의 마지막 인덱스를 저장할 변수
-
-        for (int i = 0; i < list.size(); i++) {
-            String currentString = list.get(i);
-
-            if(!(list.get(i).equals("전") || list.get(i).equals("전화"))) {
-            	for (String targetSuffix : targetSuffixes) {
-                    if (currentString.endsWith(targetSuffix)) {
-                        lastIndex = i;
-                        break;
-                    }
-                }
-            } else {
-            	break;
-            }
-        }
-
-        // 결과 출력
-        if (lastIndex != -1) {
-            System.out.println("마지막으로 나오는 " + String.join(" 또는 ", targetSuffixes) + "로 끝나는 문자열: " + list.get(lastIndex));
-            
-            findSigungu.add(list.get(lastIndex));
-            
-        } else {
-            System.out.println(String.join(" 또는 ", targetSuffixes) + "로 끝나는 문자열을 찾을 수 없습니다.");
-        }
+		if(list.contains("소재지:")) {
+			findSigungu.add(list.get(list.indexOf("소재지:") + 1) + " " + list.get(list.indexOf("소재지:") + 2));
+		} else if(list.contains("소재지")) {
+			if(list.get(list.indexOf("소재지") + 1).equals(":")) {
+				System.out.println(list.get(list.indexOf("소재지") + 2));
+				findSigungu.add(list.get(list.indexOf("소재지") + 2) + " " + list.get(list.indexOf("소재지") + 3));
+			}
+		}
         
         ArrayList<String> findDate = new ArrayList<String>();
 
         //날짜 찾기
-		if(list.contains("날짜:")) {
-			System.out.println(list.get(list.indexOf("날짜:") + 1));
-			findDate.add(list.get(list.indexOf("날짜:") + 1));
-		}  else if(list.contains("짜:")) {
-			System.out.println(list.get(list.indexOf("짜:") + 1));
-			findDate.add(list.get(list.indexOf("짜:") + 1));
-		} else if (list.get(list.indexOf("날짜") + 1).equals(":")) {
-			System.out.println(list.get(list.indexOf("날짜") + 2));
-			findDate.add(list.get(list.indexOf("날짜") + 2));
-		} else if (list.get(list.indexOf("짜") + 1).equals(":")) {
-			System.out.println(list.get(list.indexOf("짜") + 2));
-			findDate.add(list.get(list.indexOf("짜") + 2));
-		}
-		
-		
-		ArrayList<String> findItem = new ArrayList<String>();
-		ArrayList<String> findPrice = new ArrayList<String>();
-		//진료 항목과 금액 찾기
-		if(list.get(list.indexOf("수량") + 1).equals("금액")) {
-			int j = 0;
-			String allStr = "";
-			for (int i = list.indexOf("수량") + 2; i < list.size(); i++) {
-				if(!(list.get(i + 1).equals("계"))) {
-					Boolean result = list.get(i).matches(".*[ㄱ-ㅎㅏ-ㅣ가-힣|a-z|A-Z]+.*");
-					if(!result) { //숫자가 안들이거면
-						System.out.println(i + ": ---숫자> " + list.get(i));
-						System.out.println(j);
-						findPrice.add(list.get(i));
-						findItem.add(allStr);
-						allStr = "";
-						j++;
-						i+=2;
-					}
-					
-					if(result){ //들어가면
-						System.out.println(i + ": ---문자> " + list.get(i));
-						allStr += list.get(i);
-						
-					}
-					
-				} else {
-					break;
-				}
+        String data = "";
+        int dateIndex = 0;
+		for (int i = 0; i < list.size(); i++) {
+			if (list.get(i).matches("\\d{4}-\\d{2}-\\d{2}")) {
+				dateIndex = i;
 			}
 		}
+		System.out.println("_______________________1________________1_______________" + list.get(dateIndex) + "  " + list.get(dateIndex + 1));
 		
-		ArrayList<String> findTotalPrice = new ArrayList<String>();
+		data = list.get(dateIndex) + " ";
+		for(int i = dateIndex + 1; i < list.size(); i++) {
+			data += list.get(i);
+		}
+		findDate.add(data);
+		
+		System.out.println("진료비:" + list.get(list.indexOf("진료") + 1).matches("\\((.*?)\\)"));
+		
+		ArrayList<String> findItem = new ArrayList<String>();
+		ArrayList<String> itemCount = new ArrayList<String>();
+		ArrayList<String> findPrice = new ArrayList<String>();
+		//진료 항목과 금액 찾기
+		if (list.get(list.indexOf("진료") + 1).matches("\\((.*?)\\)")) {
+		    int j = 0;
+		    String allStr = "";
+		    int listSize = list.size();  // Cache the size of the list
+		    for (int i = list.indexOf("진료") + 2; i < listSize - 1; i++) {
+		        if (list.get(i + 1).equals("*표시가되어") || list.get(i + 1).equals("*표시가되어있는") || list.get(i + 1).equals("*표시가")) {
+		            break;
+		        }
+		        Boolean result = list.get(i).matches("^[0-9]+$");
+		        if (result) {
+		            System.out.println(i + ": ---숫자> " + list.get(i + 1));
+		            System.out.println(j);
+		            itemCount.add(list.get(i));
+		            findPrice.add(list.get(i + 1));
+		            findItem.add(allStr);
+		            allStr = "";
+		            j++;
+		            i++;
+		        }
+
+		        if (!result) {
+		            System.out.println(i + ": ---문자> " + list.get(i));
+		            allStr += list.get(i);
+		        }
+		    }
+		}
+		
+		//만약 리스트에 할인이라는 항목이 들어가 있는 경우 제거하는 코드
+		List<Integer> indicesToRemove = new ArrayList<>();
+
+		for (int i = 0; i < findItem.size(); i++) {
+		    if (!(findPrice.get(i).matches("\\d+"))) {
+		        indicesToRemove.add(i);
+		    }
+		}
+
+		for (int i = indicesToRemove.size() - 1; i >= 0; i--) {
+		    int index = indicesToRemove.get(i);
+		    findItem.remove(index);
+		    findPrice.remove(index);
+		}
+		
+		
+
+		for (int i = 0; i < findPrice.size(); i++) {
+		    if (Integer.parseInt(itemCount.get(i)) > 1) {
+		        int multiCount = Integer.parseInt(findPrice.get(i))  / Integer.parseInt(itemCount.get(i));
+		        findPrice.set(i, String.valueOf(multiCount));
+		    }
+		}
+		
+		
 		//청구 금액 찾기
+		ArrayList<String> findTotalPrice = new ArrayList<String>();
 		String[] totalPriceTargets = {"청구금액:", "금액:", "금액", "청구금액"};
 		
 		int lastIndex2 = -1; // 찾은 문자열의 마지막 인덱스를 저장할 변수
@@ -210,8 +230,9 @@ public class ClovaOcr {
             }
         
         }
+        
         // 결과 출력
-        if (lastIndex != -1) {
+        if (lastIndex2 != -1) {
         	Boolean a = list.get(lastIndex2 + 1).matches(".*[ㄱ-ㅎㅏ-ㅣ가-힣|a-z|A-Z]+.*");
         	if(!a) {
         		findTotalPrice.add(list.get(lastIndex2 + 1));
@@ -227,6 +248,7 @@ public class ClovaOcr {
         receiptOrganize.add(findItem);
         receiptOrganize.add(findPrice);
         receiptOrganize.add(findTotalPrice);
+        
  		
         System.out.println("병원명: " + findHospital.toString());
         System.out.println("주소: " + findSigungu.toString());
