@@ -16,12 +16,14 @@ $(function() {
 	$.ajax({
 		url:"${pageContext.request.contextPath}/diagnosis/receiptMyList",
 		data: {
-			receipt_myid: "qpzmal100",  //나중에 로그인 세션으로 바꾸기
+			receipt_myid: "${loggedInUser}",  //나중에 로그인 세션으로 바꾸기
 		},
 		success: function(list) {
 			$('#resultDiv').html(list)
 		}//success
 	})//ajax
+	
+	
 	
 	
 	 $('#ocrForm').on('submit', function (event) {
@@ -43,12 +45,14 @@ $(function() {
 	        			} else {
 	        				alert("아니요")				
 	        			}
+	            	} else if(result == 2){
+	            		alert("영수증이 중복되었습니다.")
 	            	} else {
-	            		alert("영수증 등록 실패")
+	            		alert("진료항목이 없습니다.")
 	            	}
 	            },
 	            error:function (e) {
-	                alert("오류 발생" + e);
+	                alert("이미지 파일이 없거나 인식이 불가능한 영수증입니다.");
 	            }
 	        });
 	        document.getElementById("file").value ='';
@@ -69,8 +73,15 @@ $(function() {
 <div class="container mt-3">
 	<div id="ocr" class="row">
 		<form id="ocrForm" enctype="multipart/form-data">
-            파일 : <input type="file" id="file" name="file"> 
-            <input type="submit" value="가격 비교 결과 확인">        
+            파일 : <input type="file" id="file" name="file">
+            <% if(session.getAttribute("loggedInUser") != null ) { %>
+            <input type="submit" value="가격 비교 결과 확인">
+			<% } else {%>
+				<script>
+					alert("로그인 후 이용가능합니다.")
+					location.href= "${pageContext.request.contextPath}/member/login.jsp"
+				</script>
+			<% } %>
         </form>
 		
 	</div>

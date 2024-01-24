@@ -16,10 +16,12 @@
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5454a62e5d0c9bb2b98dbfd591e5b4cb&libraries=services"></script>
 <script>
 	$(function() {	
 		var myChart;
-		
+		var yourSido;
+        var yourGugun;
 		$(document).ready(function() {
 		    // Your other code...
 			myChart = new Chart(ctx, {
@@ -29,62 +31,49 @@
 		          plugins: [ChartDataLabels]
 		        });
 		});
-		$.ajax({
-			url:"${pageContext.request.contextPath}/diagnosis/diagnosisList",
-			success: function(list) {
-				$('#diagnosisList').html(list)
-			}//success
-		})//ajax	
+		var sidoResult;
+		var gugunResylt;
 		
-		$('#search').on("propertychange change keyup paste input", function() {
-			if($('#search').val() != "") {
-				document.getElementById("searchList").style.display = "block"; 
-				$.ajax({
-					url: "${pageContext.request.contextPath}/diagnosis/diagnosisFind",
-					data: {
-						diagnosis_name : $('#search').val(),
-					},
-					success: function(list) {
-						$('#searchList').html(list)
-					}//success
-				})//ajax	
-			} else {
-				document.getElementById("searchList").style.display = "none";
-			}
-		})//search
 		$.ajax({
 			url:"${pageContext.request.contextPath}/diagnosis/totalPrice",
 			data: {
 				receipt_item_diagnosisname : '${diagnosisbag.diagnosis_name}',
+				sidoAddress: $('#sido1').val(),
+				gugunAddress: $('#gugun1').val()
 			},
 			//dataType: "json",
 			success: function(result) {
 				console.log(result)
 				 var ctx = document.getElementById("myChart").getContext("2d");
 
+				/* if(result.sidoAddress == null) {
+					result.sidoAddress = "시/도를 선택하세요.";
+					result.gugunAddress = "구/군을 선택하세요.";
+				} */
+				
 			        var data = {
-			          labels: ["", "","전국"],
+			          labels: [$('#sido1').val(), $('#gugun1').val(),"전국"],
 			          datasets: [
 			            {
 			              label: "최저가",
 			              backgroundColor: "rgba(75,192,192,0.4)",
 			              borderColor: "rgba(75,192,192,1)",
 			              borderWidth: 1,
-			              data: [0, 0, result.allMinPrice],
+			              data: [result.sidoMinPrice, result.gugunMinPrice, result.allMinPrice],
 			            },
 			            {
 			              label: "평균",
 			              backgroundColor: "rgba(255, 206, 86, 0.4)",
 			              borderColor: "rgba(255, 206, 86, 1)",
 			              borderWidth: 1,
-			              data: [0, 0, result.allAvgPrice],
+			              data: [result.sidoAvgPrice, result.gugunAvgPrice, result.allAvgPrice],
 			            },
 			            {
 			              label: "최대가",
 			              backgroundColor: "rgba(255, 99, 132, 0.4)",
 			              borderColor: "rgba(255,99,132,1)",
 			              borderWidth: 1,
-			              data: [0, 0, result.allMaxPrice],
+			              data: [result.sidoMaxPrice, result.gugunMaxPrice, result.allMaxPrice],
 			            },
 			          ],
 			        };
@@ -159,6 +148,105 @@
 			        console.log(myChart.options.scales.x)
 			}//success
 		})//ajax
+		
+		$('#address').click(function() {
+			var geocoder = new kakao.maps.services.Geocoder();
+			
+			var userLatLng = new kakao.maps.LatLng(37.4966645, 127.0629804);
+	        searchAddrFromCoords(userLatLng, displayCenterInfo);
+
+	        // 사용자의 현재 위치를 가져와서 해당 위치의 행정동 주소 정보를 표시합니다
+	        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                function(position) {
+                    var userLatLng = new kakao.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                    searchAddrFromCoords(userLatLng, displayCenterInfo);
+                },
+                function(error) {
+                    if (error.code === error.PERMISSION_DENIED) {
+                        alert('위치 권한을 허용해주세요.');
+                    }
+                }
+            );
+        } else {
+            alert('이 브라우저에서는 위치 정보를 지원하지 않습니다.');
+        } 
+
+	        function searchAddrFromCoords(coords, callback) {
+	            // 좌표로 행정동 주소 정보를 요청합니다
+	            geocoder.coord2RegionCode(coords.getLng(), coords.getLat(), callback);
+	        }
+
+	        function displayCenterInfo(result, status) {
+	            if (status === kakao.maps.services.Status.OK) {
+	                var infoDiv = document.getElementById('result');
+
+	                for(var i = 0; i < result.length; i++) {
+	                    // 행정동의 region_type 값은 'H' 이므로
+	                    if (result[i].region_type === 'H') {
+	                        // 대전광역시 대덕구 까지만 표시
+	                        var addressArray = result[i].address_name.split(' ');
+	                        yourSido = addressArray.slice(0, 1).join(' ');
+	                        $('#sido1').val(yourSido).prop("selected", true).trigger('change');
+	                        
+	                        yourGugun = addressArray.slice(1, 2).join(' ');
+	                        $('#gugun1').val(yourGugun).prop("selected", true);
+	                        infoDiv.innerHTML = yourSido + " " + yourGugun;
+	                        break;
+	                    }
+	                }
+	                document.getElementById('b1').click();
+	            }
+	        }
+		})//b1
+		
+		
+		$.ajax({
+			url:"${pageContext.request.contextPath}/diagnosis/diagnosisList",
+			success: function(list) {
+				$('#diagnosisList').html(list)
+			}//success
+		})//ajax	
+		
+		$('#search').on("propertychange change keyup paste input", function() {
+			if($('#search').val() != "") {
+				document.getElementById("searchList").style.display = "block"; 
+				$.ajax({
+					url: "${pageContext.request.contextPath}/diagnosis/diagnosisFind",
+					data: {
+						diagnosis_name : $('#search').val(),
+					},
+					success: function(list) {
+						$('#searchList').html(list)
+					}//success
+				})//ajax	
+			} else {
+				document.getElementById("searchList").style.display = "none";
+			}
+		})//search
+		
+		function updateChartWithData(result) {
+		    if ($('#sido1').val() == "시/도 선택") {
+		        myChart.data.labels[0] = "";
+		    } else {
+		        myChart.data.labels[0] = $('#sido1').val();
+		    }
+
+		    myChart.data.labels[1] = $('#gugun1').val();
+		    myChart.data.datasets[0].data[0] = result.sidoMinPrice;
+		    myChart.data.datasets[0].data[1] = result.gugunMinPrice;
+		    myChart.data.datasets[0].data[2] = result.allMinPrice;
+		    myChart.data.datasets[1].data[0] = result.sidoAvgPrice;
+		    myChart.data.datasets[1].data[1] = result.gugunAvgPrice;
+		    myChart.data.datasets[1].data[2] = result.allAvgPrice;
+		    myChart.data.datasets[2].data[0] = result.sidoMaxPrice;
+		    myChart.data.datasets[2].data[1] = result.gugunMaxPrice;
+		    myChart.data.datasets[2].data[2] = result.allMaxPrice;
+
+		    myChart.update();
+		}
+		
+		
 		$('document').ready(function() {
 			   var area0 = ["시/도 선택","서울특별시","인천광역시","대전광역시","광주광역시","대구광역시","울산광역시","부산광역시","경기도","강원도","충청북도","충청남도","전라북도","전라남도","경상북도","경상남도","제주도"];
 			   var area1 = ["강남구","강동구","강북구","강서구","관악구","광진구","구로구","금천구","노원구","도봉구","동대문구","동작구","마포구","서대문구","서초구","성동구","성북구","송파구","양천구","영등포구","용산구","은평구","종로구","중구","중랑구"];
@@ -206,9 +294,51 @@
 			    $gugun.append("<option value='"+this+"'>"+this+"</option>");			    
 			   });
 			  }
-			 });	 
-			});
+			 });	
+			 
+			 var geocoder = new kakao.maps.services.Geocoder();
+
+			 var userLatLng = new kakao.maps.LatLng(37.4966645, 127.0629804);
+		     searchAddrFromCoords(userLatLng, displayCenterInfo);
+
+		        // 사용자의 현재 위치를 가져와서 해당 위치의 행정동 주소 정보를 표시합니다
+		        if (navigator.geolocation) {
+		            navigator.geolocation.getCurrentPosition(function(position) {
+		                var userLatLng = new kakao.maps.LatLng(position.coords.latitude, position.coords.longitude);
+		                searchAddrFromCoords(userLatLng, displayCenterInfo);
+		            });
+		        }
+
+		        function searchAddrFromCoords(coords, callback) {
+		            // 좌표로 행정동 주소 정보를 요청합니다
+		            geocoder.coord2RegionCode(coords.getLng(), coords.getLat(), callback);
+		        }
+
+		        function displayCenterInfo(result, status) {
+		            if (status === kakao.maps.services.Status.OK) {
+		                var infoDiv = document.getElementById('result');
+
+		                for(var i = 0; i < result.length; i++) {
+		                    // 행정동의 region_type 값은 'H' 이므로
+		                    if (result[i].region_type === 'H') {
+		                        // 대전광역시 대덕구 까지만 표시
+		                        var addressArray = result[i].address_name.split(' ');
+		                        yourSido = addressArray.slice(0, 1).join(' ');
+		                        $('#sido1').val(yourSido).prop("selected", true).trigger('change');
+		                        
+		                        yourGugun = addressArray.slice(1, 2).join(' ');
+		                        $('#gugun1').val(yourGugun).prop("selected", true);
+		                        infoDiv.innerHTML = yourSido + " " + yourGugun;
+		                        
+		                       
+		                        document.getElementById('b1').click();
+		                        break;
+		                    }
+		                }
+		            }
+		        }
 		
+			});
 		
 		$('#b1').click(function() {
 			if($('#sido1').val() == "시/도 선택") {
@@ -225,22 +355,7 @@
 				//dataType: "json",
 				success: function(result) {
 					console.log(result)
-					if ($('#sido1').val() == "시/도 선택") {
-						myChart.data.labels[0] = "";
-					} else {
-						myChart.data.labels[0] = $('#sido1').val();
-					}
-					myChart.data.labels[1] = $('#gugun1').val();
-					myChart.data.datasets[0].data[0] = result.sidoMinPrice;
-					myChart.data.datasets[0].data[1] = result.gugunMinPrice;
-					myChart.data.datasets[0].data[2] = result.allMinPrice;
-					myChart.data.datasets[1].data[0] = result.sidoAvgPrice;
-					myChart.data.datasets[1].data[1] = result.gugunAvgPrice;
-					myChart.data.datasets[1].data[2] = result.allAvgPrice;
-					myChart.data.datasets[2].data[0] = result.sidoMaxPrice;
-					myChart.data.datasets[2].data[1] = result.gugunMaxPrice;
-					myChart.data.datasets[2].data[2] = result.allMaxPrice;
-					myChart.update();
+					updateChartWithData(result);
 					
 				}//success
 			})//ajax
@@ -321,7 +436,7 @@
 </div>
 <div class="btst">
 	<button class="btn btn-outline-primary" onclick="location.href='${pageContext.request.contextPath}/diagnosis/myReceipt.jsp' "> 영수증으로 가격 비교 </button>
-	<button class="btn btn-outline-primary"> 현재 위치 탐색 </button>
+	<button id="address" class="btn btn-outline-primary"> 현재 위치 탐색 </button>
 	<select class="form-select" name="sido1" id="sido1"></select>
 	<select class="form-select"  name="gugun1" id="gugun1"></select>
 	<button id="b1" class="btn btn-outline-primary"> 확인 </button>

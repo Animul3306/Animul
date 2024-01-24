@@ -23,9 +23,11 @@ $(function() {
                     type: "post",
                     data: {
                     	receipt_item_receiptid: rowList[index].cells[0].textContent,
+                    	receipt_address: rowList[index].cells[3].textContent
                     },
                     success: function (list) {
-                    	$('#resultDiv2').html(list)
+                    	$('#resultDiv2').html("<span style='font-weight: bold; font-size: 1.5em;'>병원명: " + rowList[index].cells[2].textContent + "</span>");
+                    	$('#resultDiv2').append(list)
                         console.log(list);
                     }//success
                 })//ajax    
@@ -34,6 +36,7 @@ $(function() {
     }   
 });
 </script>
+<div  style="font-weight: bold; font-size: 1.5em" >내 영수증</div>
 <table id="myListTable" class="table table-hover">
 	<tr>
         <td>번호</td>
@@ -52,10 +55,10 @@ $(function() {
 			<td>${diagnosisMyResult[status.index].receipt_item_diagnosisname}</td>
 			<td>
 				<c:set var="y" value="${x.receipt_date}" />
-				<fmt:formatDate var="sysYear" value="${y}" pattern="yyyy/MM/dd" />
+				<fmt:formatDate var="sysYear" value="${y}" pattern="yyyy/MM/dd HH:mm:ss" />
 				<c:out value="${sysYear}" />
 			</td>
-			<td>${x.receipt_price}</td>
+			<td><fmt:formatNumber type="number" maxFractionDigits="3" value="${x.receipt_price}"/></td>
 		</tr>      
 	</c:forEach>      
 </table>

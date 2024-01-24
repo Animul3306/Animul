@@ -34,6 +34,7 @@ public class Receipt_itemController {
 	
 	@RequestMapping(value = "diagnosis/receiptItemList", method=RequestMethod.POST)
 	public void itemList(Receipt_itemVO receipt_itemVO, Model model) {
+		model.addAttribute("receipt", receipt_itemVO);
 		List<Receipt_itemVO> itemList = receipt_itemService.itemList(receipt_itemVO);
 		model.addAttribute("itemList", itemList);
 	}
