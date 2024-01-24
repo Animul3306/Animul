@@ -55,6 +55,14 @@
     background: white;
 }
 
+.mypet-content-container {
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
 .mypet-name {
     font-size: 25px;
     font-family: 'NotoSans_Bold';
@@ -65,6 +73,12 @@
     font-size: 20px;
     font-family: 'NotoSans_Regular';
     margin: 5px 0px;
+}
+
+.mypet-content-text {
+    font-size: 20px;
+    font-family: 'NotoSans_Bold';
+    margin-left: 10px;
 }
 
 .empty {
@@ -88,7 +102,7 @@
     cursor: pointer;
 }
 
-#mypet-add-container {
+.mypet-add-container {
     display: flex;
     justify-content: center;
 }
@@ -103,3 +117,4 @@
     display: flex;
     justify-content: center;
 }
+

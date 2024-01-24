@@ -2,6 +2,10 @@
 	font-family: 'NotoSans_Bold';
 	src: url('./font/NotoSansKR-Bold.ttf') format('truetype')
 }
+@font-face {
+	font-family: 'NotoSans_Regular';
+	src: url('./font/NotoSansKR-Regular.ttf') format('truetype')
+}
 
 #join_text {
     display: flex;

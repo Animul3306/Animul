@@ -333,5 +333,4 @@ public class MemberController {
 	public String requestMethodName(@RequestParam String param) {
 		return "redirect:main.jsp";
 	}
-	
 }
