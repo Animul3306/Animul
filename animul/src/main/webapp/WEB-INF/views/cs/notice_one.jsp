@@ -247,7 +247,7 @@
     
     <ul class="list-unstyled ps-0">
       <li class="mb-1">
-        <a href="ask_list2?page=1"><button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">내 문의내역</button></a>
+        <a href="ask_list2?page=1"><button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">문의 내역</button></a>
       </li>
       <li class="mb-1">
         <a href="ask_insert.jsp"><button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">문의하기</button></a>
@@ -262,14 +262,14 @@
 
 
 
-
+<% if(session.getAttribute("loggedInUser") != null && session.getAttribute("loggedInUser").equals("admin")) { %>
 
 	
 <div class="container mt-5">
 <table class="table">
   <thead>
     <tr>
-      <th scope="col">번호</th>
+      <th scope="col">상태</th>
       <th scope="col">분류</th>
       <th scope="col">제목</th>
       <th scope="col">작성자</th>
@@ -279,7 +279,7 @@
   </thead>
   <tbody class="table-group-divider">
     <tr>
-      <th scope="row"><%=vo2.getNotice_id() %></th>
+      <th scope="row"><%=vo2.getNotice_status() %></th>
       <td><%=vo2.getNotice_category() %></td>
       <td><%=vo2.getNotice_title() %></td>
       <td><%=vo2.getMember_id() %></td>
@@ -309,17 +309,70 @@
   
 </div>
 
+
+
 <div class="d-grid gap-1 d-md-flex justify-content-md-end">
   
   <a href="notice_update?notice_id=<%=vo2.getNotice_id() %>"><button class="btn btn-primary" type="button">수정</button></a>
-  <a href="notice_delete?notice_id=<%=vo2.getNotice_id() %>"><button class="btn btn-primary" type="button">삭제</button></a>
-</div>
+  <a href="notice_delete?notice_id=<%=vo2.getNotice_id() %>"><button class="btn btn-primary" type="button" onclick="return confirm('정말 삭제하시겠습니까?')">삭제</button></a>
+  
 
-
-
-
+ </div>
 
 </div> 
+<% }else{ %>
+	
+	<div class="container mt-5">
+	<table class="table">
+	  <thead>
+	    <tr>
+	      <th scope="col">상태</th>
+	      <th scope="col">분류</th>
+	      <th scope="col">제목</th>
+	      <th scope="col">작성자</th>
+	      <th scope="col">작성날짜</th>
+	      
+	    </tr>
+	  </thead>
+	  <tbody class="table-group-divider">
+	    <tr>
+	      <th scope="row"><%=vo2.getNotice_status() %></th>
+	      <td><%=vo2.getNotice_category() %></td>
+	      <td><%=vo2.getNotice_title() %></td>
+	      <td><%=vo2.getMember_id() %></td>
+	      <td><%=vo2.getNotice_date() %></td>
+	      
+	      	
+	    </tr>
+	  
+	  </tbody>
+	</table>
+	<div>
+	  <div class="position-relative p-5 text-center text-muted bg-body border border-dashed rounded-5">
+	    
+	   
+	    
+	    <p class="col-lg-6 mx-auto mt-5 mb-5">
+	      <%=vo2.getNotice_content() %>
+	    </p>
+	    
+	  </div>
+	  
+	</div>
+
+	<div class="d-grid gap-2 col-2 mx-auto mt-3">
+	  
+	  <a href="notice_list2?page=1"><button class="btn btn-primary" type="button">목록으로</button></a>
+	  
+	</div>
+
+
+
+	
+
+	</div> 	
+   	
+<%} %>
 
 
 

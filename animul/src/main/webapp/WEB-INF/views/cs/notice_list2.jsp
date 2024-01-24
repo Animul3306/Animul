@@ -243,7 +243,7 @@
     
     <ul class="list-unstyled ps-0">
       <li class="mb-1">
-        <a href="ask_list2?page=1"><button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">내 문의내역</button></a>
+        <a href="ask_list2?page=1"><button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">문의 내역</button></a>
       </li>
       <li class="mb-1">
         <a href="ask_insert.jsp"><button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">문의하기</button></a>
@@ -251,6 +251,7 @@
     </ul>  
   
   </div>
+<% if(session.getAttribute("loggedInUser") != null && session.getAttribute("loggedInUser").equals("admin") ) { %>
 <div class="container">	
     <table class="table mt-3">
       <thead>
@@ -310,7 +311,65 @@
   </div> 
  
  </div> 
+ <% }else{ %>
+	<div class="container">	
+    <table class="table mt-3">
+      <thead>
+        <tr>
+         
+         <th scope="col">상태</th>
+         <th scope="col">분류</th>
+         <th scope="col">제목</th>
+         <th scope="col">작성자</th>
+         <th scope="col">작성날짜</th>
+         
+        </tr>
+      </thead>
+  
+      <tbody class="table-group-divider">
+       <c:forEach items="${list}" var="vo">
+        <tr>
+         <th scope="row">${vo.notice_status}</th>
+         <td>${vo.notice_category}</td>
+         <td><a href="notice_one?notice_id=${vo.notice_id}">${vo.notice_title}</a></td>
+         <td>${vo.member_id}</td>
+		 <td>${vo.notice_date}</td>	        
+		      
+        
+        </tr>
+	   </c:forEach>
+      </tbody>
+    </table>
+ 	
+ 	
+ <%
+	int pages = (int)request.getAttribute("pages");
+	for(int p = 1; p <= pages; p++){
+%>
+	<div class="btn-group" role="group" aria-label="Second group">
+    <a href="notice_list2?page=<%= p %>">
+    <button type="button" class="btn btn-secondary"><%= p %></button>
+    </a>
+  </div>
+	
+<%		
+	}
+%>
  
+<div class="btn-group dropend" role="group">
+    <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+      진행중/ 예정
+    </button>
+    <ul class="dropdown-menu">
+      <li><a class="dropdown-item" href="notice_list">진행중</a></li>
+      <li><a class="dropdown-item" href="notice_list1">예정</a></li>
+    </ul>
+  </div> 
+ 
+ </div> 
+		
+   	
+<%} %>
  
   	
  </main>
