@@ -243,7 +243,7 @@
     
     <ul class="list-unstyled ps-0">
       <li class="mb-1">
-        <a href="ask_list2?page=1"><button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">내 문의내역</button></a>
+        <a href="ask_list2?page=1"><button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">문의 내역</button></a>
       </li>
       <li class="mb-1">
         <a href="ask_insert.jsp"><button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">문의하기</button></a>
@@ -251,6 +251,8 @@
     </ul>  
   
   </div>
+  
+
 <div class="container">	
     <table class="table mt-3">
       <thead>
@@ -282,11 +284,7 @@
       </tbody>
     </table>
  	
- 	<div class="d-grid gap-2 col-2 mx-auto mt-4 mb-4">
-  
-      <a href="notice_insert.jsp"><button class="btn btn-primary" type="button">등록하기</button></a>
-  
-    </div> 
+ 	 
  <a href="notice_list2?page=1"><button type="button" class="btn btn-secondary">전체 공지</button></a>
  <div class="btn-group dropend" role="group">
     <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
@@ -299,7 +297,8 @@
   </div> 
  
  </div> 
- 
+
+
  
   	
  </main>
