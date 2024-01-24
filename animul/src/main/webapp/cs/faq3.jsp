@@ -107,6 +107,9 @@
       .bd-mode-toggle .dropdown-menu .active .bi {
         display: block !important;
       }
+      
+       .accordion-body{
+      width:1100px;
     </style>
 
     
@@ -230,7 +233,7 @@
     
     <ul class="list-unstyled ps-0">
       <li class="mb-1">
-        <a href="ask_list2?page=1"><button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">내 문의내역</button></a>
+        <a href="ask_list2?page=1"><button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">문의 내역</button></a>
       </li>
       <li class="mb-1">
         <a href="ask_insert.jsp"><button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">문의하기</button></a>
@@ -243,144 +246,41 @@
     <div class="accordion-item">
       <h2 class="accordion-header">
         <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-          질병 검색 관련 자주 묻는 질문 1
+          질병 검색시 주의할 점은 무엇인가요?
         </button>
       </h2>
       <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
         <div class="accordion-body">
-          <strong>배송조회.</strong> 연휴로 인하여 배송 관련 업무가 한시적으로 변경되오니 이용에 참고 부탁드립니다. <br> 
+         
           <br>
-          <br>
-          <br>
-          
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
+          질병 검색은 내 반려동물의 대략적인 건강상태를 체크하기 위해 만든 것입니다.<br>
+          전문적인 상담은 내원하여 수의사에게 맡기시길 바랍니다.
           <br> 
           <br>
           <br>
-          - FAQ로 부족한 부분은 챗봇이나 1:1문의로 해결해드립니다.
+          <br>
+          <br>
+          - FAQ로 부족한 부분은 1:1문의로 해결해드립니다.
           
           <br>
-          <div class="row mt-3">
-            <div class="col-sm-6 mb-3 mb-sm-0">
-              <div class="card">
-                <div class="card-body">
-                  
-                  <p class="card-text">
-                    챗봇 상담: 24시간 <br>
-                    챗봇으로 해결되지 않은 문의는 1:1문의로 남겨주세요.</p>
-                  <a href="#" class="btn btn-primary">챗봇</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-6">
-              <div class="card">
-                <div class="card-body">
-                  
-                  <p class="card-text">
-                    사진 첨부가 필요하거나 자세한 문의 사항은 1:1문의를 남겨주세요.
-                  </p>
-                  <a href="ask_insert.jsp" class="btn btn-primary">1:1문의</a>
-                </div>
-              </div>
-            </div>
-          </div>  
-        </div>
-      </div>
-    </div>
-    <div class="accordion-item">
-      <h2 class="accordion-header">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-          질병 검색 관련 자주 묻는 질문 2
-        </button>
-      </h2>
-      <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-        <div class="accordion-body">
-          <strong>배송조회.</strong> 연휴로 인하여 배송 관련 업무가 한시적으로 변경되오니 이용에 참고 부탁드립니다. <br> 
+          <br>
+          
+        <div class="card">
             
-
-          <br>
-          <br>
-          - FAQ로 부족한 부분은 챗봇이나 1:1문의로 해결해드립니다.
-          
-          <br>
-          <div class="row mt-3">
-            <div class="col-sm-6 mb-3 mb-sm-0">
-              <div class="card">
-                <div class="card-body">
-                  
-                  <p class="card-text">
-                    챗봇 상담:24시간 <br>
-                    챗봇으로 해결되지 않은 문의는 1:1문의로 남겨주세요.</p>
-                  <a href="#" class="btn btn-primary">챗봇</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-6">
-              <div class="card">
-                <div class="card-body">
-                  
-                  <p class="card-text">
-                    사진 첨부가 필요하거나 자세한 문의 사항은 1:1문의를 남겨주세요.
-                  </p>
-                  <a href="ask_insert.jsp" class="btn btn-primary">1:1문의</a>
-                </div>
-              </div>
-            </div>
-          </div>  
+              <div class="card-body">
+             
+             <p class="card-text">사진 첨부가 필요하거나 자세한 문의 사항은 1:1문의를 남겨주세요.</p>
+             <a href="ask_insert.jsp" class="btn btn-primary">1:1 문의</a>
+             </div>
+            </div> 
         </div>
       </div>
     </div>
-    <div class="accordion-item">
-      <h2 class="accordion-header">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-          질병 검색 관련 자주 묻는 질문 3
-        </button>
-      </h2>
-      <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-        <div class="accordion-body">
-          
-          <strong>배송조회.</strong> 연휴로 인하여 배송 관련 업무가 한시적으로 변경되오니 이용에 참고 부탁드립니다. <br> 
-            
-
-          <br>
-          <br>
-          - FAQ로 부족한 부분은 챗봇이나 1:1문의로 해결해드립니다.
-         
-        
-          <div class="row mt-3">
-            <div class="col-sm-6 mb-3 mb-sm-0">
-              <div class="card">
-                <div class="card-body">
-                  
-                  <p class="card-text">
-                    챗봇 상담:24시간 <br>
-                    챗봇으로 해결되지 않은 문의는 1:1문의로 남겨주세요.</p>
-                  <a href="#" class="btn btn-primary">챗봇</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-6">
-              <div class="card">
-                <div class="card-body">
-                  
-                  <p class="card-text">
-                    사진 첨부가 필요하거나 자세한 문의 사항은 1:1문의를 남겨주세요.
-                  </p>
-                  <a href="ask_insert.jsp" class="btn btn-primary">1:1문의</a>
-                </div>
-              </div>
-            </div>
-          </div>  
-        
-        </div>
-      </div>
-    </div>
+   
+   	
+   	
+   	
+   
   </div> 
 
   

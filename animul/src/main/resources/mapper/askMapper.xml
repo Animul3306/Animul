@@ -20,7 +20,7 @@
 		update animul.ask 
 		set ask_title = #{ask_title}, 
 		    ask_content = #{ask_content},
-		    ask_category = #{ask_category}  
+		    ask_category = #{ask_category}
 		where ask_id = #{ask_id}
   </update>
   

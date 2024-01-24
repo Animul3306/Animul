@@ -280,7 +280,7 @@
 				<li class="mb-1"><a href="ask_list2?page=1"><button
 							class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
 							data-bs-toggle="collapse" data-bs-target="#home-collapse"
-							aria-expanded="true">내 문의내역</button></a></li>
+							aria-expanded="true">문의 내역</button></a></li>
 				<li class="mb-1"><a href="ask_insert.jsp"><button
 							class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
 							data-bs-toggle="collapse" data-bs-target="#home-collapse"
@@ -288,9 +288,10 @@
 			</ul>
 
 		</div>
-
+				
+<% if(session.getAttribute("loggedInUser") != null && session.getAttribute("loggedInUser").equals("admin") ) { %>
 		<div class="notice_wrap">
-			<form action="notice_insert">
+			<form action="notice_insert" name="frm" method="post" onsubmit="return chkSubmit()">
 				<div class="mx-auto p-2" style="width: 900px;">
 					<p class="fs-2">공지사항 등록</p>
 				</div>
@@ -308,9 +309,9 @@
 					</div>
 					
 					<div class="mb-3">
-						<input name="member_id" type="text" class="form-control"
+						<input name="member_id" type="hidden" class="form-control"
 							id="exampleFormControlInput1" placeholder="작성자"
-							value="${member_id}">
+							value="<%= session.getAttribute("loggedInUser") %>">
 					</div>
 					<div class="mb-3">
 						<input name="notice_title" type="text" class="form-control"
@@ -343,10 +344,27 @@
 
 		</div>
 
-
-
-
-
+	<script>
+		function chkSubmit() {
+			frm = document.forms['frm'];
+			let title = frm['notice_title'].value.trim();
+			let content = frm['notice_content'].value.trim();
+			let category = frm['notice_category'].value.trim();
+			let status = frm['notice_status'].value.trim();
+			
+			if (title == '' || content == '' || category=='분류를 선택해주세요.'||status=='상태를 선택해주세요.') {
+				alert("내용 작성 및 상태/분류를 선택해주세요.");
+				
+				return false;
+			}
+			return true;
+		}
+	</script>
+<% }else{
+	
+	response.sendRedirect("/animul/member/login.jsp"); %>	
+   	
+<%} %>
 	</main>
 	
 	<script

@@ -107,6 +107,11 @@
       .bd-mode-toggle .dropdown-menu .active .bi {
         display: block !important;
       }
+      
+      .accordion-body{
+      width:1100px;
+      }
+      
     </style>
 
     
@@ -230,7 +235,7 @@
     
     <ul class="list-unstyled ps-0">
       <li class="mb-1">
-        <a href="ask_list2?page=1"><button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">내 문의내역</button></a>
+        <a href="ask_list2?page=1"><button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">문의 내역</button></a>
       </li>
       <li class="mb-1">
         <a href="ask_insert.jsp"><button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">문의하기</button></a>
@@ -238,8 +243,76 @@
     </ul>  
   
   </div>
+<div class="accordion mt-4" id="accordionExample">
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          Animul은 어떤 서비스를 제공하나요?
+        </button>
+      </h2>
+      <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+          
+          
+           <br>
+         
+          
+          <strong>진료비 비교</strong> 플랫폼을 제공합니다. 내 영수증을 입력하여 가격비교도 할 수 있습니다.
+           <br>
+           <br>
+           <br>       
+          
+          <strong>주변시설 찾기</strong>를 통해 주변의 동물병원, 펫샵, 동물보호센터 등을 검색할 수 있습니다.
+		  <br>
+		  <br>
+		  <br>                  
+          <strong>질병조회</strong>를 통해 간단한 증상을 확인할 수 있고 펫보험 정보를 제공합니다.
+          <br>
+          <br>
+          <br>
+          <strong>커뮤니티</strong>를 통해 유기동물 정보를 확인할 수 있고 주변 사람과 산책메이트가 될 수 있습니다. 
+          
+          <br>
+          <br>
+          <br>
+   <div class="row mt-3">
+            
+            <div class="col-sm-6">
+              <div class="card">
+                <div class="card-body">
+                  
+                  <p class="card-text">
+                    사진 첨부가 필요하거나 자세한 문의 사항은 1:1문의를 남겨주세요.
+                  </p>
+                  <br>
+                  <a href="ask_insert.jsp" class="btn btn-primary">1:1 문의</a>
+                </div>
+              </div>
+            </div>
+            
+            <div class="col-sm-6 mb-3 mb-sm-0">
+              <div class="card">
+                <div class="card-body">
+                  
+                  <p class="card-text">
+                    공지사항을 통해 안내 및 이벤트를 확인할 수 있습니다.<br>
+                    <br></p>
+                 <a href="notice_list2?page=1" class="btn btn-primary">공지사항</a>
+                </div>
+              </div>
+            </div>
+            
+           
+            
+            
+          </div>  
+        </div>
+      </div>
+    </div>       
+         
+  </div> 
 
-  
+   
  
   
  
