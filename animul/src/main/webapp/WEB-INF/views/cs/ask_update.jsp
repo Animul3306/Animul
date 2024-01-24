@@ -237,7 +237,7 @@
     
     <ul class="list-unstyled ps-0">
       <li class="mb-1">
-        <a href="ask_list2?page=1"><button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">내 문의내역</button></a>
+        <a href="ask_list2?page=1"><button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">문의 내역</button></a>
       </li>
       <li class="mb-1">
         <a href="ask_insert.jsp"><button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">문의하기</button></a>
@@ -245,7 +245,7 @@
     </ul>  
   
   </div>
-
+ 
 
 <div class="ask_update">
 			<form action="ask_update2">
@@ -258,7 +258,7 @@
 					<div class="mb-3">
 						<input name="member_id" type="text" class="form-control"
 							id="exampleFormControlInput1" placeholder="작성자"
-							value="${member_id}">
+							value="${vo2.member_id}">
 					</div>
 					<div class="mb-3">
 						<input name="ask_title" type="text" class="form-control"
@@ -282,7 +282,7 @@
 							id="exampleFormControlTextarea1" rows="7" placeholder="내용입력"></textarea>
 					</div>
 
-
+					
 
 					<div class="d-grid gap-2 d-md-flex justify-content-md-end">
 						<button class="btn btn-primary me-md-2" type="submit">수정</button>
