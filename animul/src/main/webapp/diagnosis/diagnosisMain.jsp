@@ -10,7 +10,7 @@
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/diagnosis/main.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/diagnosis/main2.css" />
 <script type="text/javascript">
 	$(function() {	
 		var swiper = new Swiper(".mySwiper", {
@@ -76,7 +76,10 @@
 <body>
 <div class="btnCon">
 	<button id="b1" class="btn btn-outline-primary" onclick="location.href='./myReceipt.jsp' "> 내 영수증 내역(가격 비교) </button>
-	<button id="b1" class="btn btn-outline-primary" onclick="location.href='./allReceipt.jsp'"> 전체 영수증 내역 </button>
+
+	<% if(String.valueOf(session.getAttribute("loggedInUser")).equals("qpzmal100")) { %>
+			<button id="b2" class="btn btn-outline-primary" onclick="location.href='${pageContext.request.contextPath}/diagnosis/receiptList'"> 전체 영수증 내역 </button>
+	<% } %>
 </div>
 <div class="container mt-3">
 	<form class="d-flex">
@@ -104,5 +107,6 @@
 <div class="rowList">
 		<div class="row w-50" id="diagnosisList"></div>
 </div>
+
 </body>
 </html>
