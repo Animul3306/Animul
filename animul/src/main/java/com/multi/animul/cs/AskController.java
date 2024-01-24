@@ -85,8 +85,9 @@ public class AskController {
 	public void update(AskVO vo, Model model) {
 	    AskVO vo2= service.one(vo);
 		model.addAttribute("vo2", vo2);
-		System.out.println("------------->" + vo2);
+		
 	}	
+	
 	
 	@RequestMapping("cs/ask_update2")
 	public void update2(AskVO vo) {

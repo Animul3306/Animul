@@ -279,7 +279,7 @@
 				<li class="mb-1"><a href="ask_list2?page=1"><button
 							class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
 							data-bs-toggle="collapse" data-bs-target="#home-collapse"
-							aria-expanded="true">내 문의내역</button></a></li>
+							aria-expanded="true">문의 내역</button></a></li>
 				<li class="mb-1"><a href=""><button
 							class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
 							data-bs-toggle="collapse" data-bs-target="#home-collapse"
@@ -288,8 +288,9 @@
 
 		</div>
 
+<% if(session.getAttribute("loggedInUser") != null) { %>
 		<div class="ask_wrap">
-			<form action="ask_insert" id="form" method="post" enctype="multipart/form-data">
+			<form action="ask_insert" name="frm" method="post" enctype="multipart/form-data" onsubmit="return chkSubmit()">
 				<div class="mx-auto p-2" style="width: 900px;">
 					<p class="fs-2">1:1문의 등록</p>
 				</div>
@@ -299,7 +300,7 @@
 					<div class="mb-3">
 						<input name="member_id" type="text" class="form-control"
 							id="exampleFormControlInput1" placeholder="작성자"
-							value="${member_id}">
+							value="<%= session.getAttribute("loggedInUser") %>">
 					</div>
 					<div class="mb-3">
 						<input name="ask_title" type="text" class="form-control"
@@ -336,8 +337,26 @@
 
 		</div>
 
-
-
+	<script>
+		function chkSubmit() {
+			frm = document.forms['frm'];
+			let title = frm['ask_title'].value.trim();
+			let content = frm['ask_content'].value.trim();
+			let category = frm['ask_category'].value.trim();
+			
+			if (title == '' || content == '' || category=='문의할 내용의 분류를 선택해주세요.'  ) {
+				alert("내용 작성 및 분류를 선택해주세요.");
+				
+				return false;
+			}
+			return true;
+		}
+	</script>
+<% }else{
+	
+	response.sendRedirect("/animul/member/login.jsp"); %>	
+   	
+<%}%>
 
 
 	</main>
