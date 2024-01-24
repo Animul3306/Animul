@@ -100,14 +100,14 @@ tr:last-child td:last-child {
 		<label id="centerAddr"></label>
 	</form>
 	</div>
-	
+
 	<div class="leftpadding">	
 	<form action="list2" name="RadioForm">	 
-		<input type="radio" id="radio1" name="radiokeyword" value="동물병원" onclick="checkRadio()" />
+		<input type="radio" id="radio1" name="radiokeyword" value="동물병원" ${centerType1 eq 1 ? "checked" : ""} onclick="checkRadio()" />
 		<label>동물병원</label>
-		<input type="radio" id="radio2" name="radiokeyword" value="반려동물용품" onclick="checkRadio()" />
+		<input type="radio" id="radio2" name="radiokeyword" value="반려동물용품" ${centerType1 eq 2 ? "checked" : ""} onclick="checkRadio()" />
 		<label>펫샾</label>	
-		<input type="radio" id="radio3" name="radiokeyword" value="동물보호" onclick="checkRadio()" disabled />
+		<input type="radio" id="radio3" name="radiokeyword" value="동물보호" ${centerType1 eq 3 ? "checked" : ""} onclick="checkRadio()" disabled />
 		<label>동물보호센터</label>
 				 	
 	</form>
@@ -132,7 +132,7 @@ tr:last-child td:last-child {
  	<form action="list3" method="get">
  		<label> 상호 </label> &ensp;	
 		<input type="text" id="keywordSearch1" name="keywordSearch1">	
-		<input type="hidden" id="centerType2" name="centerType2">			
+		<input type="hidden" id="centerType2" name="centerType2" value="${centerType1}">			
 		<input type="submit" value="검색">
  	</form>	
 	</div>
@@ -145,7 +145,7 @@ tr:last-child td:last-child {
  	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5454a62e5d0c9bb2b98dbfd591e5b4cb&libraries=services"></script>
  	<script type="text/javascript" src="../resources/js/address.js"></script>		
 	<script>
-
+	
 ///////////////////// Tooltip
 	 
 	   let tooltipElem;
@@ -189,7 +189,7 @@ tr:last-child td:last-child {
 	    };
 	 
 	/////////////////////
-
+ 
 	function RegionClass2(s){
 		var inputData = document.getElementById("addressDo2").value;
 		inputData += " ";					 
@@ -213,9 +213,7 @@ tr:last-child td:last-child {
 	    	 document.getElementById('centerType').value = "3";
 	    	 document.getElementById('centerType2').value = "3";	
 	    }
-	    var a= document.getElementById('centerType').value;
-	    var b= document.getElementById('centerType2').value;
- 
+	
 	}
 		 
 	// map 지도
