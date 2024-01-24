@@ -107,6 +107,9 @@
       .bd-mode-toggle .dropdown-menu .active .bi {
         display: block !important;
       }
+      
+    .accordion-body{
+      width:1100px;
     </style>
 
     
@@ -230,7 +233,7 @@
     
     <ul class="list-unstyled ps-0">
       <li class="mb-1">
-        <a href="ask_list2?page=1"><button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">내 문의내역</button></a>
+        <a href="ask_list2?page=1"><button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">문의 내역</button></a>
       </li>
       <li class="mb-1">
         <a href="ask_insert.jsp"><button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">문의하기</button></a>
@@ -243,144 +246,60 @@
     <div class="accordion-item">
       <h2 class="accordion-header">
         <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-          진료비 조회 관련 자주 묻는 질문 1
+          영수증이 잘 인식되지 않습니다.
         </button>
       </h2>
       <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
         <div class="accordion-body">
-          <strong>배송조회.</strong> 연휴로 인하여 배송 관련 업무가 한시적으로 변경되오니 이용에 참고 부탁드립니다. <br> 
-          <br>
-          <br>
-          <br>
-          
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br> 
-          <br>
-          <br>
-          - FAQ로 부족한 부분은 챗봇이나 1:1문의로 해결해드립니다.
-          
-          <br>
-          <div class="row mt-3">
-            <div class="col-sm-6 mb-3 mb-sm-0">
-              <div class="card">
-                <div class="card-body">
-                  
-                  <p class="card-text">
-                    챗봇 상담: 24시간 <br>
-                    챗봇으로 해결되지 않은 문의는 1:1문의로 남겨주세요.</p>
-                  <a href="#" class="btn btn-primary">챗봇</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-6">
-              <div class="card">
-                <div class="card-body">
-                  
-                  <p class="card-text">
-                    사진 첨부가 필요하거나 자세한 문의 사항은 1:1문의를 남겨주세요.
-                  </p>
-                  <a href="ask_insert.jsp" class="btn btn-primary">1:1문의</a>
-                </div>
-              </div>
-            </div>
-          </div>  
-        </div>
-      </div>
-    </div>
-    <div class="accordion-item">
-      <h2 class="accordion-header">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-          진료비 조회 관련 자주 묻는 질문 2
-        </button>
-      </h2>
-      <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-        <div class="accordion-body">
-          <strong>배송조회.</strong> 연휴로 인하여 배송 관련 업무가 한시적으로 변경되오니 이용에 참고 부탁드립니다. <br> 
-            
-
-          <br>
-          <br>
-          - FAQ로 부족한 부분은 챗봇이나 1:1문의로 해결해드립니다.
-          
-          <br>
-          <div class="row mt-3">
-            <div class="col-sm-6 mb-3 mb-sm-0">
-              <div class="card">
-                <div class="card-body">
-                  
-                  <p class="card-text">
-                    챗봇 상담:24시간 <br>
-                    챗봇으로 해결되지 않은 문의는 1:1문의로 남겨주세요.</p>
-                  <a href="#" class="btn btn-primary">챗봇</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-6">
-              <div class="card">
-                <div class="card-body">
-                  
-                  <p class="card-text">
-                    사진 첨부가 필요하거나 자세한 문의 사항은 1:1문의를 남겨주세요.
-                  </p>
-                  <a href="ask_insert.jsp" class="btn btn-primary">1:1문의</a>
-                </div>
-              </div>
-            </div>
-          </div>  
-        </div>
-      </div>
-    </div>
-    <div class="accordion-item">
-      <h2 class="accordion-header">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-          진료비 조회 관련 자주 묻는 질문 3
-        </button>
-      </h2>
-      <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-        <div class="accordion-body">
-          
-          <strong>배송조회.</strong> 연휴로 인하여 배송 관련 업무가 한시적으로 변경되오니 이용에 참고 부탁드립니다. <br> 
-            
-
-          <br>
-          <br>
-          - FAQ로 부족한 부분은 챗봇이나 1:1문의로 해결해드립니다.
          
-        
-          <div class="row mt-3">
-            <div class="col-sm-6 mb-3 mb-sm-0">
-              <div class="card">
-                <div class="card-body">
-                  
-                  <p class="card-text">
-                    챗봇 상담:24시간 <br>
-                    챗봇으로 해결되지 않은 문의는 1:1문의로 남겨주세요.</p>
-                  <a href="#" class="btn btn-primary">챗봇</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-6">
-              <div class="card">
-                <div class="card-body">
-                  
-                  <p class="card-text">
-                    사진 첨부가 필요하거나 자세한 문의 사항은 1:1문의를 남겨주세요.
-                  </p>
-                  <a href="ask_insert.jsp" class="btn btn-primary">1:1문의</a>
-                </div>
-              </div>
-            </div>
-          </div>  
-        
+            <br>
+            <br>
+          
+          영수증 인식은 OCR 기술을 통해 읽은 문자와 숫자를 바로 보여주고 있습니다.<br>
+          이 과정에서 다양한 문제로 영수증 인식이 실패될 수 있습니다.<br>
+          <br>
+          
+           1. 영수증 품질이 좋지 못한 경우 영수증 인식이 잘 되지 않습니다. 올바른 영수증 촬영 방법을 참고하세요.<br>
+           
+           <br>
+            < 올바른 영수증 촬영 방법><br>
+            - 영수증을 펼친 후, 영수증 전체가 잘 나오도록 정면에서 촬영<br>
+            - 배경에 다른 물체나 글씨가 없도록 촬영<br>
+            - 필수 정보(업체명, 전화번호, 사업자등록번호, 결제 일시, 승인번호 등)가 잘 나오도록 촬영<br>
+            <br>
+            <br>
+            <br>
+           
+           2. 직접 방문한 장소의 지류(종이), 전자영수증으로만 인증 가능합니다.<br>
+            <br>
+            
+           아래 유형의 영수증은 제출이 제한되며, 제출하더라도 정상 영수증으로 판단하지 않습니다.<br>
+		   - 수기 영수증<br>
+           - 지역화폐 이용내역<br>
+           - 현금영수증<br>
+			
+			<br>
+            <br>
+            <br>
+			<br>
+
+​
+          - FAQ로 부족한 부분은 1:1문의로 해결해드립니다.
+          
+          <br>
+          <br>
+          <div class="card">
+            
+              <div class="card-body">
+             
+             <p class="card-text">사진 첨부가 필요하거나 자세한 문의 사항은 1:1문의를 남겨주세요.</p>
+             <a href="ask_insert.jsp" class="btn btn-primary">1:1 문의</a>
+             </div>
+            </div>  
         </div>
       </div>
     </div>
+    
   </div> 
 
   
