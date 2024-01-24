@@ -107,6 +107,13 @@
       .bd-mode-toggle .dropdown-menu .active .bi {
         display: block !important;
       }
+      
+      .accordion-body{
+      width:1100px;
+      }
+     
+      
+      
     </style>
 
     
@@ -230,7 +237,7 @@
     
     <ul class="list-unstyled ps-0">
       <li class="mb-1">
-        <a href="ask_list2?page=1"><button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">내 문의내역</button></a>
+        <a href="ask_list2?page=1"><button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">문의 내역</button></a>
       </li>
       <li class="mb-1">
         <a href="ask_insert.jsp"><button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">문의하기</button></a>
@@ -243,144 +250,50 @@
     <div class="accordion-item">
       <h2 class="accordion-header">
         <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-          회원정보 관련 자주 묻는 질문 1
+          이메일 인증 시, 인증메일이 오지 않습니다.
         </button>
       </h2>
       <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
         <div class="accordion-body">
-          <strong>아이디 찾기</strong>  <br> 
+		 
+          <br>         
+          다음과 같은 이유로 인증메일이 수신되지 않을 수 있으니, 확인 부탁드립니다. <br>
           <br>
           <br>
+          1. 인증 메일 발송 후 도착까지 시간이 걸릴 수 있습니다.<br>
+          : 사용자 환경에 따라 인증 메일 발송 시간이 상이하며, 이메일 수신이 늦어질 수 있습니다. <br>
+            여러번 입력하여 인증번호가 여러개인 경우, 마지막에 도착한 인증번호를 입력하여야 정상적으로 인증됩니다.<br>
           <br>
-          
+          2. 스팸 및 프로모션함을 확인해주세요. <br>
+          : 인증메일이 스팸 및 프로모션함으로 수신될 수 있습니다. 해당 메일함을 확인해주세요. <br>
           <br>
-          <br>
-          <br>
-          <br>
+          3. 수신함 용량을 확인해주세요.<br>
+          : 수신함이 꽉 찬 경우 메일이 수신되지 않을 수 있습니다. 메일함의 용량을 확인해주세요.<br>
           <br>
           <br>
           <br>
           <br> 
           <br>
           <br>
-          - FAQ로 부족한 부분은 챗봇이나 1:1문의로 해결해드립니다.
+          - FAQ로 부족한 부분은 1:1문의로 해결해드립니다.
           
-          <br>
-          <div class="row mt-3">
-            <div class="col-sm-6 mb-3 mb-sm-0">
-              <div class="card">
-                <div class="card-body">
-                  
-                  <p class="card-text">
-                    챗봇 상담: 24시간 <br>
-                    챗봇으로 해결되지 않은 문의는 1:1문의로 남겨주세요.</p>
-                  <button class="btn btn-primary" onclick="window.open('chatBOT.jsp','챗봇','width=700,height=700,location=no,status=no,scrollbars=yes');">챗봇</button>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-6">
-              <div class="card">
-                <div class="card-body">
-                  
-                  <p class="card-text">
-                    사진 첨부가 필요하거나 자세한 문의 사항은 1:1문의를 남겨주세요.
-                  </p>
-                  <a href="ask_insert.jsp" class="btn btn-primary">1:1문의</a>
-                </div>
-              </div>
-            </div>
-          </div>  
-        </div>
-      </div>
-    </div>
-    <div class="accordion-item">
-      <h2 class="accordion-header">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-          회원정보 관련 자주 묻는 질문 2
-        </button>
-      </h2>
-      <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-        <div class="accordion-body">
-          <strong>배송조회.</strong> 연휴로 인하여 배송 관련 업무가 한시적으로 변경되오니 이용에 참고 부탁드립니다. <br> 
+           <br>
+           <br>
+           <div class="card">
             
-
-          <br>
-          <br>
-          - FAQ로 부족한 부분은 챗봇이나 1:1문의로 해결해드립니다.
-          
-          <br>
-          <div class="row mt-3">
-            <div class="col-sm-6 mb-3 mb-sm-0">
-              <div class="card">
-                <div class="card-body">
-                  
-                  <p class="card-text">
-                    챗봇 상담:24시간 <br>
-                    챗봇으로 해결되지 않은 문의는 1:1문의로 남겨주세요.</p>
-                  <a href="#" class="btn btn-primary">챗봇</a>
-                </div>
-              </div>
+              <div class="card-body">
+             
+             <p class="card-text">사진 첨부가 필요하거나 자세한 문의 사항은 1:1문의를 남겨주세요.</p>
+             <a href="ask_insert.jsp" class="btn btn-primary">1:1 문의</a>
+             </div>
             </div>
-            <div class="col-sm-6">
-              <div class="card">
-                <div class="card-body">
-                  
-                  <p class="card-text">
-                    사진 첨부가 필요하거나 자세한 문의 사항은 1:1문의를 남겨주세요.
-                  </p>
-                  <a href="ask_insert.jsp" class="btn btn-primary">1:1문의</a>
-                </div>
-              </div>
-            </div>
-          </div>  
-        </div>
-      </div>
-    </div>
-    <div class="accordion-item">
-      <h2 class="accordion-header">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-          회원정보 관련 자주 묻는 질문 3
-        </button>
-      </h2>
-      <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-        <div class="accordion-body">
-          
-          <strong>배송조회.</strong> 연휴로 인하여 배송 관련 업무가 한시적으로 변경되오니 이용에 참고 부탁드립니다. <br> 
-            
-
-          <br>
-          <br>
-          - FAQ로 부족한 부분은 챗봇이나 1:1문의로 해결해드립니다.
          
-        
-          <div class="row mt-3">
-            <div class="col-sm-6 mb-3 mb-sm-0">
-              <div class="card">
-                <div class="card-body">
-                  
-                  <p class="card-text">
-                    챗봇 상담:24시간 <br>
-                    챗봇으로 해결되지 않은 문의는 1:1문의로 남겨주세요.</p>
-                  <a href="#" class="btn btn-primary">챗봇</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-6">
-              <div class="card">
-                <div class="card-body">
-                  
-                  <p class="card-text">
-                    사진 첨부가 필요하거나 자세한 문의 사항은 1:1문의를 남겨주세요.
-                  </p>
-                  <a href="ask_insert.jsp" class="btn btn-primary">1:1문의</a>
-                </div>
-              </div>
-            </div>
-          </div>  
-        
         </div>
       </div>
     </div>
+    
+   
+ 
   </div> 
 
   
