@@ -9,14 +9,27 @@
 			#{mypet_owner},
 			#{mypet_name},
 			#{mypet_category},
-			#{mypet_variery},
+			#{mypet_variety},
 			#{mypet_gender},
-			#{mypet_image},
 			#{mypet_weight},
 			#{mypet_birthday},
 			#{is_neutralization}			
 		)
 	</insert>
+
+	<update id="update" parameterType="mypetVO">
+		update mypet
+		set
+			mypet_name=#{mypet_name},
+			mypet_category=#{mypet_category},
+			mypet_variety=#{mypet_variety},
+			mypet_gender=#{mypet_gender},
+			mypet_weight=#{mypet_weight},
+			mypet_birthday=#{mypet_birthday},
+			mypet_neutralization=#{is_neutralization}		
+		where
+			mypet_id=#{mypet_id}
+	</update>
 	
 	<select id="all" resultType="mypetVO">
 		select * from member
@@ -28,5 +41,13 @@
 	
 	<select id="count" resultType="Integer">
 		select count(*) from member
+	</select>
+
+	<select id="simple_inquiry" parameterType="mypetVO" resultType="mypetVO">
+		select mypet_id, mypet_name, mypet_birthday, mypet_category, mypet_variety, mypet_gender from mypet where mypet_owner=#{mypet_owner}
+	</select>
+
+	<select id="inquiry" parameterType="mypetVO" resultType="mypetVO">
+		select * from mypet where mypet_owner=#{mypet_owner} and mypet_id=#{mypet_id}
 	</select>
 </mapper>

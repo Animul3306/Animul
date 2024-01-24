@@ -10,12 +10,12 @@ public class MypetService {
 	@Autowired
 	MypetDAO dao;
 	
-	public void insert(MypetVO vo) {
-		dao.insert(vo);
+	public int insert(MypetVO vo) {
+		return dao.insert(vo);
 	}
 	
-	public void delete(MypetVO vo) {
-		dao.delete(vo);
+	public int update(MypetVO vo) {
+		return dao.update(vo);
 	}
 	
 	public int count() {
@@ -24,5 +24,13 @@ public class MypetService {
 	
 	public List<MypetVO> all() {
 		return dao.all();
+	}
+
+	public List<MypetVO> simple_inquiry(MypetVO vo) {
+		return dao.simple_inquiry(vo);
+	}
+
+	public MypetVO inquiry(MypetVO vo) {
+		return dao.inquiry(vo);
 	}
 }
