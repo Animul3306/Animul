@@ -30,7 +30,7 @@
 					<li><a href="/animul/bbs/freeList">자유 토크</a></li>
 					<li><a href="/animul/bbs/localList">산책 메이트ㆍ멍냥이 찾기</a></li>
 					<li><a href="/animul/bbs/protectList">유기동물보호센터 보호중</a></li>
-					<li><a href="/animul/bbs/shelterList">유기동물보호센터 보호소 </a></li>
+					
 				</ul>
 				<div style="padding-top: 20px;"></div>
 			</div>
