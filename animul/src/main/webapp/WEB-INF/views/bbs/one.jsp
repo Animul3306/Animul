@@ -31,7 +31,7 @@
 				<div style="padding-top: 20px;"></div>
 			</div>
 
-			<div id="contents">
+			<div id="contents" >
 				<div class="pt-titarea">
 					<h3 class="tit">자유 토크</h3>
 					<p>마이펫 자랑, 고민 등 자유롭게 작성하는 게시판 입니다!!</p>
@@ -80,18 +80,21 @@
         </div>
 	
 	<div class="bottom-lst">
-		<div  id="comment-list">
-	    <table>
-	        <tr>
-	            <th>작성자</th>
-	            <th>내용</th>
-	            <th>작성시간</th>
-	            <th></th>
-	            <th></th>
-
-	        </tr>
+		<div  id="comment-list"   >
+		 
+		    <table>
+		        <tr>
+		            <th>작성자</th>
+		            <th>내용</th>
+		            <th>작성시간</th>
+		            <th></th>
+		            <th></th>
+	
+		        </tr>
+	        
 	        <c:forEach items="${replyList}" var="replyVO">
 	            <tr>
+	         
 	                <td><%= session.getAttribute("loggedInUser") %></td>
 	                <td>${replyVO.reply_content}</td>
 	                <td>${replyVO.reply_date} </td>
@@ -109,12 +112,14 @@
 		
 		
             <div class="btn-box">
+            <div class="item" >
         <c:if test="${sessionScope.loggedInUser ne null and vo.member_id ne null and sessionScope.loggedInUser eq vo.member_id}">
 		    <a href="freeUpdate?bbs_id=${vo.bbs_id}" class="btn btn-blue wide">수정</a>
 		    <a href="delete?bbs_id=${vo.bbs_id}" style="cursor:pointer" class="btn btn-red wide" id="delete">삭제</a>
 		</c:if>
        
                		<a href="freeList" class="btn btn-gray wide">목록</a>
+            </div>
             </div>
             </div><!-- /wid1300 -->
         </div>

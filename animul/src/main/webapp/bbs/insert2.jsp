@@ -32,9 +32,6 @@
 					<li><a
 						href="https://www.animal.go.kr/front/awtis/protection/protectionList.do?menuNo=1000000060">유기동물보호센터
 							보호중</a></li>
-					<li><a
-						href="https://www.1365.go.kr/vols/search.do?query=%EC%9C%A0%EA%B8%B0">유기동물보호센터
-							봉사관련</a></li>
 				</ul>
 				<div style="padding-top: 20px;"></div>
 			</div>
@@ -84,7 +81,7 @@
 										}
 								});
 							</script>
-							<%= request.getRealPath("/") %>
+							
 							</div>
 						<div class="btn-box">
 						<button type="submit" class="btn btn-blue wide">글쓰기</button>
