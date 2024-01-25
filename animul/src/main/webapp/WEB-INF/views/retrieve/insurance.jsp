@@ -46,11 +46,16 @@ if (list != null) {//보험회 클릭시
 }
 %>
 <body>
-	<table>
+	<table align="center">
 	<tr><th>
 		<a href="insurance_select?insurance_company=KB">KB다이렉트</a></th>
 		<th>
 		<a href="insurance_select?insurance_company=hyundai">현대해상</a></th>
+		<th>
+		<a href="insurance_select?insurance_company=Meritz">Meritz</a></th>
+		<th>
+		<a href="insurance_select?insurance_company=Samsung">삼성화재</a></th>
+		
 		</tr>
 	</table>
 	<h3 align= "right"><a href="retrieve.jsp">돌아가기 </a>

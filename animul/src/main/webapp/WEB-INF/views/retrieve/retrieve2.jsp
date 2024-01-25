@@ -70,6 +70,7 @@ if (list != null) {
 <%
 	String result1 = "";
 String result2 = "";
+String result3 = "";
 
 for (SymptomVO bag : list) {
 
@@ -79,6 +80,8 @@ for (SymptomVO bag : list) {
 
 	} else if (region_id == 2) { //"코 이상"
 		result2 = result2 + "<tr><td><a href='retrieveDetail?symptom_id=" + bag.getSymptom_id() +"'>" + bag.getSymptom_text() + "</a></tr></td>";
+	} else if (region_id == 3) { //"다리 이상"
+		result3 = result3 + "<tr><td><a href='retrieveDetail?symptom_id=" + bag.getSymptom_id() +"'>" + bag.getSymptom_text() + "</a></tr></td>";
 	}
 }
 %>
@@ -96,6 +99,12 @@ for (SymptomVO bag : list) {
 		코이상</h2>
 		<table border="1" width ="200"  >
 			<%=result2%>
+		</table>
+	</div>
+	<div><h2>
+		다리이상</h2>
+		<table border="1" width ="200"  >
+			<%=result3%>
 		</table>
 	</div>
 

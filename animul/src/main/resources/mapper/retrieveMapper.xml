@@ -25,5 +25,4 @@
 	<select id="list1" resultType="symptomVO">
 		select symptom_id,symptom_text, region_id, region_text from symptom
 	</select>
-
 </mapper>

@@ -17,6 +17,21 @@
 }
 </style>
 <title>Insert title here</title>
+<script>
+	function showSlides(n) {
+		var currentPage = location.href;
+		var index = currentPage.indexOf("page=");
+
+		if (index != -1) {
+			var page = parseInt(currentPage.substring(index + 5,
+					currentPage.length));
+
+			location.href = "retrieveDetail?symptom_id=?page=" + (page + n);
+		} else if (n != -1) {
+			location.href = "retrieveDetail?symptom_id=" + (n + 1);
+		}
+	}
+</script>
 </head>
 <%
 	List<RetrieveVO> list = (List<RetrieveVO>) request.getAttribute("list");
@@ -33,8 +48,8 @@ if (list != null) {
 	%>
 
 
-	<div style="border: 1px solid gold; float: left; width: 33%;" class="box">
-
+	<!-- <div style="border: 1px solid gold; float: left; width: 25%;" class="box"> -->
+	<div style="display: inline-block" " class="box">
 		<h2><%=bag.getResult_id()%>
 			<%=bag.getResult()%></h2>
 		<br>
@@ -42,20 +57,23 @@ if (list != null) {
 		<h2>증상 특징</h2>
 		<br>
 		<%=bag.getResult_text()%>
-</div>
-
-	<div style="border: 1px solid gold; float: left; width: 33%;">
-	 <img src="${pageContext.request.contextPath}/resources/img/retrieve/<%=bag.getImg()%>" width ="400"/>
 	</div>
+
+	<!-- <div style="border: 1px solid gold; float: left; width: 30%;"> -->
+	 
+	<div style="display: inline-block">
+		   <img
+			src="${pageContext.request.contextPath}/resources/img/retrieve/<%=bag.getImg()%>" />
+	</div>
+
+	    
+	      
+		<%
+ 	}
+ %>
+		<%
+			}
+		%>
 	
-	<%
-		}
-	%>
-
-	<%
-		}
-	%>
-
-
 </body>
 </html>
