@@ -11,7 +11,35 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
+<script>
+$(function() {	
+	var table = document.getElementById('myListTable');
+    var rowList = table.rows;
 
+    // Attach click event to each row
+    for (var i = 1; i < rowList.length; i++) {
+        // Use a closure to capture the value of i
+        (function(index) {
+            $("#myListTable tr").eq(index).on("click", function () {
+                //console.log(rowList[index].cells[0].textContent);
+                $.ajax({
+                    url: "${pageContext.request.contextPath}/diagnosis/receiptItemList",
+                    type: "post",
+                    data: {
+                    	receipt_item_receiptid: rowList[index].cells[0].textContent,
+                    	receipt_address: rowList[index].cells[3].textContent
+                    },
+                    success: function (list) {
+                    	$('#resultDiv2').html("<span style='font-weight: bold; font-size: 1.5em;'>병원명: " + rowList[index].cells[2].textContent + "</span>");
+                    	$('#resultDiv2').append(list)
+                        console.log(list);
+                    }//success
+                })//ajax    
+            });
+        })(i);
+    }   
+});
+</script>
 <style>
 .row {
     margin: 0px 100px;
@@ -23,9 +51,10 @@
 </head>
 <body>
 <div class="container mt-3">
+	<div class="row mt-3" id="resultDiv2"></div>
 	<div class="row" id="resultDiv">
 		<div  style="font-weight: bold; font-size: 1.5em" >전체 영수증 리스트</div>
-		<table class="table table-bordered">
+		<table id="myListTable" class="table table-hover">
 			<tr>
 		        <td>번호</td>
 				<td>병원명</td>
@@ -36,6 +65,7 @@
 			</tr>
 			<c:forEach var="x" items="${receiptResult}"  varStatus="status">
 		        <tr>
+		        	<td style="display:none;">${x.receipt_id}</td>
 		        	<td>${status.count}</td>
 		        	<td>${x.receipt_hospitalname}</td>
 					<td>${x.receipt_address}</td>

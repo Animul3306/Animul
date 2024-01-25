@@ -7,6 +7,7 @@ public class  ApiKey {
     private String apiKey;
     private String apiSecret;
     private String kakaoApi;
+    private String adminId;
 
     public void readApiKey() {
         try (InputStream input =  ApiKey.class.getClassLoader().getResourceAsStream("db.properties")) {
@@ -22,6 +23,7 @@ public class  ApiKey {
             apiKey = prop.getProperty("clova.url");
             apiSecret = prop.getProperty("clova.secretKey");
             kakaoApi = prop.getProperty("kakao.key");
+            adminId = prop.getProperty("admin.id");
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -38,6 +40,10 @@ public class  ApiKey {
 
 	public String getKakaoApi() {
 		return kakaoApi;
+	}
+	
+	public String getAdminId() {
+		return adminId;
 	}
     
 }
