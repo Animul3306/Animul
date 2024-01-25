@@ -1,5 +1,11 @@
+<%@page import="com.multi.animul.diagnosis.ApiKey"%>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ include file="/WEB-INF/views/common/header2.jsp" %>
+<%
+	ApiKey apiKey = new ApiKey();
+	apiKey.readApiKey();
+	String admin = apiKey.getAdminId();
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -76,8 +82,7 @@
 <body>
 <div class="btnCon">
 	<button id="b1" class="btn btn-outline-primary" onclick="location.href='./myReceipt.jsp' "> 내 영수증 내역(가격 비교) </button>
-
-	<% if(String.valueOf(session.getAttribute("loggedInUser")).equals("qpzmal100")) { %>
+	<% if(String.valueOf(session.getAttribute("loggedInUser")).equals(admin)) { %>
 			<button id="b2" class="btn btn-outline-primary" onclick="location.href='${pageContext.request.contextPath}/diagnosis/receiptList'"> 전체 영수증 내역 </button>
 	<% } %>
 </div>

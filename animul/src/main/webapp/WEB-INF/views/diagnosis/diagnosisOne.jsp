@@ -160,9 +160,6 @@
 		
 		$('#address').click(function() {
 			var geocoder = new kakao.maps.services.Geocoder();
-			
-			var userLatLng = new kakao.maps.LatLng(37.4966645, 127.0629804);
-	        searchAddrFromCoords(userLatLng, displayCenterInfo);
 
 	        // 사용자의 현재 위치를 가져와서 해당 위치의 행정동 주소 정보를 표시합니다
 	        if (navigator.geolocation) {
@@ -178,6 +175,8 @@
                 }
             );
         } else {
+        	var userLatLng = new kakao.maps.LatLng(37.4966645, 127.0629804);
+	        searchAddrFromCoords(userLatLng, displayCenterInfo);
             alert('이 브라우저에서는 위치 정보를 지원하지 않습니다.');
         } 
 

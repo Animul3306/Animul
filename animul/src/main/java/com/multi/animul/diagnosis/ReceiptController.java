@@ -73,6 +73,15 @@ public class ReceiptController {
 		ClovaOcr ocr2 = new ClovaOcr();
 		String fileName = uploadPath + "/" + savedName;
 		ArrayList<ArrayList<String>> list = ocr2.ocr(fileName);
+		System.out.println("너의 UID" + list.get(0).get(0));
+		File renamedFile = new File(uploadPath + "/" + list.get(0).get(0) + ".png");
+		
+		if (target.renameTo(renamedFile)) {
+	        System.out.println("File renamed successfully to: " + list.get(0).get(0));
+	    } else {
+	        System.out.println("Failed to rename the file.");
+	    }
+		
 		int insertResult = receiptService.insert(list);
 		
 		return insertResult;
