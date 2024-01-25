@@ -193,6 +193,11 @@
 		set bbs_hit= bbs_hit+1
 		where bbs_id = #{bbs_id}
 	</update>
+	
+	
+	<select id="bestList" resultType="bbsVO">
+		select * from animul.bbs order by bbs_hit desc limit 5
+	</select>
 
 
 </mapper>

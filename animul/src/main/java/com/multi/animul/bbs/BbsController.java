@@ -400,5 +400,14 @@ public class BbsController {
 
 		return "bbs/protectOne";
 	}
+	
+	// 메인페이지 조회순 인기글 리스트
+		@RequestMapping("/main")
+		public String bestList(Model model) {
+			List<BbsVO> bestList =  service.bestList();
+			model.addAttribute("bestList", bestList);
+			System.out.println(bestList);
+			return "main";
+		}
 
 }
