@@ -1,6 +1,3 @@
-<%@page import="com.multi.animul.diagnosis.ReceiptVO"%>
-<%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
-<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
