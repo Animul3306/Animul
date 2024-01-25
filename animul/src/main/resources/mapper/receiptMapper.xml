@@ -31,10 +31,10 @@
 	</select>
 	
 	<select id="mylist"  parameterType="receiptVO" resultType="receiptVO">
-		select * from animul.receipt where receipt_myid = #{receipt_myid}
+		select * from animul.receipt where receipt_myid = #{receipt_myid} and receipt_id NOT LIKE '%a85e45551a9c%'order by receipt_id desc
 	</select>
 	
 	<select id="list" resultType="receiptVO">
-		select * from animul.receipt order by #{receipt_id} desc
+		select * from animul.receipt WHERE receipt_id NOT LIKE '%a85e45551a9c%'order by receipt_id desc
 	</select>
 </mapper>
