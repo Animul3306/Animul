@@ -112,10 +112,7 @@
                     </c:forEach>
          		</tbody>
          		</table>
-         		</div>
-         		</div>
-         		
-			<div class="paging" style="padding-top:20px">
+         		<div class="paging" style="padding-top:20px">
 				<c:choose>
 					<c:when test="${paging.page<=1}">
 					<span><a class="direction prev"></a></span>
@@ -150,6 +147,10 @@
 				</c:choose>
 				
 			</div>
+         		</div>
+         		</div>
+         		
+			
                         
                         
 	
