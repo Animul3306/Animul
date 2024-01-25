@@ -38,13 +38,8 @@ $(function() {
 	            contentType : false,
 	            success:function (result) {
 	            	console.log(result)
-	            	if(result == 1) {
-	        			var complete = confirm("영수증 등록 성공, 등록한 영수증을 확인하시겠습니까?")
-	        			if(complete) {
-	        				alert("네")
-	        			} else {
-	        				alert("아니요")				
-	        			}
+	               if(result == 1) {
+	            	   alert("영수증이 등록되었습니다.")
 	            	} else if(result == 2){
 	            		alert("영수증이 중복되었습니다.")
 	            	} else {

@@ -10,6 +10,11 @@ body {
     font-family: Noto Sans KR;
 }
 
+.list {
+	font-weight: bold; 
+	font-size: 2em;
+}
+
 .col ui {
   width: 50%;
   list-style-type: none;
@@ -18,6 +23,7 @@ body {
 
 .col li {
   list-style-type: none;
+  font-weight: bold; 
 }
 
 a {
@@ -53,7 +59,7 @@ a {
 <div class="col">
 	<ul>
 		<li>
-			<div  style="font-weight: bold; font-size: 2em" >검진 · 접종</div>
+			<div class="list" >검진 · 접종</div>
 			<hr>
 		</li>
 	<c:forEach var="x" items="${diagnosisList}">
@@ -68,7 +74,7 @@ a {
 <div class="col">
 	<ul>
 		<li>
-			<div  style="font-weight: bold; font-size: 2em" >치료</div>
+			<div class="list" >치료</div>
 			<hr>
 		</li>
 	<c:forEach var="x" items="${diagnosisList}">
@@ -83,7 +89,7 @@ a {
 <div class="col">
 	<ul>
 		<li>
-			<div  style="font-weight: bold; font-size: 2em" >수술</div>
+			<div class="list" >수술</div>
 			<hr>
 		</li>
 	<c:forEach var="x" items="${diagnosisList}">

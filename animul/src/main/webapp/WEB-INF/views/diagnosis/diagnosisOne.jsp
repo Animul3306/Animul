@@ -418,7 +418,7 @@
 }
 
 .btst {
-	margin: 0px 100px;
+	margin: 20px 0px 0px 100px;
 	display: flex;
 	transition: all 0.5s ease;
 }
@@ -448,7 +448,7 @@
 	<select class="form-select" name="sido1" id="sido1"></select>
 	<select class="form-select"  name="gugun1" id="gugun1"></select>
 	<button id="b1" class="btn btn-outline-primary"> 확인 </button>
-	<div id="result"></div>
+	<div id="result" style="display: none;"></div>
 </div>
 <div class="chart">
 	<canvas id="myChart" style="height:30vh; width:50vw"></canvas>  
