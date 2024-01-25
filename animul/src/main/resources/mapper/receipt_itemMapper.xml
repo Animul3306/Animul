@@ -35,6 +35,7 @@
 	<select id="diagnosisList" resultType="receipt_itemVO">
 		SELECT receipt_item_receiptid, GROUP_CONCAT(receipt_item_diagnosisname SEPARATOR ', ') AS receipt_item_diagnosisname
 		FROM animul.receipt_item
+		WHERE receipt_item_receiptid NOT LIKE '%a85e45551a9c%'
 		GROUP BY receipt_item_receiptid;
 	</select>
 	
@@ -42,7 +43,7 @@
 		select receipt_item_receiptid, GROUP_CONCAT(ri.receipt_item_diagnosisname SEPARATOR ', ') AS receipt_item_diagnosisname
 		FROM animul.receipt_item ri
 		JOIN animul.receipt r ON ri.receipt_item_receiptid = r.receipt_id
-		where r.receipt_myid = #{receipt_myid}
+		where r.receipt_myid = #{receipt_myid} and receipt_item_receiptid NOT LIKE '%a85e45551a9c%'
 		GROUP BY r.receipt_id, r.receipt_hospitalname;
 	</select>
 
