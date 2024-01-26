@@ -27,7 +27,8 @@
 		 .disease a {
             margin: 0 10px;
         }
-        		.disease2 { 
+    
+     .disease2 { 
 			width: 100%;
             display: flex;
             justify-content: center;
@@ -35,26 +36,25 @@
             margin-right: 50px;
 		}
 		
-		.disease a {
-            margin: 0 10px;
-        }
-        .bestList {
+    .bestList {
 		    width: 100%;
 		   	margin: 35px 35px 35px 35px;
 		}
+
 		
-		.newNotice {
+	 	.newNotice {
 		    width: 100%;
 		   	margin: 35px 35px 35px 35px;
 		}
 		
 		
         .article {
+
 		    display: flex;
 		    margin-top: 2px;
 		    padding: 0 120px 0 0;
 		}
-        .article:first-of-type {
+    .article:first-of-type {
    			 padding-top: 15px;
    			 border-top: 1px solid #eae7de;
 		}
@@ -131,6 +131,7 @@
 	<a href="#"><img src="${pageContext.request.contextPath}/resources/img/search.png"></a>
 	<a href="${pageContext.request.contextPath}/diagnosis/diagnosisMain.jsp"><img src="${pageContext.request.contextPath}/resources/img/info.png"></a>
 </div>
+  
 <div class="disease2">
 	<div class="bestList">
 		<div class="pets">
