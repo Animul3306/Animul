@@ -78,7 +78,7 @@
 						<col>
 						<col style="width: 65px;">
 						<col style="width: 100px;">
-						<col style="width: 90px;">
+						<col style="width: 100px;">
 						<col style="width: 80px;">
 						<col style="width: 80px;">
 					</colgroup>
@@ -110,9 +110,7 @@
 					</c:forEach>
 
 				</table>
-			</div>
-
-			<div class="paging" style="padding-top:20px">
+					<div class="paging" style="padding-top:20px">
 				<c:choose>
 					<c:when test="${paging.page<=1}">
 					<span><a class="direction prev"></a></span>
@@ -147,6 +145,9 @@
 				</c:choose>
 				
 			</div>
+			</div>
+
+		
 			
 			
 

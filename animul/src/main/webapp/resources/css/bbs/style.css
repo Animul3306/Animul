@@ -136,8 +136,9 @@
 
 #lm.cs #snb > li {
     position: relative;
-    padding: 16px 0;
+    padding: 20px 0;
     border-bottom: #ddd 1px solid;
+    font-weight: bold;
 }
 
 #lm.cs #snb > li > a {
@@ -170,7 +171,7 @@
 #contents {
     width: 1040px;
     float: right;
-    margin-top: 40px;
+    margin-top: 25px;
 }
 
 table.list {
@@ -186,18 +187,18 @@ table.list {
 table.list thead th {
     padding: 15px 10px;
     text-align: center;
-    font-size: 13px;
+    font-size: 14px;
     color: #333;
-    background-color: #f8f8f8;
+    background-color: #e9e9e9ab;
     border-left: #e0e0e1 1px solid;
     border-bottom: #e0e0e1 1px solid;
-    font-weight: 400;
+    font-weight: bold;
 }
 
 table.list tbody td {
     padding: 8px 8px;
     text-align: center;
-    font-size: 13px;
+    font-size: 14px;
     color: #333;
     border-left: #e0e0e1 1px solid;
     border-bottom: #e0e0e1 1px solid;
@@ -304,7 +305,7 @@ table.tbl-pet.violet thead th {
 }
 
 .hd-sch {
-    background-color: #f8f8f8;
+    background-color: #e9e9e9ab;
     border: #ddd 1px solid;
     padding: 12px;
 }
@@ -312,15 +313,18 @@ table.tbl-pet.violet thead th {
 .hd-sch .hd {
     display: inline-block;
     font-size: 14px;
+    font-weight: bold;
     color: #333;
     vertical-align: middle;
     padding: 0 15px;
     line-height: 34px;
+    
 }
 
 .hd-sch .bd {
     display: inline-block;
     font-size: 14px;
+    font-weight: bold;
     color: #333;
     vertical-align: middle;
     padding: 0;
@@ -427,7 +431,7 @@ table.tbl-pet.violet thead th {
     position: relative;
     float: left;
     width: 315px;
-    height: 510px;
+    height: 570px;
     margin: 30px 0 0 13px;
 }
 
@@ -441,6 +445,7 @@ table.tbl-pet.violet thead th {
 .pro-lst .probx .thumb img {
     transition: all 0.2s ease-in-out;
     width: 100%;
+    
 }
 
 .pro-lst .probx > a:hover .thumb img {
@@ -449,14 +454,17 @@ table.tbl-pet.violet thead th {
 
 .row {
 	display: flex;
-    font-size: 14px;
+    font-size: 15px;
+    font-weight: bold;
+    margin: 4px 0 0 0px
 
 }
 .row span:first-child{
-	border-bottom: 1px solid #eae7de;
+	border-bottom: 2px solid #c8c8c8;
     font-weight: 600;
     margin-right: 1rem;
     width: 5rem;
+    text-align: center;
 }
 
 .row span:nth-child(2){
@@ -470,8 +478,9 @@ table.tbl-pet.violet thead th {
 }
 
 .vew-wr .subject {
-    background-color: #fbfbfb;
+    background-color: #e9e9e9ab;
     font-size: 24px;
+    font-weight: bold;
     color: #333;
     font-weight: 400;
     padding: 20px;
@@ -486,6 +495,7 @@ table.tbl-pet.violet thead th {
 .vew-wr .date > li {
     display: inline-block;
     font-size: 13px;
+    font-weight: bold;
     color: #888;
     font-family: 'Montserrat';
     font-weight: 600;
@@ -496,7 +506,9 @@ table.tbl-pet.violet thead th {
 }
 
 .vew-wr .dv-vew {
-    padding: 50px;
+    padding: 20px;
+    margin-bottom: 40px;
+    border-bottom: #dbdbdb 1px solid;
 }
 
 div.paging {
@@ -664,13 +676,17 @@ div.paging .direction:hover:before, div.paging .direction:hover:after {
 .oriImg {width:800px; height:auto;}
 .thumImg {width:10px; height:10;}
 
+.bottom-lst{
+	margin-bottom: 30px;
+	
+}
 
 .bottom-lst .item .con {
     margin: 5px 0 0 0;
     line-height: 1.5;
     font-size: 14px;
     color: #666;
-    background-color: #f8f8f8;
+    background-color: #e9e9e9ab;
     padding: 20px;
     border: #eee 1px solid;
 }
@@ -724,4 +740,23 @@ div.paging .direction:hover:before, div.paging .direction:hover:after {
     padding: 0.4rem 0.4rem;
     text-align: center;
     font-size: 17px;
+}
+
+.pt-titarea{
+	height: 185px;
+  
+    padding: 91px 0 0 0;
+    background: url("pets.png") 100% 0 no-repeat;
+    background-size: 60% 100%;
+}
+.pt-titarea .tit {
+    font-size: 30px;
+    color: #333;
+    line-height: 0;
+    font-weight: 400;
+    font-weight: bolder;
+}	
+.pt-titarea p {
+    margin-top: 10px;
+}
 }

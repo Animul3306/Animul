@@ -51,6 +51,10 @@ public class BbsService {
 		return dao.list2();
 	}
 	
+	public List<BbsVO> bestList() {
+		return dao.bestList();
+	}
+	
 	
 	
 	

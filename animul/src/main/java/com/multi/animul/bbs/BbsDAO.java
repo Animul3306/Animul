@@ -75,6 +75,11 @@ public class BbsDAO {
 	public int bbsCount2(Map<String, Object> pagingParams) {
 		return my.selectOne("bbs.bbsCount2", pagingParams);
 	}
+
+	public List<BbsVO> bestList() {
+		List<BbsVO> list = my.selectList("bbs.bestList");
+		return list;
+	}
 	
 
 	
