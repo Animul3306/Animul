@@ -28,7 +28,7 @@
             margin: 0 10px;
         }
     
-     .disease2 { 
+  		 .disease2 { 
 			width: 100%;
             display: flex;
             justify-content: center;
@@ -36,10 +36,13 @@
             margin-right: 50px;
 		}
 		
-    .bestList {
+   		.bestList {
 		    width: 100%;
 		   	margin: 35px 35px 35px 35px;
 		}
+
+
+
 
 		
 	 	.newNotice {
@@ -53,16 +56,16 @@
 		    display: flex;
 		    margin-top: 2px;
 		    padding: 0 120px 0 0;
+		    align-items: center;
 		}
-    .article:first-of-type {
+   		 .article:first-of-type {
    			 padding-top: 15px;
    			 border-top: 1px solid #eae7de;
 		}
 		
 		.cate {
 		    display: block;
-		    height: 20px;
-		    margin: 5px 4px 0 0;
+		    height: 20px;  
 		    border: 1px solid #eee;
 		    vertical-align: middle;
 		    line-height: 18px;
@@ -86,12 +89,30 @@
 		}	
 		
 		.pets {
-		 height: 100px;
-      	 margin-right: 50px;
-      	 background: url("resources/css/bbs/pets.png") 80% 0 no-repeat;
-      	 background-size: 60% 100%
-    }
+				 height: 100px;
+		      	 margin-right: 50px;
+		      	 background: url("resources/css/bbs/pets.png") 80% 0 no-repeat;
+		      	 background-size: 60% 100%
+   		 }
 		.pets2 {
+      			 height: 100px;
+		      	 margin-right: 50px;
+		      	 background: url("resources/css/bbs/pets2.png") 80% 0 no-repeat;
+		      	 background-size: 50% 100%
+   		 }
+  		  h3 {
+   				 line-height: 7;
+   		 }
+  		  .view{
+ 	   			    width: 18px;
+  					height: 14px;
+  					margin-right: 9px;
+   		 }
+	
+		.wrap-infor {
+			margin-right: 9px;
+		}
+
 		 height: 100px;
       	 margin-right: 50px;
       	 background: url("resources/css/bbs/pets2.png") 80% 0 no-repeat;
@@ -105,6 +126,7 @@
      margin-top:30px;
      margin-bottom:50px;
     }
+
 	</style>
 
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/slider.css"/>">
@@ -143,7 +165,10 @@
 			            <span class="cate">${item.bbs_cate}</span>
 			          	<a href="bbs/one?bbs_id=${item.bbs_id}" class="tit">${item.bbs_title}</a>
 			            <div class="wrap-infor"> 
-						<a href="one?bbs_id=${item.bbs_id}" class="cmt"></a>${item.bbs_hit}
+							<img src="resources/css/bbs/view.png" class="view"><a href="one?bbs_id=${item.bbs_id}" class="cmt"></a>${item.bbs_hit}
+						</div>
+						<div class="wrap-infor"> 
+							<img src="resources/css/bbs/replyCnt.png" class="view"><a href="one?bbs_id=${item.bbs_id}" class="cmt"></a>${item.bbs_replyCnt}
 						</div>
 					</div>
 			        </c:forEach>
@@ -159,7 +184,7 @@
 			            <span class="cate">${item.notice_category}</span>
 			            <a href="cs/notice_one?notice_id=${item.notice_id}" class="tit">${item.notice_title}</a>
 			            <div class="wrap-infor"> 
-						
+
 						</div>
 					</div>
 			        </c:forEach>

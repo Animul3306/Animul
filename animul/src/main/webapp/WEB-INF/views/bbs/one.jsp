@@ -11,7 +11,9 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
 	rel="stylesheet">
 <link href="../resources/css/bbs/style.css" rel="stylesheet">
-<script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"
+	integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
+	crossorigin="anonymous"></script>
 <style>
 </style>
 <body>
@@ -26,12 +28,12 @@
 					<li><a href="/animul/bbs/freeList">자유 토크</a></li>
 					<li><a href="/animul/bbs/localList">산책 메이트ㆍ멍냥이 찾기</a></li>
 					<li><a href="/animul/bbs/protectList">유기동물보호센터 보호중</a></li>
-					
+
 				</ul>
 				<div style="padding-top: 20px;"></div>
 			</div>
 
-			<div id="contents" >
+			<div id="contents">
 				<div class="pt-titarea">
 					<h3 class="tit">자유 토크</h3>
 					<p>마이펫 자랑, 고민 등 자유롭게 작성하는 게시판 입니다!!</p>
@@ -46,10 +48,11 @@
 					</ul>
 					<div class="dv-vew" id="dPostScriptList">
 						${vo.bbs_content}<br>
-					<div class="select_img" th:if="${vo.bbs_img ne null}">
-       				 <img th:src="${vo.bbs_img}" />
-       				 <img src="${pageContext.request.contextPath}/${vo.bbs_img}" class="oriImg"/>
-   					 </div>
+						<div class="select_img" th:if="${vo.bbs_img ne null}">
+							<img th:src="${vo.bbs_img}" /> <img
+								src="${pageContext.request.contextPath}/${vo.bbs_img}"
+								class="oriImg" />
+						</div>
 					</div>
 				</div>
 				<script>
@@ -66,65 +69,77 @@
 				        }
 				    });
 			</script>
-		
-        <div class="bottom-write">
-        <c:if test="${sessionScope.loggedInUser ne null and vo.member_id ne null and sessionScope.loggedInUser eq vo.member_id}">
 
-            <div class="inbx">
-           		<input type="hidden" id="commentWriter" readonly="readonly" placeholder="<%= session.getAttribute("loggedInUser") %>" >
-                <input type="text" class="textarea block" id="commentContents" placeholder="내용">
-                <button style="cursor:pointer" class="bt btn btn-blue" onclick="commentWrite()">댓글작성</button>           
-            </div>
-        </c:if>    
-            
-        </div>
-	
-	<div class="bottom-lst">
-		<div  id="comment-list"   >
-		 
-		    <table>
-		        <tr>
-		            <th>작성자</th>
-		            <th>내용</th>
-		            <th>작성시간</th>
-		            <th></th>
-		            <th></th>
-	
-		        </tr>
-	        
-	        <c:forEach items="${replyList}" var="replyVO">
-	            <tr>
-	         	
-	                <td><%= session.getAttribute("loggedInUser") %></td>
-	                <td>${replyVO.reply_content}</td>
-	                <td>${replyVO.reply_date} </td>
-	       
-	                <td><button type="button" onclick="updateViewBtn('${replyVO.reply_id}','${replyVO.member_id}','${replyVO.reply_content}')">수정</button></td> </td>
-	                <td><button type="button" onclick="commentDelete('${replyVO.reply_id}')">삭제</button></td>
+				<div class="bottom-write">
+					<c:if
+						test="${sessionScope.loggedInUser ne null and vo.member_id ne null}">
 
-	            </tr>
-	        </c:forEach>
-   		</table>
-    	</div>
-    </div>
-    
-        
-		
-		
-            <div class="btn-box">
-            <div class="item" >
-        <c:if test="${sessionScope.loggedInUser ne null and vo.member_id ne null and sessionScope.loggedInUser eq vo.member_id}">
-		    <a href="freeUpdate?bbs_id=${vo.bbs_id}" class="btn btn-blue wide">수정</a>
-		    <a href="delete?bbs_id=${vo.bbs_id}" style="cursor:pointer" class="btn btn-red wide" id="delete">삭제</a>
-		</c:if>
-       
-               		<a href="freeList" class="btn btn-gray wide">목록</a>
-            </div>
-            </div>
-            </div><!-- /wid1300 -->
-        </div>
-   
+						<div class="inbx">
+							<input type="hidden" id="commentWriter" readonly="readonly"
+								placeholder="<%=session.getAttribute("loggedInUser")%>">
+							<input type="text" class="textarea block" id="commentContents"
+								placeholder="내용">
+							<button style="cursor: pointer" class="bt btn btn-blue"
+								onclick="commentWrite()">댓글작성</button>
 
+						</div>
+					</c:if>
+
+				</div>
+
+				<div class="bottom-lst">
+					<div id="comment-list">
+
+						<table>
+							<tr>
+								<th>작성자</th>
+								<th>내용</th>
+								<th>작성시간</th>
+								<th></th>
+								<th></th>
+
+							</tr>
+
+							<c:forEach items="${replyList}" var="replyVO">
+								<tr>
+									<td>${replyVO.member_id}</td>
+									<script>
+									 console.log("${replyVO.member_id}");
+									</script>
+									<td>${replyVO.reply_content}</td>
+									<td>${replyVO.reply_date}</td>
+									
+									<c:if test="${sessionScope.loggedInUser ne null and replyVO.member_id ne null and sessionScope.loggedInUser eq replyVO.member_id}">	
+										<td><button type="button" onclick="updateViewBtn('${replyVO.reply_id}','${replyVO.member_id}','${replyVO.reply_content}')">수정</button></td>
+										<td><button type="button" onclick="commentDelete('${replyVO.reply_id}')">삭제</button></td>
+									<script>
+									 console.log('session = ${sessionScope.loggedInUser}');
+									</script>
+									</c:if>
+								</tr>
+							</c:forEach>
+						</table>
+					</div>
+				</div>
+
+
+
+
+				<div class="btn-box">
+					<div class="item">
+					<c:if test="${sessionScope.loggedInUser ne null and vo.member_id ne null and sessionScope.loggedInUser eq vo.member_id}">	
+							<a href="freeUpdate?bbs_id=${vo.bbs_id}"
+								class="btn btn-blue wide">수정</a>
+							<a href="delete?bbs_id=${vo.bbs_id}" style="cursor: pointer"
+								class="btn btn-red wide" id="delete">삭제</a>
+						</c:if>
+
+						<a href="freeList" class="btn btn-gray wide">목록</a>
+					</div>
+				</div>
+			</div>
+			<!-- /wid1300 -->
+		</div>
 </body>
 <script>
 
@@ -134,9 +149,12 @@ $(document).ready(function() {
 
 function replylist() {
     console.log("댓글목록조회");
+   
     var url = "${pageContext.request.contextPath}/comment/list/";
     var bbs_id = '${vo.bbs_id}';
     var reply_id = '${replyVO.reply_id}';
+    console.log('reply_id= '+reply_id);
+    
     
     $.ajax({
         url: url + bbs_id,
@@ -150,21 +168,25 @@ function replylist() {
                output += "<th>작성시간</th>";
                output += "<th></th>";
                output += "<th></th></tr>";
-
+               console.log("찍히나??");
                for (let i in result) {
                    output += "<tr>";
                    output += "<td>" + result[i].member_id + "</td>";
                    output += "<td>" + result[i].reply_content + "</td>";
                    output += "<td>" + result[i].reply_date + "</td>";
                    output += "<td>";
-                   output += "<c:if test="${sessionScope.loggedInUser ne null and vo.member_id ne null and sessionScope.loggedInUser eq vo.member_id}">"
-                   output += '<input type="button" onclick="updateViewBtn(' + result[i].reply_id + ', \'' + result[i].member_id + '\', \'' + result[i].reply_content + '\')" value="수정">';
-                   output += "</td>";
-                   output += "<td>";
-                   output += '<input type="button" onclick="commentDelete(' + result[i].reply_id + ')" value="삭제">';
-                   output += "</td>";
-                   output += "</c:if>";
+                   
+                   if("${sessionScope.loggedInUser}" != null && "${replyVO.member_id}" !=null  && "${sessionScope.loggedInUser}" == result[i].member_id){
+	                   output += '<input type="button" onclick="updateViewBtn(' + result[i].reply_id + ', \'' + result[i].member_id + '\', \'' + result[i].reply_content + '\')" value="수정">';
+	                   output += "</td>";
+	                   output += "<td>";
+	                   output += '<input type="button" onclick="commentDelete(' + result[i].reply_id + ')" value="삭제">';
+	                   output += "</td>";
+                   }
+                   
+             
                    output += "</tr>";
+                   console.log('result[i].member_id :' + result[i].member_id);
                }
 
                output += "</table>";
@@ -206,7 +228,7 @@ function replylist() {
                 output += "<td>"
                 output += '<intput type="button" onclick="updateViewBtn(' + replyList[i].reply_id + ',' + replyList[i].reply_content + ', ' + replyList[i].reply_content + ')" value="수정">'
                 output += '<intput type="button" onclick="commentDelete(' + replyList[i].reply_id + ')" value="삭제">'
-                output += "</td>"
+                output += "</td>";
                 output += "</tr>";
             }
             output += "</table>";
@@ -271,7 +293,7 @@ function replylist() {
 	    a += '</tr>';
 	    a += '<tr>';
 	    a += '<td>' + member_id + '</td>';
-	    a += '<td><textarea id="replyUpdateContent" style="width: 300px;">' + reply_content + '</textarea></td>';
+	    a += '<td><textarea id="replyUpdateContent" style="width: 600px;">' + reply_content + '</textarea></td>';
 	    a += '<td>';
 	    a += '<button type="button" onclick="commentUpdate(' + reply_id + ')">댓글작성</button>';
 	    a += '</td>';

@@ -49,14 +49,16 @@
 					<img src="${pageContext.request.contextPath}/${vo.bbs_img}" class="oriImg"/>
 					</div>
 				</div>
+				
+				
         <div class="bottom-write">
-        <c:if test="${sessionScope.loggedInUser ne null and vo.member_id ne null and sessionScope.loggedInUser eq vo.member_id}">
+        <c:if test="${sessionScope.loggedInUser ne null and vo.member_id ne null}"> 
             <div class="inbx">
            		<input type="hidden" id="commentWriter" placeholder=" <%= session.getAttribute("loggedInUser") %>" readonly="readonly">
                 <input type="text" class="textarea block" id="commentContents" placeholder="내용">
                 <button style="cursor:pointer" class="bt btn btn-blue" onclick="commentWrite()">댓글작성</button>           
             </div>
-        </c:if>    
+         </c:if>  
         </div>
 
 	<div class="bottom-lst">
@@ -75,9 +77,10 @@
 	                <td><%= session.getAttribute("loggedInUser") %></td>
 	                <td>${replyVO.reply_content}</td>
 	                <td>${replyVO.reply_date} </td>
-	       			
+	       			 <c:if test="${sessionScope.loggedInUser ne null and replyVO.member_id ne null and sessionScope.loggedInUser eq replyVO.member_id}">
 	                <td><button type="button" onclick="updateViewBtn('${replyVO.reply_id}','${replyVO.member_id}','${replyVO.reply_content}')">수정</button></td> 
 	                <td><button type="button" onclick="commentDelete('${replyVO.reply_id}')">삭제</button></td>
+	                </c:if>
 	            </tr>
 	        </c:forEach>
    		</table>
@@ -130,13 +133,13 @@ function replylist() {
                    output += "<td>" + result[i].reply_content + "</td>";
                    output += "<td>" + result[i].reply_date + "</td>";
                    output += "<td>";
-                   output += "<c:if test="${sessionScope.loggedInUser ne null and vo.member_id ne null and sessionScope.loggedInUser eq vo.member_id}">"
-                   output += '<input type="button" onclick="updateViewBtn(' + result[i].reply_id + ', \'' + result[i].member_id + '\', \'' + result[i].reply_content + '\')" value="수정">';
-                   output += "</td>";
-                   output += "<td>";
-                   output += '<input type="button" onclick="commentDelete(' + result[i].reply_id + ')" value="삭제">';
-                   output += "</td>";
-                   output += "</c:if>";
+                   if("${sessionScope.loggedInUser}" != null && "${replyVO.member_id}" !=null  && "${sessionScope.loggedInUser}" == result[i].member_id){
+	                   output += '<input type="button" onclick="updateViewBtn(' + result[i].reply_id + ', \'' + result[i].member_id + '\', \'' + result[i].reply_content + '\')" value="수정">';
+	                   output += "</td>";
+	                   output += "<td>";
+	                   output += '<input type="button" onclick="commentDelete(' + result[i].reply_id + ')" value="삭제">';
+	                   output += "</td>";
+                   }
                    output += "</tr>";
                }
 
@@ -244,7 +247,7 @@ function replylist() {
 	    a += '</tr>';
 	    a += '<tr>';
 	    a += '<td>' + member_id + '</td>';
-	    a += '<td><textarea id="replyUpdateContent" style="width: 300px;">' + reply_content + '</textarea></td>';
+	    a += '<td><textarea id="replyUpdateContent" style="width: 600px;">' + reply_content + '</textarea></td>';
 	    a += '<td>';
 	    a += '<button type="button" onclick="commentUpdate(' + reply_id + ')">댓글작성</button>';
 	    a += '</td>';
