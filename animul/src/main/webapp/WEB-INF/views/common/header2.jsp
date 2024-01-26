@@ -36,7 +36,7 @@
             
             <a href="${pageContext.request.contextPath}/member/login.jsp">로그인</a>
             
-            <a href="${pageContext.request.contextPath}/member/join.jsp">회원가입</a>
+            <a href="${pageContext.request.contextPath}/member/join_owner.jsp">회원가입</a>
             
             <%
                 }

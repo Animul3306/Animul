@@ -58,7 +58,7 @@
 				</div>
 
 				<div id="div_button">
-					<input type="button" id="button_cancel" onclick="location.href='${pageContext.request.contextPath}/main.jsp'" value="취소"></input>
+					<input type="button" id="button_cancel" onclick="location.href='${pageContext.request.contextPath}/main'" value="취소"></input>
 					<input type="button" id="button_next" onclick="nextStep()" value="다음 단계로"></input>
 				</div>
 			</div>
@@ -162,7 +162,7 @@
 					</table>
 
 					<div id="div_button">
-						<input type="button" id="button_cancel" onclick="location.href='${pageContext.request.contextPath}/main.jsp'" value="취소"></input>
+						<input type="button" id="button_cancel" onclick="location.href='${pageContext.request.contextPath}/main'" value="취소"></input>
 						<input type="button" id="button_join" value="가입하기"></button>
 					</div>
 				</div>
