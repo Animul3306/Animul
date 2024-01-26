@@ -89,8 +89,8 @@ p.groove {border-style: groove;}
 		<a id="link_b" href="list2" data-tooltip="데이터베이스 사용하는 지도로 이동합니다."> DB Data Map Link </a>
 	</div>
  	
-<table>
  
+ <div class="borderbox-medium">
 	<div class="borderbox-small">
 		<form name="curPositionAddr">
 			<label>현재 위치: </label>
@@ -113,11 +113,11 @@ p.groove {border-style: groove;}
 		<select name="addressRegion" id="addressRegion1"></select>
 		<select name="addressDo" id="addressDo1"></select>
 		<select name="addressSiGunGu" id="addressSiGunGu1"></select>
-		<button type="submit">지역검색</button>
+		<button type="submit" class="button">지역검색</button>
 	</form> 
 	 
 	</div>
-		 	
+</div>		 	
 	<div class="map_wrap" style="width:100%;display:flex;border:3px solid lightgray;border-radius:12px;">
 	
 	    <div id="map4" style="width:100%;height:100%;overflow:hidden;border-radius:12px;"></div>
@@ -136,7 +136,7 @@ p.groove {border-style: groove;}
 	        <div id="pagination"></div>
 	    </div>
 	</div>
-</table>	
+ 
 	<br><br>
 
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script> 
