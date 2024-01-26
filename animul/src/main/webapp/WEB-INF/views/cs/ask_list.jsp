@@ -255,6 +255,7 @@
 	
 <div class="container">	   
     <table class="table mt-3">
+    <p class="fs-4"><img src="${pageContext.request.contextPath}/resources/img/cs/cat3.png" width="110" height="130">&nbsp; 1:1 문의 - 답변완료</p>
       <thead>
         <tr>
       

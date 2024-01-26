@@ -293,7 +293,7 @@
 		<div class="notice_wrap">
 			<form action="notice_insert" name="frm" method="post" onsubmit="return chkSubmit()">
 				<div class="mx-auto p-2" style="width: 900px;">
-					<p class="fs-2">공지사항 등록</p>
+					<p class="fs-2"><img src="${pageContext.request.contextPath}/resources/img/cs/dog5.png" width="100" height="120">&nbsp; &nbsp;공지사항 등록 </p>
 				</div>
 				<div class="container">
 					
