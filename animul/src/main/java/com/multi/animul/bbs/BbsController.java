@@ -30,6 +30,8 @@ import org.springframework.web.multipart.MultipartFile;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.multi.animul.cs.NoticeService;
+import com.multi.animul.cs.NoticeVO;
 
 @Controller
 public class BbsController {
@@ -39,11 +41,14 @@ public class BbsController {
 
 	@Autowired
 	ReplyService replyservice;
-
+	
+	@Autowired
+	NoticeService noticeservice;
+	
 	@Resource(name = "uploadPath")
 	private String uploadPath;
 
-	// ÀÚÀ¯ÅäÅ© °Ô½Ã±Û ÀÛ¼º + Ã·ºÎÆÄÀÏ
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å© ï¿½Ô½Ã±ï¿½ ï¿½Û¼ï¿½ + Ã·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	@RequestMapping("bbs/freeInsert")
 	public String insert(BbsVO vo, @RequestParam(value = "file", required = false) MultipartFile file,
 			HttpSession session, Model model) throws Exception {
@@ -69,14 +74,14 @@ public class BbsController {
 			vo.setBbs_thumbImg(
 					File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
 		} else {
-			// ÆÄÀÏÀÌ Á¸ÀçÇÏÁö ¾ÊÀ» °æ¿ì ±âº»°ª ¼³Á¤
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½âº»ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			vo.setBbs_img("/resources/img/imgUpload/none.png");
 			vo.setBbs_thumbImg("/resources/img/imgUpload/none.png");
 		}
 
 		int insertResult = service.insert(vo);
 
-		// µð¹ö±ë ·Î±× Ãß°¡
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Î±ï¿½ ï¿½ß°ï¿½
 		System.out.println("No file uploaded. Using default values.");
 		System.out.println("Bbs_img Value: " + vo.getBbs_img());
 		System.out.println("Bbs_thumbImg Value: " + vo.getBbs_thumbImg());
@@ -89,7 +94,7 @@ public class BbsController {
 		}
 	}
 
-	// »êÃ¥¸ÞÀÌÆ® ¸Û³ÉÀÌÃ£±â °Ô½Ã±Û ÀÛ¼º + Ã·ºÎÆÄÀÏ
+	// ï¿½ï¿½Ã¥ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Û³ï¿½ï¿½ï¿½Ã£ï¿½ï¿½ ï¿½Ô½Ã±ï¿½ ï¿½Û¼ï¿½ + Ã·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	@RequestMapping("bbs/localInsert")
 	public String insert2(BbsVO vo, @RequestParam(value = "file", required = false) MultipartFile file,
 			HttpSession session, Model model) throws Exception {
@@ -115,14 +120,14 @@ public class BbsController {
 			vo.setBbs_thumbImg(
 					File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
 		} else {
-			// ÆÄÀÏÀÌ Á¸ÀçÇÏÁö ¾ÊÀ» °æ¿ì ±âº»°ª ¼³Á¤
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½âº»ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			vo.setBbs_img("/resources/img/imgUpload/none.png");
 			vo.setBbs_thumbImg("/resources/img/imgUpload/none.png");
 		}
 
 		int insertResult = service.insert2(vo);
 
-		// µð¹ö±ë ·Î±× Ãß°¡
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Î±ï¿½ ï¿½ß°ï¿½
 		System.out.println("No file uploaded. Using default values.");
 		System.out.println("Bbs_img Value: " + vo.getBbs_img());
 		System.out.println("Bbs_thumbImg Value: " + vo.getBbs_thumbImg());
@@ -135,7 +140,7 @@ public class BbsController {
 		}
 	}
 
-	// ÀÚÀ¯ ÅäÅ© °Ô½ÃÆÇ ¸ñ·Ï
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å© ï¿½Ô½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 	@RequestMapping("bbs/freeList")
 	public String list(BbsVO vo, Model model,
 			@RequestParam(value = "page", required = false, defaultValue = "1") int page,
@@ -152,7 +157,7 @@ public class BbsController {
 		map.put("type", type);
 		List<BbsVO> list = service.pagingList(map);
 		model.addAttribute("list", list);
-		// ÆäÀÌÂ¡
+		// ï¿½ï¿½ï¿½ï¿½Â¡
 		List<BbsVO> pagingList = service.pagingList(map);
 		PageVO pageVO = service.pagingParam(map);
 		model.addAttribute("freeList", pagingList);
@@ -163,7 +168,7 @@ public class BbsController {
 		return "bbs/freeList";
 	}
 
-	// ÀÚÀ¯ ÅäÅ© °Ô½ÃÆÇ °Ë»ö ¸ñ·Ï
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å© ï¿½Ô½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½ ï¿½ï¿½ï¿½
 	@RequestMapping("bbs/freeListSearch")
 	public String listSearch(BbsVO vo, Model model,
 			@RequestParam(value = "page", required = false, defaultValue = "1") int page,
@@ -177,7 +182,7 @@ public class BbsController {
 		map.put("type", type);
 		List<BbsVO> list = service.pagingList(map);
 		model.addAttribute("list", list);
-		// ÆäÀÌÂ¡
+		// ï¿½ï¿½ï¿½ï¿½Â¡
 		List<BbsVO> pagingList = service.pagingList(map);
 		PageVO pageVO = service.pagingParam(map);
 		model.addAttribute("freeList", pagingList);
@@ -187,7 +192,7 @@ public class BbsController {
 		return "bbs/freeListSearch";
 	}
 
-	// »êÃ¥ ¸ÞÀÌÆ® + ¸Û³ÉÀÌ Ã£±â °Ô½ÃÆÇ ¸ñ·Ï
+	// ï¿½ï¿½Ã¥ ï¿½ï¿½ï¿½ï¿½Æ® + ï¿½Û³ï¿½ï¿½ï¿½ Ã£ï¿½ï¿½ ï¿½Ô½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 	@RequestMapping("bbs/localList")
 	public String list2(BbsVO vo, Model model,
 			@RequestParam(value = "page", required = false, defaultValue = "1") int page,
@@ -199,7 +204,7 @@ public class BbsController {
 		map.put("type", type);
 		List<BbsVO> list = service.pagingList2(map);
 		model.addAttribute("list", list);
-		// ÆäÀÌÂ¡
+		// ï¿½ï¿½ï¿½ï¿½Â¡
 		List<BbsVO> pagingList = service.pagingList2(map);
 		PageVO pageVO = service.pagingParam2(map);
 		model.addAttribute("freeList", pagingList);
@@ -207,12 +212,12 @@ public class BbsController {
 		model.addAttribute("word", word);
 		model.addAttribute("type", type);
 
-		// °Ë»ö
+		// ï¿½Ë»ï¿½
 
 		return "bbs/localList";
 	}
 
-	// »êÃ¥ ¸ÞÀÌÆ® + ¸Û³ÉÀÌ Ã£±â °Ô½ÃÆÇ °Ë»ö ¸ñ·Ï
+	// ï¿½ï¿½Ã¥ ï¿½ï¿½ï¿½ï¿½Æ® + ï¿½Û³ï¿½ï¿½ï¿½ Ã£ï¿½ï¿½ ï¿½Ô½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½ ï¿½ï¿½ï¿½
 	@RequestMapping("bbs/localListSearch")
 	public String listSearch2(BbsVO vo, Model model,
 			@RequestParam(value = "page", required = false, defaultValue = "1") int page,
@@ -226,7 +231,7 @@ public class BbsController {
 		map.put("type", type);
 		List<BbsVO> list = service.pagingList2(map);
 		model.addAttribute("list", list);
-		// ÆäÀÌÂ¡
+		// ï¿½ï¿½ï¿½ï¿½Â¡
 		List<BbsVO> pagingList = service.pagingList2(map);
 		PageVO pageVO = service.pagingParam2(map);
 		model.addAttribute("freeList", pagingList);
@@ -236,7 +241,7 @@ public class BbsController {
 		return "bbs/freeListSearch";
 	}
 
-	// ÀÚÀ¯ ÅäÅ© °Ô½Ã±Û »ó¼¼ ÆäÀÌÁö
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å© ï¿½Ô½Ã±ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	@RequestMapping("bbs/one")
 	public String one(@RequestParam("bbs_id") int bbs_id, Model model) {
 		service.hit(bbs_id);
@@ -248,7 +253,7 @@ public class BbsController {
 		return "bbs/one";
 	}
 
-	// »êÃ¥ ¸ÞÀÌÆ® + ¸Û³ÉÀÌ Ã£±â °Ô½Ã±Û »ó¼¼ ÆäÀÌÁö
+	// ï¿½ï¿½Ã¥ ï¿½ï¿½ï¿½ï¿½Æ® + ï¿½Û³ï¿½ï¿½ï¿½ Ã£ï¿½ï¿½ ï¿½Ô½Ã±ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	@RequestMapping("bbs/one2")
 	public String one2(@RequestParam("bbs_id") int bbs_id, Model model) {
 		service.hit(bbs_id);
@@ -260,7 +265,7 @@ public class BbsController {
 		return "bbs/one2";
 	}
 
-	// °Ô½Ã±Û ¼öÁ¤ ÆäÀÌÁö
+	// ï¿½Ô½Ã±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	@RequestMapping(value = "bbs/freeUpdate", method = RequestMethod.GET)
 	public String updateForm(@RequestParam("bbs_id") int bbs_id, @ModelAttribute BbsVO vo, Model model,
 			MultipartFile file, HttpServletRequest req) {
@@ -280,18 +285,18 @@ public class BbsController {
 		return "bbs/localUpdate";
 	}
 
-	// °Ô½Ã±Û ¼öÁ¤
+	// ï¿½Ô½Ã±ï¿½ ï¿½ï¿½ï¿½ï¿½
 	@RequestMapping(value = "bbs/freeupdate", method = RequestMethod.POST)
 	public String update(@ModelAttribute BbsVO vo, Model model, MultipartFile file, HttpServletRequest req)
 			throws IOException, Exception {
 
-		// »õ·Î¿î ÆÄÀÏÀÌ µî·ÏµÇ¾ú´ÂÁö È®ÀÎ
+		// ï¿½ï¿½ï¿½Î¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ÏµÇ¾ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½
 		if (file.getOriginalFilename() != null && !file.getOriginalFilename().equals("")) {
-			// ±âÁ¸ ÆÄÀÏÀ» »èÁ¦
+			// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			new File(uploadPath + req.getParameter("bbs_img")).delete();
 			new File(uploadPath + req.getParameter("bbs_thumbImg")).delete();
 
-			// »õ·Î Ã·ºÎÇÑ ÆÄÀÏÀ» µî·Ï
+			// ï¿½ï¿½ï¿½ï¿½ Ã·ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 			String imgUploadPath = uploadPath + File.separator + "imgUpload";
 			String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
 			String fileName = UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(),
@@ -301,8 +306,8 @@ public class BbsController {
 			vo.setBbs_thumbImg(
 					File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
 
-		} else { // »õ·Î¿î ÆÄÀÏÀÌ µî·ÏµÇÁö ¾Ê¾Ò´Ù¸é
-			// ±âÁ¸ ÀÌ¹ÌÁö¸¦ ±×´ë·Î »ç¿ë
+		} else { // ï¿½ï¿½ï¿½Î¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ïµï¿½ï¿½ï¿½ ï¿½Ê¾Ò´Ù¸ï¿½
+			// ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½×´ï¿½ï¿½ ï¿½ï¿½ï¿½
 			vo.setBbs_img(req.getParameter("bbs_img"));
 			vo.setBbs_thumbImg(req.getParameter("bbs_thumbImg"));
 
@@ -317,13 +322,13 @@ public class BbsController {
 	public String update2(@ModelAttribute BbsVO vo, Model model, MultipartFile file, HttpServletRequest req)
 			throws IOException, Exception {
 
-		// »õ·Î¿î ÆÄÀÏÀÌ µî·ÏµÇ¾ú´ÂÁö È®ÀÎ
+		// ï¿½ï¿½ï¿½Î¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ÏµÇ¾ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½
 		if (file.getOriginalFilename() != null && !file.getOriginalFilename().equals("")) {
-			// ±âÁ¸ ÆÄÀÏÀ» »èÁ¦
+			// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			new File(uploadPath + req.getParameter("bbs_img")).delete();
 			new File(uploadPath + req.getParameter("bbs_thumbImg")).delete();
 
-			// »õ·Î Ã·ºÎÇÑ ÆÄÀÏÀ» µî·Ï
+			// ï¿½ï¿½ï¿½ï¿½ Ã·ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 			String imgUploadPath = uploadPath + File.separator + "imgUpload";
 			String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
 			String fileName = UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(),
@@ -333,8 +338,8 @@ public class BbsController {
 			vo.setBbs_thumbImg(
 					File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
 
-		} else { // »õ·Î¿î ÆÄÀÏÀÌ µî·ÏµÇÁö ¾Ê¾Ò´Ù¸é
-			// ±âÁ¸ ÀÌ¹ÌÁö¸¦ ±×´ë·Î »ç¿ë
+		} else { // ï¿½ï¿½ï¿½Î¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ïµï¿½ï¿½ï¿½ ï¿½Ê¾Ò´Ù¸ï¿½
+			// ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½×´ï¿½ï¿½ ï¿½ï¿½ï¿½
 			vo.setBbs_img(req.getParameter("bbs_img"));
 			vo.setBbs_thumbImg(req.getParameter("bbs_thumbImg"));
 
@@ -345,7 +350,7 @@ public class BbsController {
 		return "redirect:localList";
 	}
 
-	// °Ô½Ã±Û »èÁ¦
+	// ï¿½Ô½Ã±ï¿½ ï¿½ï¿½ï¿½ï¿½
 	@RequestMapping("bbs/delete")
 	public String delete(@RequestParam("bbs_id") int bbs_id) {
 		service.delete(bbs_id);
@@ -358,7 +363,7 @@ public class BbsController {
 		return "redirect:localList";
 	}
 
-	// º¸È£ÁßÀÎ À¯±âµ¿¹° ¸®½ºÆ®
+	// ï¿½ï¿½È£ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½âµ¿ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®
 	@RequestMapping("bbs/protectList")
 	public String protectList(@RequestParam(value = "page", required = false, defaultValue = "1") String page,
 			@RequestParam(value = "upr_cd", defaultValue = "6110000") String upr_cd, Model model) {
@@ -373,7 +378,7 @@ public class BbsController {
 		return "bbs/protectList";
 	}
 
-	// º¸È£ÁßÀÎ À¯±âµ¿¹° »ó¼¼ ÆäÀÌÁö
+	// ï¿½ï¿½È£ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½âµ¿ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	@RequestMapping("bbs/protectOne")
 	public String one3(@RequestParam("desertionNo") String desertionNo,
 			@RequestParam(value = "page", required = false, defaultValue = "1") String page,
@@ -401,12 +406,15 @@ public class BbsController {
 		return "bbs/protectOne";
 	}
 	
-	// ¸ÞÀÎÆäÀÌÁö Á¶È¸¼ø ÀÎ±â±Û ¸®½ºÆ®
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¸ï¿½ï¿½ ï¿½Î±ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®
 		@RequestMapping("/main")
 		public String bestList(Model model) {
 			List<BbsVO> bestList =  service.bestList();
 			model.addAttribute("bestList", bestList);
 			System.out.println(bestList);
+			
+			List<NoticeVO> newNotice =noticeservice.newNotice();
+			model.addAttribute("newNotice", newNotice);
 			return "main";
 		}
 
