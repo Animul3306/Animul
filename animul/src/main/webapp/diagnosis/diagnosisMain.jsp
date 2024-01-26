@@ -82,7 +82,7 @@
 <body>
 <div class="btnCon">
 	<button id="b1" class="btn btn-outline-primary" onclick="location.href='./myReceipt.jsp' "> 내 영수증 내역(가격 비교) </button>
-	<% if(String.valueOf(session.getAttribute("loggedInUser")).equals(admin)) { %>
+	<% if(admin.contains(String.valueOf(session.getAttribute("loggedInUser")))) { %>
 			<button id="b2" class="btn btn-outline-primary" onclick="location.href='${pageContext.request.contextPath}/diagnosis/receiptList'"> 전체 영수증 내역 </button>
 	<% } %>
 </div>
