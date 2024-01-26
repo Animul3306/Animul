@@ -67,7 +67,8 @@
 p.groove {border-style: groove;}
    
 </style>
-<!--   <link href="../resources/css/map/map.css" rel="stylesheet"> -->   
+
+ <link href="../resources/css/map/mapstyle.css" rel="stylesheet">
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
  	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
  	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -75,9 +76,8 @@ p.groove {border-style: groove;}
 </head>
 
 <body>
-	<div>
-
-	</div>
+ <div id="container">
+ 
 	<div class="login_group">
 		<label id="notice_move" style="color:#ff8080"></label>
 	<!-- 	<button id="toggle">kakao.map.status</button> -->						
@@ -90,26 +90,15 @@ p.groove {border-style: groove;}
 	</div>
  	
 <table>
-	
-	<tr>
-	<div id="map_wrap2" class="bg_white">	        
-        <div class="hAddr">
-       		<span class="title"></span>
-       		<span id="centerAddr2"></span>
-       		<span id="latlang"></span>
-   		</div>
-  	</div>
-	</tr>
-	
-	<div style="display:flex;padding:10px;">
-	<form name="curPositionAddr">
-		<label>검색 위치: </label>
-		<label id="centerAddr"></label>
-	</form>
+ 
+	<div class="borderbox-small">
+		<form name="curPositionAddr">
+			<label>현재 위치: </label>
+			<label id="centerAddr"></label>
+		</form>
 	</div>
- 	<tr>
- 	<div style="width:380px;border:3px solid lightgray;padding:10px; margin:5px;">
-  
+ 
+  	<div class="borderbox-small">	  
 	<form name="RadioForm">	 
 		<input type="radio" name="radiokeyword" value="동물병원" onclick="SearchAddingWord()" checked />
 		<label>동물병원</label>	
@@ -118,7 +107,8 @@ p.groove {border-style: groove;}
 		<input type="radio" name="radiokeyword" value="동물보호" onclick="SearchAddingWord()"/>
 		<label>동물보호센터</label>
 	</form>
-  <br>
+
+
 	<form onsubmit="RegionClass(); return false;">
 		<select name="addressRegion" id="addressRegion1"></select>
 		<select name="addressDo" id="addressDo1"></select>
@@ -128,9 +118,9 @@ p.groove {border-style: groove;}
 	 
 	</div>
 		 	
-	<div class="map_wrap" style="display:flex;padding:10px;">
+	<div class="map_wrap" style="width:100%;display:flex;border:3px solid lightgray;border-radius:12px;">
 	
-	    <div id="map4" style="width:99%;height:100%;overflow:hidden;"></div>
+	    <div id="map4" style="width:100%;height:100%;overflow:hidden;border-radius:12px;"></div>
 
 	    <div id="menu_wrap" class="bg_white">
 	        <div class="option">
@@ -799,6 +789,6 @@ var areaSelectMaker = function(target){
 
 </script>
  
-
+</div>
 </body>
 </html>

@@ -10,137 +10,56 @@
 <meta charset="utf-8">
 <title>Animul [동물병원/반려동물용품점/동물보호센터]</title>
 
-<style>
-body {
-  color: #666;
-  font: 14px/24px "Open Sans", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", Sans-Serif;
-}
-table {
-  border-collapse: separate;
-  border-spacing: 0;
-  width: 99%;
-}
-th,
-td {
-  padding: 6px 15px;
-}
-th {
-  background: #42444e;
-  color: #fff;
-  text-align: left;
-}
-tr:first-child th:first-child {
-  border-top-left-radius: 6px;
-}
-tr:first-child th:last-child {
-  border-top-right-radius: 6px;
-}
-td {
-  border-right: 1px solid #c6c9cc;
-  border-bottom: 1px solid #c6c9cc;
-}
-td:first-child {
-  border-left: 1px solid #c6c9cc;
-}
-tr:nth-child(even) td {
-  background: #eaeaed;
-}
-tr:last-child td:first-child {
-  border-bottom-left-radius: 6px;
-}
-tr:last-child td:last-child {
-  border-bottom-right-radius: 6px;
-  
-  .pagination {
-  display: inline-block;
-}
-}
-
-.leftpadding {
-  display:flex;
-  padding:10px;
-  }
  
-} 
- 
- .tooltip {
-  position: fixed;
-  padding: 10px 20px;
-  border: 1px solid #b3c9ce;
-  border-radius: 4px;
-  text-align: center;
-  font: italic 14px/1.3 sans-serif;
-  color: #333;
-  background: #fff;
-  box-shadow: 3px 3px 3px rgba(0, 0, 0, .3);
-}
-
-</style>
-<!--  <link href="../resources/map/map.css" rel="stylesheet">  <link href="../resources/map/mstyle.css" rel="stylesheet"> -->  
+ <link href="../resources/css/map/mapstyle.css" rel="stylesheet">
  
 </head>
 
 <body>
+<div id="container">  
  
 	<div class="login_group">  
 		<a href="SearchCenter.jsp" data-tooltip="kakao API를 사용하는 지도로 이동합니다."> API Map Link </a>			
 	</div>
+   
+ 
+	<div class="borderbox-medium">	
+		<form action="list2" name="RadioForm">	 
+			<input type="radio" id="radio1" name="radiokeyword" value="동물병원" ${centerType1 eq 1 ? "checked" : ""} onclick="checkRadio()" />
+			<label>동물병원</label>
+			<input type="radio" id="radio2" name="radiokeyword" value="반려동물용품" ${centerType1 eq 2 ? "checked" : ""} onclick="checkRadio()" />
+			<label>펫샾</label>	
+			<input type="radio" id="radio3" name="radiokeyword" value="동물보호" ${centerType1 eq 3 ? "checked" : ""} onclick="checkRadio()" disabled />
+			<label>동물보호센터</label>				 	
+		</form>	 
 	
-	<div id="map_wrap2" class="bg_white">	        
-        <div class="hAddr">
-       		<span class="title"></span>
-       		<span id="centerAddr2"></span>
-       		<span id="latlang"></span>
-   		</div>
-  	</div>
-		 
-	<div style="display:flex;padding:10px;">
-	<form name="curPositionAddr">
-	<!-- 	<label>검색 위치 : </label> -->
-		<label id="centerAddr"></label>
-	</form>
-	</div>
-
-	<div class="leftpadding">	
-	<form action="list2" name="RadioForm">	 
-		<input type="radio" id="radio1" name="radiokeyword" value="동물병원" ${centerType1 eq 1 ? "checked" : ""} onclick="checkRadio()" />
-		<label>동물병원</label>
-		<input type="radio" id="radio2" name="radiokeyword" value="반려동물용품" ${centerType1 eq 2 ? "checked" : ""} onclick="checkRadio()" />
-		<label>펫샾</label>	
-		<input type="radio" id="radio3" name="radiokeyword" value="동물보호" ${centerType1 eq 3 ? "checked" : ""} onclick="checkRadio()" disabled />
-		<label>동물보호센터</label>
-				 	
-	</form>
-	</div>
-
-	<div class="leftpadding">	
-	<form action="list2" method="get">
-	<label> 주소 </label> &ensp; 	
-  		<select name="addressRegion" id="addressRegion2"></select>
-		<select name="addressDo" id="addressDo2"></select>
-		<select name="addressSiGunGu" id="addressSiGunGu2" onchange="RegionClass2(this); return false;"></select>
-	</form>								 
- 	&nbsp;	
-	<form action="list2" method="get" >
-		<input type="text" id="centerAddr1" name="centerAddr1" value='${addr}' style="background-color:#e6e6e6">	
-		<input type="hidden" id="centerType" name="centerType" value='${centerType1}' >			
-		<input type="submit" value="검색">
-	</form>
-	</div>		
- 	
-	<div class="leftpadding">	
- 	<form action="list3" method="get">
- 		<label> 상호 </label> &ensp;	
-		<input type="text" id="keywordSearch1" name="keywordSearch1">	
-		<input type="hidden" id="centerType2" name="centerType2" value="${centerType1}">			
-		<input type="submit" value="검색">
- 	</form>	
-	</div>
-	
+		<div class="borderbox-small" >	
+			<form action="list2" method="get">
+			<label> 주소 </label>&ensp;	
+		  		<select name="addressRegion" id="addressRegion2"></select>
+				<select name="addressDo" id="addressDo2"></select>
+				<select name="addressSiGunGu" id="addressSiGunGu2" onchange="RegionClass2(this); return false;"></select>				
+		
+				<input type="hidden" id="centerAddr1" name="centerAddr1" value='${addr}' style="background-color:#e6e6e6">	
+				<input type="hidden" id="centerType" name="centerType" value='${centerType1}' >		&ensp;	 			
+				<input type="submit" value="검색" class="button">
+			</form>
+		</div>		
+ 	 
+		<div class="borderbox-small">	
+		 	<form action="list3" method="get">
+		 		<label> 상호 </label> &ensp;	
+				<input type="text" id="keywordSearch1" name="keywordSearch1">	
+				<input type="hidden" id="centerType2" name="centerType2" value="${centerType1}">	&ensp;			
+				<input type="submit" value="검색" class="button">
+		 	</form>	
+		</div>
+	 
 	<br>
-	<div style="display:flex;padding:10px;">	
-	<div id="map" style="width:99%;height:450px;"></div>
-	</div>
+ 	</div>
+ 	
+	<div id="map" class="borderbox-map"></div>
+ 
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script> 
  	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5454a62e5d0c9bb2b98dbfd591e5b4cb&libraries=services"></script>
  	<script type="text/javascript" src="../resources/js/address.js"></script>		
@@ -381,9 +300,9 @@ var areaSelectMaker = function(target){
 <br>
 <body>
 	
- <div id="tablelist2" style="display:flex;padding:10px;">
-	<table border="1" width="99%">
-	    <tr bgcolor="gray">
+ <div id="tablelist2" style="display:flex;padding:10px;color:black;">
+	<table width="99%">
+	    <tr bgcolor="lightgray">
 	        <td>id</td>
 	        <td>상호</td>	        
 	        <td>주소</td>		        
@@ -462,9 +381,11 @@ var areaSelectMaker = function(target){
 		<button style="background:#d3cfe3"> Last </button>
 	</a>
 	 </div>
+ 	 
  	<br>
  	<div id="tablelistpagesnums2" style="display:flex;padding:10px;">	
     <span> 현재 페이지: ${page.page}, 전체 페이지: ${pages}개 ,	전체 게시물 수: ${count}개  </span> <br>		
 	</div>
+</div>	
 </body>
 </html>
