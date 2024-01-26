@@ -2,7 +2,10 @@
 	font-family: 'NotoSans_Regular';
 	src: url('./member/font/NotoSansKR-Regular.ttf') format('truetype')
 }
-
+@font-face {
+	font-family: 'NotoSans_Bold';
+	src: url('./member/font/NotoSansKR-Bold.ttf') format('truetype')
+}
 
 body {
     margin: 0;
@@ -10,12 +13,14 @@ body {
 }
 
 header {
-    background-color: #8EC693;
+    background-color: #6da77e;
     width: 100%;
     height: 100px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    text-shadow: 1px 1px 1px #456456;
+    color: black;
 }
 
 #logo {
@@ -32,11 +37,12 @@ nav {
 }
 
 nav a {
-    width: 130px;
+    width: 150px;
     margin: 0 50px;
     color: white;
     text-decoration: none;
-    font-size: 20px;
+    font-size: 23px;
+    font-family: "NotoSans_Regular";
 }
 
 #nav_left {

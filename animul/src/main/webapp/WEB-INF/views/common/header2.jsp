@@ -48,12 +48,12 @@
         <header>
             <nav id="nav_left">
                 <a href="${pageContext.request.contextPath}/diagnosis/diagnosisMain.jsp">진료비 조회</a>
-                <a href="${pageContext.request.contextPath}/map/hospital.jsp">주변시설 찾기</a>
+                <a href="${pageContext.request.contextPath}/map/SearchCenter.jsp">주변시설 찾기</a>
             </nav>
             
             <div id="logo">
                 <!-- 로고 이미지를 넣어주세요. -->
-                <a href="${pageContext.request.contextPath}/main.jsp"><img src="${pageContext.request.contextPath}/resources/img/logo_transparent_resized.png" alt="Logo"></a>
+                <a href="/animul/main"><img src="${pageContext.request.contextPath}/resources/img/logo_transparent_resized.png" alt="Logo"></a>
             </div>
 
             <nav id="nav_right">

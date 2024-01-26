@@ -62,7 +62,7 @@
                         // ); // id name birth gender age email nickname
                         $("#id").text(data.id);
                         $("#name").text(data.member_name);
-                        $("#birth").text(data.member_birthday);
+                        $("#birth").text(ms2Date(data.member_birthday));
                         $("#gender").text(data.member_gender);
                         $("#age").text( ageCalc(ms2Date(data.member_birthday)) );
                         $("#email").text(data.member_email);
