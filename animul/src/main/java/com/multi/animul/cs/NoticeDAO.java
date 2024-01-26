@@ -55,5 +55,9 @@ public class NoticeDAO {
 		return vo2;
 	}
 	
+	public List<NoticeVO> newNotice() {
+		List<NoticeVO> list = my.selectList("notice.newNotice");
+		return list;
+	}
 	
 }

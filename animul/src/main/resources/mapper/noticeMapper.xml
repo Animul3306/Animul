@@ -54,5 +54,9 @@
 	     n.* from notice n) n2
 	where n2.notice_no between ${start} and ${end}
 	</select>
+   	
+   	<select id="newNotice" resultType="noticeVO">
+		select * from animul.notice order by notice_id desc limit 5
+	</select>
    
 </mapper>
