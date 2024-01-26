@@ -71,7 +71,7 @@
         <c:if test="${sessionScope.loggedInUser ne null and vo.member_id ne null and sessionScope.loggedInUser eq vo.member_id}">
 
             <div class="inbx">
-           		<input type="text" id="commentWriter" readonly="readonly" placeholder="<%= session.getAttribute("loggedInUser") %>" >
+           		<input type="hidden" id="commentWriter" readonly="readonly" placeholder="<%= session.getAttribute("loggedInUser") %>" >
                 <input type="text" class="textarea block" id="commentContents" placeholder="내용">
                 <button style="cursor:pointer" class="bt btn btn-blue" onclick="commentWrite()">댓글작성</button>           
             </div>
@@ -94,7 +94,7 @@
 	        
 	        <c:forEach items="${replyList}" var="replyVO">
 	            <tr>
-	         
+	         	
 	                <td><%= session.getAttribute("loggedInUser") %></td>
 	                <td>${replyVO.reply_content}</td>
 	                <td>${replyVO.reply_date} </td>
