@@ -36,7 +36,7 @@ sup { position: relative; top: -3px; padding-left: 3px; font-size: 11px; }
  * table
 /* ------------------------------------------ */
 table { width: 100%; border-collapse: collapse; border-spacing: 0; }
-tbody, tfoot, thead, tr, th, td { word-break:break-all; vertical-align:middle; }
+tbody, tfoot, thead, tr, th, td { word-break:break-all; vertical-align:middle;     text-align: center; }
 caption { display: none; }
 
 /* --------------------------------------------
@@ -52,7 +52,7 @@ input[type=button],
 input[type=submit] { cursor: pointer; }
 button { width: auto; overflow: visible; background: none; border: none; cursor: pointer; margin: 0; padding: 0; }
 button > span { position: relative; }
-textarea { resize: none; padding: 0px; color: #666; box-sizing: border-box; -webkit-box-sizing: border-box; -ms-box-sizing: border-box; }
+textarea { resize: none; padding: 0px; color: #666;}
 select::-ms-expand { display: none; /*display: block\0/IE8+9; */ }
 input, button, select, textarea { vertical-align:middle; }
 input.block, button.block, select.block, textarea.block{ width:100%; display: block;}
@@ -61,7 +61,7 @@ fieldset{border:0}
 input,select,label{display:inline-block;box-sizing:border-box;vertical-align:middle;outline:0; }
 label{ color:#535a70; margin-right:5px;}
 input[type=text],
-input[type=password]{ font-size:14px; height:50px; padding:0 10px; border:solid 1px #ddd; line-height:50px; background-color:#fff; }
+input[type=password]{ font-size:14px; height:50px; width: 1014px;padding:0 10px; border:solid 1px #ddd; line-height:50px; background-color:#fff; }
 input[type=text]:disabled,
 select:disabled,
 textarea:disabled{ border-color:#d7dae3; color:#d7dae3; background-color:#f8f8f9 !important;}
@@ -70,7 +70,7 @@ button{vertical-align:middle;appearance:none;-ms-appearance:none;-webkit-appeara
 input[type=button],
 input[type=submit],button{height:30px;border:0;text-align:center;cursor:pointer;}
 input[type=file]{cursor:pointer;}
-textarea{padding:3px;border:solid 1px #ddd;box-sizing:border-box;vertical-align:middle;resize:none;outline:none; font-family: 'Noto Sans','돋움', '굴림', serif; }
+textarea{padding:3px;border:solid 1px #ddd;vertical-align:middle;resize:none;outline:none; text-align: center;}
 input[type=text]:focus,
 input[type=password]:focus{ border-color:#999;}
 

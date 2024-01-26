@@ -64,7 +64,7 @@
 								id="exampleFormControlInput1" placeholder=" <%= session.getAttribute("loggedInUser") %>" readonly="readonly"> 
 							<label for="exampleFormControlTextarea1" class="form-label">내용</label>
 							<textarea name="bbs_content" class="form-control"
-								id="exampleFormControlTextarea1" rows="6"></textarea>
+								id="exampleFormControlTextarea1" rows="6" style="height: 205px; text-align: left;"></textarea>
 								
 								
 							<div class="inputArea">
