@@ -116,9 +116,8 @@
       }
      
       .container{
-       margin:25px;
+       margin-left:25px;
       }
-      
      
     </style>
 
@@ -252,7 +251,9 @@
   
   </div>
 <div class="container">	
-    <table class="table mt-3">
+    <p class="fs-4"><img src="${pageContext.request.contextPath}/resources/img/cs/dog4.png" width="100" height="120">&nbsp;공지사항 - 예정</p>
+    <br>
+    <table class="table">
       <thead>
         <tr>
          

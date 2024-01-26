@@ -39,7 +39,7 @@
 		 
 			<input type="hidden" id="centerAddr1" name="centerAddr1" style="background-color:#e6e6e6" >	
 			<input type="hidden" id="centerType" name="centerType" value="${centerType21}">			
-			<input type="submit" value="검색" class="button">
+			<input type="submit" value="검색" class="button" onclick="nullcheck()">
 		</form>
 	</div>
 	
@@ -48,7 +48,7 @@
 	 		<label> 상호 </label> &ensp;
 			<input type="text" id="keywordSearch1" name="keywordSearch1" value='${keywd}'>	
 			<input type="hidden" id="centerType2" name="centerType2" value='${centerType21}'>			
-			<input type="submit" value="검색" class="button">
+			<input type="submit" value="검색" class="button" onclick="nullcheck()">
 	 	</form>
  	</div>
   	</div>
@@ -119,6 +119,7 @@
 	    if (document.getElementById('radio1').checked) {
 	        document.getElementById('centerType').value = "1";
 	        document.getElementById('centerType2').value = "1";
+	     
 	    }	    
 	    if (document.getElementById('radio2').checked) {
     	 	document.getElementById('centerType').value = "2";
@@ -128,9 +129,15 @@
 	    	 document.getElementById('centerType').value = "3";
 	    	 document.getElementById('centerType2').value = "3";	
 	    }
-
 	}
-	
+ 
+	function nullcheck(){
+		if (document.getElementById('radio1').checked == false && document.getElementById('radio2').checked == false){
+			alert("검색 하려는 버튼 [O 동물병원 O 펫샾]을 선택하세요.");	
+			return;		
+		}
+	}	
+ 	
 	// map 지도
 
 	var infowindow = new kakao.maps.InfoWindow({zIndex:1});

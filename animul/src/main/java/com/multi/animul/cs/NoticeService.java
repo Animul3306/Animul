@@ -44,5 +44,8 @@ public class NoticeService {
 		return dao.delete(vo);
 	}
 	
+	public List<NoticeVO> newNotice() {
+		return dao.newNotice();
+	}
 	
 }

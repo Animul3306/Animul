@@ -69,4 +69,7 @@ public class NoticeController {
 		NoticeVO vo2 = service.one(vo);
 		model.addAttribute("vo2", vo2);
 	}
+	
+	
+	
 }

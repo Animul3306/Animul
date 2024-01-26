@@ -89,8 +89,8 @@
                         <div class="input_button">
                             <select id="gender" name="gender" class="input w400">
                                 <option value="" disabled selected hidden>메뉴를 선택하세요</option>
-                                <option value="male">수컷</option>
-                                <option value="female">암컷</option>
+                                <option value="남자">수컷</option>
+                                <option value="여자">암컷</option>
                                 <option value="none">알리지않음</option>
                             </select>
                         </div>
@@ -127,7 +127,7 @@
                     <th>중성화 여부</th>
                     <td>
                         <div class="input_button">
-                            <select id="gender" name="gender" class="input w400">
+                            <select id="neutralization" name="neutralization" class="input w400">
                                 <option value="" disabled selected hidden>메뉴를 선택하세요</option>
                                 <option value="true">중성화 함</option>
                                 <option value="false">중성화 안함</option>

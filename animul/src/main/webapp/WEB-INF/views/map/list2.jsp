@@ -22,7 +22,6 @@
 		<a href="SearchCenter.jsp" data-tooltip="kakao API를 사용하는 지도로 이동합니다."> API Map Link </a>			
 	</div>
    
- 
 	<div class="borderbox-medium">	
 		<form action="list2" name="RadioForm">	 
 			<input type="radio" id="radio1" name="radiokeyword" value="동물병원" ${centerType1 eq 1 ? "checked" : ""} onclick="checkRadio()" />
@@ -42,7 +41,7 @@
 		
 				<input type="hidden" id="centerAddr1" name="centerAddr1" value='${addr}' style="background-color:#e6e6e6">	
 				<input type="hidden" id="centerType" name="centerType" value='${centerType1}' >		&ensp;	 			
-				<input type="submit" value="검색" class="button">
+				<input type="submit" value="검색" class="button" onclick="nullcheck()">
 			</form>
 		</div>		
  	 
@@ -51,7 +50,7 @@
 		 		<label> 상호 </label> &ensp;	
 				<input type="text" id="keywordSearch1" name="keywordSearch1">	
 				<input type="hidden" id="centerType2" name="centerType2" value="${centerType1}">	&ensp;			
-				<input type="submit" value="검색" class="button">
+				<input type="submit" value="검색" class="button" onclick="nullcheck()">
 		 	</form>	
 		</div>
 	 
@@ -123,6 +122,7 @@
 	    if (document.getElementById('radio1').checked) {
 	        document.getElementById('centerType').value = "1";
 	        document.getElementById('centerType2').value = "1";
+	    
 	    }	    
 	    if (document.getElementById('radio2').checked) {
     	 	document.getElementById('centerType').value = "2";
@@ -134,7 +134,13 @@
 	    }
 	
 	}
-		 
+	
+	function nullcheck(){
+		if (document.getElementById('radio1').checked == false && document.getElementById('radio2').checked == false){
+			alert("검색 하려는 버튼 [O 동물병원 O 펫샾]을 선택하세요.");	
+			return;		
+		}
+ 	}
 	// map 지도
 
 	var infowindow = new kakao.maps.InfoWindow({zIndex:1});
