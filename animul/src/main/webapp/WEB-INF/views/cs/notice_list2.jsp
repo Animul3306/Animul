@@ -317,6 +317,7 @@
  </div> 
  <% }else{ %>
 	<div class="container">	
+    <p class="fs-3"><img src="${pageContext.request.contextPath}/resources/img/cs/dog2.png" width="100" height="120">&nbsp; 공지사항 </p>
     <table class="table mt-3">
       <thead>
         <tr>
