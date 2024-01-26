@@ -292,7 +292,7 @@
 		<div class="ask_wrap">
 			<form action="ask_insert" name="frm" method="post" enctype="multipart/form-data" onsubmit="return chkSubmit()">
 				<div class="mx-auto p-2" style="width: 900px;">
-					<p class="fs-2">1:1문의 등록</p>
+					<p class="fs-2"><img src="${pageContext.request.contextPath}/resources/img/cs/cat.png" width="150" height="150">&nbsp;1:1문의 등록 </p>
 				</div>
 				<div class="container">
 					

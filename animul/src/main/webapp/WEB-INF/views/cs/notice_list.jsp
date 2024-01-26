@@ -116,7 +116,7 @@
       }
      
       .container{
-       margin:25px;
+       margin-left:25px;
       }
       
      
@@ -254,7 +254,9 @@
   
 
 <div class="container">	
-    <table class="table mt-3">
+    <p class="fs-4"><img src="${pageContext.request.contextPath}/resources/img/cs/dog3.png" width="110" height="120">&nbsp;공지사항 - 진행중</p>
+    <br> 
+    <table class="table">
       <thead>
         <tr>
          

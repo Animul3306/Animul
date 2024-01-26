@@ -297,12 +297,13 @@
     
     <p class="col-lg-6 mx-auto mt-5 mb-5">
       <%=vo2.getNotice_content() %>
+      
     </p>
     
   </div>
   
 </div>
-
+	
 <div class="d-grid gap-2 col-2 mx-auto mt-3">
   
   <a href="notice_list2?page=1"><button class="btn btn-primary" type="button">목록으로</button></a>
