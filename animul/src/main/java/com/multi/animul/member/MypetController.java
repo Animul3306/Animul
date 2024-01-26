@@ -18,11 +18,12 @@ public class MypetController {
 	MypetService service;
 	
 	@PostMapping("/mypet/addPet.do")
-	public String insert(String name, String owner_id, String category, String variety, String gender, String birth, String weight, String neutralization) {
+	public String insert(HttpSession session, String name, String owner_id, String category, String variety, String gender, String birth, String weight, String neutralization) {
 		MypetVO vo = new MypetVO();
 
 		vo.setMypet_name(name);
-		vo.setMypet_owner(owner_id);
+		if (owner_id == null) { vo.setMypet_owner((String)session.getAttribute("loggedInUser"));}
+		else { vo.setMypet_owner(owner_id); }
 		vo.setMypet_category(category);
 		vo.setMypet_variety(variety);
 		vo.setMypet_gender(gender);

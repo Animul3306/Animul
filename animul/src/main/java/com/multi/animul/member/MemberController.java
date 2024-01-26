@@ -78,7 +78,7 @@ public class MemberController {
 		        response.addCookie(deleteCookie);
 		    }
 
-		    path = "redirect:/main.jsp";
+		    path = "redirect:/main";
 		}
 		else {
 			session.setAttribute("loginError", "Login Failed");
@@ -103,7 +103,7 @@ public class MemberController {
 	public String logout(HttpSession session) {
 		session.invalidate();
 
-		return "redirect:/main.jsp";
+		return "redirect:/main";
 	}
 
 	@RequestMapping(value="/member/ConfirmId.do", method=RequestMethod.POST) 
@@ -185,7 +185,7 @@ public class MemberController {
 		if(result == 1) {
 			session.setAttribute("loggedInUser", vo.getId());
 
-			path = "redirect:/main.jsp";
+			path = "redirect:/main";
 		}
 		else {
 			session.setAttribute("loginError", "Login Failed");
@@ -278,7 +278,7 @@ public class MemberController {
 	public String naverLogin() {
 		
 
-		return "redirect:/main.jsp";
+		return "redirect:/main";
 	}
 
 	// private KakaoUtils kakaoUtils = new KakaoUtils();
@@ -294,7 +294,7 @@ public class MemberController {
 		String accessToken = KakaoUtils.getAccessToken(code);
 		System.out.println("accessToken = " + accessToken);
 
-		return "redirect:/main.jsp";
+		return "redirect:/main";
 	}
 
 	@RequestMapping(value="/member/userInfo.do", method=RequestMethod.GET)
@@ -331,6 +331,6 @@ public class MemberController {
 
 	@RequestMapping(value="/member/withdrawal-redirect.do", method=RequestMethod.POST)
 	public String requestMethodName(@RequestParam String param) {
-		return "redirect:main.jsp";
+		return "redirect:main";
 	}
 }
