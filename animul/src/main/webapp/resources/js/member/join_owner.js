@@ -27,16 +27,18 @@ var checkId = false;
 				var join_agree2 = document.getElementById("join_agree2");
 				var join_agree3 = document.getElementById("join_agree3");
 
-				if (join_agree1.checked & join_agree2.checked) { join_agree3.checked = 1;}
-				else { join_agree3.checked = 0; }
+				if (join_agree1.checked & join_agree2.checked) { join_agree3.checked = 1; button_next.style.backgroundColor = "#8ec693"; }
+				else { join_agree3.checked = 0; button_next.style.backgroundColor = "#5e5e5e"; }
 			}
 			function checkboxControl2() {
 				var join_agree1 = document.getElementById("join_agree1");
 				var join_agree2 = document.getElementById("join_agree2");
 				var join_agree3 = document.getElementById("join_agree3");
 
-				if (join_agree3.checked) { join_agree1.checked = 1; join_agree2.checked = 2;}
-				else {join_agree1.checked = 0; join_agree2.checked = 0;}
+				var button_next = document.getElementById("button_next");
+
+				if (join_agree3.checked) { join_agree1.checked = 1; join_agree2.checked = 1; button_next.style.backgroundColor = "#8ec693"; }
+				else {join_agree1.checked = 0; join_agree2.checked = 0; button_next.style.backgroundColor = "#5e5e5e";} 
 			}
 
             function nextStep(){
@@ -48,6 +50,30 @@ var checkId = false;
 
 			function showLoginError() {
 				alert('회원가입에 성공하셨습니다.');
+			}
+			
+			function checkAllClear() {
+				if ( !checkId ) {
+					alert("아이디를 확인해 주세요.");
+
+					$("#id").focus();
+				} else if ( !checkPassword ) {
+					alert("비밀번호를 확인해 주세요.");
+
+					$("#password").focus();
+				} else if ( !checkEmail ) {
+					alert("이메일을 확인해 주세요.");
+
+					$("#email").focus();
+				} else if ( !checkNickname ) {
+					alert("닉네임을 확인해 주세요.");
+
+					$("#nickname").focus();
+				} else {
+					return true;
+				}
+
+				return false;
 			}
 
 			$(document).ready(function() {
@@ -237,28 +263,13 @@ var checkId = false;
 					});
 				});
 
+
 				$("#button_join").on("focusout", function() {
 					// var checkId = false;
 					// var checkPassword = false;
 					// var checkEmail = false;
 					// var checkNickname = false;
-					if ( !checkId ) {
-						alert("아이디를 확인해 주세요.");
-
-						$("#id").focus();
-					} else if ( !checkPassword ) {
-						alert("비밀번호를 확인해 주세요.");
-
-						$("#password").focus();
-					} else if ( !checkEmail ) {
-						alert("이메일을 확인해 주세요.");
-
-						$("#email").focus();
-					} else if ( !checkNickname ) {
-						alert("닉네임을 확인해 주세요.");
-
-						$("#nickname").focus();
-					} else {
+					if ( checkAllClear ) {
                         document.joinForm.submit();
 					}
 				});

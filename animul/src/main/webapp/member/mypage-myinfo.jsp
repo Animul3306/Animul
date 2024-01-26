@@ -75,7 +75,7 @@
                     }
                 });
 
-                $("#button_modify").on("click", function() {
+                $("#button_join").on("click", function() {
                     location.href="./mypage-infoModify.jsp";
                 });
             });
