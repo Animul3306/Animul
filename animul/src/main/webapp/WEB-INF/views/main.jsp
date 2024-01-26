@@ -42,6 +42,13 @@
 		    width: 100%;
 		   	margin: 35px 35px 35px 35px;
 		}
+		
+		.newNotice {
+		    width: 100%;
+		   	margin: 35px 35px 35px 35px;
+		}
+		
+		
         .article {
 		    display: flex;
 		    margin-top: 2px;
@@ -93,6 +100,11 @@
     h3 {
    		line-height: 7;
     }
+    
+    .disease2{
+     margin-top:30px;
+     margin-bottom:50px;
+    }
 	</style>
 
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/slider.css"/>">
@@ -136,17 +148,17 @@
 			        </c:forEach>
     			
 	</div>
-		<div class="bestList">
+		<div class="newNotice">
 		<div class="pets2">
-		<h3> 게시판 인기글 </h3>
+		<h3> 공지사항 </h3>
 		</div>	
 		
-			        <c:forEach var="item" items="${bestList}">
+			        <c:forEach var="item" items="${newNotice}">
 			        <div class="article">
-			            <span class="cate">${item.bbs_cate}</span>
-			          	<a href="bbs/one?bbs_id=${item.bbs_id}" class="tit">${item.bbs_title}</a>
+			            <span class="cate">${item.notice_category}</span>
+			            <a href="cs/notice_one?notice_id=${item.notice_id}" class="tit">${item.notice_title}</a>
 			            <div class="wrap-infor"> 
-						<a href="one?bbs_id=${item.bbs_id}" class="cmt"></a>${item.bbs_hit}
+						
 						</div>
 					</div>
 			        </c:forEach>
