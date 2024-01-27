@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link href="../resources/css/bbs/style.css" rel="stylesheet">
+<link href="../resources/css/retrieve/style.css" rel="stylesheet">
 <style>
 .box {
 	border: 5px solid darkblue;

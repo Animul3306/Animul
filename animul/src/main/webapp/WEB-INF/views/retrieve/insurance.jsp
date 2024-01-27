@@ -11,7 +11,7 @@
 <head>
 <meta charset="UTP-8">
 <title>Insert title here</title>
-<link href="../resources/css/bbs/style.css" rel="stylesheet">
+<link href="../resources/css/retrieve/style.css" rel="stylesheet">
 </head>
 <body>
 <%
@@ -38,7 +38,7 @@ if (list != null) {//보험회 클릭시
 				<div class="pt-titarea">
 					<h3 class="tit">보험</h3>
 					<p>펫보험 가입 왜 필요할까요?<br>
-강아지 고양이 기르시는 분이라면 의료비 부담을 크게 느끼실 거로 생각합니 다. 기르는 종에 따라 흔히 발생하는 질병이 있으며 수술을 진행할 경우 최소 수 십에서 수백만 원의 비용이 발생할 수 있습니다.
+강아지 고양이 기르시는 분이라면 의료비 부담을 크게 느끼실 거로 생각합니다. 기르는 종에 따라 흔히 발생하는 질병이 있으며 수술을 진행할 경우 최소 수 십에서 수백만 원의 비용이 발생할 수 있습니다.
 노화가 진행될수록 더욱 많은 의료 비용이 발생하게 됩니다. PET 보험에 가입 한다면 부담스러운 의료 비용을 최대 80~90%가량 보장 받을 수 있습니다.
 </p>
 				</div>
