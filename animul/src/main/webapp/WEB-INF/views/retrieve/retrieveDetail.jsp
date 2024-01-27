@@ -62,7 +62,7 @@ if (list != null) {
 
 			<div id="lm" class="cs">
 				<h2 class="lm-tit">
-					<span>?</span> <strong>보험&질병</strong>
+					<span></span> <strong>보험&질병</strong>
 				</h2>
 				<ul id="snb">
 					<li><a href="insurance"> 보험</a></li>
