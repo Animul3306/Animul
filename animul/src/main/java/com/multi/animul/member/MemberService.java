@@ -65,6 +65,12 @@ public class MemberService {
 	public String getNickname(MemberVO vo) {
 		return dao.getNickname(vo);
 	}
+	public String getNickname(String id) {
+		MemberVO vo = new MemberVO();
+		vo.setId(id);
+
+		return dao.getNickname(vo);
+	}
 
 	public int join(MemberVO vo) {
 		String pwd = vo.getPassword();
