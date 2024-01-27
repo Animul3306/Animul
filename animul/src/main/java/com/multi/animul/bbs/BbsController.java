@@ -48,7 +48,7 @@ public class BbsController {
 	@Resource(name = "uploadPath")
 	private String uploadPath;
 
-	// ������ũ �Խñ� �ۼ� + ÷������
+	//자유게시판 작성
 	@RequestMapping("bbs/freeInsert")
 	public String insert(BbsVO vo, @RequestParam(value = "file", required = false) MultipartFile file,
 			HttpSession session, Model model) throws Exception {
@@ -74,14 +74,14 @@ public class BbsController {
 			vo.setBbs_thumbImg(
 					File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
 		} else {
-			// ������ �������� ���� ��� �⺻�� ����
+			//첨부파일 첨부안할 시
 			vo.setBbs_img("/resources/img/imgUpload/none.png");
 			vo.setBbs_thumbImg("/resources/img/imgUpload/none.png");
 		}
 
 		int insertResult = service.insert(vo);
 
-		// ����� �α� �߰�
+		
 		System.out.println("No file uploaded. Using default values.");
 		System.out.println("Bbs_img Value: " + vo.getBbs_img());
 		System.out.println("Bbs_thumbImg Value: " + vo.getBbs_thumbImg());
@@ -94,7 +94,7 @@ public class BbsController {
 		}
 	}
 
-	// ��å����Ʈ �۳���ã�� �Խñ� �ۼ� + ÷������
+	//산책 메이트+멍냥이 찾기 게시판 작성
 	@RequestMapping("bbs/localInsert")
 	public String insert2(BbsVO vo, @RequestParam(value = "file", required = false) MultipartFile file,
 			HttpSession session, Model model) throws Exception {
@@ -120,14 +120,14 @@ public class BbsController {
 			vo.setBbs_thumbImg(
 					File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
 		} else {
-			// ������ �������� ���� ��� �⺻�� ����
+			
 			vo.setBbs_img("/resources/img/imgUpload/none.png");
 			vo.setBbs_thumbImg("/resources/img/imgUpload/none.png");
 		}
 
 		int insertResult = service.insert2(vo);
 
-		// ����� �α� �߰�
+	
 		System.out.println("No file uploaded. Using default values.");
 		System.out.println("Bbs_img Value: " + vo.getBbs_img());
 		System.out.println("Bbs_thumbImg Value: " + vo.getBbs_thumbImg());
@@ -140,7 +140,7 @@ public class BbsController {
 		}
 	}
 
-	// ���� ��ũ �Խ��� ���
+	//자유게시판 리스트
 	@RequestMapping("bbs/freeList")
 	public String list(BbsVO vo, Model model,
 			@RequestParam(value = "page", required = false, defaultValue = "1") int page,
@@ -150,14 +150,15 @@ public class BbsController {
 		String loggedInUser = (String) session.getAttribute("loggedInUser");
 		vo.setMember_id(loggedInUser);
 		model.addAttribute(vo);
-
+		
+		//페이징 + 검색
 		Map<String, Object> map = new HashMap<>();
 		map.put("page", page);
 		map.put("word", word);
 		map.put("type", type);
 		List<BbsVO> list = service.pagingList(map);
 		model.addAttribute("list", list);
-		// ����¡
+		
 		List<BbsVO> pagingList = service.pagingList(map);
 		PageVO pageVO = service.pagingParam(map);
 		model.addAttribute("freeList", pagingList);
@@ -168,21 +169,20 @@ public class BbsController {
 		return "bbs/freeList";
 	}
 
-	// ���� ��ũ �Խ��� �˻� ���
+	// 자유게시판 검색
 	@RequestMapping("bbs/freeListSearch")
 	public String listSearch(BbsVO vo, Model model,
 			@RequestParam(value = "page", required = false, defaultValue = "1") int page,
 			@RequestParam(value = "word", required = false, defaultValue = "") String word,
 			@RequestParam(value = "type", required = false, defaultValue = "") String type) {
-		System.out.println("word: " + word + " / page: " + page);
-		System.out.println(type);
+
 		Map<String, Object> map = new HashMap<>();
 		map.put("page", page);
 		map.put("word", word);
 		map.put("type", type);
 		List<BbsVO> list = service.pagingList(map);
 		model.addAttribute("list", list);
-		// ����¡
+		
 		List<BbsVO> pagingList = service.pagingList(map);
 		PageVO pageVO = service.pagingParam(map);
 		model.addAttribute("freeList", pagingList);
@@ -192,19 +192,20 @@ public class BbsController {
 		return "bbs/freeListSearch";
 	}
 
-	// ��å ����Ʈ + �۳��� ã�� �Խ��� ���
+	//산책 메이트+멍냥이 찾기 게시판 리스트
 	@RequestMapping("bbs/localList")
 	public String list2(BbsVO vo, Model model,
 			@RequestParam(value = "page", required = false, defaultValue = "1") int page,
 			@RequestParam(value = "word", required = false, defaultValue = "") String word,
 			@RequestParam(value = "type", required = false, defaultValue = "") String type) {
+		
 		Map<String, Object> map = new HashMap<>();
 		map.put("page", page);
 		map.put("word", word);
 		map.put("type", type);
 		List<BbsVO> list = service.pagingList2(map);
 		model.addAttribute("list", list);
-		// ����¡
+		
 		List<BbsVO> pagingList = service.pagingList2(map);
 		PageVO pageVO = service.pagingParam2(map);
 		model.addAttribute("freeList", pagingList);
@@ -212,26 +213,24 @@ public class BbsController {
 		model.addAttribute("word", word);
 		model.addAttribute("type", type);
 
-		// �˻�
 
 		return "bbs/localList";
 	}
 
-	// ��å ����Ʈ + �۳��� ã�� �Խ��� �˻� ���
+	//산책 메이트+멍냥이 찾기 게시판 검색
 	@RequestMapping("bbs/localListSearch")
 	public String listSearch2(BbsVO vo, Model model,
 			@RequestParam(value = "page", required = false, defaultValue = "1") int page,
 			@RequestParam(value = "word", required = false, defaultValue = "") String word,
 			@RequestParam(value = "type", required = false, defaultValue = "") String type) {
-		System.out.println("word: " + word + " / page: " + page);
-		System.out.println(type);
+
 		Map<String, Object> map = new HashMap<>();
 		map.put("page", page);
 		map.put("word", word);
 		map.put("type", type);
 		List<BbsVO> list = service.pagingList2(map);
 		model.addAttribute("list", list);
-		// ����¡
+		
 		List<BbsVO> pagingList = service.pagingList2(map);
 		PageVO pageVO = service.pagingParam2(map);
 		model.addAttribute("freeList", pagingList);
@@ -241,7 +240,7 @@ public class BbsController {
 		return "bbs/freeListSearch";
 	}
 
-	// ���� ��ũ �Խñ� �� ������
+	//자유게시판 상세 게시물
 	@RequestMapping("bbs/one")
 	public String one(@RequestParam("bbs_id") int bbs_id, Model model) {
 		service.hit(bbs_id);
@@ -253,7 +252,7 @@ public class BbsController {
 		return "bbs/one";
 	}
 
-	// ��å ����Ʈ + �۳��� ã�� �Խñ� �� ������
+	//산책 메이트+멍냥이 찾기 게시판 상세 게시물
 	@RequestMapping("bbs/one2")
 	public String one2(@RequestParam("bbs_id") int bbs_id, Model model) {
 		service.hit(bbs_id);
@@ -265,7 +264,7 @@ public class BbsController {
 		return "bbs/one2";
 	}
 
-	// �Խñ� ���� ������
+	//자유게시판 게시물 수정
 	@RequestMapping(value = "bbs/freeUpdate", method = RequestMethod.GET)
 	public String updateForm(@RequestParam("bbs_id") int bbs_id, @ModelAttribute BbsVO vo, Model model,
 			MultipartFile file, HttpServletRequest req) {
@@ -275,7 +274,8 @@ public class BbsController {
 		model.addAttribute("vo", vo);
 		return "bbs/freeUpdate";
 	}
-
+	
+	//산책 메이트+멍냥이 찾기 게시물 수정
 	@RequestMapping(value = "bbs/localUpdate", method = RequestMethod.GET)
 	public String updateForm2(@RequestParam("bbs_id") int bbs_id, Model model) {
 
@@ -285,18 +285,18 @@ public class BbsController {
 		return "bbs/localUpdate";
 	}
 
-	// �Խñ� ����
+	//산책 메이트+멍냥이 찾기 게시물 수정
 	@RequestMapping(value = "bbs/freeupdate", method = RequestMethod.POST)
 	public String update(@ModelAttribute BbsVO vo, Model model, MultipartFile file, HttpServletRequest req)
 			throws IOException, Exception {
 
-		// ���ο� ������ ��ϵǾ����� Ȯ��
+		// 새로운 파일 첨부 시
 		if (file.getOriginalFilename() != null && !file.getOriginalFilename().equals("")) {
-			// ���� ������ ����
+			// 기존 파일 삭제
 			new File(uploadPath + req.getParameter("bbs_img")).delete();
 			new File(uploadPath + req.getParameter("bbs_thumbImg")).delete();
 
-			// ���� ÷���� ������ ���
+			
 			String imgUploadPath = uploadPath + File.separator + "imgUpload";
 			String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
 			String fileName = UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(),
@@ -306,8 +306,8 @@ public class BbsController {
 			vo.setBbs_thumbImg(
 					File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
 
-		} else { // ���ο� ������ ��ϵ��� �ʾҴٸ�
-			// ���� �̹����� �״�� ���
+		} else { // 새로운 파일 첨부 안할 시
+			// 기존 파일 가져오기
 			vo.setBbs_img(req.getParameter("bbs_img"));
 			vo.setBbs_thumbImg(req.getParameter("bbs_thumbImg"));
 
@@ -317,18 +317,17 @@ public class BbsController {
 		model.addAttribute("vo2", vo2);
 		return "redirect:freeList";
 	}
-
+	//자유게시판 게시물 수정
 	@RequestMapping(value = "bbs/localUpdate", method = RequestMethod.POST)
 	public String update2(@ModelAttribute BbsVO vo, Model model, MultipartFile file, HttpServletRequest req)
 			throws IOException, Exception {
 
-		// ���ο� ������ ��ϵǾ����� Ȯ��
+		// 새로운 파일 첨부 시
 		if (file.getOriginalFilename() != null && !file.getOriginalFilename().equals("")) {
-			// ���� ������ ����
+			// 기존 파일 삭제
 			new File(uploadPath + req.getParameter("bbs_img")).delete();
 			new File(uploadPath + req.getParameter("bbs_thumbImg")).delete();
 
-			// ���� ÷���� ������ ���
 			String imgUploadPath = uploadPath + File.separator + "imgUpload";
 			String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
 			String fileName = UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(),
@@ -338,8 +337,8 @@ public class BbsController {
 			vo.setBbs_thumbImg(
 					File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
 
-		} else { // ���ο� ������ ��ϵ��� �ʾҴٸ�
-			// ���� �̹����� �״�� ���
+		} else { // 새로운 파일 첨부 안할 시
+			// 기존 파일 가져오기
 			vo.setBbs_img(req.getParameter("bbs_img"));
 			vo.setBbs_thumbImg(req.getParameter("bbs_thumbImg"));
 
@@ -350,20 +349,21 @@ public class BbsController {
 		return "redirect:localList";
 	}
 
-	// �Խñ� ����
+	// 자유게시판 게시물 삭제
 	@RequestMapping("bbs/delete")
 	public String delete(@RequestParam("bbs_id") int bbs_id) {
 		service.delete(bbs_id);
 		return "redirect:freeList";
 	}
-
+	
+	// 산책메이트 + 멍냥이 찾기 게시물 삭제
 	@RequestMapping("bbs/delete2")
 	public String delete2(@RequestParam("bbs_id") int bbs_id) {
 		service.delete(bbs_id);
 		return "redirect:localList";
 	}
 
-	// ��ȣ���� ���⵿�� ����Ʈ
+	// 보호중 게시판 리스트
 	@RequestMapping("bbs/protectList")
 	public String protectList(@RequestParam(value = "page", required = false, defaultValue = "1") String page,
 			@RequestParam(value = "upr_cd", defaultValue = "6110000") String upr_cd, Model model) {
@@ -378,7 +378,7 @@ public class BbsController {
 		return "bbs/protectList";
 	}
 
-	// ��ȣ���� ���⵿�� �� ������
+	// 보호중 게시판 상세 게시물
 	@RequestMapping("bbs/protectOne")
 	public String one3(@RequestParam("desertionNo") String desertionNo,
 			@RequestParam(value = "page", required = false, defaultValue = "1") String page,
@@ -406,7 +406,7 @@ public class BbsController {
 		return "bbs/protectOne";
 	}
 	
-	// ���������� ��ȸ�� �α�� ����Ʈ
+	// 메인페이지 인기글, 공지사항
 		@RequestMapping("/main")
 		public String bestList(Model model) {
 			List<BbsVO> bestList =  service.bestList();
