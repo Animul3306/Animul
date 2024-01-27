@@ -176,7 +176,7 @@
 	</div>
 		<div class="newNotice">
 		<div class="pets2">
-		<h3> 공지사항 </h3>
+		<h3> 최신 공지사항 </h3>
 		</div>	
 		
 			        <c:forEach var="item" items="${newNotice}">
@@ -184,7 +184,7 @@
 			            <span class="cate">${item.notice_category}</span>
 			            <a href="cs/notice_one?notice_id=${item.notice_id}" class="tit">${item.notice_title}</a>
 			            <div class="wrap-infor"> 
-
+						<span class="cate">${item.notice_status}</span>
 						</div>
 					</div>
 			        </c:forEach>
