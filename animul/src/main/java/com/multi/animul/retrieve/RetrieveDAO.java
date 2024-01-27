@@ -34,9 +34,15 @@ public class RetrieveDAO {
 	
 	//1.service method -> dao.selectList() 
 	//2,, controller 
-	//부위별 증상가져오기
+	//전체 부위별 증상가져오기
 	public List<SymptomVO> selectList() {
 		List<SymptomVO> list = my.selectList("retrieve.list1");
+		return list;
+	}
+	
+	//부위별 증상가져오기 ex) 눈이상 
+	public List<SymptomVO> selectRegionList(int region_id) {
+		List<SymptomVO> list = my.selectList("retrieve.listRegion", region_id);
 		return list;
 	}
 

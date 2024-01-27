@@ -34,7 +34,19 @@ public class RetrieveController {
 		//controller -> dao -> mapper.xml -> mysql
 		//controller -> service -> dao -> mapper.xml -> mysql
 		
-		List<SymptomVO> list = serivce.selectList();
+		//List<SymptomVO> list = serivce.selectList();
+
+		
+		//model.addAttribute("list", list);
+		return "retrieve/retrieve2"; //---> retrieve2.jsp
+	}
+		 
+	@RequestMapping("retrieve/retrieveRegion")
+	public String retrieveRegion(int region_id, Model model){
+		//controller -> dao -> mapper.xml -> mysql
+		//controller -> service -> dao -> mapper.xml -> mysql
+		
+		List<SymptomVO> list = serivce.selectRegionList(region_id);
 
 		
 		model.addAttribute("list", list);

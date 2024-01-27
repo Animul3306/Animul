@@ -57,7 +57,7 @@
             </div>
 
             <nav id="nav_right">
-                <a href="${pageContext.request.contextPath}/retrieve/retrieve.jsp">질병 조회</a>
+                <a href="${pageContext.request.contextPath}/retrieve/insurance">질병 조회</a>
                 <a href="${pageContext.request.contextPath}/bbs/freeList">게시판</a>
             </nav>
         </header>
