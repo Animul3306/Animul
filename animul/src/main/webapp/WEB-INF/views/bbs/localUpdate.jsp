@@ -63,7 +63,7 @@
 								id="exampleFormControlInput1" value="${vo.member_id}"> <label
 								for="exampleFormControlTextarea1" class="form-label">내용</label>
 							<textarea name="bbs_content" class="form-control" id="exampleFormControlTextarea1" 
-										rows="6" >${vo.bbs_content}</textarea>
+										rows="6" style="height: 205px; text-align: left;">${vo.bbs_content}</textarea>
 
 							<div class="inputArea">
 								 <label for="bbs_img">이미지</label>
@@ -85,7 +85,7 @@
 								   }
 								  });
 								 </script>
-								 <%=request.getRealPath("/") %>
+							
 								</div>
 
 							<div class="btn-box">

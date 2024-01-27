@@ -1,17 +1,17 @@
 package com.multi.animul.bbs;
 
 public class PageVO {
-	//ÆäÀÌÂ¡
-	private int page; // ÇöÀç ÆäÀÌÁö
-	private int maxPage; // ÀüÃ¼ ÇÊ¿äÇÑ ÆäÀÌÁö °¹¼ö
-	private int startPage; //ÇöÀç ÆäÀÌÁö ±âÁØ ½ÃÀÛÆäÀÌÁö °ª
-	private int endPage; //ÇöÀç ÆäÀÌÁö ±âÁØ ¸¶Áö¸· ÆäÀÌÁö °ª
-	private int totalCount; // ÀüÃ¼ °Ô½Ã¹° °¹¼ö
-	private int pageLimit; //ÇÑ ÆäÀÌÁö´ç º¸¿©ÁÙ °Ô½Ã¹° °¹¼ö
+	//í˜ì´ì§•
+	private int page; // í˜„ì¬ í˜ì´ì§€
+	private int maxPage; // ì „ì²´ í•„ìš”í•œ í˜ì´ì§€ ê°¯ìˆ˜
+	private int startPage; //í˜„ì¬ í˜ì´ì§€ ê¸°ì¤€ ì‹œì‘í˜ì´ì§€ ê°’
+	private int endPage; //í˜„ì¬ í˜ì´ì§€ ê¸°ì¤€ ë§ˆì§€ë§‰ í˜ì´ì§€ ê°’
+	private int totalCount; // ì „ì²´ ê²Œì‹œë¬¼ ê°¯ìˆ˜
+	private int pageLimit; //í•œ í˜ì´ì§€ë‹¹ ë³´ì—¬ì¤„ ê²Œì‹œë¬¼ ê°¯ìˆ˜
 	
-	//°Ë»ö¿¡ ÇÊ¿äÇÑ º¯¼ö
+	//ê²€ìƒ‰ì— í•„ìš”í•œ ë³€ìˆ˜
 	private String type; 
-	private String word; 
+	private String word;  
 	
 	
 
