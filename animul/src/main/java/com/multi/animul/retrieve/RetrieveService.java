@@ -19,6 +19,13 @@ public class RetrieveService {
 		return dao.selectList();
 	}
 	
+	
+	//부위별 증상가져오기 ex) 눈이상 
+	public List<SymptomVO> selectRegionList(int region_id) {
+		List<SymptomVO> list = dao.selectRegionList(region_id);
+		return list;
+	}
+	
 
 	
 }
