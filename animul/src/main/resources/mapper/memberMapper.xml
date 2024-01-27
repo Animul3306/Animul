@@ -61,6 +61,10 @@
 		select count(*) from member where member_nickname=#{member_nickname}
 	</select>
 
+	<select id="getNickname" parameterType="memberVO" resultType="String">
+		select member_nickname from member where member_id=#{id}
+	</select>
+
 	<select id="selectUser" parameterType="memberVO" resultType="memberVO">
 		select member_id, member_email, member_nickname, member_birthday, member_gender, member_age, member_name from member where member_id=#{id}
 	</select>

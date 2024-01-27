@@ -68,6 +68,8 @@ public class MemberController {
 		
 		if (result) {
 		    session.setAttribute("loggedInUser", vo.getId());
+			session.setAttribute("nickname", service.getNickname(vo));
+			// System.out.println(session.getAttribute("nickname"));
 
 		    if (rememberId) {
 		        Cookie cookie = new Cookie("rememberedId", vo.getId());
@@ -184,6 +186,7 @@ public class MemberController {
 
 		if(result == 1) {
 			session.setAttribute("loggedInUser", vo.getId());
+			session.setAttribute("nickname", service.getNickname(vo));
 
 			path = "redirect:/main";
 		}
