@@ -19,39 +19,39 @@ public class ApiExplorerProtect {
 	
 	
 	public ArrayList<ProtectVO> protectAPI(String page, String upr_cd){
-		// 1. URLÀ» ¸¸µé±â À§ÇÑ StringBuilder.
+		// 1. URLì„ ë§Œë“¤ê¸° ìœ„í•œ StringBuilder.
         StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/1543061/abandonmentPublicSrvc/abandonmentPublic"); /*URL*/
         String responseText = null;
-        // 2. ¿ÀÇÂ APIÀÇ ¿äÃ» ±Ô°Ý¿¡ ¸Â´Â ÆÄ¶ó¹ÌÅÍ »ý¼º.
+        // 2. ì˜¤í”ˆ APIì˜ ìš”ì²­ ê·œê²©ì— ë§žëŠ” íŒŒë¼ë¯¸í„° ìƒì„±.
         try {
 			urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=rox78OnV4UZCBEHRVpxi84xhU%2F9FcbBch18WPOXMbIBeRrOF72uwzuyhGb%2BAbdQ8o3ylceUYkqIsgHxUzeaFPA%3D%3D");
-	        urlBuilder.append("&" + URLEncoder.encode("bgnde","UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); /*À¯±â³¯Â¥(°Ë»ö ½ÃÀÛÀÏ) (YYYYMMDD)*/
-	        urlBuilder.append("&" + URLEncoder.encode("endde","UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); /*À¯±â³¯Â¥(°Ë»ö Á¾·áÀÏ) (YYYYMMDD)*/
-	        //urlBuilder.append("&" + URLEncoder.encode("upkind","UTF-8") + "=" + URLEncoder.encode(upkind, "UTF-8")); /*ÃàÁ¾ÄÚµå (°³ : 417000, °í¾çÀÌ : 422400, ±âÅ¸ : 429900)*/
-	        //urlBuilder.append("&" + URLEncoder.encode("kind","UTF-8") + "=" + URLEncoder.encode(" ", "UTF-8")); /*Ç°Á¾ÄÚµå (Ç°Á¾ Á¶È¸ OPEN API ÂüÁ¶)*/
-	        urlBuilder.append("&" + URLEncoder.encode("upr_cd","UTF-8") + "=" + URLEncoder.encode(upr_cd, "UTF-8")); /*½ÃµµÄÚµå (½Ãµµ Á¶È¸ OPEN API ÂüÁ¶)*/
-	        //urlBuilder.append("&" + URLEncoder.encode("org_cd","UTF-8") + "=" + URLEncoder.encode(" ", "UTF-8")); /*½Ã±º±¸ÄÚµå (½Ã±º±¸ Á¶È¸ OPEN API ÂüÁ¶)*/
-	        //urlBuilder.append("&" + URLEncoder.encode("care_reg_no","UTF-8") + "=" + URLEncoder.encode(" ", "UTF-8")); /*º¸È£¼Ò¹øÈ£ (º¸È£¼Ò Á¶È¸ OPEN API ÂüÁ¶)*/
-	        //urlBuilder.append("&" + URLEncoder.encode("state","UTF-8") + "=" + URLEncoder.encode(" ", "UTF-8")); /*»óÅÂ(ÀüÃ¼ : null(ºó°ª), °ø°íÁß : notice, º¸È£Áß : protect)*/
-	        //urlBuilder.append("&" + URLEncoder.encode("neuter_yn","UTF-8") + "=" + URLEncoder.encode(" ", "UTF-8")); /*»óÅÂ (ÀüÃ¼ : null(ºó°ª), ¿¹ : Y, ¾Æ´Ï¿À : N, ¹Ì»ó : U)*/
-	        urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode(page, "UTF-8")); /*ÆäÀÌÁö ¹øÈ£ (±âº»°ª : 1)*/
-	        urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("15", "UTF-8")); /*ÆäÀÌÁö´ç º¸¿©ÁÙ °³¼ö (1,000 ÀÌÇÏ), ±âº»°ª : 10*/
-	        urlBuilder.append("&" + URLEncoder.encode("_type","UTF-8") + "=" + URLEncoder.encode("json", "UTF-8")); /*xml(±âº»°ª) ¶Ç´Â json*/
+	        urlBuilder.append("&" + URLEncoder.encode("bgnde","UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); /*ï¿½ï¿½ï¿½â³¯Â¥(ï¿½Ë»ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½) (YYYYMMDD)*/
+	        urlBuilder.append("&" + URLEncoder.encode("endde","UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); /*ï¿½ï¿½ï¿½â³¯Â¥(ï¿½Ë»ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½) (YYYYMMDD)*/
+	        //urlBuilder.append("&" + URLEncoder.encode("upkind","UTF-8") + "=" + URLEncoder.encode(upkind, "UTF-8")); /*ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½ (ï¿½ï¿½ : 417000, ï¿½ï¿½ï¿½ï¿½ï¿½ : 422400, ï¿½ï¿½Å¸ : 429900)*/
+	        //urlBuilder.append("&" + URLEncoder.encode("kind","UTF-8") + "=" + URLEncoder.encode(" ", "UTF-8")); /*Ç°ï¿½ï¿½ï¿½Úµï¿½ (Ç°ï¿½ï¿½ ï¿½ï¿½È¸ OPEN API ï¿½ï¿½ï¿½ï¿½)*/
+	        urlBuilder.append("&" + URLEncoder.encode("upr_cd","UTF-8") + "=" + URLEncoder.encode(upr_cd, "UTF-8")); /*ï¿½Ãµï¿½ï¿½Úµï¿½ (ï¿½Ãµï¿½ ï¿½ï¿½È¸ OPEN API ï¿½ï¿½ï¿½ï¿½)*/
+	        //urlBuilder.append("&" + URLEncoder.encode("org_cd","UTF-8") + "=" + URLEncoder.encode(" ", "UTF-8")); /*ï¿½Ã±ï¿½ï¿½ï¿½ï¿½Úµï¿½ (ï¿½Ã±ï¿½ï¿½ï¿½ ï¿½ï¿½È¸ OPEN API ï¿½ï¿½ï¿½ï¿½)*/
+	        //urlBuilder.append("&" + URLEncoder.encode("care_reg_no","UTF-8") + "=" + URLEncoder.encode(" ", "UTF-8")); /*ï¿½ï¿½È£ï¿½Ò¹ï¿½È£ (ï¿½ï¿½È£ï¿½ï¿½ ï¿½ï¿½È¸ OPEN API ï¿½ï¿½ï¿½ï¿½)*/
+	        //urlBuilder.append("&" + URLEncoder.encode("state","UTF-8") + "=" + URLEncoder.encode(" ", "UTF-8")); /*ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½Ã¼ : null(ï¿½ï¿½), ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ : notice, ï¿½ï¿½È£ï¿½ï¿½ : protect)*/
+	        //urlBuilder.append("&" + URLEncoder.encode("neuter_yn","UTF-8") + "=" + URLEncoder.encode(" ", "UTF-8")); /*ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½Ã¼ : null(ï¿½ï¿½), ï¿½ï¿½ : Y, ï¿½Æ´Ï¿ï¿½ : N, ï¿½Ì»ï¿½ : U)*/
+	        urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode(page, "UTF-8")); /*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£ (ï¿½âº»ï¿½ï¿½ : 1)*/
+	        urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("15", "UTF-8")); /*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ (1,000 ï¿½ï¿½ï¿½ï¿½), ï¿½âº»ï¿½ï¿½ : 10*/
+	        urlBuilder.append("&" + URLEncoder.encode("_type","UTF-8") + "=" + URLEncoder.encode("json", "UTF-8")); /*xml(ï¿½âº»ï¿½ï¿½) ï¿½Ç´ï¿½ json*/
 	        
-	        // 3. URL °´Ã¼ »ý¼º (toStringÀ¸·Î stringÀ¸·Î º¯È¯)
+	        // 3. URL ê°ì²´ ìƒì„± (toStringìœ¼ë¡œ stringìœ¼ë¡œ ë³€í™˜)
 	        URL url = new URL(urlBuilder.toString());
 	        
-	        // 4. ¿äÃ»ÇÏ°íÀÚ ÇÏ´Â URL°ú Åë½ÅÇÏ±â À§ÇÑ Connection °´Ã¼ »ý¼º.
+	        // 4. ìš”ì²­í•˜ê³ ìž í•˜ëŠ” URLê³¼ í†µì‹ í•˜ê¸° ìœ„í•œ Connection ê°ì²´ ìƒì„±.
 	        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-	        // 5. Åë½ÅÀ» À§ÇÑ ¸Þ¼Òµå SET (Get ¿äÃ»)
+	        // 5. í†µì‹ ì„ ìœ„í•œ ë©”ì†Œë“œ SET (Get ìš”ì²­)
 	        conn.setRequestMethod("GET");
-	        // 6. Åë½ÅÀ» À§ÇÑ Content-type SET. (jsonÀ¸·Î ¼³Á¤ÇØ¾ßµÊ)
+	        // 6. í†µì‹ ì„ ìœ„í•œ Content-type SET. (jsonìœ¼ë¡œ ì„¤ì •í•´ì•¼ë¨)
 	        conn.setRequestProperty("Content-type", "application/json");
 	        
-	        // 7. Åë½Å ÀÀ´ä ÄÚµå È®ÀÎ.
+	        // 7. í†µì‹  ì‘ë‹µ ì½”ë“œ í™•ì¸.
 	        System.out.println("Response code: " + conn.getResponseCode());
 	        
-	        // 8. Àü´Þ¹ÞÀº µ¥ÀÌÅÍ¸¦ BufferedReader °´Ã¼·Î ÀúÀå. ¿À·ù°¡ ³¯ °æ¿ì error ¹ß»ý
+	        // 8. ì „ë‹¬ë°›ì€ ë°ì´í„°ë¥¼ BufferedReader ê°ì²´ë¡œ ì €ìž¥. ì˜¤ë¥˜ê°€ ë‚  ê²½ìš° error ë°œìƒ
 	        BufferedReader rd;
 	        if(conn.getResponseCode() >= 200 && conn.getResponseCode() <= 300) {
 	            rd = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
@@ -59,7 +59,7 @@ public class ApiExplorerProtect {
 	            rd = new BufferedReader(new InputStreamReader(conn.getErrorStream(), "UTF-8"));
 	        }
 	        
-	        // 9. ÀúÀåµÈ µ¥ÀÌÅÍ¸¦ ¶óÀÎº°·Î ÀÐ¾î StringBuilder °´Ã¼·Î ÀúÀå.
+	        // 9. ì €ìž¥ëœ ë°ì´í„°ë¥¼ ë¼ì¸ë³„ë¡œ ì½ì–´ StringBuilder ê°ì²´ë¡œ ì €ìž¥.
 	        StringBuilder sb = new StringBuilder();
 	        String line;
 	        while ((line = rd.readLine()) != null) {
@@ -68,7 +68,7 @@ public class ApiExplorerProtect {
 	        responseText  = sb.toString();
 	       
 	        
-	        // 10. °´Ã¼ ÇØÁ¦
+	        // 10. ê°ì²´ í•´ì œ
 	        rd.close();
 	        conn.disconnect();
 	        
@@ -77,21 +77,21 @@ public class ApiExplorerProtect {
 			e.printStackTrace();
 		}
         
-        	//json µ¥ÀÌÅÍ ¿øÇÏ´Â µ¥ÀÌÅÍ¸¸ ÃßÃâÇÏ¿© Vo¿¡ ´ã±â
-      		//ÀÀ´äµ¥ÀÌÅÍ Text¸¦ JSONObjectÈ­ ½ÃÅ°´Â ÀÛ¾÷ (ÆÄ½Ì)
+	    	//json ë°ì´í„° ì›í•˜ëŠ” ë°ì´í„°ë§Œ ì¶”ì¶œí•˜ì—¬ Voì— ë‹´ê¸°
+	  		//ì‘ë‹µë°ì´í„° Textë¥¼ JSONObjectí™” ì‹œí‚¤ëŠ” ìž‘ì—… (íŒŒì‹±)
             JsonObject totalObj = JsonParser.parseString(responseText).getAsJsonObject();
  
       		
-      		//ÀüÃ¼ JSON Çü½ÄÀ¸·ÎºÎÅÍ response ¼Ó¼º¸íÀ¸·Î Á¢±ÙÇÑ °Í.
+            //ì „ì²´ JSON í˜•ì‹ìœ¼ë¡œë¶€í„° response ì†ì„±ëª…ìœ¼ë¡œ ì ‘ê·¼í•œ ê²ƒ.
       		JsonObject responseObj = totalObj.getAsJsonObject("response");
       	
       		
-      		//ÀüÃ¼ JSON Çü½ÄÀ¸·ÎºÎÅÍ response ¼Ó¼º¸íÀ¸·Î Á¢±ÙÇÑ °Í.
+      		//ì „ì²´ JSON í˜•ì‹ìœ¼ë¡œë¶€í„° response ì†ì„±ëª…ìœ¼ë¡œ ì ‘ê·¼í•œ ê²ƒ.
       		JsonObject bodyObj = responseObj.getAsJsonObject("body");
       	
       		
       		
-      		//body¿¡¼­ totalCount Á¢±Ù
+      		//bodyì—ì„œ totalCount ì ‘ê·¼
       		int totalCount = bodyObj.get("totalCount").getAsInt();
      
       		
@@ -104,15 +104,15 @@ public class ApiExplorerProtect {
 
       		
       		
-      		//items¿¡ ÀÖ´Â °¢ itemÀ» Vo¿¡ ´ã°í,´ãÀº VoµéÀ» ArrayList¿¡ ´ã±â
+      		//itemsì— ìžˆëŠ” ê° itemì„ Voì— ë‹´ê³ ,ë‹´ì€ Voë“¤ì„ ArrayListì— ë‹´ê¸°
       		ArrayList<ProtectVO> list = new ArrayList<ProtectVO>();
       		
       		System.out.println("==========================");
       		for(int i=0; i<itemArr.size(); i++) {
       			
-      			//items¿¡ ´ã°ÜÀÖ´Â item°´Ã¼ ÇÏ³ª¾¿ ÃßÃâÇÏ±â
+      			//itemsì— ë‹´ê²¨ìžˆëŠ” itemê°ì²´ í•˜ë‚˜ì”© ì¶”ì¶œí•˜ê¸°
       			JsonObject item = itemArr.get(i).getAsJsonObject();
-//      			System.out.println(item);
+
       			
       			ProtectVO vo = new ProtectVO();
       			

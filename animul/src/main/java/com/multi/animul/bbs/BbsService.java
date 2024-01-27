@@ -58,8 +58,8 @@ public class BbsService {
 	
 	
 	
-	int pageLimit = 10; // ÇÑ ÆäÀÌÁö ´ç º¸¿©ÁÙ ±Û °¹¼ö
-	int blockLimit = 5; // ÇÏ´Ü¿¡ º¸¿©ÁÙ ÆäÀÌÁö ¹øÈ£ °¹¼ö
+	int pageLimit = 10; // í•œ í˜ì´ì§€ ë‹¹ ë³´ì—¬ì¤„ ê¸€ ê°¯ìˆ˜
+	int blockLimit = 5; // í•˜ë‹¨ì— ë³´ì—¬ì¤„ í˜ì´ì§€ ë²ˆí˜¸ ê°¯ìˆ˜
 	public List<BbsVO> pagingList(Map<String, Object> map) {
 		int page = (int) map.get("page");
 		int pagingStart = (page - 1) * pageLimit;
@@ -74,11 +74,11 @@ public class BbsService {
 
 	public PageVO pagingParam(Map<String, Object> map) {
 		int page = (int) map.get("page");
-		//ÀüÃ¼ ±Û °¹¼ö Á¶È¸
+		//ì „ì²´ ê¸€ ê°¯ìˆ˜ ì¡°íšŒ
 		int bbsCount = dao.bbsCount(map);
-		// ÀüÃ¼ ÆäÀÌÁö °¹¼ö °è»ê
+		// ì „ì²´ í˜ì´ì§€ ê°¯ìˆ˜ ê³„ì‚°
 		int maxPage = (int)(Math.ceil((double)bbsCount/pageLimit));
-		// ½ÃÀÛ ÆäÀÌÁö °ª °è»ê
+		// ì‹œì‘ í˜ì´ì§€ ê°’ ê³„ì‚°
 		int startPage = (((int)(Math.ceil((double)page/blockLimit))) - 1) * blockLimit + 1;
 		int endPage = startPage + blockLimit -1;
 		if(endPage > maxPage) {
@@ -111,11 +111,11 @@ public class BbsService {
 	
 	public PageVO pagingParam2(Map<String, Object> map) {
 		int page = (int) map.get("page");
-		//ÀüÃ¼ ±Û °¹¼ö Á¶È¸
+		//ì „ì²´ ê¸€ ê°¯ìˆ˜ ì¡°íšŒ
 		int bbsCount = dao.bbsCount2(map);
-		// ÀüÃ¼ ÆäÀÌÁö °¹¼ö °è»ê
+		// ì „ì²´ í˜ì´ì§€ ê°¯ìˆ˜ ê³„ì‚°
 		int maxPage = (int)(Math.ceil((double)bbsCount/pageLimit));
-		// ½ÃÀÛ ÆäÀÌÁö °ª °è»ê
+		// ì‹œì‘ í˜ì´ì§€ ê°’ ê³„ì‚°
 		int startPage = (((int)(Math.ceil((double)page/blockLimit))) - 1) * blockLimit + 1;
 		int endPage = startPage + blockLimit -1;
 		if(endPage > maxPage) {
