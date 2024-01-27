@@ -52,9 +52,8 @@ public class ReceiptController {
 		 model.addAttribute("diagnosisResult", diagnosisResult);
 	}
 	
-	@ResponseBody
 	@RequestMapping("diagnosis/clovaOCR")
-	public int clovaOcr(HttpServletRequest request, MultipartFile file, Model model) throws Exception {
+	public void clovaOcr(HttpServletRequest request, MultipartFile file, Model model) throws Exception {
 		//파일첨부한 경우에는 file이름 텍스트 + 이미지파일자체 
 		
 		//1. 파일의 이름 + 파일 저장 위치를 알아와야한다. ==> String
@@ -82,8 +81,15 @@ public class ReceiptController {
 	        System.out.println("Failed to rename the file.");
 	    }
 		
+		System.out.println(list.get(1).get(0));
+		
+		model.addAttribute("uid",list.get(0).get(0));
+		model.addAttribute("hospital",list.get(1).get(0));
+		model.addAttribute("address",list.get(2).get(0));
+		
 		int insertResult = receiptService.insert(list);
 		
-		return insertResult;
+		//리턴값
+		model.addAttribute("insertResult", insertResult);
 	}
 }
