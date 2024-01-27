@@ -60,6 +60,10 @@ public class MemberDAO {
 		return my.selectOne("member.selectNickname", vo);
 	}
 
+	public String getNickname(MemberVO vo) {
+		return my.selectOne("member.getNickname", vo);
+	}
+
 	public int join(MemberVO vo) {
 		return my.insert("member.insert", vo);
 	}

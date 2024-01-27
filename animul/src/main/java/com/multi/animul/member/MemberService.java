@@ -61,6 +61,10 @@ public class MemberService {
 	public boolean selectNickname(MemberVO vo) {
 		return dao.selectNickname(vo);
 	}
+	
+	public String getNickname(MemberVO vo) {
+		return dao.getNickname(vo);
+	}
 
 	public int join(MemberVO vo) {
 		String pwd = vo.getPassword();
@@ -122,5 +126,4 @@ public class MemberService {
 
 		return infoVO;
 	}
-
 }
