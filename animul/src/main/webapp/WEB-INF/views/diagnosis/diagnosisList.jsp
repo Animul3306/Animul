@@ -23,7 +23,8 @@ body {
 
 .col li {
   list-style-type: none;
-  font-weight: bold; 
+  font-weight: bold;
+  width:271px;
 }
 
 a {
@@ -89,7 +90,7 @@ a {
 <div class="col">
 	<ul>
 		<li>
-			<div class="list" >수술</div>
+			<div class="list">수술</div>
 			<hr>
 		</li>
 	<c:forEach var="x" items="${diagnosisList}">
