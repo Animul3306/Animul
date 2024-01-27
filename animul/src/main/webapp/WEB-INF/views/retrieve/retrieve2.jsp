@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<link href="../resources/css/bbs/style.css" rel="stylesheet">
+<link href="../resources/css/retrieve/style.css" rel="stylesheet">
 <title>Insert title here</title>
 </head>
 <%
