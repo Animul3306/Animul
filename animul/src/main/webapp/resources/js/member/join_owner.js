@@ -27,7 +27,7 @@ var checkId = false;
 				var join_agree2 = document.getElementById("join_agree2");
 				var join_agree3 = document.getElementById("join_agree3");
 
-				if (join_agree1.checked & join_agree2.checked) { join_agree3.checked = 1; button_next.style.backgroundColor = "#8ec693"; }
+				if (join_agree1.checked & join_agree2.checked) { join_agree3.checked = 1; button_next.style.backgroundColor = "#8ec693"; button_next.focus(); }
 				else { join_agree3.checked = 0; button_next.style.backgroundColor = "#5e5e5e"; }
 			}
 			function checkboxControl2() {
@@ -37,7 +37,7 @@ var checkId = false;
 
 				var button_next = document.getElementById("button_next");
 
-				if (join_agree3.checked) { join_agree1.checked = 1; join_agree2.checked = 1; button_next.style.backgroundColor = "#8ec693"; }
+				if (join_agree3.checked) { join_agree1.checked = 1; join_agree2.checked = 1; button_next.style.backgroundColor = "#8ec693"; button_next.focus(); }
 				else {join_agree1.checked = 0; join_agree2.checked = 0; button_next.style.backgroundColor = "#5e5e5e";} 
 			}
 
