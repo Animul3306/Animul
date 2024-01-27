@@ -40,7 +40,7 @@ public class ReceiptService {
 			int itemResult = 0;
 			//이중 리스트로 가져온 데이터 넣기
 			receiptVO.setReceipt_id(list.get(0).get(0));
-			//세션 넣기
+			//로그인 세션 넣기
 			receiptVO.setReceipt_myid(String.valueOf(userName));
 			receiptVO.setReceipt_hospitalname(list.get(1).get(0));
 			receiptVO.setReceipt_address(list.get(2).get(0));
@@ -49,6 +49,7 @@ public class ReceiptService {
 			receiptVO.setReceipt_date(date);
 			receiptVO.setReceipt_price(Integer.parseInt(list.get(6).get(0)));
 			System.out.println(receiptVO.toString());
+			//중복되었는지 체크 중복되었으면 2를 리턴
 			int deplicateResult = receiptDAO.duplicate(receiptVO);
 			System.out.println("----------------------" + deplicateResult);
 			if(deplicateResult != 0) {

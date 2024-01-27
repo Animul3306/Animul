@@ -13,8 +13,10 @@ $(function() {
 	var table = document.getElementById('myItemTable');
     var rowList = table.rows;
     
+    
     $(document).ready(function() {
 	    // Your other code...
+		$("#myItemTable tr:eq(1)").click();
 		myChart = new Chart(ctx, {
 	          type: "bar",
 	          data: data,
@@ -260,23 +262,31 @@ $(function() {
     })//b1
 });
 
-
 </script>
+<style>
+#chartInfo {
+    position: absolute;
+    bottom: 66%;
+    left: 77%; /* Adjust as needed */
+    transform: translateX(-50%);
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 5px;
+}
+</style>
 <input type="hidden" id="address" value="${receipt.receipt_address}"/>
 <div class="chart">
 	<canvas id="myChart" style="height:30vh; width:50vw"></canvas>  
-	<div style="position: absolute; bottom: 66%; left: 77%; transform: translateX(-50%); text-align: center;">
-      <p style="background-color: rgba(255, 255, 255, 0.7); border-radius: 5px;">*자료: 농림축산식품부, 영수증 통계</p>
-    </div>
+	 <div id="chartInfo">*자료: 농림축산식품부, 영수증 통계</div>
 </div>
 <table id="myItemTable" class="table table-bordered">
-	<tr>
+	<tr class="text-center">
         <td>번호</td>
 		<td>진료명</td>
 		<td>가격</td>
 	</tr>
 	<c:forEach var="x" items="${itemList}" varStatus="status">
-		<tr>
+		<tr class="text-center">
 			<td>${status.count}</td>
         	<td>${x.receipt_item_diagnosisname}</td>
         	<td><fmt:formatNumber type="number" maxFractionDigits="3" value="${x.receipt_item_price}" /></td>

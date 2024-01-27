@@ -16,7 +16,7 @@
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/diagnosis/main2.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/diagnosis/main.css" />
 <script type="text/javascript">
 	$(function() {	
 		var swiper = new Swiper(".mySwiper", {
@@ -53,7 +53,19 @@
 			success: function(list) {
 			        for(var i=0;i<list.length;i++){
 			        	var click = "location.href='diagnosisOne?diagnosis_name=" + list[i].receipt_item_diagnosisname + "'"
-			        	swiper.appendSlide("<div class='swiper-slide'" + "onClick=\"" + click + "\">" + list[i].receipt_item_diagnosisname + '<br>평균가 ' +list[i].allAvgPrice+ "원</div>");   	
+			        	var conPrice = 	list[i].allAvgPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");	
+			        	swiper.appendSlide("<div class='swiper-slide'" + "onClick=\"" + click + "\">" +
+			        		    "<div class='panel-box'>" +
+			        		    "<div class='inner'>" +
+			        		    "<span class='title'>" + list[i].receipt_item_diagnosisname + "</span>" +
+			        		    "<span class='info'>" +
+			        		    "<span>전국평균</span>" +
+			        		    "<span><em>" + conPrice + "</em>원</span>" +
+			        		    "</span>" +
+			        		    "</div>" +
+			        		    "</div>" +
+			        		    "</div>"
+			        		);
 			       }
 			       swiper.update();
 			}//success
@@ -110,7 +122,7 @@
 </div>
 
 <div class="rowList">
-		<div class="row w-50" id="diagnosisList"></div>
+		<div class="row w-80" id="diagnosisList"></div>
 </div>
 
 </body>

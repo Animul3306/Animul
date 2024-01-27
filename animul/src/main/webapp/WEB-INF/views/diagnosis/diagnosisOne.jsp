@@ -391,7 +391,7 @@
 
 .chart{
 	overflow: hidden;
-	margin: 0px 100px;
+	margin: 10px 100px;
 	padding: 25px;
 	height: 600px;
 	background-color: #8EC693;
@@ -400,6 +400,16 @@
 	border-radius: 30px;
 	text-align: ceter;
 	transition: all 0.5s ease;
+}
+
+#chartInfo {
+    position: absolute;
+    bottom: 5%;
+    right: 2%; /* Adjust as needed */
+    transform: translateX(-50%);
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 5px;
 }
 
 #myChart {
@@ -452,12 +462,11 @@
 </div>
 <div class="chart">
 	<canvas id="myChart" style="height:30vh; width:50vw"></canvas>  
-	<div style="position: absolute; bottom: 6%; left: 86%; transform: translateX(-50%); text-align: center;">
-      <p style="background-color: rgba(255, 255, 255, 0.7); border-radius: 5px;">*자료: 농림축산식품부, 영수증 통계</p>
+	<div id="chartInfo">*자료: 농림축산식품부, 영수증 통계</div>
     </div>
 </div>
 <div class="rowList">
-		<div class="row w-50" id="diagnosisList"></div>
+		<div class="row w-80" id="diagnosisList"></div>
 </div>
 </body>
 </html>
