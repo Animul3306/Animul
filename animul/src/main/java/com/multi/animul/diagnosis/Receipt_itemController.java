@@ -20,10 +20,18 @@ public class Receipt_itemController {
 	@Autowired
 	Receipt_itemService receipt_itemService;
 	
+	@ResponseBody
 	@RequestMapping("diagnosis/receiptItemInsert")
-	public void insert(Receipt_itemVO receipt_itemVO, Model model) {
-		int itemResult = receipt_itemService.insert(receipt_itemVO);
-		model.addAttribute("itemResult", itemResult);
+	public int insert(Receipt_itemVO receipt_itemVO) {
+		int result = receipt_itemService.insert(receipt_itemVO);
+		return result;
+	}
+	
+	@ResponseBody
+	@RequestMapping("diagnosis/receiptItemDelete")
+	public int delete(Receipt_itemVO receipt_itemVO) {
+		int result = receipt_itemService.delete(receipt_itemVO);
+		return result;
 	}
 	
 	@RequestMapping(value = "diagnosis/receiptItemOne", method=RequestMethod.POST)
@@ -35,6 +43,16 @@ public class Receipt_itemController {
 	@RequestMapping(value = "diagnosis/receiptItemList", method=RequestMethod.POST)
 	public void itemList(Receipt_itemVO receipt_itemVO, Model model) {
 		model.addAttribute("receipt", receipt_itemVO);
+		List<Receipt_itemVO> itemList = receipt_itemService.itemList(receipt_itemVO);
+		model.addAttribute("itemList", itemList);
+	}
+	
+	@RequestMapping(value = "diagnosis/adminItemList", method=RequestMethod.POST)
+	public void adminItemList(ReceiptVO receiptVO, Model model) {
+		System.out.println(receiptVO);
+		Receipt_itemVO receipt_itemVO = new Receipt_itemVO();
+		receipt_itemVO.setReceipt_item_receiptid(receiptVO.getReceipt_id());
+		model.addAttribute("receipt", receiptVO);
 		List<Receipt_itemVO> itemList = receipt_itemService.itemList(receipt_itemVO);
 		model.addAttribute("itemList", itemList);
 	}

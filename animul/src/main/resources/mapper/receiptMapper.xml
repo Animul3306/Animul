@@ -13,6 +13,16 @@
             #{receipt_price}
         )
     </insert>
+    
+    <update id="receiptUp" parameterType="receiptVO">
+    	UPDATE animul.receipt 
+    	SET receipt_hospitalname = #{receipt_hospitalname}, receipt_address = #{receipt_address}, receipt_date = #{receipt_date}, receipt_price = #{receipt_price}
+    	WHERE receipt_id = #{receipt_id}
+    </update>
+    
+    <delete id="receiptDel" parameterType="receiptVO">
+    	DELETE FROM animul.receipt WHERE receipt_id = #{receipt_id}
+    </delete>
 	
 	<insert id="review" parameterType="receiptVO">
 		insert into animul.receipt values (

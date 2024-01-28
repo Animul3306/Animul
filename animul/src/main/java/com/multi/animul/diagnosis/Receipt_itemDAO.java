@@ -16,6 +16,10 @@ public class Receipt_itemDAO {
 		return my.insert("receipt_item.insert", receipt_itemVO);
 	}
 	
+	public int delete(Receipt_itemVO receipt_itemVO) {
+		return my.insert("receipt_item.delete", receipt_itemVO);
+	}
+	
 	public Receipt_itemVO one(Receipt_itemVO receipt_itemVO) {
 		return my.selectOne("receipt_item.one", receipt_itemVO);
 	}
