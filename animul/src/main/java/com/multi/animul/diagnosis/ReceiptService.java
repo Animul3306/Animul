@@ -91,8 +91,12 @@ public class ReceiptService {
 			return receiptResult;
 		}
 	
-	public int review(ReceiptVO receiptVO) {
-		return receiptDAO.review(receiptVO);
+	public int receiptUp(ReceiptVO receiptVO) {
+		return receiptDAO.receiptUp(receiptVO);
+	}
+	
+	public int receiptDel(ReceiptVO receiptVO) {
+		return receiptDAO.receiptDel(receiptVO);
 	}
 	
 	public ReceiptVO one(ReceiptVO receiptVO) {

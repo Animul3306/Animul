@@ -22,23 +22,24 @@ $(function() {
     });
 
     // Attach click event to each row
-    for (var i = 1; i < rowList.length; i++) {
+    for (var i = 0; i < rowList.length; i++) {
         // Use a closure to capture the value of i
         (function(index) {
             $("#myListTable tr").eq(index).on("click", function () {
                 //console.log(rowList[index].cells[0].textContent);
                 $.ajax({
-                    url: "${pageContext.request.contextPath}/diagnosis/receiptItemList",
+                    url: "${pageContext.request.contextPath}/diagnosis/adminItemList",
                     type: "post",
                     data: {
-                    	receipt_item_receiptid: rowList[rowList.length - index].cells[0].textContent,
-                    	receipt_address: rowList[rowList.length - index].cells[3].textContent
+                    	receipt_id: rowList[rowList.length - index].cells[0].textContent,
+                    	receipt_hospitalname: rowList[rowList.length - index].cells[2].textContent,
+                    	receipt_address: rowList[rowList.length - index].cells[3].textContent,
+                    	receipt_date: rowList[rowList.length - index].cells[5].textContent,
+                    	receipt_price: rowList[rowList.length - index].cells[7].textContent
                     },
                     success: function (list) {
-                    	$('#resultDiv2').html("<span style='font-weight: bold; font-size: 1.5em;'>병원명: " + rowList[index].cells[2].textContent + "</span>");
-                    	$('#resultDiv2').append(list)
+                    	$('#resultDiv2').html(list)
                         console.log(list);
-                    	location.reload();
                     }//success
                 })//ajax    
             });
@@ -114,6 +115,7 @@ $(function() {
 						<c:out value="${sysYear}" />
 					</td>
 					<td><fmt:formatNumber type="number" maxFractionDigits="3" value="${x.receipt_price}"/></td>
+					<td style="display:none;">${x.receipt_price}</td>
 				</tr>   
 			</c:forEach>      
 		</table>

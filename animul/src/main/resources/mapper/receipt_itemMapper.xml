@@ -13,6 +13,14 @@
 		)
 	</insert>
 	
+	
+	
+	<delete id="delete" parameterType="receipt_itemVO">
+		DELETE FROM `receipt_item` WHERE receipt_item_id = #{receipt_item_id}
+	</delete>
+	
+	
+	
 	<select id="itemList" parameterType="receipt_itemVO"
 		resultType="receipt_itemVO">
 		select * from animul.receipt_item where receipt_item_receiptid = 

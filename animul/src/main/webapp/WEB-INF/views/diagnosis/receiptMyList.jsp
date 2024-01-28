@@ -17,7 +17,7 @@ $(function() {
     });
 
     // Attach click event to each row
-    for (var i = 1; i < rowList.length; i++) {
+    for (var i = 0; i < rowList.length; i++) {
         // Use a closure to capture the value of i
         (function(index) {
             $("#myListTable tr").eq(index).on("click", function () {

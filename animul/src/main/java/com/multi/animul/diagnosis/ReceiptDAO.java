@@ -16,8 +16,12 @@ public class ReceiptDAO {
 		return my.insert("receipt.insert", receiptVO);
 	}
 	
-	public int review(ReceiptVO receiptVO) {
-		return my.insert("receipt.review", receiptVO);
+	public int  receiptUp(ReceiptVO receiptVO) {
+		return my.insert("receipt.receiptUp", receiptVO);
+	}
+	
+	public int  receiptDel(ReceiptVO receiptVO) {
+		return my.insert("receipt.receiptDel", receiptVO);
 	}
 	
 	public ReceiptVO one(ReceiptVO receiptVO) {
