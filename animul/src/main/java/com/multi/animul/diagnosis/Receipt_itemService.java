@@ -15,6 +15,10 @@ public class Receipt_itemService {
 		return receipt_itemDAO.insert(receipt_itemVO);
 	}
 	
+	public int delete(Receipt_itemVO receipt_itemVO) {
+		return receipt_itemDAO.delete(receipt_itemVO);
+	}
+	
 	public Receipt_itemVO one(Receipt_itemVO receipt_itemVO) {
 		return receipt_itemDAO.one(receipt_itemVO);
 	}

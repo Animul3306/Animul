@@ -22,10 +22,20 @@ public class ReceiptController {
 	@Autowired
 	Receipt_itemService receipt_itemService;
 	
-	@RequestMapping("diagnosis/reviewInsert")
-	public void review(ReceiptVO receiptVO, Model model) {
-		 int reviewResult = receiptService.review(receiptVO);
-		 model.addAttribute("reviewResult", reviewResult);
+	@RequestMapping("diagnosis/receiptUp")
+	public String receiptUp(ReceiptVO receiptVO) {
+		 int result = receiptService.receiptUp(receiptVO);
+		 if(result == 1) {
+			 return "redirect:receiptList";
+		 }
+		 return "";
+	}
+	
+	@ResponseBody
+	@RequestMapping("diagnosis/receiptDel")
+	public int receiptDel(ReceiptVO receiptVO) {
+		 int result = receiptService.receiptDel(receiptVO);
+		 return result;
 	}
 	
 	@RequestMapping("diagnosis/receiptOne")
