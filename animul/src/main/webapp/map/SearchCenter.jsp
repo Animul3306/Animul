@@ -77,10 +77,9 @@ p.groove {border-style: groove;}
 
 <body>
  <div id="container">
- 
 	<div class="login_group">
-		<label id="notice_move" style="color:#ff8080"></label>
-	<!-- 	<button id="toggle">kakao.map.status</button> -->						
+ 
+		<label id="notice_move" style="color:#ff8080"></label>							
 		<select id="kakaoStatus" onchange="movetoDB()">
 			<option value="OK">OK</option>
 			<option value="NG">NG</option>
@@ -88,7 +87,6 @@ p.groove {border-style: groove;}
 			
 		<a id="link_b" href="list2" data-tooltip="데이터베이스 사용하는 지도로 이동합니다."> DB Data Map Link </a>
 	</div>
- 	
  
  <div class="borderbox-medium">
 	<div class="borderbox-small">
@@ -138,12 +136,93 @@ p.groove {border-style: groove;}
 	</div>
  
 	<br><br>
-
+ 
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script> 
  	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5454a62e5d0c9bb2b98dbfd591e5b4cb&libraries=services"></script>
+ 	<script src="https://t1.kakaocdn.net/kakao_js_sdk/2.6.0/kakao.min.js" integrity="sha384-6MFdIr0zOira1CHQkedUqJVql0YtcZA1P0nbPrQYJXVJZUkTk/oX4U9GhUIs3/z8" crossorigin="anonymous"></script>
  	<script type="text/javascript" src="../resources/js/address.js"></script>	
- 		
+ 	<script>
+ 	
+	var g_linkId = ''; 
+	var g_title = '';
+	var g_tel = '';
+	var g_address = '';
+ 
+	function gLinkIdFind() {		
+	
+		if ( g_linkId != 'Undefined' || g_linkId != null )
+			return 'https://map.kakao.com/link/roadview/' + g_linkId;
+		else
+			return 'https://map.kakao.com/link/roadview/';
+	}
+ 
+	function gDetailKakao(title, address, tel) {		
+		g_title = title;
+		g_address = address;
+		g_tel = tel;		
+	}
+	
+	function messageInitialize(){
+		Kakao.cleanup();
+//		Kakao.Share.cleanup();
+		Kakao.init('5454a62e5d0c9bb2b98dbfd591e5b4cb'); // 사용하려는 앱의 JavaScript 키 입력
+	}
+	
+	function createDefaultButtonSuper(container_name) {
+		container_name = '#' + container_name;
+
+		var cLinkID = gLinkIdFind();
+ 	
+		Kakao.cleanup();
+//		Kakao.Share.cleanup();
+		Kakao.init('5454a62e5d0c9bb2b98dbfd591e5b4cb'); // 사용하려는 앱의 JavaScript 키 입력
+		
+		 var diagnose = 'https://developers.kakao.com';
+		 var disease = 'https://developers.kakao.com';
+		 var titletel = g_title + '   ' + g_tel + '\n' + g_address;
+		  Kakao.Share.createDefaultButton({
+			    container: container_name,
+			    objectType: 'feed',
+			    content: {
+			      title: titletel,
+			      description: cLinkID,
+			      imageUrl:
+			    	  'https://k.kakaocdn.net/14/dn/btsD1npHQba/tqRKItMYvDeSEpHDUNtmH0/o.jpg',
+			      link: {
+			        // [내 애플리케이션] > [플랫폼] 에서 등록한 사이트 도메인과 일치해야 함
+			        mobileWebUrl: 'https://developers.kakao.com',
+			        webUrl: 'https://developers.kakao.com',
+			      },
+			    },
+			    social: {
+			      likeCount: 1,
+			      commentCount: 0,
+			      sharedCount: 1,
+			    },
+			    buttons: [
+			      {
+			        title: '진료비 조회',
+			        link: {
+			          mobileWebUrl: diagnose,
+			          webUrl: diagnose,
+			        },
+			      },
+			      {
+			        title: '질병 조회',
+			        link: {
+			          mobileWebUrl: disease,
+			          webUrl: disease,
+			        },
+			      },
+			    ],
+			  });
+ 
+	}
+	</script>	
+	
 	<script>
+
+
 ///////////////////// Tooltip
  
    let tooltipElem;
@@ -339,6 +418,7 @@ p.groove {border-style: groove;}
 	    		detailLng = mouseEvent.latLng.getLng()
 	    	
 	        var detailAddr = !!result[0].road_address ? '<div>도로명주소 : ' + result[0].road_address.address_name + '</div>' : '';
+	        g_InfoAddrTel = result[0].address.address_name;
 	        detailAddr += '<div>지번 주소 : ' + result[0].address.address_name + '</div>';
 			detailLatlng = '<span class="latlng"> 위도: </span>' + detailLat + 
            					'<span class="latlang"> 경도: </span>' + detailLng + '</div>' +
@@ -526,7 +606,7 @@ p.groove {border-style: groove;}
 	
 	    }
 	}
-	
+
 	// 검색 결과 목록과 마커를 표출하는 함수입니다
 	function displayPlaces(places) {
 	
@@ -566,6 +646,7 @@ p.groove {border-style: groove;}
 	    		    var placeUrl = places1.place_url;
 		            kakao.maps.event.addListener(marker, 'mouseup', function() {
 		            	// 맵의 팝업창
+		            	gDetailKakao(places1.place_name, places1.address_name, places1.phone);
 		            	displayInfowindow2(marker, content, placeUrl);
 		            });
 		            // 리스트 작동
@@ -616,7 +697,7 @@ p.groove {border-style: groove;}
 	// 검색결과 항목을 Element로 반환하는 함수입니다
 		function getListItem(index, places) {
 		var linkId = places.place_url.substring(places.place_url.lastIndexOf('/')+1, places.place_url.length);
-
+		g_linkId = places.place_url.substring(places.place_url.lastIndexOf('/')+1, places.place_url.length);
 	    var el = document.createElement('li'),
 
 	    itemStr = '<span class="markerbg marker_' + (index+1) + '"></span>' +
@@ -630,8 +711,10 @@ p.groove {border-style: groove;}
 	        itemStr += '    <span>' +  places.address_name  + '</span>'; 
 	    }	
 
-	    itemStr += '  <span class="tel">' + places.phone  ;
-	    itemStr += '<a href=https://map.kakao.com/link/to/' + linkId + ' target=_blank rel=noopener noreferrer>' + " 길찾기 클릭" + '</a>' + '</span>' +
+	    itemStr += '  <span class="tel">' + places.phone + '</span>' ;
+	    itemStr += '<a href=https://map.kakao.com/link/to/' + linkId + ' target=_blank rel=noopener noreferrer>' + " 길찾기 클릭 / " + '</a>  ' ;
+	    itemStr += '<a href=https://map.kakao.com/link/roadview/' + linkId + ' target=_blank rel=noopener noreferrer>' + " 로드뷰 클릭" + '</a>' + 
+
 		'</div>';
 	//	console.log(itemStr);
 	    el.innerHTML = itemStr;
@@ -702,21 +785,28 @@ p.groove {border-style: groove;}
 	
 	// 검색결과 목록 또는 마커를 클릭했을 때 호출되는 함수입니다
 	// 인포윈도우에 장소명을 표시합니다
+	function di(){
+		alert("1");
+	}
 	function displayInfowindow(marker, title) {
 	    var content = '<div style="padding:5px;z-index:1;">' + title + '</div>';
 	
 	    infowindow.setContent(content);
 	    infowindow.open(map4, marker);
 	}
-
+	
 	function displayInfowindow2(marker, detail, url) {
 		
 		var linkId = url.substring(url.lastIndexOf('/')+1, url.length);
-		console.log(linkId);
+		g_linkId = url.substring(url.lastIndexOf('/')+1, url.length);
+ 		g_detail = detail;
  	    var content = '<div style="padding:5px;z-index:1;">' + detail + '</div>';
- 	   	var content2 = '<div style="background-color:yellow;text-decoration:underline;text-decoration-color:blue;padding:5px;z-index:1;">' +	 	   					
- 	   					'<a href=https://map.kakao.com/link/to/' + linkId + ' target=_blank rel=noopener noreferrer>' + " 길찾기 클릭" + '</a>' + '</div>';
-	    infowindow.setContent(content+content2);
+ 	   	var content2 = '<div style="background-color:yellow;text-decoration-color:blue;padding:5px;z-index:1;">' +	 	   					
+ 	   					'<a href=https://map.kakao.com/link/to/' + linkId + ' target=_blank rel=noopener noreferrer>' + ' <img src="http://k.kakaocdn.net/dn/IlOvO/btsD3LQUTG3/kFSnH4bAZBMQoGBECL56d0/kakaolink40_original.png" alt="카카오맵 길찾기" /> ' + '</a>' + '길찾기' +  
+ 	   					'<a id=kakaotalk-sharing-btn3 href=javascript:createDefaultButtonSuper("kakaotalk-sharing-btn3");>' + '<img src="https://developers.kakao.com/assets/img/about/logos/kakaotalksharing/kakaotalk_sharing_btn_small.png" alt="카카오톡 공유 보내기" />' + '</a>' + '카톡' +
+ 	   					'</div>';
+ 	   					
+ 	    infowindow.setContent(content+content2);
 	    infowindow.open(map4, marker);
 	}
 
@@ -790,5 +880,7 @@ var areaSelectMaker = function(target){
 </script>
  
 </div>
+ 
+
 </body>
 </html>
