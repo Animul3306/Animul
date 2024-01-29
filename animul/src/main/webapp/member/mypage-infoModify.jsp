@@ -58,7 +58,7 @@
                         success: function(result) {
                             alert("수정이 완료되었습니다.");
 
-                            location.href="${pageContext.request.contextPath}/member/mypage-mypet.jsp";
+                            location.href="${pageContext.request.contextPath}/member/mypage-myinfo.jsp";
                         } 
                     });
                 })

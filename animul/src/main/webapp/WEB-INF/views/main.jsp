@@ -148,10 +148,9 @@
     <script src="<c:url value="/resources/js/slider.js"/>"></script>
     
 <div class="disease">
-	<a href="#"><img 
-	src="${pageContext.request.contextPath}/resources/img/disease_search.png"></a>
-	<a href="#"><img src="${pageContext.request.contextPath}/resources/img/search.png"></a>
 	<a href="${pageContext.request.contextPath}/diagnosis/diagnosisMain.jsp"><img src="${pageContext.request.contextPath}/resources/img/info.png"></a>
+	<a href="${pageContext.request.contextPath}/map/SearchCenter.jsp"><img src="${pageContext.request.contextPath}/resources/img/search.png"></a>
+	<a href="${pageContext.request.contextPath}/retrieve/retrieveRegion?region_id=1"><img src="${pageContext.request.contextPath}/resources/img/disease_search.png"></a>
 </div>
   
 <div class="disease2">

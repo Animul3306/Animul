@@ -151,7 +151,7 @@
             </tbody>
         </table>
         <div id="div_button">
-            <a href="${pageContext.request.contextPath}/member/mypage.jsp" target="_parent"><input type="button" id="button_cancel" value="취소"></input></a>
+            <a href="${pageContext.request.contextPath}/member/mypage-mypet.jsp"><input type="button" id="button_cancel" value="취소"></input></a>
             <input type="button" id="button_join" onclick="location.href='./mypage-mypetModify.jsp'" value="수정하기"></button>
         </div>
 	</body>

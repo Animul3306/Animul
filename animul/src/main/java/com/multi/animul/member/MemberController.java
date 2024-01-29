@@ -1,5 +1,8 @@
 package com.multi.animul.member;
 
+import com.multi.animul.bbs.BbsService;
+import com.multi.animul.bbs.BbsVO;
+import com.multi.animul.bbs.PageVO;
 import com.multi.animul.member.KakaoUtils;
 
 import java.io.UnsupportedEncodingException;
@@ -20,6 +23,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.oauth2.core.OAuth2Token;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -335,5 +339,68 @@ public class MemberController {
 	@RequestMapping(value="/member/withdrawal-redirect.do", method=RequestMethod.POST)
 	public String requestMethodName(@RequestParam String param) {
 		return "redirect:main";
+	}
+
+	@Autowired
+	BbsService mService = new BbsService();
+
+	@RequestMapping("member/callMyPost.do")
+	public ResponseEntity<List<BbsVO>> list(BbsVO vo, Model model,
+			@RequestParam(value = "page", required = false, defaultValue = "1") int page,
+			@RequestParam(value = "word", required = false, defaultValue = "") String word,
+			@RequestParam(value = "type", required = false, defaultValue = "") String type, HttpSession session) {
+		String loggedInUser = (String) session.getAttribute("loggedInUser");
+		vo.setMember_id(loggedInUser);
+		model.addAttribute(vo);
+		
+		//페이징 + 검색
+		Map<String, Object> map = new HashMap<>();
+		map.put("page", page);
+		map.put("word", word);
+		map.put("type", type);
+
+		System.out.println("[Member] " + map);
+
+		List<BbsVO> list = mService.pagingListMypage(map, loggedInUser);
+		model.addAttribute("list", list);
+		
+		List<BbsVO> pagingList = mService.pagingListMypage(map, loggedInUser);
+		PageVO pageVO = mService.pagingParam(map);
+		model.addAttribute("freeList", pagingList);
+		model.addAttribute("paging", pageVO);
+		model.addAttribute("word", word);
+		model.addAttribute("type", type);
+
+		return ResponseEntity.ok(pagingList);
+	}
+	
+	@RequestMapping("member/mypage-community")
+	public String list2(BbsVO vo, Model model,
+			@RequestParam(value = "page", required = false, defaultValue = "1") int page,
+			@RequestParam(value = "word", required = false, defaultValue = "") String word,
+			@RequestParam(value = "type", required = false, defaultValue = "") String type, HttpSession session) {
+		String loggedInUser = (String) session.getAttribute("loggedInUser");
+		vo.setMember_id(loggedInUser);
+		model.addAttribute(vo);
+		
+		//페이징 + 검색
+		Map<String, Object> map = new HashMap<>();
+		map.put("page", page);
+		map.put("word", word);
+		map.put("type", type);
+
+		System.out.println("[Member] " + map);
+
+		List<BbsVO> list = mService.pagingListMypage(map, loggedInUser);
+		model.addAttribute("list", list);
+		
+		List<BbsVO> pagingList = mService.pagingListMypage(map, loggedInUser);
+		PageVO pageVO = mService.pagingParam(map);
+		model.addAttribute("freeList", pagingList);
+		model.addAttribute("paging", pageVO);
+		model.addAttribute("word", word);
+		model.addAttribute("type", type);
+
+		return "member/mypage-community";
 	}
 }

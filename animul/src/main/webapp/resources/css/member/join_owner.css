@@ -117,9 +117,20 @@
 	display: none;
 }
 
+.labelholder {
+    display:flex;
+    flex-direction:column;
+}
+
 .input_button {
     display: flex;
     flex-direction: row;
+    align-items: center;
+}
+
+.valid_label {
+    font-family: 'NotoSans_Bold';
+    margin-left: 10px;
 }
 
 .button-gray {

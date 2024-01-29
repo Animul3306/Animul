@@ -15,55 +15,6 @@
 				width: 1050px;
 			}
 		</style>
-        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-        <script>
-            // <c:forEach items="${list}" var="vo" varStatus="status">
-            //     <tr class="">
-            //         <td class="noBrd">${fn:length(list)- status.index}</td>
-            //         <td>${vo.bbs_cate}</td>
-            //         <td class="subject"><a href="one?bbs_id=${vo.bbs_id}">
-            //                 ${vo.bbs_title}</a></td>
-            //         <td style="border-left-width: 0px;">
-            //             <img src="${pageContext.request.contextPath}/${vo.bbs_thumbImg}" style="width:50px;height:35px;border-radius:6px;"/></td>
-            //         <td>${vo.member_id}</td>
-            //         <td>${vo.bbs_date}</td>
-            //         <td>${vo.bbs_replyCnt}</td>
-            //         <td>${vo.bbs_hit}</td>
-            //     </tr>
-            // </c:forEach>
-
-            $(document).ready(function() {                
-                $.ajax({
-                    url: 'callMyPost.do',
-                    type: 'POST',
-                    success: function(data) {
-                        console.log(data);
-                        var table = $(".list");
-
-                        // dataArray의 각 항목을 순회하며 행을 추가
-                        data.forEach(function (vo, index) {
-                            var newRow = $("<tr class=''>");
-                            newRow.append("<td class='noBrd'>" + (data.length - index) + "</td>");
-                            newRow.append("<td>" + vo.bbs_cate + "</td>");
-                            newRow.append("<td class='subject'><a href='one?bbs_id=" + vo.bbs_id + "'>" + vo.bbs_title + "</a></td>");
-                            newRow.append("<td style='border-left-width: 0px;'><img src='" + "${pageContext.request.contextPath}/" + vo.bbs_thumbImg + "' style='width:50px;height:35px;border-radius:6px;'/></td>");
-                            newRow.append("<td>" + vo.member_id + "</td>");
-                            newRow.append("<td>" + vo.bbs_date + "</td>");
-                            newRow.append("<td>" + vo.bbs_replyCnt + "</td>");
-                            newRow.append("<td>" + vo.bbs_hit + "</td>");
-
-                            table.append(newRow);
-                            console.log(newRow);
-                        });
-                    },
-                    statusCode: {
-                        403: function() {
-                            console.log("세션이 만료되었습니다.");
-                        }
-                    }
-                });
-            });
-        </script>
     </head>
     <body>
 
@@ -126,7 +77,7 @@
                         </thead>
                         
                         <c:forEach items="${list}" var="vo" varStatus="status">
-                            <!-- <tr class="">
+                            <tr class="">
                                 <td class="noBrd">${fn:length(list)- status.index}</td>
                                 <td>${vo.bbs_cate}</td>
                                 <td class="subject"><a href="one?bbs_id=${vo.bbs_id}">
@@ -137,7 +88,7 @@
                                 <td>${vo.bbs_date}</td>
                                 <td>${vo.bbs_replyCnt}</td>
                                 <td>${vo.bbs_hit}</td>
-                            </tr> -->
+                            </tr>
                         </c:forEach>
 
                     </table>

@@ -72,7 +72,7 @@
 								<td>
 									<div class="input_button">
 										<input required="required" type="text" maxlength="20" class="input w400" name="id" id="id">
-										<label id="label_id"></label>
+										<label class="valid_label" id="label_id"></label>
 									</div>
 								</td>
 							</tr>
@@ -81,7 +81,7 @@
 								<td>
 									<div class="input_button">
 										<input id="pass" name="password" required="required" type="password" placeholder="8~20자리 영문, 숫자 특수문자" autoComplete="off" class="input w400">
-										<label id="pass_not_same"></label>
+										<label class="valid_label" id="pass_not_same"></label>
 									</div>	
 								</td>
 							</tr>
@@ -90,18 +90,25 @@
 								<td>
 									<div class="input_button">
 										<input id="passcheck" required="required" type="password" placeholder="8~20자리 영문, 숫자 특수문자" autoComplete="off" class="input w400">
-										<label id="pass_not_same2"></label>	
+										<label class="valid_label" id="pass_not_same2"></label>	
 									</div>
 								</td>
 							</tr>
 							<tr>
 								<th>이름*</th>
-								<td><input name="name" required="required" type="text" class="input w400" id="name"> </td>
-							</tr>
+								<td>
+									<div class="input_button">
+										<input name="name" required="required" type="text" class="input w400" id="name">
+										<label class="valid_label" id="label_name"></label>
+									</div>
+								</td>
 							<tr>
 								<th>생년월일*</th>
 								<td>
-									<input name="birth" required="required" type="date" class="input w400" id="birth">
+									<div>
+										<input name="birth" required="required" type="date" class="input w400" id="birth">
+										<label class="valid_label" id="label_birth"></label>
+									</div>
 								</td>
 							</tr>
 							<tr>
@@ -118,7 +125,10 @@
 							<tr>
 								<th>나이</th>
 								<td>
-									<input name="age" type="number" class="input w400" id="age">
+									<div class="input_button">
+										<input name="age" type="number" class="input w400" id="age">
+										<!-- <label class="valid_label" id="label_age"></label> -->
+									</div>
 								</td>
 							</tr>
 							<!-- <tr>
@@ -134,18 +144,18 @@
 							<tr>
 								<th>이메일*</th>
 								<td>
-									<div>
-										<div>
+									<div >
+										<div class="onput_button">
 											<div class="input_button" >
 												<input required="required" type="email" maxlength="320" class="input w330" id="email" name="email">
 												<input type="button" class="w70" id="emailCheck" value="인증하기">
+												<label class="valid_label" id="label_email"></label>
 											</div>
-											<label id="label_email"></label>
 										</div>
 										<div class="input_button">
 											<input required="required" id="emailCheckNumber" class="input w400" style="display: none" placeholder="인증 번호">
+											<label class="valid_label" id="label_email_check"></label>
 										</div>
-										<label id="label_email_check"></label>
 									</div>
 								</td>
 							</tr>
@@ -154,7 +164,7 @@
 								<td>
 									<div class="input_button" style="margin-top: 10px;">
 										<input required="required" type="text" maxlength="20" class="input w400" id="nickname" name="nickname">
-										<label id="label_nickname"></label>
+										<label class="valid_label" id="label_nickname"></label>
 									</div>
 								</td>
 							</tr>

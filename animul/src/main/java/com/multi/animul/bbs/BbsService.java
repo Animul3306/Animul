@@ -8,6 +8,8 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.multi.animul.member.MemberVO;
+
 @Service
 public class BbsService {
 
@@ -69,6 +71,19 @@ public class BbsService {
 		pagingParams.put("word", map.get("word"));
 		pagingParams.put("type", map.get("type"));
 		List<BbsVO> pagingList = dao.pagingList(pagingParams);
+		return pagingList;
+	}	
+	
+	public List<BbsVO> pagingListMypage(Map<String, Object> map, String id) {
+		int page = (int) map.get("page");
+		int pagingStart = (page - 1) * pageLimit;
+		Map<String, Object> pagingParams = new HashMap<>();
+		pagingParams.put("start", pagingStart);
+		pagingParams.put("limit", pageLimit);
+		pagingParams.put("word", map.get("word"));
+		pagingParams.put("type", map.get("type"));
+		pagingParams.put("id", id);
+		List<BbsVO> pagingList = dao.pagingListMypage(pagingParams);
 		return pagingList;
 	}
 
