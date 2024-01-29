@@ -785,9 +785,7 @@ p.groove {border-style: groove;}
 	
 	// 검색결과 목록 또는 마커를 클릭했을 때 호출되는 함수입니다
 	// 인포윈도우에 장소명을 표시합니다
-	function di(){
-		alert("1");
-	}
+ 
 	function displayInfowindow(marker, title) {
 	    var content = '<div style="padding:5px;z-index:1;">' + title + '</div>';
 	
