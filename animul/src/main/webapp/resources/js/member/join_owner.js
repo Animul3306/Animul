@@ -83,20 +83,26 @@ var checkId = false;
 					var pass_not_same = $('#pass_not_same');
 					var pass_not_same2 = $('#pass_not_same2');
 
+					pass_not_same.css("display", "block");
+					pass_not_same2.css("display", "block");
+					
 					if (pass == '' || pass.length == 0) {
 						pass_not_same.text("비밀번호는 공백일 수 없습니다.");
-						pass_not_same.css('display', 'block');
+						pass_not_same.css('color', 'red');
 						
 						checkPassword = false;
 					} else if (pass != passcheck) {
 						pass_not_same.text("비밀번호와 비밀번호 확인이 다릅니다.");
-						pass_not_same.css('display', 'block');
+						pass_not_same.css('color', 'red');
+						pass_not_same2.text("비밀번호와 비밀번호 확인이 다릅니다.");
+						pass_not_same2.css('color', 'red');
 
 						checkPassword = false;
 					} else {
-						pass_not_same.text("");
-						pass_not_same.css('display', 'none');
-						pass_not_same2.css('display', 'none');
+						pass_not_same.text("사용 가능한 비밀번호 입니다.");
+						pass_not_same.text2("비밀번호 일치");
+						pass_not_same.css('color', 'lightgreen');
+						pass_not_same2.css('color', 'lightgreen');
 
 						checkPassword = true;
 					}
@@ -107,21 +113,25 @@ var checkId = false;
 					var passcheck = $('#passcheck').val();
 					var pass_not_same = $('#pass_not_same');
 					var pass_not_same2 = $('#pass_not_same2');
+
+					pass_not_same.css("display", "block");
+					pass_not_same2.css("display", "block");
 					
 					if (passcheck == '' || passcheck.length == 0) {
 						pass_not_same2.text("비밀번호는 공백일 수 없습니다.");
-						pass_not_same2.css('display', 'block');
+						pass_not_same2.css('color', 'red');
 						
 						checkPassword = false;
 					} else if (pass != passcheck) {
 						pass_not_same2.text("비밀번호와 비밀번호 확인이 다릅니다.");
-						pass_not_same2.css('display', 'block');
+						pass_not_same2.css('color', 'red');
 
 						checkPassword = false;
 					} else {
-						pass_not_same2.text("");
-						pass_not_same.css('display', 'none');
-						pass_not_same2.css('display', 'none');
+						pass_not_same.text("사용 가능한 비밀번호 입니다.")
+						pass_not_same2.text("비밀번호 일치");
+						pass_not_same.css('color', 'lightgreen');
+						pass_not_same2.css('color', 'lightgreen');
 
 						checkPassword = true;
 					}
@@ -159,7 +169,7 @@ var checkId = false;
 						dataType : 'json',
 						success : function(result) {
 							if ( result == true ) {
-								$("#label_id").css("color", "black").text("사용 가능한 ID 입니다.");
+								$("#label_id").css("color", "lightgreen").text("사용 가능한 ID 입니다.");
 
 								checkId = true;
 							} else {
@@ -191,7 +201,7 @@ var checkId = false;
 						dataType : 'json',
 						success : function(result) {
 							if ( result == true ) {
-								$("#label_email").css("color", "black").text("사용 가능한 이메일 입니다.");
+								$("#label_email").css("color", "lightgreen").text("사용 가능한 이메일 입니다.");
 								$("#emailCheckNumber").css("display", "block");
 
 								$.ajax({
@@ -222,7 +232,7 @@ var checkId = false;
 					var checkNumber = $("#emailCheckNumber").val();
 
 					if (authNumber == checkNumber) {
-						$("#label_email_check").css("color", "black").text("이메일 인증에 성공했습니다.");
+						$("#label_email_check").css("color", "lightgreen").text("이메일 인증에 성공했습니다.");
 
 						checkEmail = true;
 					} else {
@@ -251,7 +261,7 @@ var checkId = false;
 						dataType : 'json',
 						success : function(result) {
 							if ( result == true ) {
-								$("#label_nickname").css("color", "black").text("사용 가능한 닉네임 입니다.");
+								$("#label_nickname").css("color", "lightgreen").text("사용 가능한 닉네임 입니다.");
 						
 								checkNickname = true;
 							} else {

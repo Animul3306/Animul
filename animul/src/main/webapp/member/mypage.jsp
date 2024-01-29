@@ -45,6 +45,11 @@
 
                 if(src == "mypage-community.jsp") {
                     main_bar.style.width="1200px";
+
+                    // var iframe = document.getElementById('iframe').contentWindow;
+                    // var apiUrl = 'http://localhost:8888/member/mypage-community/api';
+
+                    // iframe.postMessage(apiUrl, 'http://localhost:8888/member/mypage-community.jsp');
                 } else {
                     main_bar.style.width="800px";
                 }

@@ -68,6 +68,10 @@ public class BbsDAO {
 		return my.selectList("bbs.pagingList2", pagingParams);
 	}
 
+	public List<BbsVO> pagingListMypage(Map<String, Object> pagingParams) {
+		return my.selectList("bbs.pagingListMypage", pagingParams);
+	}
+
 	public int bbsCount(Map<String, Object> pagingParams) {
 		return my.selectOne("bbs.bbsCount", pagingParams);
 	}
