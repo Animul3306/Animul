@@ -267,7 +267,7 @@ $(function() {
 #chartInfo {
     position: absolute;
     bottom: 66%;
-    left: 77%; /* Adjust as needed */
+    left: 70%; /* Adjust as needed */
     transform: translateX(-50%);
     text-align: center;
     background-color: rgba(255, 255, 255, 0.7);

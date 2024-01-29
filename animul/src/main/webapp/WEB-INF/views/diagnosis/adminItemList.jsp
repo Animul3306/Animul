@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-	<div class="col-md-4">
+	<div class="col-md-4" style="padding:10px;">
         <canvas id="canvas"></canvas>
     </div>
     <script type="text/javascript">
@@ -24,9 +24,7 @@
             // Draw the image on the canvas
             ctx.drawImage(img2, 0, 0);
             //61 - 16 and  35 - 21
-            ctx.strokeStyle = 'lime' 
-            ctx.strokeRect(16, 21, 45, 14);
-            ctx.strokeRect(64, 25, 7, 8);
+            
             ctx.closePath();
             ctx.stroke();
         };
@@ -53,22 +51,12 @@
         }
         
         function tableCreate(){
-			var html = '';
-						
+			var html = '';			
 			var name = $("#inName").val();
 			var price = $("#inPrice").val();
 			var remove = $("remove").val();
 						
-			html += '<tr>';
-			html += '<td>'+name+'</td>';
-			html += '<td>'+price+'</td>';
-			html += '<td><button onclick="tableDelete(this)" id="remove">삭제</button></td>';
-			html += '</tr>';
-						
-			$("#dynamicTable").append(html);
-						
-			$("#inName").val('');
-			$("#inPrice").val('');
+			
 			$.ajax({
                 url: "${pageContext.request.contextPath}/diagnosis/receiptItemInsert",
                 type: "post",
@@ -78,6 +66,21 @@
                 	receipt_item_price: price
                 },
                 success: function (x) {
+                	if(x == 1){
+                		alert('항목 추가 성공')
+                		html += '<tr>';
+            			html += '<td>'+name+'</td>';
+            			html += '<td>'+price+'</td>';
+            			html += '<td><button onclick="tableDelete(this)" id="remove">삭제</button></td>';
+            			html += '</tr>';
+            						
+            			$("#dynamicTable").append(html);
+            						
+            			$("#inName").val('');
+            			$("#inPrice").val('');
+                	} else {
+                		alert('항목명과 가격을 제대로 기입해주세요.')
+                	}
                 }//success
             })//ajax    
 		}

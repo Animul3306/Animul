@@ -255,11 +255,10 @@ public class ClovaOcr {
         System.out.println("병원명: " + findHospital.toString());
         System.out.println("주소: " + findSigungu.toString());
         System.out.println("날짜: " + findDate.toString());
-        System.out.println("지료 항목 리스트: " + findItem.toString());
+        System.out.println("진료 항목 리스트: " + findItem.toString());
         System.out.println("가격 리스트: " + findPrice.toString());
         System.out.println("청구 금액: " + findTotalPrice.toString());
 	
-		
 		return receiptOrganize;
 	}
 
