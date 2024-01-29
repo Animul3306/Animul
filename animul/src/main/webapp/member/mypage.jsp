@@ -72,7 +72,7 @@
             </div> -->
             <div id="lm" class="cs">
 				<h2 class="lm-tit">
-					<span>Community</span> <strong>마이페이지</strong>
+					<span>Mypage</span> <strong>마이페이지</strong>
 				</h2>
 				<ul id="snb">
 					<li><a onclick="changeIframeSrc('mypage-myinfo.jsp')">내 정보 확인</a></li>
