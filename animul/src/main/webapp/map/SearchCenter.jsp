@@ -178,7 +178,7 @@ p.groove {border-style: groove;}
 		Kakao.init('5454a62e5d0c9bb2b98dbfd591e5b4cb'); // 사용하려는 앱의 JavaScript 키 입력
 		
 		 var diagnose = 'http://localhost:8888/animul/diagnosis/diagnosisMain.jsp';
-		 var disease = 'http://localhost:8888/animul/retrieve/retrieve.jsp';
+		 var disease = 'http://localhost:8888/animul/retrieve/insurance';
 		 var titletel = g_title + '   ' + g_tel + '\n' + g_address;
 		  Kakao.Share.createDefaultButton({
 			    container: container_name,
