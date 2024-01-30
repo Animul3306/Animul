@@ -12,6 +12,9 @@
                 align-items: center;
                 font-family: "NotoSans_Regular";
             }
+            .join-table tr th {
+                font-family: "NotoSans_Bold";
+            }
         </style>
         <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
         <script>
@@ -84,7 +87,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <th>주인 아이디</th>
+                    <th style="font-size: 17px">주인 아이디</th>
                     <td>
                         <div class="input_button">
                             <label class="input w400" id="owner_name"></label>
@@ -141,7 +144,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <th>중성화 여부</th>
+                    <th style="font-size: 17px">중성화 여부</th>
                     <td>
                         <div class="input_button">
                             <label class="input w400" id="neutralization"></label>
