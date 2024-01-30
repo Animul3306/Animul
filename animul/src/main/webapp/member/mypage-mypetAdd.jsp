@@ -57,7 +57,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <th>주인 아이디</th>
+                    <th style="font-size: 17px">주인 아이디</th>
                     <td>
                         <div class="input_button">
                             <input required="required" type="text" maxlength="20" class="input w400" name="owner_id" id="owner_id" disabled>
@@ -124,7 +124,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <th>중성화 여부</th>
+                    <th style="font-size: 17px">중성화 여부</th>
                     <td>
                         <div class="input_button">
                             <select id="neutralization" name="neutralization" class="input w400">

@@ -84,7 +84,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <th>주인 아이디</th>
+                    <th style="font-size: 17px">주인 아이디</th>
                     <td>
                         <div class="input_button">
                             <label class="input w400" id="owner_name"></label>
@@ -141,7 +141,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <th>중성화 여부</th>
+                    <th style="font-size: 17px">중성화 여부</th>
                     <td>
                         <div class="input_button">
                             <label class="input w400" id="neutralization"></label>
