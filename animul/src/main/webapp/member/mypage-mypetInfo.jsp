@@ -12,6 +12,9 @@
                 align-items: center;
                 font-family: "NotoSans_Regular";
             }
+            .join-table tr th {
+                font-family: "NotoSans_Bold";
+            }
         </style>
         <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
         <script>
